@@ -1,0 +1,313 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>Clínicas dentárias — descubra o seu #1 bloqueio | Vloom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Descubra em 60 segundos porque é que a agenda da sua clínica dentária não enche. Autodiagnóstico gratuito da Vloom.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ HERO ============ -->
+<header class="stage-dark hero">
+  <div class="aurora" aria-hidden="true">
+    <span class="orb e1"></span><span class="orb p1"></span><span class="orb e2"></span><span class="orb b1"></span>
+  </div>
+  <div class="grid-dots" aria-hidden="true"></div>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><img src="assets/logo-vloom.svg" alt="Vloom" style="height:27px;width:auto;display:block;filter:brightness(0) invert(1)"></a>
+      <a class="tel" href="tel:+351914310656">Fale connosco: <b>914 310 656</b></a>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker rv">Autodiagnóstico — clínicas dentárias</span>
+        <h1 class="rv d1">
+          <span class="w" style="--i:1">Descubra</span> <span class="w" style="--i:2">em</span> <span class="w" style="--i:3;color:#FF8A3D">60&nbsp;segundos</span> <span class="w" style="--i:4">porque</span> <span class="w" style="--i:5">é</span> <span class="w" style="--i:6">que</span> <span class="w" style="--i:7">a</span> <span class="w" style="--i:8">agenda</span> <span class="w" style="--i:9">da</span> <span class="w" style="--i:10">sua</span> <span class="w" style="--i:11">clínica</span> <span class="w" style="--i:12">não</span> <span class="w" style="--i:13">enche.</span>
+        </h1>
+        <p class="sub rv d2">Cinco perguntas simples sobre a sua clínica. No fim, mostramos-lhe o <b>#1 bloqueio</b> que está a travar as marcações — e o que fazer a seguir. Sem "marketês", sem compromisso.</p>
+        <div class="meta-row rv d3">
+          <div class="m"><b>60s</b><span>é o que demora</span></div>
+          <div class="m"><b>5</b><span>perguntas diretas</span></div>
+          <div class="m"><b>1</b><span>diagnóstico à sua medida</span></div>
+        </div>
+      </div>
+
+      <!-- Cartão de arranque do diagnóstico (assinatura da casa) -->
+      <div class="form-card rv d2">
+        <h3>O autodiagnóstico da sua clínica</h3>
+        <p class="fc-sub">Responde você mesmo, ao seu ritmo. <b>É gratuito.</b></p>
+        <ul class="card-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#67449A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Descobre o seu maior bloqueio de crescimento</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#67449A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Recebe um plano à medida da sua realidade</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#67449A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Só falamos consigo se fizer sentido para ambos</li>
+        </ul>
+        <a class="btn" href="survey.html">Começar o diagnóstico <span class="arw">→</span></a>
+        <p class="rgpd">Ao avançar, aceita os termos da nossa <a href="https://vloom.pt" target="_blank" rel="noopener">Política de Privacidade</a></p>
+        <div class="mini-test">
+          <span class="av"><img src="assets/bernardo.jpg" alt="Dr. Bernardo Caria"></span>
+          <div>
+            <span class="stars">★★★★★</span>
+            <p>"Trabalhar com a Vloom mudou a forma como a clínica chega a novos pacientes."</p>
+            <b>Dr. Bernardo Caria — Clínica dentária CAB, Barcelos</b>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ============ MARQUEE ============ -->
+<div class="marquee" aria-hidden="true">
+  <div class="track" id="mqTrack">
+    <span>Gabinetes cheios</span><span class="dash">—</span><span class="o">Pacientes novos todas as semanas</span><span class="dash">—</span><span>Menos faltas e desmarcações</span><span class="dash">—</span><span class="o">Primeiro no Google da sua zona</span><span class="dash">—</span><span>Marcações no telemóvel</span><span class="dash">—</span><span class="o">1 clínica por zona</span><span class="dash">—</span>
+  </div>
+</div>
+
+<!-- ============ DORES ============ -->
+<section class="dores">
+  <div class="wrap">
+    <div class="sec-2col">
+      <div class="left">
+        <span class="kicker dark rv">O problema</span>
+        <h2 class="rv d1">Alguma vez sentiu que…</h2>
+        <p class="lead rv d2">Se reconhecer o dia a dia da sua clínica em dois ou três destes pontos, este diagnóstico foi escrito para si.</p>
+        <div class="dor-stage rv d2" id="dorStage">
+          <div class="dor-bg" id="dorBg" aria-hidden="true" style="background-image:url(assets/dor-cadeira-vazia.jpg)"></div>
+          <span class="num" id="dorNum">DOR 01 / 05</span>
+          <div class="shade"></div>
+          <q id="dorQuote">Tenho o gabinete pronto e a cadeira parada. Não é falta de qualidade — é falta de gente a entrar pela porta.</q>
+          <span class="who" id="dorWho">Um dia normal, numa clínica dentária</span>
+        </div>
+      </div>
+      <div class="pain-list" id="painList">
+        <div class="pain active" data-num="DOR 01 / 05" data-img="assets/dor-cadeira-vazia.jpg" data-q="Tenho o gabinete pronto e a cadeira parada. Não é falta de qualidade — é falta de gente a entrar pela porta." data-who="Um dia normal, numa clínica dentária">
+          <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 4v16M17 4v16M3 10h18M3 14h18"/></svg><span class="ping"></span></span>
+          <h3>Tem gabinetes livres e horas mortas na agenda — a estrutura está pronta, faltam pacientes</h3>
+          <span class="prog"></span>
+        </div>
+        <div class="pain" data-num="DOR 02 / 05" data-img="assets/dor-passa-palavra.jpg" data-q="Quando o passa-palavra abranda, a agenda abranda com ele. E eu não tenho nenhuma torneira que possa abrir." data-who="Refém do boca-a-boca">
+          <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><span class="ping"></span></span>
+          <h3>Depende quase só do passa-palavra — quando ele abranda, a agenda abranda também</h3>
+          <span class="prog"></span>
+        </div>
+        <div class="pain" data-num="DOR 03 / 05" data-img="assets/dor-google.jpg" data-q="Pesquiso o meu serviço no Google e é a clínica do lado que aparece primeiro, com dezenas de avaliações. O paciente clica nela." data-who="A batalha no Google">
+          <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span class="ping"></span></span>
+          <h3>O concorrente aparece primeiro no Google, com mais avaliações — e leva o paciente que era seu</h3>
+          <span class="prog"></span>
+        </div>
+        <div class="pain" data-num="DOR 04 / 05" data-img="assets/dor-marketing.jpg" data-q="Já pus dinheiro em marketing antes. Bonito, muita promessa — e não entrou uma única consulta que se visse." data-who="Marketing que não trouxe consultas">
+          <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg><span class="ping"></span></span>
+          <h3>Já pagou marketing que nunca lhe trouxe uma consulta — e ficou com o pé atrás</h3>
+          <span class="prog"></span>
+        </div>
+        <div class="pain" data-num="DOR 05 / 05" data-img="assets/dor-faltas.jpg" data-q="Marcam, confirmam… e no dia faltam. Cada falta é uma cadeira parada que eu já não recupero." data-who="Faltas e desmarcações">
+          <span class="pv"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18M9 15l6 4M15 15l-6 4"/></svg><span class="ping"></span></span>
+          <h3>Faltas e desmarcações de última hora deixam a cadeira parada — e não há como recuperar a hora</h3>
+          <span class="prog"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PASSOS ============ -->
+<section class="passos stage-dark" style="color:#fff">
+  <div class="aurora" aria-hidden="true"><span class="orb p1"></span><span class="orb e2"></span></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <span class="kicker rv" style="color:var(--ember2)">Simples de propósito</span>
+    <h2 class="rv d1">Do diagnóstico à agenda cheia, em três passos.</h2>
+    <div class="passos-row">
+      <div class="passo rv"><span class="n">1</span><h3>Responde ao diagnóstico</h3><p>Cinco perguntas sobre a sua clínica. Em 60 segundos, sabe qual é o bloqueio nº 1 que está a travar as suas marcações.</p></div>
+      <div class="passo rv d1"><span class="n">2</span><h3>Recebe o seu plano</h3><p>Mostramos-lhe, à medida da sua realidade, o caminho para encher os gabinetes com pacientes de pré-consulta qualificados.</p></div>
+      <div class="passo rv d2"><span class="n">3</span><h3>Se fizer sentido, falamos 15 min</h3><p>Uma chamada curta e franca. Se virmos que não somos para si, dizemos-lhe com a mesma franqueza. Sem insistência.</p></div>
+    </div>
+    <div class="cta-row rv">
+      <a class="btn" href="survey.html">Começar o meu diagnóstico <span class="arw">→</span></a>
+      <p class="rgpd">Ao avançar, aceita os termos da nossa <a href="https://vloom.pt" target="_blank" rel="noopener">Política de Privacidade</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTEMUNHOS VÍDEO ============ -->
+<section class="testems">
+  <div class="wrap">
+    <div class="head">
+      <div>
+        <span class="kicker dark rv">Vídeo-testemunhos</span>
+        <h2 class="rv d1">Negócios portugueses, pela própria boca.</h2>
+      </div>
+      <p class="rv d2">Uma clínica dentária como a sua e dois negócios de serviços. Carregue no play — nós esperamos.</p>
+    </div>
+    <div class="t-grid">
+      <a class="t-item rv" href="https://vimeo.com/1155016610" target="_blank" rel="noopener" aria-label="Ver testemunho do Dr. Bernardo Caria">
+        <div class="frame">
+          <img src="assets/bernardo.jpg" alt="Dr. Bernardo Caria, clínica dentária CAB">
+          <span class="t-play"><svg viewBox="0 0 26 30" fill="none"><path d="M25 15L1 29V1l24 14z" fill="#fff"/></svg></span>
+        </div>
+        <div class="t-meta"><div><b>Dr. Bernardo Caria</b><br><span>Clínica dentária CAB, Barcelos</span></div><span class="kpi">Mesmo nicho</span></div>
+      </a>
+      <a class="t-item rv d1" href="https://vimeo.com/817572943" target="_blank" rel="noopener" aria-label="Ver testemunho de João Matos">
+        <div class="frame">
+          <img src="assets/joao.jpg" alt="João Matos, Escola Formação Ativa">
+          <span class="t-play"><svg viewBox="0 0 26 30" fill="none"><path d="M25 15L1 29V1l24 14z" fill="#fff"/></svg></span>
+        </div>
+        <div class="t-meta"><div><b>João Matos</b><br><span>Escola Formação Ativa, Guimarães</span></div><span class="kpi">Vendas +300%</span></div>
+      </a>
+      <a class="t-item rv d2" href="https://vimeo.com/825008560" target="_blank" rel="noopener" aria-label="Ver testemunho de Thierry Henrot">
+        <div class="frame">
+          <img src="assets/thierry.jpg" alt="Thierry Henrot, Sheraton Lisboa">
+          <span class="t-play"><svg viewBox="0 0 26 30" fill="none"><path d="M25 15L1 29V1l24 14z" fill="#fff"/></svg></span>
+        </div>
+        <div class="t-meta"><div><b>Thierry Henrot</b><br><span>Diretor Geral, Sheraton Lisboa</span></div><span class="kpi">Alcance +300%</span></div>
+      </a>
+    </div>
+    <div class="cta-row rv">
+      <a class="btn" href="survey.html">Quero resultados destes na minha clínica <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section class="faq">
+  <div class="wrap">
+    <div class="sec-2col">
+      <div class="left">
+        <span class="kicker dark rv">Perguntas diretas</span>
+        <h2 class="rv d1">As dúvidas mais comuns.</h2>
+        <p class="lead rv d2">Respostas sem rodeios. O que ficar por responder, é exatamente para isso que serve a chamada de esclarecimento.</p>
+      </div>
+      <div class="faq-list">
+        <details class="faq-it rv"><summary>O diagnóstico é mesmo gratuito?<span class="pl">+</span></summary><div class="fa">É. São cinco perguntas e um resultado imediato, sem custo e sem compromisso. Só avançamos para uma conversa <b>se fizer sentido para os dois lados</b>.</div></details>
+        <details class="faq-it rv"><summary>Trabalham com muitas clínicas na mesma zona?<span class="pl">+</span></summary><div class="fa">Não. Trabalhamos com <b>uma clínica por zona</b>. O nosso trabalho é fazer a sua clínica destacar-se — não faria sentido fazer o mesmo pela porta ao lado.</div></details>
+        <details class="faq-it rv"><summary>Já tentei marketing e não resultou. Porque seria diferente?<span class="pl">+</span></summary><div class="fa">Porque não vendemos "posts bonitos". Construímos um <b>sistema de aquisição</b> pensado para gerar marcações de pré-consulta qualificadas — e medimos isso. Se ao 3.º mês não gerarmos as marcações prometidas, está protegido pela nossa garantia.</div></details>
+        <details class="faq-it rv"><summary>Preciso de perceber de marketing para isto funcionar?<span class="pl">+</span></summary><div class="fa">Não. A ideia é exatamente o contrário: você trata dos pacientes, nós tratamos de os fazer chegar. Sem "marketês" e sem trabalho da sua parte.</div></details>
+        <details class="faq-it rv"><summary>Quem são vocês?<span class="pl">+</span></summary><div class="fa">Somos a <b>Vloom</b>, uma agência de marketing e publicidade em Lisboa, com sistemas de aquisição de clientes para negócios portugueses. Trabalhamos com clínicas, escolas, hotelaria e serviços — pode ver alguns pela própria boca nesta página.</div></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FECHO — só o diagnóstico ============ -->
+<section class="stage-dark fecho">
+  <div class="aurora" aria-hidden="true"><span class="orb e1"></span><span class="orb p1" style="top:auto;bottom:-160px;left:auto;right:-4%"></span></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <div class="wrap" style="text-align:center">
+    <span class="kicker rv">O primeiro passo</span>
+    <h2 class="rv d1">Descubra o seu #1 bloqueio.<br>Leva 60 segundos.</h2>
+    <p class="lead rv d2" style="margin-left:auto;margin-right:auto;max-width:52ch">Cinco perguntas sobre a sua clínica. No fim, sabe exatamente o que está a travar as suas marcações — e o que fazer a seguir. Grátis e sem compromisso.</p>
+    <div class="resume rv d3" style="justify-content:center">
+      <span><b>60 segundos</b>é o que demora</span>
+      <span><b>5</b>perguntas diretas</span>
+      <span><b>Resultado</b>imediato no ecrã</span>
+    </div>
+    <div class="cta-row rv d3" style="margin-top:var(--s4)">
+      <a class="btn" href="survey.html">Fazer o meu diagnóstico <span class="arw">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="index.html"><img src="assets/logo-vloom.svg" alt="Vloom" style="height:27px;width:auto;display:block;filter:brightness(0) invert(1)"></a>
+        <p>Agência de Marketing e Publicidade.<br>Sistemas de aquisição de pacientes<br>para clínicas dentárias portuguesas.</p>
+      </div>
+      <div>
+        <h4>Contactos</h4>
+        <p>Palácio Sottomayor<br>Av. Fontes Pereira de Melo 16, Lisboa<br><a href="tel:+351914310656">+351 914 310 656</a><br><span class="foot-note">Chamada para rede móvel nacional</span><br><a href="mailto:tiagoseverino@vloom.pt">tiagoseverino@vloom.pt</a></p>
+      </div>
+      <div>
+        <h4>Informação</h4>
+        <p><a href="survey.html">Fazer o diagnóstico</a><br><a href="https://vloom.pt" target="_blank" rel="noopener">vloom.pt</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026, Vloom Agência de Marketing</span>
+      <span>Design by Vloom</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/351914310656" target="_blank" rel="noopener" aria-label="Falar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5a.5.5 0 0 0 0-.5L8.9 6.3c-.2-.5-.4-.5-.6-.5H7.8a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.2 8c0 1.2.9 2.4 1 2.5a10 10 0 0 0 3.9 3.4c1.9.9 1.9.6 2.3.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2"/></svg>
+</a>
+
+<div class="sticky-cta" id="stickyCta">
+  <span class="s-txt"><b>60 segundos</b> <span>· Descubra o bloqueio nº 1 da sua clínica</span></span>
+  <a class="btn" href="survey.html">Fazer o diagnóstico <span class="arw">→</span></a>
+</div>
+
+<script>
+/* Reveal on scroll */
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.14});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  var h1=document.querySelector('.hero h1');
+  if(h1){setTimeout(function(){h1.classList.add('on')},150)}
+})();
+
+/* Progress bar + sticky CTA */
+(function(){
+  var prog=document.getElementById('progress'), sticky=document.getElementById('stickyCta');
+  function onScroll(){
+    var h=document.documentElement, sc=h.scrollTop||document.body.scrollTop;
+    var max=(h.scrollHeight-h.clientHeight)||1;
+    prog.style.width=(sc/max*100)+'%';
+    if(sc>700){sticky.classList.add('on')}else{sticky.classList.remove('on')}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+
+/* Marquee: duplicar para loop contínuo */
+(function(){
+  var t=document.getElementById('mqTrack'); if(t){t.innerHTML+=t.innerHTML}
+})();
+
+/* Dores: rotação interativa da citação */
+(function(){
+  var pains=[].slice.call(document.querySelectorAll('#painList .pain'));
+  var qEl=document.getElementById('dorQuote'), nEl=document.getElementById('dorNum'), wEl=document.getElementById('dorWho'), bgEl=document.getElementById('dorBg');
+  if(!pains.length) return;
+  var idx=0, timer=null;
+  var reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  /* preload todas as imagens de fundo para trocas sem flash */
+  pains.forEach(function(p){ if(p.dataset.img){ var im=new Image(); im.src=p.dataset.img; } });
+  function show(i){
+    pains.forEach(function(p){p.classList.remove('active')});
+    var p=pains[i]; p.classList.add('active');
+    qEl.textContent=p.dataset.q; nEl.textContent=p.dataset.num; wEl.textContent=p.dataset.who;
+    if(bgEl&&p.dataset.img){
+      var url="url("+p.dataset.img+")";
+      if(bgEl.style.backgroundImage!==url){
+        bgEl.style.opacity='0';
+        setTimeout(function(){ bgEl.style.backgroundImage=url; bgEl.style.opacity='1'; },220);
+      }
+    }
+    idx=i;
+  }
+  function next(){show((idx+1)%pains.length)}
+  function start(){ if(reduce) return; stop(); timer=setInterval(next,6000)}
+  function stop(){ if(timer){clearInterval(timer);timer=null} }
+  pains.forEach(function(p,i){
+    p.addEventListener('click',function(){show(i);start()});
+    p.addEventListener('mouseenter',stop);
+    p.addEventListener('mouseleave',start);
+  });
+  show(0); start();
+})();
+</script>
+</body>
+</html>

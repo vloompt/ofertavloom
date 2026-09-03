@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vloom · Reunião marcada</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/10reunioes/assets/logo.svg">
+<style>
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-style:normal;font-display:swap}
+:root{--fundo:#100d26;--painel:#1b1740;--linha:rgba(255,255,255,.13);--texto:#eceafa;--texto2:#a8a3c8;--roxo:#8d489b;--roxo-claro:#b06dbe;--azul:#77cef4;--noite:#252158;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--fundo);color:var(--texto);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;height:auto}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+.topo{padding:46px 0 30px;text-align:center;position:relative;overflow:hidden}
+.topo::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(141,72,155,.30),transparent 66%);pointer-events:none}
+.topo .wrap{position:relative;z-index:1}
+.topo img.lg{height:30px;width:auto;margin:0 auto 30px}
+.tick{width:64px;height:64px;margin:0 auto 22px;border-radius:50%;background:rgba(119,206,244,.12);border:1px solid rgba(119,206,244,.45);display:grid;place-items:center;color:var(--azul)}
+h1{font-size:clamp(29px,4.2vw,50px);font-weight:800;line-height:1.08;letter-spacing:-.03em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--roxo-claro)}
+.lede{font-size:clamp(16px,1.7vw,19px);color:var(--texto2);line-height:1.65;max-width:640px;margin:20px auto 0}
+.lede b{color:var(--texto);font-weight:700}
+
+.passos{display:grid;gap:10px;margin:36px 0 0}
+@media(min-width:760px){.passos{grid-template-columns:1fr 1fr 1fr;gap:0}}
+.pa{display:flex;align-items:center;gap:14px;background:var(--painel);border:1px solid var(--linha);border-radius:14px;padding:18px 20px;text-align:left;position:relative}
+@media(min-width:760px){
+  .pa{border-radius:0;border-right:0}
+  .pa:first-child{border-radius:14px 0 0 14px}
+  .pa:last-child{border-radius:0 14px 14px 0;border-right:1px solid var(--linha)}
+  .pa:not(:last-child)::after{content:"";position:absolute;right:-13px;top:50%;transform:translateY(-50%) rotate(45deg);width:26px;height:26px;background:var(--painel);border-top:1px solid var(--linha);border-right:1px solid var(--linha);z-index:2}
+}
+.pa.on{background:#2c1f57;border-color:var(--roxo)}
+@media(min-width:760px){.pa.on:not(:last-child)::after{background:#2c1f57;border-color:var(--roxo)}}
+.pa .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--roxo);display:grid;place-items:center;color:#fff}
+.pa b{display:block;font-size:14px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.pa small{display:block;font-size:12.5px;color:var(--texto2);margin-top:3px;line-height:1.4}
+
+section{padding:56px 0}
+h2{font-size:clamp(23px,2.7vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--roxo-claro);padding-bottom:7px;border-bottom:2px solid var(--roxo);margin-bottom:16px}
+.prep{display:grid;gap:14px;margin-top:26px}
+@media(min-width:760px){.prep{grid-template-columns:repeat(3,1fr)}}
+.pc{background:var(--painel);border:1px solid var(--linha);border-radius:16px;padding:24px}
+.pc .n{font-size:38px;font-weight:800;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.4)}
+.pc b{display:block;margin:14px 0 6px;font-size:16.5px;font-weight:800;letter-spacing:-.02em}
+.pc p{color:var(--texto2);font-size:15px}
+
+.dep{background:var(--painel);border:1px solid var(--linha);border-radius:18px;overflow:hidden;display:grid;gap:0}
+@media(min-width:760px){.dep{grid-template-columns:1.1fr 1fr;align-items:center}}
+.dep .tv{position:relative;aspect-ratio:16/9;background:#000;border:0;padding:0;width:100%;cursor:pointer;display:block;line-height:0;overflow:hidden}
+.dep .tv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.dep .tv-bt{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:62px;height:62px;border-radius:50%;background:rgba(16,13,38,.72);border:2px solid rgba(255,255,255,.85);display:grid;place-items:center;color:#fff;padding-left:5px;transition:transform .25s ease,background .25s ease}
+.dep .tv:hover .tv-bt{transform:translate(-50%,-50%) scale(1.08);background:var(--roxo)}
+.dep .tv img{width:100%;height:100%;object-fit:cover}
+.dep .tx{padding:28px 30px}
+.dep .st{color:var(--azul);letter-spacing:.16em;font-size:14px}
+.dep .cit{font-style:italic;color:var(--texto2);font-size:16.5px;line-height:1.55;margin:10px 0 12px}
+.dep .quem{font-size:14px;font-weight:800}
+.dep .quem span{display:block;color:var(--texto2);font-weight:400;font-size:13px;margin-top:2px}
+
+.alt{margin:34px 0 0;padding:20px 24px;background:var(--painel);border:1px solid var(--linha);border-left:4px solid var(--azul);border-radius:14px;font-size:15.5px;color:var(--texto2)}
+.alt a{color:var(--texto);font-weight:700}
+footer{border-top:1px solid var(--linha);padding:32px 0;font-size:13px;color:var(--texto2)}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+footer a{color:var(--texto2)}
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <div class="wrap">
+    <img class="lg" src="/10reunioes/assets/logo-branco.svg" alt="Vloom">
+    <div class="tick"><svg width="30" height="24" viewBox="0 0 30 24" fill="none"><path d="M2.5 12.5 11 21 27.5 3" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h1>Reunião marcada.<br>Está <em>no calendário</em>.</h1>
+    <p class="lede">Vai receber o convite no email, com o link da videochamada. <b>Se não aparecer em cinco minutos, veja no spam</b> e marque-nos como remetente seguro.</p>
+
+    <div class="passos">
+      <div class="pa"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="m3 10.5 4.5 4.5L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Candidatura recebida</b><small>Olhámos para o que nos enviou</small></span></div>
+      <div class="pa"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="m3 10.5 4.5 4.5L17 5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span><b>Dia e hora escolhidos</b><small>O convite segue por email</small></span></div>
+      <div class="pa on"><span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 15V9M8 15V4M13 15v-4M18 15V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span><span><b>Falamos na reunião</b><small>Quinze minutos, e dizemos-lhe se faz sentido</small></span></div>
+    </div>
+  </div>
+</div>
+
+<section>
+  <div class="wrap">
+    <span class="kicker">Para a reunião render</span>
+    <h2>Tenha isto à mão. São quinze minutos.</h2>
+    <div class="prep">
+      <div class="pc"><span class="n">01</span><b>Quanto investe hoje</b><p>O que gasta por mês em anúncios e em agência, e há quanto tempo.</p></div>
+      <div class="pc"><span class="n">02</span><b>Quem atende as leads</b><p>Quantas pessoas ligam de volta, em quanto tempo, e com que guião.</p></div>
+      <div class="pc"><span class="n">03</span><b>Quanto vale um cliente</b><p>O valor médio de um cliente seu no primeiro ano. Basta uma ordem de grandeza.</p></div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--noite)">
+  <div class="wrap">
+    <div class="dep">
+      <button class="tv" type="button" data-vimeo="817572943" aria-label="Reproduzir depoimento de João Matos">
+        <img src="/10reunioes/assets/caras/joao-poster.jpg" alt="João Matos, Formação Profissional">
+        <span class="tv-bt"><svg width="20" height="24" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span>
+      </button>
+      <div class="tx">
+        <span class="st">★★★★★</span>
+        <p class="cit">“Com a Vloom posso dizer que aumentei as vendas que tinha em pelo menos 200 a 300%.”</p>
+        <div class="quem">João Matos<span>Formação Profissional</span></div>
+      </div>
+    </div>
+    <p class="alt">Precisa de mudar a hora ou falar antes? Ligue para <a href="tel:+351914310656">(+351) 914 310 656</a>. Chamada para rede móvel nacional.</p>
+  </div>
+</section>
+
+<footer><div class="wrap legal">
+  <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
+  <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a> · Design by Vloom</span>
+</div></footer>
+
+<script>
+document.querySelectorAll('.dep .tv').forEach(function(b){
+  b.addEventListener('click', function(){
+    var f=document.createElement('iframe');
+    f.src='https://player.vimeo.com/video/'+b.dataset.vimeo+'?autoplay=1&title=0&byline=0&portrait=0';
+    f.allow='autoplay; fullscreen; picture-in-picture'; f.title='Depoimento de João Matos';
+    b.innerHTML=''; b.appendChild(f);
+  }, {once:true});
+});
+</script>
+</body>
+</html>

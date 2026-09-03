@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vloom · Pedido recebido. Escolha a hora.</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/10reunioes/assets/logo.svg">
+<style>
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-style:normal;font-display:swap}
+:root{--fundo:#100d26;--painel:#1b1740;--linha:rgba(255,255,255,.13);--texto:#eceafa;--texto2:#a8a3c8;--roxo:#8d489b;--roxo-claro:#b06dbe;--azul:#77cef4;--noite:#252158;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--fundo);color:var(--texto);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;height:auto}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px}
+.topo{padding:46px 0 30px;text-align:center;position:relative;overflow:hidden}
+.topo::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(141,72,155,.30),transparent 66%);pointer-events:none}
+.topo .wrap{position:relative;z-index:1}
+.topo img.lg{height:30px;width:auto;margin:0 auto 30px}
+h1{font-size:clamp(29px,4.2vw,50px);font-weight:800;line-height:1.08;letter-spacing:-.03em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--roxo-claro)}
+.lede{font-size:clamp(16px,1.7vw,19px);color:var(--texto2);line-height:1.65;max-width:640px;margin:20px auto 0}
+.lede b{color:var(--texto);font-weight:700}
+
+/* barra de passos em chevron */
+.passos{display:grid;gap:10px;margin:36px 0 0}
+@media(min-width:760px){.passos{grid-template-columns:1fr 1fr 1fr;gap:0}}
+.pa{display:flex;align-items:center;gap:14px;background:var(--painel);border:1px solid var(--linha);border-radius:14px;padding:18px 20px;text-align:left;position:relative}
+@media(min-width:760px){
+  .pa{border-radius:0;border-right:0}
+  .pa:first-child{border-radius:14px 0 0 14px}
+  .pa:last-child{border-radius:0 14px 14px 0;border-right:1px solid var(--linha)}
+  .pa:not(:last-child)::after{content:"";position:absolute;right:-13px;top:50%;transform:translateY(-50%) rotate(45deg);width:26px;height:26px;background:var(--painel);border-top:1px solid var(--linha);border-right:1px solid var(--linha);z-index:2}
+}
+.pa.on{background:#2c1f57;border-color:var(--roxo)}
+@media(min-width:760px){.pa.on:not(:last-child)::after{background:#2c1f57;border-color:var(--roxo)}}
+.pa .ic{flex:none;width:42px;height:42px;border-radius:12px;background:var(--roxo);display:grid;place-items:center;color:#fff}
+.pa b{display:block;font-size:14px;font-weight:800;letter-spacing:-.01em;line-height:1.25}
+.pa small{display:block;font-size:12.5px;color:var(--texto2);margin-top:3px;line-height:1.4}
+
+.cal{border:1px solid var(--linha);border-radius:20px;overflow:hidden;background:var(--painel);margin:30px 0 60px;box-shadow:0 30px 70px rgba(0,0,0,.5)}
+.cal .ch{background:var(--noite);padding:20px 26px;border-bottom:1px solid var(--linha)}
+.cal .ch b{display:block;font-size:18px;font-weight:800;letter-spacing:-.02em}
+.cal .ch span{display:block;font-size:13px;color:var(--texto2);margin-top:5px}
+.cal iframe{width:100%;border:0;display:block;min-height:800px;background:#fff}
+.alt{margin:0 0 60px;padding:20px 24px;background:var(--painel);border:1px solid var(--linha);border-left:4px solid var(--azul);border-radius:14px;font-size:15.5px;color:var(--texto2)}
+.alt a{color:var(--texto);font-weight:700}
+footer{border-top:1px solid var(--linha);padding:32px 0;font-size:13px;color:var(--texto2)}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+footer a{color:var(--texto2)}
+</style>
+</head>
+<body>
+
+<div class="topo">
+  <div class="wrap">
+    <img class="lg" src="/10reunioes/assets/logo-branco.svg" alt="Vloom">
+    <h1>Recebemos o seu pedido.<br>Falta <em>escolher a hora</em>.</h1>
+    <p class="lede">Para não andarmos a trocar mensagens, <b>escolha já em baixo o dia e a hora que lhe dá jeito</b>. São 15 minutos, por videochamada.</p>
+
+    <div class="passos">
+      <div class="pa on">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><rect x="2.5" y="4" width="15" height="13.5" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M2.5 8h15M6.5 2.5v3M13.5 2.5v3" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></span>
+        <span><b>Escolha um dia e uma hora</b><small>Recebe o convite no email, com o link</small></span>
+      </div>
+      <div class="pa">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M10 2.5 17 6v5c0 3.4-2.9 5.6-7 6.5C5.9 16.6 3 14.4 3 11V6l7-3.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg></span>
+        <span><b>Olhamos para o seu negócio</b><small>O que já anuncia e quem atende as leads</small></span>
+      </div>
+      <div class="pa">
+        <span class="ic"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 15V9M8 15V4M13 15v-4M18 15V7" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></span>
+        <span><b>Dizemos-lhe se faz sentido</b><small>E se não fizer, dizemos isso também</small></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="cal">
+    <div class="ch"><b>Escolha o dia e a hora</b><span>Quinze minutos, por videochamada.</span></div>
+    <!-- Calendário GHL dos leads +500k (o mesmo do funil do simulador), configurado a 15 minutos. -->
+    <iframe src="https://api.leadconnectorhq.com/widget/booking/5nMkfIunMzcMEU9CoIDU" id="5nMkfIunMzcMEU9CoIDU_ty" scrolling="no" title="Calendário Vloom"></iframe>
+  </div>
+  <p class="alt">Prefere falar já? Ligue para <a href="tel:+351914310656">(+351) 914 310 656</a>. Chamada para rede móvel nacional.</p>
+</div>
+
+<footer><div class="wrap legal">
+  <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
+  <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a> · Design by Vloom</span>
+</div></footer>
+
+<script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript"></script>
+</body>
+</html>

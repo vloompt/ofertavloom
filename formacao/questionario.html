@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>Um pedido pessoal do Tiago | Vloom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="30 segundos: diga-me qual é o maior desafio do seu negócio de formação agora mesmo. Um pedido pessoal do Tiago, da Vloom.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+<style>
+  /* ---- Deep Dive: ecrã de capa (recado pessoal + foto) + textarea + captura ---- */
+  .dd-cover-grid{display:flex;flex-direction:column;align-items:center;text-align:center;max-width:600px;margin:0 auto}
+  .dd-cover-grid .dd-msg{min-width:0;display:flex;flex-direction:column;align-items:center;width:100%}
+
+  /* avatar medalhão — o rosto do recado pessoal */
+  .dd-avatar{width:98px;height:98px;border-radius:50%;padding:3px;flex:0 0 auto;
+    background:linear-gradient(145deg,#FFC578,#FF7A3D 58%,#E05A2B);
+    box-shadow:0 0 0 6px rgba(255,122,61,.09),0 18px 40px rgba(0,0,0,.55),0 0 52px rgba(255,122,61,.30);
+    margin-bottom:26px}
+  .dd-avatar img{width:100%;height:100%;border-radius:50%;object-fit:cover;object-position:center center;
+    display:block;border:3px solid var(--navy2);background:#f2f0f5}
+
+  .dd-cover-grid .kicker{color:var(--ember2);display:inline-flex;align-items:center;justify-content:center;gap:10px;
+    font-size:12.5px;font-weight:700;letter-spacing:.2em;text-transform:uppercase}
+  .dd-cover-grid .kicker::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--ember);box-shadow:0 0 12px var(--ember);animation:pulse 2.4s ease-in-out infinite}
+  .dd-cover-grid h1{font-size:clamp(30px,4.4vw,50px);line-height:1.08;margin:16px 0 22px}
+  .dd-cover-grid h1 .em{color:var(--ember2)}
+  .dd-cover-grid .sub{font-size:17px;font-weight:300;line-height:1.72;color:rgba(255,255,255,.82);max-width:52ch;margin:0 auto}
+  .dd-cover-grid .sub b{font-weight:700;color:#fff}
+  .dd-cover-grid .start-note{font-size:13px;font-weight:300;color:rgba(255,255,255,.52);margin-top:20px}
+
+  /* assinatura (sign-off) — texto, com muito respiro do botão */
+  .dd-sign{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:36px}
+  .dd-sign .rule{width:46px;height:2px;border-radius:2px;background:var(--grad-ember);margin-bottom:15px;box-shadow:0 0 12px rgba(255,122,61,.45)}
+  .dd-sign b{font-weight:700;font-size:16px;color:#fff;letter-spacing:.01em}
+  .dd-sign span{font-size:12px;font-weight:400;letter-spacing:.16em;text-transform:uppercase;color:var(--ember2);margin-top:5px}
+
+  /* CTA com margem ampla à volta */
+  .dd-cta{margin-top:48px;display:flex;flex-direction:column;align-items:center;width:100%}
+
+  /* pergunta aberta — textarea com respiro */
+  .q-open{max-width:660px}
+  .q-open textarea{width:100%;min-height:170px;padding:22px 22px;border:1px solid var(--line-w);border-radius:14px;
+    background:rgba(255,255,255,.06);color:#fff;font-family:'Gotham';font-weight:400;font-size:17px;line-height:1.8;
+    outline:none;resize:vertical;transition:border .2s,box-shadow .2s}
+  .q-open textarea::placeholder{color:rgba(255,255,255,.42);line-height:1.8}
+  .q-open textarea:focus{border-color:var(--ember2);box-shadow:0 0 0 3px rgba(255,122,61,.18)}
+  .q-open .q-sub{font-size:14.5px;font-weight:300;color:rgba(255,255,255,.6);margin:0 0 20px;max-width:56ch;line-height:1.6}
+
+  /* nota do telefone (fase de captura) */
+  .phone-note{background:rgba(255,122,61,.08);border:1px dashed rgba(255,178,94,.45);border-radius:12px;
+    padding:16px 18px;font-size:14px;font-weight:300;color:rgba(255,255,255,.8);line-height:1.6;margin:6px 0 22px;max-width:640px}
+  .phone-note b{font-weight:700;color:#fff}
+  .q-capture.three{grid-template-columns:1fr 1fr}
+  .q-capture .full{grid-column:1 / -1}
+  .q-capture .field .opt-tag{font-weight:400;text-transform:none;letter-spacing:0;color:rgba(255,255,255,.45)}
+
+  /* nav de submit — botão CENTRADO */
+  .q-nav.center{flex-direction:column;align-items:center;gap:18px;text-align:center}
+  .q-nav.center .btn{width:auto;max-width:none}
+  .q-nav.center .q-back{order:2}
+
+  /* botão continuar (pergunta aberta) */
+  .q-nav .btn.sm.next{animation:none}
+  .q-nav .btn.sm.next::after{display:none}
+
+  /* ecrã final (obrigado) */
+  .dd-thanks{display:none;text-align:center;max-width:640px;margin:0 auto}
+  .dd-thanks .tick{width:78px;height:78px;border-radius:50%;background:var(--grad-ember);display:flex;align-items:center;justify-content:center;margin:0 auto 26px;box-shadow:0 20px 50px rgba(255,122,61,.4)}
+  .dd-thanks .tick svg{width:38px;height:38px}
+  .dd-thanks h2{font-size:clamp(30px,4.4vw,48px);line-height:1.08;margin-bottom:18px}
+  .dd-thanks h2 .em{color:var(--ember2)}
+  .dd-thanks p{font-size:17px;font-weight:300;color:rgba(255,255,255,.8);line-height:1.7;max-width:52ch;margin:0 auto}
+  .dd-thanks .note{font-size:14px;color:rgba(255,255,255,.55);margin-top:22px;font-style:italic}
+  .dd-thanks .sign{display:inline-flex;align-items:center;gap:12px;margin-top:30px;
+    padding:10px 18px 10px 10px;border:1px solid var(--line-w);border-radius:999px;background:rgba(255,255,255,.04)}
+  .dd-thanks .sign img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:center center;flex:0 0 auto;border:2px solid rgba(255,255,255,.14);background:#f2f0f5}
+  .dd-thanks .sign .sig{display:flex;flex-direction:column;gap:2px}
+  .dd-thanks .sign .nm{font-weight:700;font-size:14px;color:#fff;text-align:left;line-height:1.2}
+  .dd-thanks .sign .rl{font-size:12px;font-weight:300;color:var(--ember2);text-align:left;margin-top:2px}
+
+  @media(max-width:880px){
+    .dd-cover-grid{max-width:520px}
+    .dd-cover-grid .kicker{justify-content:center}
+    .dd-cover-grid .sub{margin-left:auto;margin-right:auto}
+  }
+  @media(max-width:560px){
+    .q-capture.three{grid-template-columns:1fr}
+    .q-open textarea{font-size:16px}
+    .dd-avatar{width:86px;height:86px;margin-bottom:22px}
+    .dd-cover-grid h1{margin:14px 0 20px}
+    .dd-sign{margin-top:32px}
+    .dd-cta{margin-top:40px}
+  }
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<div class="stage-dark survey-stage">
+  <div class="aurora" aria-hidden="true">
+    <span class="orb e1"></span><span class="orb p1"></span><span class="orb b1"></span>
+  </div>
+  <div class="grid-dots" aria-hidden="true"></div>
+
+  <!-- topo: logo + progresso -->
+  <div class="survey-top">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><img src="assets/logo-vloom.svg" alt="Vloom" style="height:27px;width:auto;display:block;filter:brightness(0) invert(1)"></a>
+      <span class="step-count" id="stepCount" style="visibility:hidden">Passo 1 de 7</span>
+    </div>
+    <div class="wrap" id="pbarWrap" style="visibility:hidden">
+      <div class="pbar"><i id="pbar" style="width:14%"></i></div>
+    </div>
+  </div>
+
+  <!-- ecrãs -->
+  <div class="survey-main">
+    <div class="wrap">
+
+      <!-- ECRÃ 0 — CAPA: recado pessoal do Tiago -->
+      <div class="q-step on dd-cover" data-step="0">
+        <div class="dd-cover-grid">
+          <div class="dd-msg">
+            <div class="dd-avatar"><img src="assets/tiago.jpg" alt="Tiago Severino, fundador da Vloom"></div>
+            <span class="kicker">Um pedido pessoal</span>
+            <h1>Gostava de lhe fazer <span class="em">uma pergunta</span>.</h1>
+            <p class="sub">Diga-me qual é o <b>maior desafio que o seu negócio de formação enfrenta agora mesmo</b>. Primeiro, significaria imenso para mim; e segundo — o que mais importa — passo a orientar os próximos conteúdos e emails para o que é <b>realmente útil para fazer a sua formação crescer</b>.</p>
+            <div class="dd-sign">
+              <span class="rule" aria-hidden="true"></span>
+              <b>Tiago Severino</b>
+              <span>Fundador · Vloom</span>
+            </div>
+            <div class="dd-cta">
+              <button type="button" class="btn" id="startBtn">Responder ao Tiago <span class="arw">→</span></button>
+              <p class="start-note">30 segundos. Sem spam. Sem lhe vender nada.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <form id="ddForm" novalidate>
+
+        <!-- PASSO 1 — pergunta aberta (o coração) -->
+        <div class="q-step" data-step="1">
+          <span class="q-kicker">Para começar</span>
+          <h2>Qual é o maior desafio do seu negócio de formação agora mesmo?</h2>
+          <div class="q-open">
+            <p class="q-sub">Nas suas palavras, à vontade. É o que mais me ajuda a perceber quem me lê — e a escrever sobre o que você quer mesmo saber.</p>
+            <textarea id="desafio" name="desafio" rows="5" placeholder="Escreva à vontade…"></textarea>
+          </div>
+          <div class="err" id="err1"></div>
+          <div class="q-nav">
+            <button type="button" class="q-back">← Voltar</button>
+            <button type="button" class="btn sm next" data-next="1">Continuar <span class="arw">→</span></button>
+          </div>
+        </div>
+
+        <!-- PASSO 2 — propriedade -->
+        <div class="q-step" data-step="2">
+          <span class="q-kicker">A atividade</span>
+          <h2>O negócio é seu ou trabalha como formador(a)?</h2>
+          <div class="opts two" data-key="propriedade">
+            <button type="button" class="opt" data-val="dono"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">É meu / sou sócio</span></button>
+            <button type="button" class="opt" data-val="associado"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Sou formador(a) / colaborador(a)</span></button>
+          </div>
+          <div class="err" id="err2"></div>
+          <div class="q-nav"><button type="button" class="q-back">← Voltar</button></div>
+        </div>
+
+        <!-- PASSO 3 — antiguidade -->
+        <div class="q-step" data-step="3">
+          <span class="q-kicker">A atividade</span>
+          <h2>Há quanto tempo está em atividade?</h2>
+          <div class="opts" data-key="tempo">
+            <button type="button" class="opt" data-val="<1"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Menos de 1 ano</span></button>
+            <button type="button" class="opt" data-val="1-3"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Entre 1 e 3 anos</span></button>
+            <button type="button" class="opt" data-val="3-10"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Entre 3 e 10 anos</span></button>
+            <button type="button" class="opt" data-val="10+"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Mais de 10 anos</span></button>
+          </div>
+          <div class="err" id="err3"></div>
+          <div class="q-nav"><button type="button" class="q-back">← Voltar</button></div>
+        </div>
+
+        <!-- PASSO 4 — tipo de formação que quer encher mais -->
+        <div class="q-step" data-step="4">
+          <span class="q-kicker">O foco</span>
+          <h2>Que tipo de formação gostaria de encher mais?</h2>
+          <div class="opts two" data-key="tratamento">
+            <button type="button" class="opt" data-val="presencial"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Presencial (em sala)</span></button>
+            <button type="button" class="opt" data-val="online"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Online / e-learning</span></button>
+            <button type="button" class="opt" data-val="empresas"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">In-company (a empresas)</span></button>
+            <button type="button" class="opt" data-val="financiada"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Financiada / certificada</span></button>
+          </div>
+          <div class="err" id="err4"></div>
+          <div class="q-nav"><button type="button" class="q-back">← Voltar</button></div>
+        </div>
+
+        <!-- PASSO 5 — origem -->
+        <div class="q-step" data-step="5">
+          <span class="q-kicker">A origem</span>
+          <h2>De onde vêm hoje a maioria dos formandos novos?</h2>
+          <div class="opts" data-key="origem">
+            <button type="button" class="opt" data-val="passapalavra"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Passa-palavra de antigos formandos</span></button>
+            <button type="button" class="opt" data-val="google"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Pesquisas no Google</span></button>
+            <button type="button" class="opt" data-val="redes"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Redes sociais</span></button>
+            <button type="button" class="opt" data-val="naosei"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Sinceramente, não sei bem</span></button>
+          </div>
+          <div class="err" id="err5"></div>
+          <div class="q-nav"><button type="button" class="q-back">← Voltar</button></div>
+        </div>
+
+        <!-- PASSO 6 — faturação -->
+        <div class="q-step" data-step="6">
+          <span class="q-kicker">A dimensão</span>
+          <h2>Faturação anual aproximada?</h2>
+          <div class="opts two" data-key="faturacao">
+            <button type="button" class="opt" data-val="<100k"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Menos de 100 mil €</span></button>
+            <button type="button" class="opt" data-val="100-300k"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">100 mil – 300 mil €</span></button>
+            <button type="button" class="opt" data-val="300k-1m"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">300 mil € – 1 milhão €</span></button>
+            <button type="button" class="opt" data-val="1m+"><span class="mk"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span><span class="ot">Mais de 1 milhão €</span></button>
+          </div>
+          <div class="err" id="err6"></div>
+          <div class="q-nav"><button type="button" class="q-back">← Voltar</button></div>
+        </div>
+
+        <!-- PASSO 7 — captura -->
+        <div class="q-step" data-step="7">
+          <span class="q-kicker">Quase lá</span>
+          <h2>Como o contacto, se fizer sentido?</h2>
+          <div class="q-capture three">
+            <div class="field">
+              <label for="nome">O seu nome</label>
+              <input type="text" id="nome" name="nome" autocomplete="name" placeholder="O seu nome">
+            </div>
+            <div class="field">
+              <label for="email">O seu email</label>
+              <input type="email" id="email" name="email" autocomplete="email" inputmode="email" placeholder="nome@dominio.pt">
+            </div>
+            <div class="field full">
+              <label for="telefone">Telefone <span class="opt-tag">(opcional)</span></label>
+              <input type="tel" id="telefone" name="telefone" autocomplete="tel" inputmode="tel" placeholder="Se aceitar uma conversa curta">
+            </div>
+          </div>
+          <div class="phone-note">Posso querer falar com algumas pessoas pessoalmente — com a <b>promessa de não lhe vender nada</b>. Se aceitar, deixe o telefone.</div>
+          <div class="err" id="err7"></div>
+          <div class="q-nav center">
+            <button type="submit" class="btn" id="submitBtn">Enviar a minha resposta <span class="arw">→</span></button>
+            <button type="button" class="q-back">← Voltar</button>
+          </div>
+          <p class="q-hint">Guardo as suas respostas apenas para as ler e, se fizer sentido, responder-lhe. Sem spam.</p>
+        </div>
+
+      </form>
+
+      <!-- ECRÃ FINAL — OBRIGADO -->
+      <div class="dd-thanks" id="ddThanks">
+        <div class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></div>
+        <h2>Obrigado. Vou ler a sua resposta — <span class="em">pessoalmente</span>.</h2>
+        <p>Cada palavra que escreveu ajuda-me a decidir sobre o que escrever a seguir. Significa mesmo muito para mim.</p>
+        <p class="note">Se deixou o telefone, talvez lhe ligue para uma conversa curta — com a promessa de não lhe vender nada.</p>
+        <div class="sign">
+          <img src="assets/tiago.jpg" alt="Tiago Severino, da Vloom" width="44" height="44">
+          <span class="sig"><span class="nm">Tiago Severino</span><span class="rl">Vloom</span></span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var TOTAL=7;          // passos com pergunta (progresso)
+  var cur=0;            // 0 = capa
+  var answers={setor:'formacao'};
+  var steps=[].slice.call(document.querySelectorAll('.q-step'));
+  var pbar=document.getElementById('pbar');
+  var pbarWrap=document.getElementById('pbarWrap');
+  var stepCount=document.getElementById('stepCount');
+  var form=document.getElementById('ddForm');
+  var thanks=document.getElementById('ddThanks');
+
+  /* --- identidade do lead via link (?cid=) + envio progressivo --- */
+  var params=new URLSearchParams(location.search);
+  var CID=params.get('cid')||'';
+  if(CID){ answers.cid=CID; }
+  (function pre(){ var pn=params.get('n'),pe=params.get('e');
+    if(pn){ document.getElementById('nome').value=pn; answers.nome=pn; }
+    if(pe){ document.getElementById('email').value=pe; answers.email=pe; } })();
+  var RELAY_URL='/api/deepdive/'; /* função same-origin (Vercel) — grava/associa por cid no GHL, MESMO sem nome/email */
+  var sent=false;
+  function relay(stage){
+    if(!RELAY_URL) return;
+    try{ fetch(RELAY_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(Object.assign({},answers,{stage:stage,page:'deep-dive-formacao',ts:Date.now()}))}); }catch(e){}
+  }
+  /* apanha quem larga a meio: envia o que já houver ao sair (só se não concluiu) */
+  window.addEventListener('pagehide',function(){ if(!sent && answers.desafio) relay('saiu'); });
+
+  function showStep(n){
+    steps.forEach(function(s){ s.classList.toggle('on', +s.dataset.step===n); });
+  }
+  function render(){
+    showStep(cur);
+    if(cur>=1){
+      pbar.style.width=(cur/TOTAL*100)+'%';
+      stepCount.textContent='Passo '+cur+' de '+TOTAL;
+      stepCount.style.visibility='visible';
+      pbarWrap.style.visibility='visible';
+    } else {
+      stepCount.style.visibility='hidden';
+      pbarWrap.style.visibility='hidden';
+    }
+    var active=steps.filter(function(s){return +s.dataset.step===cur;})[0];
+    if(active){
+      var first=active.querySelector('.opt,textarea,input,button.btn');
+      if(first){try{first.focus({preventScroll:true})}catch(e){}}
+    }
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  function save(){ try{localStorage.setItem('vloom_deepdive_formacao', JSON.stringify(answers))}catch(e){} }
+  function go(n){ if(n<0||n>TOTAL) return; cur=n; render(); }
+
+  /* capa -> passo 1 */
+  document.getElementById('startBtn').addEventListener('click', function(){ go(1); });
+
+  /* opção -> guarda + avança */
+  document.querySelectorAll('.opts').forEach(function(group){
+    var key=group.dataset.key;
+    group.querySelectorAll('.opt').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        group.querySelectorAll('.opt').forEach(function(b){b.classList.remove('sel')});
+        btn.classList.add('sel');
+        answers[key]=btn.dataset.val;
+        save(); relay('parcial');
+        var n=+btn.closest('.q-step').dataset.step;
+        var errEl=document.getElementById('err'+n); if(errEl)errEl.textContent='';
+        setTimeout(function(){ go(n+1) }, 260);
+      });
+    });
+  });
+
+  /* pergunta aberta -> Continuar */
+  document.querySelector('.btn.next').addEventListener('click', function(){
+    var ta=document.getElementById('desafio');
+    var err=document.getElementById('err1');
+    if(!ta.value.trim()){ err.textContent='Conte-me, mesmo que em poucas palavras — é a parte mais importante.'; ta.focus(); return; }
+    err.textContent='';
+    answers.desafio=ta.value.trim(); save(); relay('desafio');
+    go(2);
+  });
+
+  /* voltar (capa incluída) */
+  document.querySelectorAll('.q-back').forEach(function(b){
+    b.addEventListener('click', function(){ go(cur-1); });
+  });
+
+  /* submit final */
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var nome=document.getElementById('nome').value.trim();
+    var email=document.getElementById('email').value.trim();
+    var tel=document.getElementById('telefone').value.trim();
+    var err=document.getElementById('err7');
+    var reEmail=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!CID){   /* só exige contacto a quem NÃO conhecemos (tráfego frio); os leads conhecidos vêm com ?cid= */
+      if(!nome){ err.textContent='Diga-me como se chama, por favor.'; document.getElementById('nome').focus(); return; }
+      if(!reEmail.test(email)){ err.textContent='Preciso de um email válido para lhe poder responder.'; document.getElementById('email').focus(); return; }
+    }
+    err.textContent='';
+    if(nome) answers.nome=nome; if(email) answers.email=email; answers.telefone=tel; answers.ts=Date.now();
+    save(); relay('final'); sent=true;
+
+    var btn=document.getElementById('submitBtn');
+    btn.textContent='A enviar…';
+    form.style.display='none';
+    steps.forEach(function(s){s.classList.remove('on')});
+    stepCount.style.visibility='hidden'; pbarWrap.style.visibility='hidden';
+    thanks.style.display='block';
+    window.scrollTo({top:0,behavior:'smooth'});
+  });
+
+  /* retomar respostas guardadas (seleção visual + textarea) */
+  (function restore(){
+    try{
+      var saved=JSON.parse(localStorage.getItem('vloom_deepdive_formacao')||'{}');
+      Object.keys(saved).forEach(function(k){ answers[k]=saved[k]; });
+      document.querySelectorAll('.opts').forEach(function(group){
+        var v=saved[group.dataset.key];
+        if(v){var b=group.querySelector('.opt[data-val="'+v+'"]'); if(b)b.classList.add('sel');}
+      });
+      if(saved.desafio)document.getElementById('desafio').value=saved.desafio;
+      if(saved.nome)document.getElementById('nome').value=saved.nome;
+      if(saved.email)document.getElementById('email').value=saved.email;
+      if(saved.telefone)document.getElementById('telefone').value=saved.telefone;
+    }catch(e){}
+  })();
+
+  render();
+})();
+</script>
+</body>
+</html>

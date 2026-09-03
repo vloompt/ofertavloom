@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<title>O seu diagnóstico | Vloom</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="O diagnóstico da sua clínica dentária e o plano da Vloom para encher os gabinetes.">
+<link rel="stylesheet" href="assets/fonts.css">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<div class="progress" id="progress"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ============ DIAGNÓSTICO (hero) ============ -->
+<header class="stage-dark diag-hero">
+  <div class="aurora" aria-hidden="true">
+    <span class="orb e1"></span><span class="orb p1"></span><span class="orb e2"></span><span class="orb b1"></span>
+  </div>
+  <div class="grid-dots" aria-hidden="true"></div>
+
+  <div class="topbar">
+    <div class="wrap">
+      <a class="wordmark" href="index.html"><img src="assets/logo-vloom.svg" alt="Vloom" style="height:27px;width:auto;display:block;filter:brightness(0) invert(1)"></a>
+      <a class="tel" href="tel:+351914310656">Fale connosco: <b>914 310 656</b></a>
+    </div>
+  </div>
+
+  <div class="wrap" style="margin-top:var(--s5)">
+    <span class="thanks" id="thanks">Obrigado. Aqui está o seu diagnóstico</span>
+    <div class="lbl-tag" id="lblTag">O SEU BLOQUEIO Nº 1</div>
+    <h1 id="diagTitle">A Cadeira Vazia</h1>
+    <p class="agita" id="diagAgita"></p>
+    <div class="sintomas" id="sintomas"></div>
+  </div>
+</header>
+
+<!-- ============ A SOLUÇÃO: 6 ELEMENTOS ============ -->
+<section class="sol6">
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker dark rv">A solução</span>
+      <h2 class="rv d1">Um sistema de aquisição de pacientes — montado por nós, de fio a pavio.</h2>
+      <p class="rv d2">Não é "mais uns anúncios". É uma máquina completa para transformar a sua zona em marcações de pré-consulta na agenda. Seis peças a trabalhar juntas.</p>
+    </div>
+    <div class="el6">
+      <div class="el rv">
+        <span class="ev"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg></span>
+        <div><h3>1 · Campanhas para a sua zona</h3><p>Anúncios desenhados e geridos por nós para chegar a quem, na sua área, procura tratamento dentário agora — não a "curiosos".</p></div>
+      </div>
+      <div class="el rv">
+        <span class="ev"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></span>
+        <div><h3>2 · Marcações de pré-consulta qualificadas</h3><p>Filtramos e qualificamos os contactos, e agendamos as pré-consultas. À sua cadeira chega quem tem intenção real.</p></div>
+      </div>
+      <div class="el rv">
+        <span class="ev"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+        <div><h3>3 · Menos faltas, menos cadeira parada</h3><p>Lembretes automáticos e confirmação antes da consulta cortam as desmarcações de última hora que hoje lhe custam horas.</p></div>
+      </div>
+      <div class="el rv">
+        <span class="ev"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.5 2.3 7.1-6.3-4.6L5.7 21l2.3-7.1-6-4.5h7.6z"/></svg></span>
+        <div><h3>4 · Reputação no Google a subir</h3><p>Pedimos avaliações aos seus pacientes satisfeitos e respondemos por si — a sua clínica sobe e ganha a batalha da confiança.</p></div>
+      </div>
+      <div class="el rv">
+        <span class="ev"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></span>
+        <div><h3>5 · Tudo num só sítio (Vloomni)</h3><p>Contactos, mensagens e marcações do Google, redes e site reunidos numa aplicação simples. Nada se perde entre plataformas.</p></div>
+      </div>
+      <div class="el rv">
+        <span class="ev"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-4 3 3 5-6"/></svg></span>
+        <div><h3>6 · Relatório claro do que trouxe</h3><p>Todos os meses vê, em linguagem simples, quantas marcações o sistema gerou e o que está a resultar. Sem "marketês".</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PACOTES + TALÃO ============ -->
+<section class="stage-dark pacotes">
+  <div class="aurora" aria-hidden="true"><span class="orb e1"></span><span class="orb p1"></span></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="head">
+      <span class="kicker rv">A oferta, sem letra pequena</span>
+      <h2 class="rv d1">Escolha o ritmo. As contas ficam à sua frente.</h2>
+      <p class="rv d2">Setup no mês zero (~2.500€, uma vez) e depois gestão mensal das campanhas para marcações de pré-consulta. Valores sem IVA.</p>
+    </div>
+
+    <div class="pac-grid">
+      <div class="pac rv">
+        <div class="pn">Cashflow Starter</div>
+        <div class="cad">Compromisso semestral</div>
+        <div class="pp">2.900€<small>/mês</small></div>
+        <div class="sub">O arranque tranquilo, com o caixa a respirar.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>1.700€ honorários + 1.200€ investimento em anúncios</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Gestão de campanhas completa</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Todos os bónus incluídos</li>
+        </ul>
+        <a class="pac-cta" href="https://marketing.vloom.pt/marcar-reuniao/" target="_blank" rel="noopener">Escolher este</a>
+      </div>
+
+      <div class="pac best rv d1">
+        <span class="tagbest">Mais escolhido</span>
+        <div class="pn">Profit Builder</div>
+        <div class="cad">Anual · 3 meses grátis</div>
+        <div class="pp">2.175€<small>/mês</small></div>
+        <div class="sub">O equilíbrio entre poupança e compromisso.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="free">3 meses grátis</span> no plano anual</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Honorários + investimento em anúncios</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#1D1636" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Todos os bónus incluídos</li>
+        </ul>
+        <a class="pac-cta" href="https://marketing.vloom.pt/marcar-reuniao/" target="_blank" rel="noopener">Escolher este</a>
+      </div>
+
+      <div class="pac rv d2">
+        <div class="pn">Market Apex</div>
+        <div class="cad">Anual pago a pronto · 4 meses grátis</div>
+        <div class="pp">1.933€<small>/mês</small></div>
+        <div class="sub">O melhor valor para quem quer dominar a zona.</div>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg><span class="free">4 meses grátis</span> (pagamento a pronto)</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Honorários + investimento em anúncios</li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Prioridade máxima e todos os bónus</li>
+        </ul>
+        <a class="pac-cta" href="https://marketing.vloom.pt/marcar-reuniao/" target="_blank" rel="noopener">Escolher este</a>
+      </div>
+    </div>
+
+    <!-- Talão: composição da mensalidade base -->
+    <div class="contas-grid" style="margin-top:var(--s7)">
+      <div class="talao-wrap rv">
+        <span class="stamp">Sem letra pequena</span>
+        <div class="talao">
+          <div class="t-head">VLOOM</div>
+          <div class="t-sub">sistema de aquisição · clínica dentária</div>
+          <div class="sep"></div>
+          <div class="row"><span>Setup (mês zero, uma vez)</span><span class="dots"></span><b>~2.500€</b></div>
+          <div class="row"><span>Honorários de gestão</span><span class="dots"></span><b>1.700€</b></div>
+          <div class="row"><span>Investimento em anúncios</span><span class="dots"></span><b>1.200€</b></div>
+          <div class="sep"></div>
+          <div class="total"><span>Mensalidade base</span><span>2.900€</span></div>
+          <div class="grande">PACOTES ANUAIS ATÉ <em>1.933€/MÊS</em></div>
+          <div class="barcode"></div>
+        </div>
+      </div>
+      <div class="contas-right">
+        <p class="eq rv"><small>A conta, em linguagem simples</small>Paga o sistema. <b>A cadeira é que enche.</b></p>
+        <div class="regra rv"><b>O que está sempre incluído</b>Honorários de gestão das campanhas, investimento em anúncios e todos os bónus. O setup do mês zero é uma única vez.</div>
+        <div class="regra rv d1"><b>Como poupa</b>Nos pacotes anuais oferecemos meses grátis: 3 meses no Profit Builder, 4 meses no Market Apex pago a pronto.</div>
+        <div class="regra rv d2"><b>Contrato base</b>12 meses — o tempo que o sistema precisa para provar o seu valor, com a garantia do "Seguro Cliente" a proteger o caminho.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BÓNUS + GARANTIA ============ -->
+<section>
+  <div class="wrap">
+    <div class="bonus-grid">
+      <div class="bloco bonus rv">
+        <span class="kicker dark">Incluído, sem custo extra</span>
+        <h3>Os bónus que vêm com o sistema.</h3>
+        <ul>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#67449A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg><span><b>Vloomni grátis</b> — o CRM onde todos os contactos e marcações vivem num só sítio.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#67449A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="M21 15l-5-5L5 21"/></svg><span><b>4 posts por mês</b> — conteúdo para as suas redes, feito pela nossa equipa.</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="#67449A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg><span><b>Guias comerciais</b> — para a sua equipa converter mais pré-consultas em tratamentos.</span></li>
+        </ul>
+      </div>
+      <div class="bloco seguro rv d1">
+        <span class="kicker">Seguro Cliente</span>
+        <h3>Ou gera marcações, ou devolvemos o trabalho.</h3>
+        <p>Se ao <b>3.º mês</b> não gerarmos as marcações qualificadas prometidas, <b>devolvemos todo o valor que gastou em trabalho</b> (honorários — o investimento em anúncios, esse, foi para a plataforma) e sai do contrato sem penalização. O risco de arrancar é nosso, não seu.</p>
+        <span class="selo"><svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>Risco nosso, não seu</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TESTEMUNHO EM DESTAQUE (MESMO NICHO) ============ -->
+<section class="destaque">
+  <div class="wrap">
+    <div class="destaque-grid">
+      <a class="frame rv" href="https://vimeo.com/1155016610" target="_blank" rel="noopener" aria-label="Ver testemunho do Dr. Bernardo Caria">
+        <img src="assets/bernardo.jpg" alt="Dr. Bernardo Caria, clínica dentária CAB">
+        <span class="t-play"><svg viewBox="0 0 26 30" fill="none"><path d="M25 15L1 29V1l24 14z" fill="#fff"/></svg></span>
+      </a>
+      <div class="rv d1">
+        <span class="kicker dark">Mesmo nicho, mesma realidade</span>
+        <q>Trabalhar com a Vloom mudou a forma como a clínica chega a novos pacientes — hoje temos um sistema, não a sorte do passa-palavra.</q>
+        <div class="who">
+          <b>Dr. Bernardo Caria</b>
+          <span>Clínica dentária CAB, Barcelos</span>
+          <span class="kpi">Uma clínica dentária, como a sua</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FECHO / RAZÃO PARA AGIR ============ -->
+<section class="stage-dark fecho">
+  <div class="aurora" aria-hidden="true"><span class="orb e1"></span><span class="orb p1" style="top:auto;bottom:-160px;left:auto;right:-4%"></span></div>
+  <div class="grid-dots" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="fecho-grid">
+      <div>
+        <span class="kicker rv">O próximo passo</span>
+        <h2 class="rv d1">Vamos ver se a sua zona ainda está livre.</h2>
+        <p class="lead rv d2">Trabalhamos com uma clínica por zona. Na chamada de 15 minutos confirmamos se a sua está disponível, respondemos a tudo e, se fizer sentido, montamos o plano. Sem "marketês" e sem compromisso.</p>
+        <p class="honesta rv d2">Os meses grátis dos pacotes anuais e a exclusividade geográfica são reais — mas só valem enquanto o lugar da sua zona não estiver ocupado.</p>
+        <div class="resume rv d3">
+          <span><b>1 clínica</b>por zona</span>
+          <span><b>Até 4 meses</b>grátis (anual)</span>
+          <span><b>Seguro Cliente</b>ao 3.º mês</span>
+        </div>
+        <div class="resume rv d3" style="margin-top:var(--s3)">
+          <span><b>15 min</b>sem compromisso</span>
+          <span><b>Sem "marketês"</b>conversa franca</span>
+        </div>
+        <p class="rgpd rv d3" style="margin-left:0;text-align:left;margin-top:var(--s3)">Escolha o horário ao lado. Prefere falar já? <a href="tel:+351914310656">+351 914 310 656</a></p>
+      </div>
+      <div class="cal-card rv d2" style="background:#fff;border-radius:18px;padding:10px;box-shadow:0 44px 100px -44px rgba(0,0,0,.65);align-self:start">
+        <iframe src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85" title="Marcar chamada de 15 minutos com a Vloom" scrolling="no" id="cal_YuJhp8YMHXDVu0eNVh85" style="width:100%;min-height:660px;border:none;border-radius:12px;display:block"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <a class="wordmark" href="index.html"><img src="assets/logo-vloom.svg" alt="Vloom" style="height:27px;width:auto;display:block;filter:brightness(0) invert(1)"></a>
+        <p>Agência de Marketing e Publicidade.<br>Sistemas de aquisição de pacientes<br>para clínicas dentárias portuguesas.</p>
+      </div>
+      <div>
+        <h4>Contactos</h4>
+        <p>Palácio Sottomayor<br>Av. Fontes Pereira de Melo 16, Lisboa<br><a href="tel:+351914310656">+351 914 310 656</a><br><span class="foot-note">Chamada para rede móvel nacional</span><br><a href="mailto:tiagoseverino@vloom.pt">tiagoseverino@vloom.pt</a></p>
+      </div>
+      <div>
+        <h4>Informação</h4>
+        <p><a href="https://marketing.vloom.pt/marcar-reuniao/" target="_blank" rel="noopener">Marcar reunião</a><br><a href="https://vloom.pt" target="_blank" rel="noopener">vloom.pt</a></p>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026, Vloom Agência de Marketing</span>
+      <span>Design by Vloom</span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa" href="https://wa.me/351914310656" target="_blank" rel="noopener" aria-label="Falar por WhatsApp">
+  <svg viewBox="0 0 24 24" fill="#fff"><path d="M17.5 14.4c-.3-.2-1.8-.9-2-1s-.5-.2-.7.1-.8 1-.9 1.2-.3.2-.6.1a8.2 8.2 0 0 1-2.4-1.5 9 9 0 0 1-1.7-2.1c-.2-.3 0-.5.1-.6l.5-.6.3-.5a.5.5 0 0 0 0-.5L8.9 6.3c-.2-.5-.4-.5-.6-.5H7.8a1 1 0 0 0-.7.3A2.8 2.8 0 0 0 6.2 8c0 1.2.9 2.4 1 2.5a10 10 0 0 0 3.9 3.4c1.9.9 1.9.6 2.3.5a2.5 2.5 0 0 0 1.6-1.1 2 2 0 0 0 .1-1.1c0-.1-.2-.2-.5-.3M12 2a10 10 0 0 0-8.5 15.2L2 22l4.9-1.3A10 10 0 1 0 12 2"/></svg>
+</a>
+
+<div class="sticky-cta" id="stickyCta">
+  <span class="s-txt"><b>1 clínica por zona</b> <span>· Veja se a sua ainda está livre</span></span>
+  <a class="btn" href="https://marketing.vloom.pt/marcar-reuniao/" target="_blank" rel="noopener">Marcar 15 min <span class="arw">→</span></a>
+</div>
+
+<script>
+/* Diagnóstico por bucket */
+(function(){
+  var DIAG={
+    cadeira:{
+      tag:'O SEU BLOQUEIO Nº 1',
+      title:'A Cadeira Vazia',
+      agita:'A clínica está pronta, a equipa é boa, o gabinete está montado — e há horas na agenda que ninguém preenche. <b>Cada cadeira parada é margem que sai pela porta e não volta.</b> O problema não é a qualidade do seu trabalho: é que não entra gente nova suficiente, de forma previsível, para encher a semana.',
+      sintomas:['Olha para a agenda e vê buracos que não sabe como preencher','Depende de campanhas soltas ou da sorte do mês','Sente que podia atender o dobro sem contratar mais ninguém','Vê concorrentes com fila enquanto tem horas livres']
+    },
+    margem:{
+      tag:'O SEU BLOQUEIO Nº 1',
+      title:'A Fuga de Margem',
+      agita:'Pacientes até tem — o que falta é rentabilidade. <b>Tratamentos baratos, orçamentos que não avançam e faltas que deixam a cadeira parada</b> corroem a margem todos os meses. Trabalha muito para faturar pouco, e a sensação é de estar sempre a correr para ficar no mesmo sítio.',
+      sintomas:['Muitos pacientes de tratamentos simples e baratos','Orçamentos altos que ficam por aceitar','Faltas e desmarcações de última hora frequentes','Fatura bem uns meses e mal noutros, sem controlo']
+    },
+    escalar:{
+      tag:'O SEU BLOQUEIO Nº 1',
+      title:'O Teto de Crescimento',
+      agita:'A clínica funciona — mas bateu num teto. <b>Quer abrir mais um gabinete, contratar, faturar mais — e não tem um motor de procura que sustente esse salto.</b> Crescer com base no passa-palavra é lento e imprevisível: não dá para planear investimento nem contratações em cima de algo que não controla.',
+      sintomas:['Quer expandir mas falta fluxo previsível de pacientes','Crescimento preso ao passa-palavra, difícil de planear','Capacidade instalada a mais para a procura atual','Sem dados claros para decidir o próximo passo']
+    },
+    passapalavra:{
+      tag:'O SEU BLOQUEIO Nº 1',
+      title:'A Dependência do Boca-a-Boca',
+      agita:'Os pacientes chegam — mas você não controla como. <b>Quando o passa-palavra abranda, a agenda abranda com ele, e não há torneira nenhuma que possa abrir.</b> É uma clínica boa refém da sorte: sem um canal próprio, cada mês recomeça do zero e a previsibilidade é impossível.',
+      sintomas:['Não sabe ao certo de onde vêm os pacientes novos','Meses bons e maus sem conseguir explicar porquê','Nenhum canal que possa "ligar" quando precisa de mais','Concorrentes visíveis online captam quem ainda o não conhece']
+    },
+    outro:{
+      tag:'O SEU DIAGNÓSTICO',
+      title:'O Ponto de Partida',
+      agita:'Pelas suas respostas, a sua clínica está numa fase que pede um olhar mais próximo. <b>A boa notícia: o desafio quase sempre cai num de poucos padrões</b> — cadeira vazia, margem apertada, teto de crescimento ou dependência do passa-palavra. Na chamada de 15 minutos identificamos o seu com precisão e mostramos-lhe o caminho.',
+      sintomas:['Sente que há margem para crescer mas falta clareza','Já experimentou coisas sem um sistema por trás','Quer previsibilidade em vez de meses de sorte','Prefere uma leitura honesta antes de decidir']
+    }
+  };
+  function getBucket(){
+    var m=/[?&]b=([^&]+)/.exec(location.search);
+    var b=m?decodeURIComponent(m[1]):'';
+    if(!DIAG[b]){
+      try{var s=JSON.parse(localStorage.getItem('vloom_diag')||'{}'); if(DIAG[s.bucket])b=s.bucket;}catch(e){}
+    }
+    return DIAG[b]?b:'outro';
+  }
+  var d=DIAG[getBucket()];
+  document.getElementById('lblTag').textContent=d.tag;
+  document.getElementById('diagTitle').textContent=d.title;
+  document.getElementById('diagAgita').innerHTML=d.agita;
+  /* saudação personalizada se houver nome */
+  try{
+    var s=JSON.parse(localStorage.getItem('vloom_diag')||'{}');
+    if(s.nome){ document.getElementById('thanks').textContent='Obrigado, '+s.nome+'. Aqui está o seu diagnóstico'; }
+  }catch(e){}
+  var wrap=document.getElementById('sintomas');
+  d.sintomas.forEach(function(t){
+    var el=document.createElement('div'); el.className='sintoma';
+    el.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="#FFB25E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg><span>'+t+'</span>';
+    wrap.appendChild(el);
+  });
+})();
+
+/* Reveal + progress + sticky */
+(function(){
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{threshold:.14});
+  document.querySelectorAll('.rv').forEach(function(el){io.observe(el)});
+  var prog=document.getElementById('progress'), sticky=document.getElementById('stickyCta');
+  function onScroll(){
+    var h=document.documentElement, sc=h.scrollTop||document.body.scrollTop;
+    var max=(h.scrollHeight-h.clientHeight)||1;
+    prog.style.width=(sc/max*100)+'%';
+    if(sc>700){sticky.classList.add('on')}else{sticky.classList.remove('on')}
+  }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+})();
+</script>
+<script src="https://link.msgsndr.com/js/form_embed.js"></script>
+</body>
+</html>
