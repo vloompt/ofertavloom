@@ -6,7 +6,9 @@ const GHL = 'https://services.leadconnectorhq.com';
 const PIPELINE_VENDA = 'Un2h7k4hLMXrtz3t5MTe';
 const STAGE_CHEGADA = '1938d5e5-3ff5-42b8-ade2-b06cc58b3bb6'; // "Chegada de Lead"
 const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'localhost'];
-const AVISO_INTERNO = 'tiagoseverino+avisos@vloom.pt';
+// Destino dos avisos de lead deste funil. Ordem do Tiago (03/09/2026): marketing@vloom.pt.
+// Já existe como contacto no GHL (03KNs3OHpCuGb2auvNeu) e sem DND de email.
+const AVISO_INTERNO = process.env.GHL_AVISO_10REUNIOES || 'marketing@vloom.pt';
 
 const slug = s => (s || '').normalize('NFD').replace(/\p{Diacritic}/gu, '')
   .toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
@@ -101,11 +103,12 @@ module.exports = async function handler(req, res) {
       }),
     }).catch(() => {});
 
-    // Aviso interno para o contacto dedicado "Vloom Avisos".
+    // Aviso interno por email.
+    let aviso = null;
     try {
       const upT = await fetch(`${GHL}/contacts/upsert`, {
         method: 'POST', headers,
-        body: JSON.stringify({ locationId, email: AVISO_INTERNO, firstName: 'Vloom Avisos' }),
+        body: JSON.stringify({ locationId, email: AVISO_INTERNO, firstName: 'Vloom Marketing' }),
       }).then(r => r.json()).catch(() => null);
       const tId = upT?.contact?.id || upT?.id;
       if (tId) {
@@ -113,11 +116,12 @@ module.exports = async function handler(req, res) {
 <p>Nome: ${esc(nome) || '—'}<br>Empresa: ${esc(empresa) || '—'}<br>
 Email: ${esc(email) || '—'}<br>Telefone: ${esc(phone) || '—'}</p>
 ${utm ? `<p>Campanha: ${esc(utm)}</p>` : ''}`;
-        await ghlEmail(headers, tId, `Candidatura 10 reuniões — ${nome || email || phone}`, html);
+        const envio = await ghlEmail(headers, tId, `Candidatura 10 reuniões — ${nome || email || phone}`, html);
+        aviso = { para: AVISO_INTERNO, ...envio };
       }
     } catch (_) {}
 
-    return res.status(200).json({ ok: true, contactId });
+    return res.status(200).json({ ok: true, contactId, aviso });
   } catch (err) {
     return res.status(200).json({ ok: false, error: String(err) });
   }
