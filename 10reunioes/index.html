@@ -559,6 +559,7 @@ footer .legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--linha)
           <div class="fld"><label for="empresa">Empresa</label><input id="empresa" name="empresa" type="text" autocomplete="organization" required></div>
           <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
           <div class="fld"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel" autocomplete="tel" required></div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Site da empresa<input type="text" name="empresa_site" tabindex="-1" autocomplete="off"></label></div>
           <button class="bob" type="submit">Enviar candidatura<svg width="24" height="17" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <p class="rgpd">Ao enviar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
         
@@ -943,14 +944,17 @@ footer .legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--linha)
 /* Envio do formulario. Os dados NUNCA vao no URL.
    Ligar ao GHL: apontar LEAD_ENDPOINT para uma funcao serverless. */
 (function(){
-  var LEAD_ENDPOINT = "";
+  var LEAD_ENDPOINT = "/api/lead-10reunioes/";
   var f = document.getElementById("formulario"); if(!f) return;
   var btn = f.querySelector("button[type=submit]");
   f.addEventListener("submit", function(ev){
     ev.preventDefault();
     if(!f.checkValidity()){ f.reportValidity(); return; }
     if(btn){ btn.disabled = true; btn.style.opacity = ".7"; }
-    var dados = { nome:f.nome.value.trim(), empresa:f.empresa.value.trim(), email:f.email.value.trim(), telefone:f.telefone.value.trim(), origem:"LP Reunioes" };
+    var q = new URLSearchParams(location.search);
+    var dados = { nome:f.nome.value.trim(), empresa:f.empresa.value.trim(), email:f.email.value.trim(), telefone:f.telefone.value.trim(),
+                  empresa_site:(f.empresa_site?f.empresa_site.value:""), page:location.pathname, source:"LP 10 reuniões" };
+    ["utm_source","utm_medium","utm_campaign","utm_content","fbclid"].forEach(function(k){ if(q.get(k)) dados[k]=q.get(k); });
     function segue(){ window.location.href = "/10reunioes-marcar/"; }
     if(!LEAD_ENDPOINT){ segue(); return; }
     fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dados)}).then(segue).catch(segue);
