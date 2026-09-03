@@ -70,6 +70,23 @@ footer{border-top:1px solid var(--linha);padding:32px 0;font-size:13px;color:var
 footer .legal{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
 footer a{color:var(--texto2)}
 </style>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
 </head>
 <body>
 
@@ -131,6 +148,23 @@ document.querySelectorAll('.dep .tv').forEach(function(b){
     b.innerHTML=''; b.appendChild(f);
   }, {once:true});
 });
+</script>
+<script>
+/* Chegou aqui = marcou. Marca o contacto no GHL e dispara o Schedule (Pixel + CAPI). */
+(function(){
+  var d={};
+  try{ d = JSON.parse(sessionStorage.getItem('vloom10r')||'{}'); }catch(e){}
+  var q = new URLSearchParams(location.search);
+  var email = d.email || q.get('email') || '';
+  var id = d.id || q.get('contact_id') || '';
+  var eventId = (window.vloomFb ? window.vloomFb.id() : String(Date.now()));
+  try{ if(window.fbq) fbq('track','Schedule',{content_name:'Reuniao 10 reunioes'},{eventID:eventId}); }catch(e){}
+  if(window.vloomFb) window.vloomFb.capi({eventName:'Schedule',eventId:eventId,email:email,contentName:'Reuniao 10 reunioes'});
+  if(id||email){
+    fetch('/api/marcou-10reunioes/',{method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({contactId:id,email:email})}).catch(function(){});
+  }
+})();
 </script>
 </body>
 </html>

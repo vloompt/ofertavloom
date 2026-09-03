@@ -514,6 +514,23 @@ footer .legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--linha)
 .sticky .bob{width:100%;padding:17px 18px;font-size:14.5px}
 @media(max-width:820px){.sticky{display:block}body{padding-bottom:80px}}
 </style>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
 </head>
 <body>
 
@@ -956,8 +973,19 @@ footer .legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--linha)
                   empresa_site:(f.empresa_site?f.empresa_site.value:""), page:location.pathname, source:"LP 10 reuniões" };
     ["utm_source","utm_medium","utm_campaign","utm_content","fbclid"].forEach(function(k){ if(q.get(k)) dados[k]=q.get(k); });
     function segue(){ window.location.href = "/10reunioes-marcar/"; }
+    // Um id por submissao: o Pixel e a Conversions API mandam o MESMO, a Meta junta os dois.
+    var eventId = (window.vloomFb ? window.vloomFb.id() : String(Date.now()));
+    try{ if(window.fbq) fbq('track','Lead',{content_name:'LP 10 reunioes'},{eventID:eventId}); }catch(e){}
+    if(window.vloomFb) window.vloomFb.capi({eventName:'Lead',eventId:eventId,email:dados.email,phone:dados.telefone,firstName:dados.nome,contentName:'LP 10 reunioes'});
     if(!LEAD_ENDPOINT){ segue(); return; }
-    fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dados)}).then(segue).catch(segue);
+    fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dados)})
+      .then(function(r){ return r.json().catch(function(){ return null; }); })
+      .then(function(j){
+        // Guardar quem e, para a pagina de reuniao marcada poder por a tag de quem marcou.
+        try{ if(j&&j.contactId) sessionStorage.setItem('vloom10r', JSON.stringify({id:j.contactId,email:dados.email})); }catch(e){}
+        segue();
+      })
+      .catch(segue);
   });
 })();
 </script>

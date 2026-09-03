@@ -50,7 +50,7 @@ module.exports = async function handler(req, res) {
   const utm = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'fbclid']
     .filter(k => b[k]).map(k => `${k}=${b[k]}`).join(' · ');
 
-  const tags = ['10reunioes'];
+  const tags = ['10reunioes-candidatura'];
   if (b.utm_campaign) tags.push('camp-' + slug(b.utm_campaign));
 
   const headers = {
