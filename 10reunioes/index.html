@@ -101,7 +101,8 @@ header{position:sticky;top:0;z-index:60;background:rgba(16,13,38,.9);backdrop-fi
 .hero{padding:66px 0 0;position:relative;overflow:hidden}
 .hero::before{content:"";position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:1100px;height:700px;background:radial-gradient(ellipse at center,rgba(141,72,155,.30),transparent 66%);pointer-events:none}
 .hero .wrap{position:relative;z-index:1}
-.garantia-linha{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:rgba(141,72,155,.16);border:1px solid rgba(176,109,190,.4);border-radius:99px;padding:11px 20px;font-size:14.5px;font-weight:700}
+.garantia-linha{display:inline-block;max-width:660px;margin-top:22px;background:rgba(141,72,155,.16);border:1px solid rgba(176,109,190,.4);border-radius:99px;padding:12px 24px;font-size:14.5px;font-weight:700;line-height:1.5;text-wrap:balance}
+@media(max-width:560px){.garantia-linha{border-radius:18px;padding:12px 18px}}
 .garantia-linha b{color:var(--azul)}
 .hero-grid{display:grid;gap:34px;margin-top:52px;align-items:end;text-align:left}
 @media(min-width:980px){.hero-grid{grid-template-columns:1.06fr .94fr;gap:44px}}
@@ -547,8 +548,8 @@ window.vloomFb={
   <div class="wrap">
     <div class="centro estreito">
       <p class="eyebrow">Para quem vende por reunião. Entra-se por candidatura.</p>
-      <h1>Enchemos-lhe a agenda <em>antes de lhe enviar a primeira fatura</em>.</h1>
-      <div class="garantia-linha"><b>Setup e mais nada</b> até existirem 10 reuniões realizadas com leads qualificados.</div>
+      <h1>Investe em marketing e continua sem saber quantas reuniões vai ter <em>no próximo mês?</em></h1>
+      <div class="garantia-linha"><b>O problema não são os anúncios, é o sistema.</b> Montamo-lo todo: paga o setup uma vez e a mensalidade só arranca às 10 reuniões realizadas.</div>
     </div>
 
     <div class="hero-grid">
