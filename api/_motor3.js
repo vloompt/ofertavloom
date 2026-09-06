@@ -38,6 +38,7 @@ Regras de forma, obrigatórias:
 - No campo nome de cada empresa: só o nome comercial, sem razão social entre parênteses.
 - sede: só cidade ou concelho (ex.: «Trofa»), nunca a morada completa. dimensao: número aproximado de colaboradores, no máximo 6 palavras.
 NUNCA peças confirmação, NUNCA perguntes se deves avançar, NUNCA devolvas campos vazios ou listas vazias: esta é a única volta que tens, entrega sempre a análise completa com o melhor que encontraste. Se um dado não existir, escreve «não público».
+- Todos os textos começam com maiúscula e são frases ou expressões completas; o resumo do perfil tem 1 a 2 frases.
 Sê concreto e curto. Sem adjetivos em fila.`;
 
 // tira travessões que escapem ao modelo: a lista negra da casa não os deixa passar
@@ -45,6 +46,7 @@ const limpa = v => typeof v === 'string'
   ? v.replace(/\[([^\]]*)\]\((https?:[^)]*)\)/g, '$1')      // [texto](url) -> texto
      .replace(/\(?https?:\/\/\S+\)?/g, '')                  // urls soltos
      .replace(/\s*[—–]\s*/g, ', ').replace(/,\s*,/g, ',').replace(/\s{2,}/g, ' ').trim()
+     .replace(/^\p{Ll}/u, c => c.toUpperCase())                   // primeira letra em maiúscula
   : v;
 function limpar(o) {
   if (Array.isArray(o)) return o.map(limpar);
