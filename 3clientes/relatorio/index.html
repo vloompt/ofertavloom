@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vloom · O seu relatório</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="/10reunioes/assets/logo.svg">
+<style>
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-bold-italic.woff2)format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-display:swap}
+:root{--papel:#f7f4ee;--papel2:#efeadf;--tinta:#151030;--tinta2:#5a5478;--linha:#ddd5c6;--roxo:#8d489b;--roxo-claro:#b06dbe;--azul:#2b7fa8;--azul-claro:#77cef4;--verde:#2fbf71;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--papel);color:var(--tinta);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.topo{padding:22px 0;text-align:center}
+.topo img{height:28px;margin:0 auto}
+.cabeca{background:var(--tinta);color:var(--papel);padding:54px 0 0;position:relative;overflow:hidden}
+.cabeca::before{content:"";position:absolute;right:-12%;top:-40%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(176,109,190,.35),transparent 65%);pointer-events:none}
+.cabeca .wrap{position:relative}
+.kick{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--azul-claro);margin-bottom:14px}
+.kick::before{content:"";width:22px;height:2px;background:var(--azul-claro)}
+h1{font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-.035em;line-height:1.05;text-wrap:balance;max-width:900px}
+h1 em{font-style:italic;color:var(--azul-claro)}
+.resumo{font-size:clamp(16px,1.6vw,19px);color:#c9c4e2;max-width:760px;margin-top:16px}
+.numeros{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:38px;border-top:1px solid rgba(255,255,255,.18)}
+@media(min-width:760px){.numeros{grid-template-columns:repeat(4,1fr)}}
+.numeros div{padding:22px 18px 26px;border-right:1px solid rgba(255,255,255,.18)}
+.numeros div:last-child{border-right:0}
+.numeros b{display:block;font-size:clamp(34px,4.4vw,56px);font-weight:800;letter-spacing:-.05em;line-height:1;color:#fff}
+.numeros span{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9b3d2;margin-top:8px}
+section{padding:56px 0}
+section+section{border-top:1px solid var(--linha)}
+.rot{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.rot .n{font-size:30px;font-weight:800;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--roxo)}
+.rot h2{font-size:clamp(22px,2.6vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.rot span{font-size:14px;color:var(--tinta2)}
+p{color:var(--tinta2)}
+/* cartões de empresa */
+.cards{display:grid;gap:16px}
+@media(min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.cards.tres{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .cab{display:flex;align-items:center;gap:12px}
+.card .fav{width:40px;height:40px;border-radius:8px;border:1px solid var(--linha);background:#fff;display:grid;place-items:center;flex:none;overflow:hidden}
+.card .fav img{width:22px;height:22px}
+.card .fav i{font-style:normal;font-weight:800;color:var(--roxo)}
+.card b{font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.card small{display:block;font-size:13px;color:var(--tinta2);margin-top:2px}
+.card p{font-size:14.5px}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13.5px}
+.dl dt{color:var(--tinta2)}.dl dd{color:var(--tinta);font-weight:500}
+.acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.acoes a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;text-decoration:none;border:2px solid var(--tinta);border-radius:999px;padding:6px 12px;background:var(--papel)}
+.acoes a.site{background:var(--tinta);color:#fff}
+.acoes a.li{border-color:#0a66c2;color:#0a66c2}
+.acoes a svg{width:13px;height:13px}
+.card.pri{border-color:var(--roxo);box-shadow:6px 6px 0 var(--roxo)}
+.card.pri .num{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--roxo)}
+/* perfil */
+.perfil{display:grid;gap:22px}
+@media(min-width:860px){.perfil{grid-template-columns:1fr 1.2fr}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:13px;font-weight:700;border:2px solid var(--tinta);border-radius:14px;padding:6px 12px;background:#fff;line-height:1.35}
+.chips span i{font-style:normal;font-weight:500;color:var(--tinta2);margin-right:6px}
+.crit{list-style:none;display:grid;gap:0;border-top:1px solid var(--linha)}
+.crit li{display:grid;grid-template-columns:1fr 1.4fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--linha);font-size:14.5px}
+.crit li span:first-child{color:var(--tinta2)}
+.crit li span:last-child{font-weight:700}
+.decisao{margin-top:18px;padding:16px 18px;background:#fff;border-left:4px solid var(--roxo);font-size:14.5px}
+/* decisores */
+.pessoas{display:grid;gap:12px}
+@media(min-width:700px){.pessoas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.pessoas{grid-template-columns:repeat(3,1fr)}}
+.pessoa{background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.pessoa .av{width:44px;height:44px;border-radius:50%;background:var(--roxo);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.pessoa b{display:block;font-size:15px}
+.pessoa small{display:block;font-size:13px;color:var(--tinta2)}
+.pessoa .cont{font-size:13px;margin-top:6px;display:flex;flex-wrap:wrap;gap:6px 12px}
+.pessoa .cont a{color:var(--azul);font-weight:700;text-decoration:none}
+.pessoa .fonte{font-size:11.5px;color:var(--tinta2);margin-top:6px}
+/* canais */
+.canais{display:grid;gap:12px}
+@media(min-width:760px){.canais{grid-template-columns:repeat(3,1fr)}}
+.canal{background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:18px}
+.canal b{display:block;font-size:15.5px;margin-bottom:6px}
+.canal p{font-size:14px}
+.aviso{font-size:13px;color:var(--tinta2);margin-top:26px}
+.cta{background:var(--roxo);color:#fff;padding:48px 0}
+.cta h2{font-size:clamp(24px,3vw,38px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.cta p{color:rgba(255,255,255,.9);margin-top:10px;max-width:620px}
+.bob{display:inline-flex;align-items:center;gap:12px;background:var(--papel);color:var(--tinta);text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:18px 30px;border:3px solid var(--tinta);border-radius:4px;box-shadow:7px 7px 0 var(--tinta);margin-top:22px}
+footer{background:var(--tinta);color:#a8a3c8;padding:30px 0;font-size:13px}
+footer .fg{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
+footer img{height:22px}
+.estado{padding:80px 22px;text-align:center;color:var(--tinta2)}
+@media print{.cta,footer{display:none}.card,.pessoa,.canal{break-inside:avoid}}
+</style>
+</head>
+<body>
+<div class="topo"><img src="/10reunioes/assets/logo.svg" alt="Vloom"></div>
+<div id="app"><div class="estado">A carregar o relatório…</div></div>
+<footer><div class="wrap fg"><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"><span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span><span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a> · Design by Vloom</span></div></footer>
+<script>
+(function(){
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var app=document.getElementById('app');
+  var id=new URLSearchParams(location.search).get('id')||'';
+  if(!/^resp_[a-z0-9]+$/i.test(id)){ app.innerHTML='<div class="estado">Este link não tem um relatório associado.</div>'; return; }
+  var dom=function(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } };
+  var fav=function(site,nome){ var d=dom(site); return d?'<span class="fav"><img src="https://www.google.com/s2/favicons?domain='+esc(d)+'&sz=64" alt="" loading="lazy" onerror="this.parentNode.innerHTML=\'<i>'+esc((nome||'?').slice(0,1).toUpperCase())+'</i>\'"></span>':'<span class="fav"><i>'+esc((nome||'?').slice(0,1).toUpperCase())+'</i></span>'; };
+  var iSite='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>';
+  var iLi='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>';
+  var iG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
+  var acoes=function(x){ var h='<div class="acoes">'; if(x.site) h+='<a class="site" href="'+esc(x.site)+'" target="_blank" rel="noopener">'+iSite+'Site</a>'; if(x.linkedin) h+='<a class="li" href="'+esc(x.linkedin)+'" target="_blank" rel="noopener">'+iLi+'LinkedIn</a>'; h+='<a href="https://www.google.com/search?q='+encodeURIComponent(x.nome+' '+(x.localidade||''))+'" target="_blank" rel="noopener">'+iG+'Google</a></div>'; return h; };
+  var cardEmp=function(e){ return '<div class="card"><div class="cab">'+fav(e.site,e.nome)+'<div><b>'+esc(e.nome)+'</b><small>'+esc(e.setor)+'</small></div></div><dl class="dl"><dt>Sede</dt><dd>'+esc(e.sede)+'</dd><dt>Dimensão</dt><dd>'+esc(e.dimensao)+'</dd><dt>Faturação</dt><dd>'+esc(e.faturacao)+'</dd></dl>'+(e.nota?'<p>'+esc(e.nota)+'</p>':'')+acoes(e)+'</div>'; };
+  var cardSem=function(x,k,pri){ return '<div class="card'+(pri?' pri':'')+'">'+(pri?'<span class="num">'+(k+1<10?'0':'')+(k+1)+'</span>':'')+'<div class="cab">'+fav(x.site,x.nome)+'<div><b>'+esc(x.nome)+'</b><small>'+esc(x.setor)+(x.localidade?' · '+esc(x.localidade):'')+'</small></div></div>'+(x.porque?'<p>'+esc(x.porque)+'</p>':'')+acoes(x)+'</div>'; };
+  var ini=function(n){ return esc(String(n||'').split(/\s+/).slice(0,2).map(function(p){return p.slice(0,1).toUpperCase();}).join('')); };
+  var pessoa=function(d){ var c=''; if(d.linkedin) c+='<a href="'+esc(d.linkedin)+'" target="_blank" rel="noopener">LinkedIn</a>'; if(d.email) c+='<a href="mailto:'+esc(d.email)+'">'+esc(d.email)+'</a>'; if(d.telefone) c+='<a href="tel:'+esc(d.telefone.replace(/\s+/g,''))+'">'+esc(d.telefone)+'</a>'; if(!c) c='<span style="color:var(--tinta2)">Contactos não públicos</span>'; return '<div class="pessoa"><span class="av">'+ini(d.nome)+'</span><div><b>'+esc(d.nome)+'</b><small>'+esc(d.cargo)+(d.empresa?' · '+esc(d.empresa):'')+'</small><div class="cont">'+c+'</div>'+(d.fonte?'<div class="fonte">'+esc(d.fonte)+'</div>':'')+'</div></div>'; };
+
+  function render(r, nomes){
+    var p=r.perfil||{}, sem=r.semelhantes||[], pri=r.prioritarias||[], dec=r.decisores||[], emp=r.empresas||[];
+    var h='';
+    h+='<div class="cabeca"><div class="wrap"><span class="kick">O seu relatório</span><h1>Encontrámos o padrão por trás de <em>'+esc(nomes.join(', '))+'</em>.</h1>'+(p.resumo?'<p class="resumo">'+esc(p.resumo)+'</p>':'')+
+       '<div class="numeros"><div><b>'+emp.length+'</b><span>Empresas escolhidas</span></div><div><b>'+sem.length+'</b><span>Com o mesmo perfil</span></div><div><b>'+pri.length+'</b><span>Prioritárias</span></div><div><b>'+dec.length+'</b><span>Decisores com nome</span></div></div></div></div>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">01</span><h2>O que nos escreveu</h2></div><div class="cards tres">'+emp.map(cardEmp).join('')+'</div></div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">02</span><h2>O perfil por trás delas</h2></div><div class="perfil"><div><div class="chips"><span><i>Setor</i>'+esc(p.setor)+'</span><span><i>Faturação</i>'+esc(p.faturacao)+'</span><span><i>Dimensão</i>'+esc(p.dimensao)+'</span><span><i>Geografia</i>'+esc(p.geografia)+'</span></div>'+(p.decisao?'<div class="decisao"><b>Como se decide:</b> '+esc(p.decisao)+'</div>':'')+'</div><ul class="crit">'+(p.criterios||[]).map(function(c){return '<li><span>'+esc(c.criterio)+'</span><span>'+esc(c.valor)+'</span></li>';}).join('')+'</ul></div></div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">03</span><h2>Por onde começaríamos</h2><span>'+pri.length+' contas prioritárias</span></div><div class="cards tres">'+pri.map(function(x,k){return cardSem(x,k,true);}).join('')+'</div></div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">04</span><h2>Quem decide lá dentro</h2><span>Nomes e contactos públicos</span></div><div class="pessoas">'+dec.map(pessoa).join('')+'</div>'+((r.cargos||[]).length?'<ul class="crit" style="margin-top:22px">'+(r.cargos||[]).map(function(c){return '<li><span>'+esc(c.cargo)+'</span><span style="font-weight:500;color:var(--tinta2)">'+esc(c.papel)+'</span></li>';}).join('')+'</ul>':'')+'</div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">05</span><h2>O mercado é maior do que estas três</h2><span>'+sem.length+' empresas com o mesmo perfil</span></div><div class="cards tres">'+sem.map(function(x,k){return cardSem(x,k,false);}).join('')+'</div></div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">06</span><h2>Por onde se chega até elas</h2></div><div class="canais">'+(r.estrategia||[]).map(function(x){return '<div class="canal"><b>'+esc(x.canal)+'</b><p>'+esc(x.como)+'</p></div>';}).join('')+'</div>'+(r.aviso?'<p class="aviso">'+esc(r.aviso)+'</p>':'')+'</div></section>';
+    h+='<div class="cta"><div class="wrap"><h2>Quer que confirmemos isto à mão e lhe mostremos o caminho até estas empresas?</h2><p>Quarenta e cinco minutos, por videochamada, a olhar para o seu mercado. Sem apresentação de agência.</p><a class="bob" href="/3clientes/obrigado/">Marcar a reunião →</a></div></div>';
+    app.innerHTML=h; document.title='Vloom · Relatório: '+nomes.join(', ');
+  }
+  function carrega(tent){
+    fetch('/api/motor-3clientes/?id='+encodeURIComponent(id)).then(function(r){return r.json();}).then(function(j){
+      if(j.ok && j.status==='completed' && j.resultado){ var nomes=(j.resultado.empresas||[]).map(function(e){return e.nome_escrito||e.nome;}); render(j.resultado, nomes); return; }
+      if(j.novoId){ id=j.novoId; }
+      if(j.ok && j.status!=='completed' && (tent||0)<60){ app.innerHTML='<div class="estado">A análise ainda está a terminar. Esta página actualiza-se sozinha.</div>'; setTimeout(function(){ carrega((tent||0)+1); }, 5000); return; }
+      app.innerHTML='<div class="estado">Não conseguimos abrir este relatório. Se recebeu o link por email, tente outra vez daqui a instantes.</div>';
+    }).catch(function(){ app.innerHTML='<div class="estado">Sem ligação. Tente outra vez.</div>'; });
+  }
+  carrega(0);
+})();
+</script>
+</body>
+</html>
