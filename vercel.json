@@ -1,6 +1,15 @@
 {
   "trailingSlash": true,
   "redirects": [
-    { "source": "/", "destination": "/website/", "permanent": false }
-  ]
+    {
+      "source": "/",
+      "destination": "/website/",
+      "permanent": false
+    }
+  ],
+  "functions": {
+    "api/motor-3clientes.js": {
+      "maxDuration": 60
+    }
+  }
 }
