@@ -23,7 +23,7 @@ async function lancar(H, nomes, modelo) {
       instructions: INSTRUCOES,
       input: 'As três empresas: ' + nomes.join(' · '),
       text: { format: { type: 'json_schema', name: 'analise', schema: SCHEMA, strict: true } },
-      reasoning: { effort: 'medium' },
+      reasoning: { effort: process.env.MOTOR_ESFORCO || 'low' },
       metadata: { nomes: nomes.join(' · ').slice(0, 500), modelo },
     }),
   });
