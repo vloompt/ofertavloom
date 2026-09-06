@@ -139,7 +139,7 @@ footer img{height:22px}
   }
   function carrega(tent){
     fetch('/api/motor-3clientes/?id='+encodeURIComponent(id)).then(function(r){return r.json();}).then(function(j){
-      if(j.ok && j.status==='completed' && j.resultado){ var nomes=(j.resultado.empresas||[]).map(function(e){return e.nome_escrito||e.nome;}); render(j.resultado, nomes); return; }
+      if(j.ok && j.status==='completed' && j.resultado){ var nomes=(j.resultado.empresas||[]).map(function(e){return e.nome||e.nome_escrito;}); render(j.resultado, nomes); return; }
       if(j.novoId){ id=j.novoId; }
       if(j.ok && j.status!=='completed' && (tent||0)<60){ app.innerHTML='<div class="estado">A análise ainda está a terminar. Esta página actualiza-se sozinha.</div>'; setTimeout(function(){ carrega((tent||0)+1); }, 5000); return; }
       app.innerHTML='<div class="estado">Não conseguimos abrir este relatório. Se recebeu o link por email, tente outra vez daqui a instantes.</div>';

@@ -39,7 +39,7 @@ Recebes três empresas que um potencial cliente gostava de ter como clientes. Tr
 Usa a pesquisa web para confirmar factos. Faz entre 12 e 25 pesquisas. Só afirmas o que encontraste; o que não encontrares fica «não público».
 
 Identificação, regra sagrada:
-- NUNCA substituas a empresa escrita por outra com nome parecido. «Arena Lisboa» é a empresa chamada Arena Lisboa, não a Altice Arena. Se houver várias com esse nome, escolhe a mais provável em Portugal e diz no campo nota qual escolheste e porquê. Guarda o que o utilizador escreveu em nome_escrito.
+- NUNCA substituas a empresa escrita por outra com nome parecido. «Arena Lisboa» é a empresa chamada Arena Lisboa, não a Altice Arena. Se houver várias com esse nome, escolhe a mais provável em Portugal e diz no campo nota qual escolheste e porquê. Guarda em nome_escrito APENAS o nome tal como o utilizador o escreveu (duas ou três palavras), nunca a descrição nem a localidade.
 - Para cada empresa: site oficial (URL completo com https) e página de empresa no LinkedIn (URL completo) quando existirem; senão string vazia.
 
 Passos:
