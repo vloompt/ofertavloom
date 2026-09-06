@@ -55,7 +55,8 @@ Passos:
 Regras de forma, obrigatórias:
 - Nos campos setor, faturacao, dimensao e geografia do perfil: no máximo 8 palavras cada, sem frases, sem parênteses, sem fontes.
 - NUNCA incluas URLs fora dos campos site e linkedin. Sem «[texto](url)», sem «utm_source». As fontes ficam de fora do JSON, exceto no campo fonte dos decisores (uma linha, sem URL).
-- No campo nome de cada empresa: só o nome comercial, sem razão social entre parênteses.
+- No campo nome de cada empresa: só o nome comercial curto («Casa das Peles», não «Casa das Peles - Confecções, S.A.»), sem razão social, sem forma jurídica, sem parênteses.
+- Sem siglas nem abreviaturas (escreve «Área Metropolitana de Lisboa», não «AML»; «pequenas e médias empresas», não «SMB» nem «PME» sem contexto).
 - Todos os textos começam com maiúscula e são frases ou expressões completas.
 - NUNCA peças confirmação, NUNCA perguntes se deves avançar, NUNCA devolvas campos vazios ou listas vazias: esta é a única volta que tens, entrega sempre a análise completa com o melhor que encontraste.
 Sê concreto e curto. Sem adjetivos em fila.`;
