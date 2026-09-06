@@ -11,5 +11,24 @@
     "api/motor-3clientes.js": {
       "maxDuration": 60
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "/api/(motor-3clientes|lead-3clientes|resolve-3clientes|relatorio-envia|lead-10reunioes|capi|marcou-10reunioes)/?",
+      "headers": [
+        {
+          "key": "Access-Control-Allow-Origin",
+          "value": "*"
+        },
+        {
+          "key": "Access-Control-Allow-Methods",
+          "value": "GET,POST,OPTIONS"
+        },
+        {
+          "key": "Access-Control-Allow-Headers",
+          "value": "Content-Type"
+        }
+      ]
+    }
+  ]
 }

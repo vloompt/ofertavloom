@@ -5,6 +5,7 @@ const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'lo
 const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
 module.exports = async function handler(req, res) {
+  if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ ok: false });
   const origem = req.headers.origin || req.headers.referer || '';
   if (origem && !ORIGENS_OK.some(h => origem.includes(h))) return res.status(403).json({ ok: false, error: 'origem não autorizada' });

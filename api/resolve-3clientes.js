@@ -17,6 +17,7 @@ Para cada uma: descricao em 6 a 10 palavras (o que faz), localidade (cidade ou c
 Português de Portugal. Sem URLs fora do campo site. Nunca peças confirmação nem devolvas vazio.`;
 
 module.exports = async function handler(req, res) {
+  if (req.method === 'OPTIONS') return res.status(204).end();
   if (req.method !== 'POST') return res.status(405).json({ ok: false });
   const origem = req.headers.origin || req.headers.referer || '';
   if (origem && !ORIGENS_OK.some(h => origem.includes(h))) return res.status(403).json({ ok: false, error: 'origem não autorizada' });
