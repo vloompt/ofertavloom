@@ -211,7 +211,7 @@ p.cta{margin-top:34px}
 /* dores em cartões */
 .dores{list-style:none;display:grid;gap:12px;margin:28px auto 0;max-width:720px}
 .dores li{display:flex;gap:14px;align-items:center;background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:16px 18px;font-size:16.5px;color:var(--tinta)}
-.dores li i{flex:none;width:36px;height:36px;border-radius:50%;border:2px solid var(--roxo);color:var(--roxo);display:grid;place-items:center;font-style:normal;font-weight:800}
+.dores li i{flex:none;width:36px;height:36px;border-radius:50%;border:2px solid var(--azul);color:var(--azul);display:grid;place-items:center;font-style:normal}
 .fecho{margin-top:26px;font-size:clamp(16px,1.6vw,19px);color:var(--tinta)}
 /* outro lado: 3 filas alternadas */
 .lado{display:grid;gap:22px;align-items:center;margin-top:40px}
@@ -223,7 +223,8 @@ p.cta{margin-top:34px}
 .tstc{display:grid;gap:22px;align-items:center;background:#fff;border:2px solid var(--tinta);border-radius:10px;padding:26px;box-shadow:8px 8px 0 var(--tinta);max-width:980px;margin:34px auto 0}
 @media(min-width:820px){.tstc{grid-template-columns:1fr 1.1fr;gap:34px;padding:34px}}
 .tstc .q p{font-size:clamp(18px,2vw,23px);font-style:italic;line-height:1.35;color:var(--tinta);margin-bottom:14px}
-.tstc .q b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;line-height:1.5}.tstc .q b span{color:var(--tinta2);font-weight:500}
+.tstc .q>b{font-size:12px;letter-spacing:.06em;text-transform:uppercase;line-height:1.5;display:block}.tstc .q>b span{color:var(--tinta2);font-weight:500}
+.tstc .q p b{font-size:inherit;letter-spacing:0;text-transform:none;font-weight:800;font-style:italic}
 .tv{position:relative;aspect-ratio:16/9;border:2px solid var(--tinta);border-radius:8px;overflow:hidden;background:#000;cursor:pointer;padding:0;width:100%;display:block;line-height:0}
 .tv img{width:100%;height:100%;object-fit:cover}.tv iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 /* 3 cartões */
@@ -334,10 +335,10 @@ footer .ct{font-size:13px;line-height:1.6}footer .ct b{display:block;font-size:1
     <h2>Eu entendo o que está <em>a sentir…</em></h2>
     <p class="lede" style="margin-top:14px">Se já investe em marketing, mas continua <b>sem saber quantas reuniões ou vendas vai ter no próximo mês:</b> isto é para si.</p>
     <ul class="dores">
-      <li><i>:(</i>Relatórios cheios de impressões, cliques e métricas que não pagam contas…</li>
-      <li><i>:(</i>Leads que não atendem, não aparecem nas reuniões ou não são qualificados…</li>
-      <li><i>:(</i>Ouvir que o problema é da equipa comercial sempre que questiona resultados…</li>
-      <li><i>:(</i>Andar a saltar entre experiências, agências e freelancers sem sucesso…</li>
+      <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 16c1-1.5 2.5-2 4-2s3 .5 4 2M9 9h.01M15 9h.01" stroke-linecap="round"/></svg></i>Relatórios cheios de impressões, cliques e métricas que não pagam contas…</li>
+      <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 16c1-1.5 2.5-2 4-2s3 .5 4 2M9 9h.01M15 9h.01" stroke-linecap="round"/></svg></i>Leads que não atendem, não aparecem nas reuniões ou não são qualificados…</li>
+      <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 16c1-1.5 2.5-2 4-2s3 .5 4 2M9 9h.01M15 9h.01" stroke-linecap="round"/></svg></i>Ouvir que o problema é da equipa comercial sempre que questiona resultados…</li>
+      <li><i><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M8 16c1-1.5 2.5-2 4-2s3 .5 4 2M9 9h.01M15 9h.01" stroke-linecap="round"/></svg></i>Andar a saltar entre experiências, agências e freelancers sem sucesso…</li>
     </ul>
     <p class="fecho">…então o problema não é dos anúncios: é do <b>sistema</b>. Até hoje, a sua empresa tentou «fazer o carro andar» sem «ter as quatro rodas». Faltam peças fundamentais!</p>
     <p class="centro cta"><a class="bobl" href="#marcar">Agende uma reunião grátis<svg width="20" height="15" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
@@ -347,7 +348,7 @@ footer .ct{font-size:13px;line-height:1.6}footer .ct b{display:block;font-size:1
 <section class="z papel2">
   <div class="wrap">
     <div class="estreito centro"><h2>Como é o seu negócio com um sistema de aquisição de clientes <em>previsível</em>?</h2></div>
-    <div class="lado"><div class="im"><img src="/10reunioes/assets/produto/p-pipeline-frame.png" alt="Calendário cheio" loading="lazy"></div><div class="tx"><span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3M13 14h3"/></svg></span>Agenda comercial cheia de <b>reuniões com leads qualificados</b></div></div>
+    <div class="lado"><div class="im"><img src="/10reunioes/assets/produto/ghl-cal.png" alt="Calendário cheio de reuniões" loading="lazy"></div><div class="tx"><span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4M8 14h3M13 14h3"/></svg></span>Agenda comercial cheia de <b>reuniões com leads qualificados</b></div></div>
     <div class="lado inv"><div class="im"><video src="/10reunioes/assets/video/broll-1.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Painel do CRM"></video></div><div class="tx"><span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 19V9M10 19V5M16 19v-6M22 19H2"/></svg></span>Métricas claras: custo por reunião, por cliente adquirido e <b>previsão de faturação</b></div></div>
     <div class="lado"><div class="im"><video src="/10reunioes/assets/video/passo1-tiago.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Reunião de arranque"></video></div><div class="tx"><span class="ic"><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><ellipse cx="12" cy="6" rx="8" ry="3"/><path d="M4 6v12c0 1.7 3.6 3 8 3s8-1.3 8-3V6M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg></span>Decisões de investimento <b>com base em dados (e não em sensações)</b></div></div>
     <div class="tstc"><div class="q"><span class="kk">Testemunho</span><p>“Com o Vloom posso dizer que <b>aumentei as vendas que tinha em pelo menos 200 a 300%!</b>”</p><b>João Matos,<br><span>Formação Profissional</span></b></div><button class="tv" type="button" data-vimeo="817572943" aria-label="Reproduzir depoimento de João Matos"><img src="/10reunioes/assets/caras/joao-poster.jpg" alt="João Matos" loading="lazy"><span class="tv-bt"><svg width="20" height="24" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span></button></div>
