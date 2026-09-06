@@ -80,7 +80,7 @@ function filtrarGenericos(r) {
   const arr = x => ({ ...x, nome: String(x.nome).replace(/\s*\([^)]*\)\s*/g, ' ').trim() });
   if (Array.isArray(r.semelhantes)) r.semelhantes = r.semelhantes.filter(ok).map(arr);
   if (Array.isArray(r.prioritarias)) r.prioritarias = r.prioritarias.filter(ok).map(arr);
-  if (Array.isArray(r.decisores)) r.decisores = r.decisores.filter(d => d && d.nome && !/não público|desconhecid/i.test(d.nome));
+  if (Array.isArray(r.decisores)) r.decisores = r.decisores.filter(d => d && d.nome && !/não público|desconhecid|^(contacto|contato|geral|departamento|equipa|equipe|direção|direcção|administração|secretariado)\b/i.test(d.nome.trim()) && /\s/.test(d.nome.trim()));
   return r;
 }
 const magro = r => !r || !Array.isArray(r.empresas) || r.empresas.length < 3 || !Array.isArray(r.semelhantes) || r.semelhantes.length < 8 || !(r.perfil && r.perfil.resumo);

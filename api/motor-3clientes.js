@@ -14,17 +14,18 @@ function cors(req, res) {
   res.setHeader('Vary', 'Origin');
 }
 
-async function lancar(H, nomes, modelo) {
+async function lancar(H, nomes, modelo, confirmadas) {
+  const conf = Array.isArray(confirmadas) && confirmadas.length ? '\n\nIdentificações CONFIRMADAS pelo utilizador (usa exactamente estas, não voltes a resolver os nomes):\n' + confirmadas.map((c, i) => `${i + 1}. ${c.nome}${c.descricao ? ' — ' + c.descricao : ''}${c.localidade ? ' — ' + c.localidade : ''}${c.site ? ' — ' + c.site : ''}`).join('\n') : '';
   const r = await fetch('https://api.openai.com/v1/responses', {
     method: 'POST', headers: H,
     body: JSON.stringify({
       model: modelo, background: true, store: true,
       tools: [{ type: 'web_search' }],
       instructions: INSTRUCOES,
-      input: 'As três empresas: ' + nomes.join(' · '),
+      input: 'As três empresas: ' + nomes.join(' · ') + conf,
       text: { format: { type: 'json_schema', name: 'analise', schema: SCHEMA, strict: true } },
       reasoning: { effort: process.env.MOTOR_ESFORCO || 'low' },
-      metadata: { nomes: nomes.join(' · ').slice(0, 500), modelo },
+      metadata: { nomes: nomes.join(' · ').slice(0, 500), modelo, conf: conf ? conf.slice(0, 480) : '' },
     }),
   });
   return { ok: r.ok, j: await r.json() };
@@ -43,7 +44,8 @@ module.exports = async function handler(req, res) {
     const nomes = [b.c1, b.c2, b.c3].map(x => String(x || '').trim().slice(0, 80)).filter(Boolean);
     if (nomes.length < 3) return res.status(400).json({ ok: false, error: 'faltam nomes' });
     try {
-      const { ok, j } = await lancar(H, nomes, process.env.MOTOR_MODELO || 'gpt-5');
+      const confirmadas = Array.isArray(b.confirmadas) ? b.confirmadas.slice(0, 3).map(c => ({ nome: String(c.nome || '').slice(0, 120), descricao: String(c.descricao || '').slice(0, 160), localidade: String(c.localidade || '').slice(0, 80), site: /^https?:\/\/\S+$/i.test(String(c.site || '')) ? String(c.site) : '' })) : [];
+      const { ok, j } = await lancar(H, nomes, process.env.MOTOR_MODELO || 'gpt-5', confirmadas);
       if (!ok || !j.id) return res.status(200).json({ ok: false, error: j.error?.message || 'falhou a lançar' });
       return res.status(200).json({ ok: true, id: j.id, status: j.status });
     } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
@@ -66,7 +68,7 @@ module.exports = async function handler(req, res) {
           // o mini fugiu ao trabalho: volta a lançar com o modelo grande e a página segue o novo id
           const nomes = String((j.metadata && j.metadata.nomes) || '').split(' · ').filter(Boolean);
           if (nomes.length === 3) {
-            const { ok, j: j2 } = await lancar(H, nomes, 'gpt-5');
+            const { ok, j: j2 } = await lancar(H, nomes, 'gpt-5', []);
             if (ok && j2.id) return res.status(200).json({ ok: true, status: 'in_progress', pesquisas, novoId: j2.id, retry: true });
           }
         }
