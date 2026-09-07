@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vloom · Quais são as 3 empresas que gostaria de ter como clientes?</title>
+<meta name="description" content="Escreva três empresas que gostava de ter como clientes. Mostramos-lhe quantas empresas iguais existem no mercado e por onde se chega a elas.">
+<link rel="icon" href="assets/logo.svg">
+<!--
+  FUNIL 2 · "Os seus 3 clientes de sonho"
+  Formato de SIMULADOR, como marketing.vloom.pt/simulador: uma página curta,
+  cartão com passos, e nada mais. A reunião e o processo detalhado vivem na TY.
+  Linha gráfica invertida da LP das 10 reuniões: papel cru e tinta escura.
+  NÃO substitui nem toca em nenhum funil antigo. Vive no seu próprio endereço.
+-->
+<style>
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-bold-italic.woff2)format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-style:normal;font-display:swap}
+:root{--papel:#f7f4ee;--papel2:#efeadf;--tinta:#151030;--tinta2:#5a5478;--linha:#ddd5c6;
+ --roxo:#8d489b;--roxo-claro:#b06dbe;--azul:#2b7fa8;--azul-claro:#77cef4;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{min-height:100vh;display:flex;flex-direction:column}
+body>footer{margin-top:auto}
+body{font-family:var(--font);background:var(--papel);color:var(--tinta);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;height:auto}
+.wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+h1{font-size:clamp(30px,4vw,50px);font-weight:800;letter-spacing:-.035em;line-height:1.05;text-wrap:balance}
+h1 em{font-style:italic;color:var(--roxo)}
+p{color:var(--tinta2)}
+
+.topo{border-bottom:2px solid var(--tinta)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-top:16px;padding-bottom:16px}
+.topo img{height:26px;width:auto}
+.topo .nota{font-size:11px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--tinta2)}
+@media(max-width:720px){.topo .nota{display:none}}
+
+.logo-topo{height:30px;width:auto;margin:0 auto 34px}
+.hero{padding:40px 0 60px;position:relative;overflow:hidden}
+.hero::before{content:"";position:absolute;right:-10%;top:-24%;width:620px;height:620px;border-radius:50%;background:radial-gradient(circle at center,rgba(141,72,155,.15),transparent 66%);pointer-events:none}
+.hero .wrap{position:relative;z-index:1}
+.cab{max-width:960px;margin:0 auto 40px;text-align:center}
+.cab .sob{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--roxo);margin-bottom:16px}
+.cab p{font-size:clamp(16px,1.75vw,19.5px);margin-top:18px}
+.cab p b{color:var(--tinta);font-weight:700}
+
+/* cartão do simulador */
+.sim{display:grid;background:#fff;border:3px solid var(--tinta);border-radius:8px;box-shadow:12px 12px 0 var(--tinta);overflow:hidden}
+@media(min-width:940px){.sim{grid-template-columns:1.04fr .96fr}}
+.palco{background:var(--tinta);position:relative;min-height:340px;display:flex;flex-direction:column;justify-content:flex-end}
+.palco .quadro{position:absolute;inset:0}
+.palco .quadro img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .7s ease}
+.palco .quadro img.on{opacity:1}
+.palco .legenda{position:relative;z-index:2;padding:26px 28px 24px;background:linear-gradient(180deg,transparent,rgba(21,16,48,.92)46%)}
+.palco .legenda b{display:block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--azul-claro);margin-bottom:7px}
+.palco .legenda span{display:block;font-size:19px;font-weight:800;letter-spacing:-.025em;line-height:1.25;color:#fff;min-height:2.5em}
+.pontos{display:flex;gap:7px;margin-top:16px}
+.pontos i{width:26px;height:3px;background:rgba(255,255,255,.28);border-radius:2px;transition:background .3s ease}
+.pontos i.on{background:var(--azul-claro)}
+
+.painel{padding:34px 32px 30px}
+.prog{display:flex;align-items:center;gap:12px;margin-bottom:22px}
+.prog .barra{flex:1;height:5px;background:var(--linha);border-radius:3px;overflow:hidden}
+.prog .barra i{display:block;height:100%;background:var(--roxo);width:50%;transition:width .35s ease}
+.prog span{font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta2);white-space:nowrap}
+.painel h2{font-size:clamp(20px,2.2vw,25px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.painel .aj{font-size:14.5px;margin:8px 0 22px}
+.passo{display:none}
+.passo.on{display:block}
+.fld{margin-bottom:13px}
+.fld label{display:block;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta2);margin-bottom:6px}
+.fld input{width:100%;background:var(--papel);border:2px solid var(--tinta);border-radius:4px;padding:14px 15px;font-family:var(--font);font-size:16px;font-weight:500;color:var(--tinta)}
+.fld input::placeholder{color:#a9a2bd;font-weight:400}
+.fld input:focus{outline:none;border-color:var(--roxo);background:#fff}
+.nfld{display:flex;align-items:flex-end;gap:10px}
+.nfld i{font-style:normal;font-weight:800;font-size:13px;color:var(--roxo);flex:none;width:18px;padding-bottom:15px}
+.nfld .fld{flex:1;min-width:0}
+.bob{display:inline-flex;align-items:center;justify-content:center;gap:12px;width:100%;background:var(--roxo);color:#fff;border:3px solid var(--tinta);border-radius:4px;
+ font-family:var(--font);font-size:15px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:19px 26px;cursor:pointer;
+ box-shadow:6px 6px 0 var(--tinta);transition:transform .12s ease,box-shadow .12s ease;margin-top:22px}
+@keyframes abana{0%,100%{transform:translate(0,0) rotate(0)}10%{transform:translate(-4px,0) rotate(-1.5deg)}20%{transform:translate(4px,0) rotate(1.5deg)}30%{transform:translate(-4px,0) rotate(-1.2deg)}40%{transform:translate(4px,0) rotate(1.2deg)}50%{transform:translate(-3px,0) rotate(-.8deg)}60%{transform:translate(3px,0) rotate(.8deg)}70%{transform:translate(-2px,0)}80%{transform:translate(2px,0)}90%{transform:translate(-1px,0)}}
+.bob.mexe{animation:abana .9s cubic-bezier(.36,.07,.19,.97) both}
+.bob:hover{transform:translate(3px,3px);box-shadow:3px 3px 0 var(--tinta)}
+.bob:active{transform:translate(6px,6px);box-shadow:0 0 0 var(--tinta)}
+.conf{display:grid;gap:10px;margin-bottom:6px}
+.conf .item{border:2px solid var(--tinta);border-radius:6px;padding:12px 14px;background:#fff;display:flex;gap:12px;align-items:flex-start}
+.conf .item.duvida{border-color:var(--roxo)}
+.conf .item i{font-style:normal;font-weight:800;font-size:12px;color:var(--roxo);flex:none;width:18px;padding-top:3px}
+.conf .item b{display:block;font-size:15px;letter-spacing:-.01em}
+.conf .item small{display:block;font-size:13px;color:var(--tinta2);margin-top:2px}
+.conf .item .esc{font-size:12px;color:var(--tinta2);margin-top:6px}
+.conf .item select{margin-top:8px;width:100%;font-family:var(--font);font-size:13.5px;padding:8px 10px;border:2px solid var(--tinta);border-radius:4px;background:var(--papel)}
+.conf .a-pesquisar{padding:14px;font-size:14px;color:var(--tinta2);display:flex;align-items:center;gap:10px}
+.conf .a-pesquisar i{width:9px;height:9px;border-radius:50%;background:var(--roxo);animation:pulsa .9s ease-in-out infinite;flex:none}
+.voltar{display:inline-block;margin-top:14px;background:none;border:0;padding:0;font-family:var(--font);font-size:13.5px;font-weight:700;color:var(--tinta2);cursor:pointer;text-decoration:underline}
+.rgpd{font-size:12.5px;color:var(--tinta2);margin-top:14px}
+.rgpd a{color:var(--tinta)}
+.seguro{font-size:12.5px;color:var(--tinta2);margin-top:16px;display:flex;align-items:center;gap:8px}
+
+/* estados do cartão: a esperar e pronto */
+.espera{display:none}
+.painel.ocupado .passo,.painel.ocupado .prog,.painel.ocupado .seguro{display:none}
+.painel.ocupado .espera{display:block}
+.espera h2{font-size:clamp(20px,2.2vw,25px);font-weight:800;letter-spacing:-.03em;line-height:1.2}
+.espera .st{font-size:14.5px;margin:8px 0 16px}
+.espera .fio{height:5px;background:var(--linha);border-radius:3px;overflow:hidden;margin-bottom:20px}
+.espera .fio i{display:block;height:100%;width:10%;background:var(--roxo);transition:width .6s ease}
+.espera ul{list-style:none;display:grid;gap:10px}
+.espera li{position:relative;padding-left:24px;font-size:15px;color:var(--tinta2)}
+.espera li::before{content:"";position:absolute;left:0;top:7px;width:11px;height:11px;border-radius:50%;border:2px solid var(--linha);background:#fff}
+.espera li.on{color:var(--tinta);font-weight:700}
+.espera li.on::before{border-color:var(--roxo);background:var(--roxo);animation:pulsa 1.2s ease-in-out infinite}
+.espera li.feito{color:var(--tinta)}
+.espera li.feito::before{border-color:var(--roxo);background:var(--roxo)}
+@keyframes pulsa{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.15;transform:scale(.7)}}
+.espera li.on::before{animation:pulsa .9s ease-in-out infinite}
+.espera .fio i{position:relative;overflow:hidden}
+.espera .fio i::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.55),transparent);transform:translateX(-100%);animation:brilho 1.4s linear infinite}
+@keyframes brilho{to{transform:translateX(100%)}}
+.vivo{display:flex;align-items:center;gap:10px;margin-top:18px;padding:12px 14px;background:var(--papel);border:1px solid var(--linha);border-radius:6px;font-size:13.5px;color:var(--tinta);min-height:44px}
+.vivo i{flex:none;width:9px;height:9px;border-radius:50%;background:var(--roxo);box-shadow:0 0 0 0 rgba(141,72,155,.5);animation:vivo 1.1s ease-out infinite}
+@keyframes vivo{0%{box-shadow:0 0 0 0 rgba(141,72,155,.55)}100%{box-shadow:0 0 0 9px rgba(141,72,155,0)}}
+.vivo span{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.vivo b{flex:none;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta2)}
+.palco.viva .quadro img{transition:opacity .6s ease,transform 4.5s ease-out}
+.palco.viva .quadro img.on{transform:scale(1.08)}
+.palco .quadro img{transform:scale(1)}
+.espera .nota{font-size:13px;margin-top:20px}
+.resultado{display:none;min-width:0}
+.sim.pronto{grid-template-columns:1fr}
+.sim.pronto .palco{display:none}
+.sim.pronto .painel{padding:0;min-width:0;overflow:hidden}
+.sim.pronto .passo,.sim.pronto .prog,.sim.pronto .seguro,.sim.pronto .espera{display:none}
+.sim.pronto .resultado{display:block}
+.res-cab{background:var(--tinta);color:var(--papel);padding:30px 32px 28px}
+.res-cab .kick{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--azul-claro);margin-bottom:12px}
+.res-cab .kick::before{content:"";width:22px;height:2px;background:var(--azul-claro)}
+.res-cab h2{font-size:clamp(21px,2.4vw,30px);font-weight:800;letter-spacing:-.03em;line-height:1.15;color:var(--papel);overflow-wrap:anywhere}
+.res-cab h2 em{font-style:italic;color:var(--azul-claro)}
+.bloco{padding:26px 32px;border-top:1px solid var(--linha);overflow-wrap:anywhere}
+.bloco .rot{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.bloco .rot .n{font-size:24px;font-weight:800;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.4px var(--roxo)}
+.bloco .rot b{font-size:17px;font-weight:800;letter-spacing:-.02em}
+.bloco .rot span:not(.n){font-size:13px;color:var(--tinta2)}
+.bloco p{font-size:15.5px;line-height:1.55}
+.tab{width:100%;border-collapse:collapse;font-size:14.5px;table-layout:fixed}
+.tab th{text-align:left;font-size:10.5px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--tinta2);padding:6px 8px 8px 0;border-bottom:1px solid var(--linha)}
+.tab td{padding:10px 8px 10px 0;border-bottom:1px solid var(--linha);vertical-align:top;color:var(--tinta2);overflow-wrap:anywhere}
+.tab td:first-child{font-weight:800;color:var(--tinta)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chips span{font-size:13px;font-weight:700;border:2px solid var(--tinta);border-radius:14px;padding:6px 13px;background:#fff;white-space:normal;max-width:100%;line-height:1.35}
+.chips span i{font-style:normal;font-weight:500;color:var(--tinta2);margin-right:6px}
+.grelha2{display:grid;gap:0 28px}
+@media(min-width:720px){.grelha2{grid-template-columns:1fr 1fr}}
+.grelha2 div{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--linha);font-size:14.5px;min-width:0}
+.grelha2 div b{color:var(--tinta);min-width:0}
+.grelha2 div span{color:var(--tinta2);font-size:13.5px}
+.lista-pri{list-style:none;display:grid;gap:12px}
+.lista-pri li{display:flex;gap:12px;align-items:flex-start}
+.lista-pri li i{font-style:normal;font-weight:800;font-size:12.5px;color:var(--roxo);flex:none;width:22px;padding-top:2px}
+.lista-pri li b{display:block;font-size:15px;letter-spacing:-.01em}
+.lista-pri li span{display:block;font-size:13.5px;color:var(--tinta2);margin-top:2px}
+.aviso-res{font-size:12.5px;color:var(--tinta2)}
+.res-cta{padding:28px 32px 30px;border-top:2px solid var(--tinta);background:var(--papel2);display:grid;gap:18px;align-items:center}
+@media(min-width:820px){.res-cta{grid-template-columns:1fr auto}}
+.res-cta b{font-size:18px;font-weight:800;letter-spacing:-.02em;display:block}
+.res-cta p{font-size:14.5px;margin-top:6px}
+.res-cta .bob{width:auto;margin:0;padding:18px 28px}
+@media(max-width:600px){.res-cab,.bloco,.res-cta{padding-left:20px;padding-right:20px}}
+
+footer{background:var(--tinta);color:#a8a3c8;padding:34px 0;font-size:13px}
+footer .fg{display:flex;flex-wrap:wrap;gap:14px 26px;justify-content:space-between;align-items:center}
+footer img{height:24px;width:auto}
+footer a{color:#a8a3c8}
+</style>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
+</head>
+<body>
+
+
+
+<section class="hero">
+  <div class="wrap">
+    <div class="cab">
+      <img class="logo-topo" src="assets/logo.svg" alt="Vloom">
+      <p class="sob">Diga-nos os seus 3 clientes de sonho</p>
+      <h1>Quais são as <em>3 empresas</em> que gostaria de ter como clientes?</h1>
+      <p>Escreva os nomes. <b>Nós encontramos as 100 empresas mais parecidas com essas</b>, quem decide lá dentro e o canal certo para chegar a cada uma.</p>
+    </div>
+
+    <form class="sim" id="sim" novalidate>
+      <div class="palco">
+        <div class="quadro" id="quadro"></div>
+        <div class="legenda">
+          <b id="legTit">Passo a passo</b>
+          <span id="legTxt">Escreve três nomes.</span>
+          <div class="pontos" id="pontos"></div>
+        </div>
+      </div>
+
+      <div class="painel">
+        <div class="prog"><div class="barra"><i id="barra"></i></div><span id="progTxt">Passo 1 de 3</span></div>
+
+        <div class="passo on" data-passo="1">
+          <h2>Os seus 3 clientes de sonho</h2>
+          <p class="aj">Se pudesse escolher três empresas para serem suas clientes nos próximos 12 meses, quais seriam? Escreva o nome o mais específico possível («Arena Lisboa Boxe», não só «Arena»).</p>
+          <div class="nfld"><i>01</i><div class="fld"><label for="c1">Empresa 1</label><input id="c1" name="c1" type="text" placeholder="Escreva o nome" required autofocus></div></div>
+          <div class="nfld"><i>02</i><div class="fld"><label for="c2">Empresa 2</label><input id="c2" name="c2" type="text" placeholder="Escreva o nome" required></div></div>
+          <div class="nfld"><i>03</i><div class="fld"><label for="c3">Empresa 3</label><input id="c3" name="c3" type="text" placeholder="Escreva o nome" required></div></div>
+          <button class="bob" type="button" id="seguinte">Continuar<svg width="20" height="15" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        </div>
+
+        <div class="passo" data-passo="c">
+          <h2 id="confTit">A confirmar os três nomes</h2>
+          <p class="aj" id="confAj">Estamos a verificar cada nome com fontes públicas, para a análise ser sobre as empresas certas. Leva uns vinte segundos.</p>
+          <div id="confLista" class="conf"></div>
+          <button class="bob" type="button" id="confirmar" hidden>Sim, são estas<svg width="20" height="15" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="voltar" type="button" id="confVoltar">Voltar e corrigir</button>
+        </div>
+
+        <div class="passo" data-passo="2">
+          <h2>Para onde enviamos a análise?</h2>
+          <p class="aj">Respondemos em 24 horas úteis, mesmo que a resposta seja que não há mercado suficiente.</p>
+          <div class="fld"><label for="nome">O seu nome</label><input id="nome" name="nome" type="text" placeholder="Ex: João Silva" autocomplete="name" required></div>
+          <div class="fld"><label for="email">O seu email</label><input id="email" name="email" type="email" placeholder="Ex: joao@empresa.pt" autocomplete="email" required></div>
+          <div class="fld"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel" placeholder="Ex: 912 345 678" autocomplete="tel" required></div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Site da empresa<input type="text" name="empresa_site" tabindex="-1" autocomplete="off"></label></div>
+          <button class="bob" type="submit">Quero descobrir estas empresas<svg width="20" height="15" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+          <button class="voltar" type="button" id="anterior">Voltar</button>
+          <p class="rgpd">Ao enviar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+        </div>
+
+
+        <div class="espera">
+          <h2>A analisar as suas três empresas</h2>
+          <p class="st" id="espSt">A lançar a pesquisa.</p>
+          <div class="fio"><i id="espFio"></i></div>
+          <ul id="espLista">
+            <li>Identificar as três empresas</li>
+            <li>Encontrar o padrão comum</li>
+            <li>Contar as empresas iguais no mercado</li>
+            <li>Escolher as prioritárias e quem decide</li>
+          </ul>
+          <div class="vivo"><i></i><span id="vivoTxt">A ligar às fontes públicas.</span><b id="vivoN"></b></div>
+          <p class="nota">Demora um a dois minutos. A pesquisa é feita agora, com fontes públicas, e não a partir de uma lista guardada.</p>
+        </div>
+        <p class="seguro"><svg width="14" height="16" viewBox="0 0 14 16" fill="none" aria-hidden="true"><path d="M7 1 12.5 3.4V8c0 3.1-2.3 5.1-5.5 6-3.2-.9-5.5-2.9-5.5-6V3.4L7 1Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg> Os seus dados são confidenciais e nunca serão partilhados.</p>
+      </div>
+
+      <div class="resultado" id="resultado"></div>
+    </form>
+  </div>
+</section>
+
+
+
+<footer><div class="wrap fg">
+  <img src="assets/logo-branco.svg" alt="Vloom">
+  <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
+  <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a> · Design by Vloom</span>
+</div></footer>
+
+<script>
+/* palco: as ilustracoes vao rodando e mostram como se chega la */
+(function(){
+  var cenas=[
+    ['Passo 1','Escreve três nomes.','assets/proc/p1.jpg'],
+    ['Passo 2','Descobrimos o que os liga.','assets/proc/p2.jpg'],
+    ['Passo 3','Contamos as empresas iguais.','assets/proc/p3.jpg'],
+    ['Passo 4','E dizemos por onde começar.','assets/proc/p4.jpg']
+  ];
+  var q=document.getElementById('quadro'), t=document.getElementById('legTit'),
+      x=document.getElementById('legTxt'), pts=document.getElementById('pontos');
+  if(!q) return;
+  cenas.forEach(function(c,i){
+    var im=new Image(); im.src=c[2]; im.alt=''; im.loading=i?'lazy':'eager';
+    if(i===0) im.className='on';
+    q.appendChild(im);
+    var p=document.createElement('i'); if(i===0) p.className='on'; pts.appendChild(p);
+  });
+  var i=0, imgs=q.querySelectorAll('img'), dots=pts.querySelectorAll('i');
+  function passa(){
+    if(!cenas.length) return;
+    i=(i+1)%cenas.length;
+    imgs.forEach(function(im,k){ im.classList.toggle('on',k===i); });
+    dots.forEach(function(d,k){ d.classList.toggle('on',k===i); });
+    t.textContent=cenas[i][0]; x.textContent=cenas[i][1];
+  }
+  var ritmo=3400, timer=setInterval(passa,ritmo);
+  window.vloomPalco={
+    modo:function(cenasNovas, ms){
+      clearInterval(timer); timer=null;
+      cenas=cenasNovas; ritmo=ms||ritmo;
+      q.innerHTML=''; pts.innerHTML='';
+      cenas.forEach(function(c,k){ var im=new Image(); im.src=c[2]; im.alt=''; if(k===0) im.className='on'; q.appendChild(im); var d=document.createElement('i'); if(k===0) d.className='on'; pts.appendChild(d); });
+      imgs=q.querySelectorAll('img'); dots=pts.querySelectorAll('i'); i=0;
+      t.textContent=cenas[0][0]; x.textContent=cenas[0][1];
+      q.parentNode.classList.toggle('viva', ms<3000);
+      timer=setInterval(passa,ritmo);
+    }
+  };
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(!e.isIntersecting){ clearInterval(timer); timer=null; }
+        else if(!timer){ timer=setInterval(passa,3400); } });
+    },{threshold:.2}).observe(q);
+  }
+})();
+
+/* o botão abana quando entra no ecrã e volta a abanar de vez em quando */
+(function(){
+  function abana(b){ b.classList.remove('mexe'); void b.offsetWidth; b.classList.add('mexe'); }
+  var bobs=document.querySelectorAll('.bob');
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ abana(e.target); io.unobserve(e.target); } }); },{threshold:.6});
+    bobs.forEach(function(b){ io.observe(b); });
+  }
+  setInterval(function(){ bobs.forEach(function(b){ if(b.offsetParent && !b.disabled) abana(b); }); }, 4000);
+  var c1=document.getElementById('c1');
+  function foca(){ if(c1 && document.activeElement!==c1){ try{ window.focus(); c1.focus({preventScroll:true}); }catch(e){ c1.focus(); } } }
+  foca(); setTimeout(foca,300); setTimeout(foca,900); window.addEventListener('load', foca);
+})();
+
+/* passos do simulador */
+(function(){
+  var f=document.getElementById('sim'); if(!f) return;
+  var passos=f.querySelectorAll('.passo'), barra=document.getElementById('barra'), prog=document.getElementById('progTxt');
+  var ordem={'1':1,'c':2,'2':3};
+  function ir(n){
+    passos.forEach(function(p){ p.classList.toggle('on', p.dataset.passo==String(n)); });
+    barra.style.width=(ordem[n]*33.4)+'%'; prog.textContent='Passo '+ordem[n]+' de 3';
+    var pr=f.querySelector('.passo.on input'); if(pr) pr.focus();
+  }
+  var resolvidas=null; // o que o utilizador confirmou
+  function escolhaDe(r,k){
+    var sel=document.getElementById('conf'+k); var v=(sel && sel.value) ? sel.value : (r.nome||r.escrito);
+    if(v===(r.nome||r.escrito)) return {nome:v, descricao:r.descricao||'', localidade:r.localidade||'', site:r.site||''};
+    var alt=(r.alternativas||[]).filter(function(a){ return a.nome===v; })[0];
+    if(alt) return {nome:alt.nome, descricao:alt.descricao||'', localidade:alt.localidade||'', site:''};
+    return {nome:v, descricao:'', localidade:'', site:''};
+  }
+  function confirmadas(){ return resolvidas ? resolvidas.map(escolhaDe) : []; }
+  function nomesConfirmados(){
+    if(!resolvidas) return [f.c1.value.trim(), f.c2.value.trim(), f.c3.value.trim()];
+    return confirmadas().map(function(c){ return c.nome; });
+  }
+  function mostraConf(lista){
+    var box=document.getElementById('confLista'); var h='';
+    lista.forEach(function(r,k){
+      var duvida = r.confianca!=='alta';
+      h+='<div class="item'+(duvida?' duvida':'')+'"><i>0'+(k+1)+'</i><div style="flex:1;min-width:0"><b>'+esc(r.nome||r.escrito)+'</b><small>'+esc([r.descricao,r.localidade].filter(Boolean).join(' · '))+'</small>';
+      if((r.nome||'').toLowerCase()!==(r.escrito||'').toLowerCase()) h+='<div class="esc">Escreveu «'+esc(r.escrito)+'»</div>';
+      if(duvida || (r.alternativas||[]).length){
+        h+='<select id="conf'+k+'"><option value="'+esc(r.nome||r.escrito)+'">'+esc(r.nome||r.escrito)+(r.localidade?' · '+esc(r.localidade):'')+'</option>';
+        (r.alternativas||[]).forEach(function(a){ h+='<option value="'+esc(a.nome)+'">'+esc(a.nome)+(a.localidade?' · '+esc(a.localidade):'')+(a.descricao?' · '+esc(a.descricao):'')+'</option>'; });
+        h+='<option value="'+esc(r.escrito)+'">Manter exactamente o que escrevi: «'+esc(r.escrito)+'»</option></select>';
+      }
+      h+='</div></div>';
+    });
+    box.innerHTML=h;
+  }
+  document.getElementById('seguinte').addEventListener('click', function(){
+    var faltam=[f.c1,f.c2,f.c3].filter(function(i){ return !i.value.trim(); });
+    if(faltam.length){ faltam[0].focus(); faltam[0].reportValidity(); return; }
+    f.style.minHeight=f.offsetHeight+'px'; resolvidas=null; ir('c');
+    var box=document.getElementById('confLista');
+    var escritos=[f.c1.value.trim(), f.c2.value.trim(), f.c3.value.trim()];
+    box.innerHTML=escritos.map(function(n,k){ return '<div class="a-pesquisar"><i></i>A pesquisar «'+esc(n)+'»…</div>'; }).join('');
+    document.getElementById('confTit').textContent='A confirmar os três nomes';
+    document.getElementById('confAj').textContent='Estamos a verificar cada nome com fontes públicas, para a análise ser sobre as empresas certas. Leva uns vinte segundos.';
+    var bt=document.getElementById('confirmar'); bt.hidden=true;
+    if(window.vloomPalco) window.vloomPalco.modo([['A confirmar','A pesquisar na web.','assets/espera/e2.jpg'],['A confirmar','A ler sites e registos.','assets/espera/e3.jpg']], 2300);
+    fetch(API+'resolve-3clientes/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({c1:f.c1.value.trim(),c2:f.c2.value.trim(),c3:f.c3.value.trim()})})
+      .then(function(r){return r.json();}).then(function(j){
+        if(j && j.ok && j.resolvidas && j.resolvidas.length){
+          resolvidas=j.resolvidas; mostraConf(j.resolvidas);
+          document.getElementById('confTit').textContent='É destas empresas que fala?';
+          document.getElementById('confAj').textContent='Confirmámos os nomes com fontes públicas. Se alguma não for a certa, escolha a alternativa ou mantenha o que escreveu.';
+          bt.hidden=false;
+        }
+        else { resolvidas=null; ir(2); }
+      }).catch(function(){ resolvidas=null; ir(2); });
+  });
+  document.getElementById('confirmar').addEventListener('click', function(){ ir(2); });
+  document.getElementById('confVoltar').addEventListener('click', function(){ ir(1); });
+  document.getElementById('anterior').addEventListener('click', function(){ ir('c'); });
+
+  var API = "https://oferta.vloom.pt/api/";
+  var painel=f.querySelector('.painel'), espSt=document.getElementById('espSt'), espFio=document.getElementById('espFio'), espLi=document.querySelectorAll('#espLista li');
+  function esc(v){ return String(v==null?'':v).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];}); }
+  function fase(n,txt){ espLi.forEach(function(li,k){ li.classList.toggle('feito',k<n); li.classList.toggle('on',k===n); }); if(txt) espSt.textContent=txt; espFio.style.width=Math.min(96,10+n*24)+'%'; }
+
+  function render(r, nomes){
+    var h='';
+    h+='<div class="res-cab"><span class="kick">A sua análise</span><h2>Encontrámos o padrão por trás de <em>'+esc(nomes.join(', '))+'</em>.</h2></div>';
+    h+='<div class="bloco"><div class="rot"><span class="n">01</span><b>O que nos escreveu</b></div><table class="tab"><thead><tr><th>Empresa</th><th>Setor</th><th>Sede</th><th>Dimensão</th><th>Faturação</th></tr></thead><tbody>';
+    (r.empresas||[]).forEach(function(e){ h+='<tr><td>'+esc(e.nome)+'</td><td>'+esc(e.setor)+'</td><td>'+esc(e.sede)+'</td><td>'+esc(e.dimensao)+'</td><td>'+esc(e.faturacao)+'</td></tr>'; });
+    h+='</tbody></table></div>';
+    var p=r.perfil||{};
+    h+='<div class="bloco perfil"><div class="rot"><span class="n">02</span><b>O perfil por trás delas</b></div><p>'+esc(p.resumo)+'</p><div class="chips">'+
+       '<span><i>Setor</i>'+esc(p.setor)+'</span><span><i>Faturação</i>'+esc(p.faturacao)+'</span><span><i>Dimensão</i>'+esc(p.dimensao)+'</span><span><i>Geografia</i>'+esc(p.geografia)+'</span></div>'+
+       (p.decisao?'<p style="margin-top:14px;font-size:14.5px;color:var(--tinta2)"><b style="color:var(--tinta)">Como se decide:</b> '+esc(p.decisao)+'</p>':'')+'</div>';
+    var sem=r.semelhantes||[];
+    h+='<div class="bloco"><div class="rot"><span class="n">03</span><b>O mercado é maior do que estas três</b><span>'+sem.length+' empresas com o mesmo perfil, num primeiro passe</span></div><div class="grelha2">';
+    sem.forEach(function(x){ h+='<div><b>'+esc(x.nome)+'</b><span>'+esc(x.localidade)+'</span></div>'; });
+    h+='</div></div>';
+    var pri=r.prioritarias||[];
+    h+='<div class="bloco"><div class="rot"><span class="n">04</span><b>Por onde começaríamos</b></div><ul class="lista-pri">';
+    pri.forEach(function(x,k){ h+='<li><i>'+(k+1<10?'0':'')+(k+1)+'</i><div><b>'+esc(x.nome)+'</b><span>'+esc(x.porque)+'</span></div></li>'; });
+    h+='</ul></div>';
+    h+='<div class="bloco"><div class="rot"><span class="n">05</span><b>Quem decide lá dentro</b></div><ul class="lista-pri">';
+    (r.cargos||[]).forEach(function(x){ h+='<li><i>·</i><div><b>'+esc(x.cargo)+'</b><span>'+esc(x.papel)+'</span></div></li>'; });
+    h+='</ul></div>';
+    h+='<div class="bloco"><div class="rot"><span class="n">06</span><b>Por onde se chega até elas</b></div><ul class="lista-pri">';
+    (r.estrategia||[]).forEach(function(x){ h+='<li><i>·</i><div><b>'+esc(x.canal)+'</b><span>'+esc(x.como)+'</span></div></li>'; });
+    h+='</ul>'+(r.aviso?'<p class="aviso-res" style="margin-top:18px">'+esc(r.aviso)+'</p>':'')+'</div>';
+    h+='<div class="res-cta"><div><b>Quer que confirmemos isto à mão e lhe mostremos o caminho até estas empresas?</b><p>Quarenta e cinco minutos, por videochamada, a olhar para o seu mercado.</p></div><a class="bob" href="obrigado/">Marcar a reunião<svg width="20" height="15" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a></div>';
+    document.getElementById('resultado').innerHTML=h;
+    clearInterval(vivoTimer); f.style.minHeight=''; f.classList.add('pronto'); painel.classList.remove('ocupado');
+    f.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+
+  window.vloomRender=render;
+  var vivoTxt=document.getElementById('vivoTxt'), vivoN=document.getElementById('vivoN'), vivoTimer=null;
+  function aoVivo(nomes){
+    var n=nomes;
+    var frases=[
+      'A pesquisar «'+n[0]+'» na web.', 'A ler o site de '+n[0]+'.', 'A pesquisar «'+n[1]+'» na web.', 'A ler o site de '+n[1]+'.',
+      'A pesquisar «'+n[2]+'» na web.', 'A ler o site de '+n[2]+'.', 'A consultar registos de empresas.', 'A ler perfis de quem decide em '+n[0]+'.',
+      'A ler perfis de quem decide em '+n[1]+'.', 'A ler perfis de quem decide em '+n[2]+'.', 'A comparar setor, dimensão e geografia.',
+      'A procurar empresas com o mesmo perfil.', 'A cruzar resultados.', 'A escolher as contas prioritárias.', 'A organizar a lista.'
+    ];
+    var k=0; vivoTxt.textContent=frases[0];
+    clearInterval(vivoTimer); vivoTimer=setInterval(function(){ k=(k+1)%frases.length; vivoTxt.textContent=frases[k]; }, 1900);
+    if(window.vloomPalco) window.vloomPalco.modo([
+      ['A rastrear','A ler perfis de quem decide.','assets/espera/e1.jpg'],
+      ['A rastrear','A pesquisar na web.','assets/espera/e2.jpg'],
+      ['A rastrear','A ler sites e registos.','assets/espera/e3.jpg'],
+      ['A rastrear','A cruzar tudo numa lista.','assets/espera/e4.jpg']
+    ], 2300);
+  }
+  function pergunta(id, nomes, tent){
+    fetch(API+'motor-3clientes/?id='+encodeURIComponent(id)).then(function(r){ return r.json(); }).then(function(j){
+      if(!j.ok){ espSt.textContent='Não conseguimos terminar a análise automática. Vamos fazê-la à mão e enviar-lha por email.'; return; }
+      if(typeof j.pesquisas==='number' && j.pesquisas>0) vivoN.textContent=j.pesquisas+(j.pesquisas===1?' pesquisa':' pesquisas');
+      if(j.novoId){ id=j.novoId; tent=0; fase(1,'A confirmar com uma segunda passagem, mais profunda.'); }
+      if(j.status==='completed'){
+        fase(4,'Pronto. A enviar-lhe o relatório por email.');
+        window.location.href='obrigado/?id='+encodeURIComponent(id);
+        return;
+      }
+      var n=j.pesquisas||0;
+      fase(n<3?0:n<8?1:n<14?2:3, n?('A pesquisar. '+n+' fontes consultadas.'):'A pesquisar.');
+      if(tent>60){ espSt.textContent='Está a demorar mais do que o normal. Enviamos-lhe o resultado por email.'; return; }
+      setTimeout(function(){ pergunta(id,nomes,tent+1); }, 4000);
+    }).catch(function(){ setTimeout(function(){ pergunta(id,nomes,tent+1); }, 6000); });
+  }
+
+  f.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if(!f.checkValidity()){ f.reportValidity(); return; }
+    var b=f.querySelector('button[type=submit]'); if(b){ b.disabled=true; b.style.opacity='.7'; }
+    var q=new URLSearchParams(location.search);
+    var dados={ c1:f.c1.value.trim(), c2:f.c2.value.trim(), c3:f.c3.value.trim(),
+                nome:f.nome.value.trim(), email:f.email.value.trim(), telefone:f.telefone.value.trim(),
+                empresa_site:(f.empresa_site?f.empresa_site.value:""), page:location.pathname, source:"LP 3 clientes de sonho" };
+    ["utm_source","utm_medium","utm_campaign","utm_content","fbclid"].forEach(function(k){ if(q.get(k)) dados[k]=q.get(k); });
+    var nomes=nomesConfirmados();
+    f.style.minHeight=f.offsetHeight+'px'; painel.classList.add('ocupado'); aoVivo(nomes); fase(0,'A lançar a pesquisa.');
+    try{ var eid=window.vloomFb.id(); fbq('track','Lead',{content_name:'3 clientes de sonho'},{eventID:eid});
+      window.vloomFb.capi({event:'Lead',eventId:eid,email:dados.email,phone:dados.telefone,nome:dados.nome,contentName:'3 clientes de sonho'}); }catch(e){}
+    fetch(API+'lead-3clientes/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)}).then(function(r){return r.json();}).then(function(j){ window.vloomLead={contactId:(j&&j.contactId)||'', email:dados.email, nome:dados.nome}; }).catch(function(){ window.vloomLead={email:dados.email, nome:dados.nome}; });
+    dados.confirmadas=confirmadas();
+    fetch(API+'motor-3clientes/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(dados)})
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(j.ok&&j.id){
+          try{ sessionStorage.setItem('vloom3c', JSON.stringify({id:j.id, nomes:nomes, email:dados.email, nome:dados.nome, contactId:(window.vloomLead&&window.vloomLead.contactId)||''})); }catch(e){}
+          fase(1,'Análise lançada. Vai receber o relatório por email.');
+          setTimeout(function(){ window.location.href='obrigado/?id='+encodeURIComponent(j.id); }, 1400);
+        } else { espSt.textContent='Não conseguimos lançar a análise agora. Fazemo-la à mão e enviamos-lha por email.'; }
+      })
+      .catch(function(){ espSt.textContent='Não conseguimos lançar a análise agora. Fazemo-la à mão e enviamos-lha por email.'; });
+  });
+})();
+</script>
+</body>
+</html>
