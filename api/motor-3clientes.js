@@ -31,6 +31,8 @@ async function lancar(H, nomes, modelo, confirmadas) {
   return { ok: r.ok, j: await r.json() };
 }
 
+const loja = require('./_blob.js');
+
 module.exports = async function handler(req, res) {
   cors(req, res);
   if (req.method === 'OPTIONS') return res.status(204).end();
@@ -47,6 +49,16 @@ module.exports = async function handler(req, res) {
       const confirmadas = Array.isArray(b.confirmadas) ? b.confirmadas.slice(0, 3).map(c => ({ nome: String(c.nome || '').slice(0, 120), descricao: String(c.descricao || '').slice(0, 160), localidade: String(c.localidade || '').slice(0, 80), site: /^https?:\/\/\S+$/i.test(String(c.site || '')) ? String(c.site) : '' })) : [];
       const { ok, j } = await lancar(H, nomes, process.env.MOTOR_MODELO || 'gpt-5', confirmadas);
       if (!ok || !j.id) return res.status(200).json({ ok: false, error: j.error?.message || 'falhou a lançar' });
+      // fica registado quem espera por este relatório, para o email sair mesmo que a pessoa feche a página
+      if (loja.temStore()) {
+        await loja.escrever(`pendentes/${j.id}.json`, {
+          id: j.id, nomes,
+          email: String(b.email || '').slice(0, 160),
+          nome: String(b.nome || '').slice(0, 120),
+          contactId: String(b.contactId || '').slice(0, 60),
+          criado: Date.now()
+        }).catch(() => {});
+      }
       return res.status(200).json({ ok: true, id: j.id, status: j.status });
     } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
   }

@@ -1883,7 +1883,7 @@ var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/marketing.vloom.pt\/wp-ad
   var frases=['A analisar as suas três empresas…','A encontrar o padrão comum…','A contar as empresas com o mesmo perfil…','A escolher as prioritárias e quem decide…'];
   var k=0; var roda=setInterval(function(){ k=(k+1)%frases.length; txt.textContent=frases[k]; }, 6000);
   function pronto(){ clearInterval(roda); txt.textContent='Relatório pronto. Já seguiu para o seu email.'; estado.querySelector('i').style.animation='none'; }
-  function envia(){ if(enviado) return; enviado=true; fetch(API+'relatorio-envia/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:id,contactId:dados.contactId||'',email:dados.email||'',nome:dados.nome||'',nomes:dados.nomes||[]})}).catch(function(){}); }
+  function envia(){ /* o email sai do servidor, pelo cron, mesmo que esta página feche */ }
   function pergunta(){ fetch(API+'motor-3clientes/?id='+encodeURIComponent(id)).then(function(r){return r.json();}).then(function(j){
       if(j.novoId){ id=j.novoId; }
       if(j.ok && j.status==='completed'){ envia(); pronto(); return; }

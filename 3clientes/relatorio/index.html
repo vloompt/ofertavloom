@@ -99,7 +99,19 @@ footer{background:var(--tinta);color:#a8a3c8;padding:30px 0;font-size:13px}
 footer .fg{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
 footer img{height:22px}
 .estado{padding:80px 22px;text-align:center;color:var(--tinta2)}
-@media print{.cta,footer{display:none}.card,.pessoa,.canal{break-inside:avoid}}
+.descarregar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:30px 22px 4px}
+.descarregar .pdf{display:inline-flex;align-items:center;gap:10px;background:var(--tinta);color:#fff;border:0;border-radius:8px;padding:14px 22px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 24px -10px rgba(21,16,48,.6);transition:transform .2s,box-shadow .2s}
+.descarregar .pdf:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(21,16,48,.7)}
+.descarregar .pdf svg{width:19px;height:19px}
+.descarregar span{color:var(--tinta2);font-size:14px}
+@media print{
+  .cta,footer,.descarregar,.topo{display:none}
+  .card,.pessoa,.canal,section{break-inside:avoid}
+  a{color:#151030;text-decoration:underline}
+  .cabeca{background:none;color:#151030}
+  body{background:#fff}
+  @page{margin:14mm}
+}
 </style>
 </head>
 <body>
@@ -110,8 +122,10 @@ footer img{height:22px}
 (function(){
   var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
   var app=document.getElementById('app');
-  var id=new URLSearchParams(location.search).get('id')||'';
-  if(!/^resp_[a-z0-9]+$/i.test(id)){ app.innerHTML='<div class="estado">Este link não tem um relatório associado.</div>'; return; }
+  var q=new URLSearchParams(location.search);
+  var id=q.get('id')||'', guardado=(q.get('r')||'').replace(/[^a-z0-9]/gi,'');
+  var LOJA='https://2j2b4knzsaobmtlm.public.blob.vercel-storage.com/r/';
+  if(!guardado && !/^resp_[a-z0-9]+$/i.test(id)){ app.innerHTML='<div class="estado">Este link não tem um relatório associado.</div>'; return; }
   var dom=function(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } };
   var fav=function(site,nome){ var d=dom(site); return d?'<span class="fav"><img src="https://www.google.com/s2/favicons?domain='+esc(d)+'&sz=64" alt="" loading="lazy" onerror="this.parentNode.innerHTML=\'<i>'+esc((nome||'?').slice(0,1).toUpperCase())+'</i>\'"></span>':'<span class="fav"><i>'+esc((nome||'?').slice(0,1).toUpperCase())+'</i></span>'; };
   var iSite='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>';
@@ -134,10 +148,18 @@ footer img{height:22px}
     h+='<section><div class="wrap"><div class="rot"><span class="n">04</span><h2>Quem decide lá dentro</h2><span>Nomes e contactos públicos</span></div><div class="pessoas">'+dec.map(pessoa).join('')+'</div>'+((r.cargos||[]).length?'<ul class="crit" style="margin-top:22px">'+(r.cargos||[]).map(function(c){return '<li><span>'+esc(c.cargo)+'</span><span style="font-weight:500;color:var(--tinta2)">'+esc(c.papel)+'</span></li>';}).join('')+'</ul>':'')+'</div></section>';
     h+='<section><div class="wrap"><div class="rot"><span class="n">05</span><h2>O mercado é maior do que estas três</h2><span>'+sem.length+' empresas com o mesmo perfil</span></div><div class="cards tres">'+sem.map(function(x,k){return cardSem(x,k,false);}).join('')+'</div></div></section>';
     h+='<section><div class="wrap"><div class="rot"><span class="n">06</span><h2>Por onde se chega até elas</h2></div><div class="canais">'+(r.estrategia||[]).map(function(x){return '<div class="canal"><b>'+esc(x.canal)+'</b><p>'+esc(x.como)+'</p></div>';}).join('')+'</div>'+(r.aviso?'<p class="aviso">'+esc(r.aviso)+'</p>':'')+'</div></section>';
+    h+='<div class="wrap descarregar"><button type="button" class="pdf" onclick="window.print()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5"/><path d="M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>Descarregar em PDF</button><span>Os links do relatório continuam a funcionar dentro do PDF.</span></div>';
     h+='<div class="cta"><div class="wrap"><h2>Quer que confirmemos isto à mão e lhe mostremos o caminho até estas empresas?</h2><p>Quarenta e cinco minutos, por videochamada, a olhar para o seu mercado. Sem apresentação de agência.</p><a class="bob" href="/3clientes/obrigado/">Marcar a reunião →</a></div></div>';
     app.innerHTML=h; document.title='Vloom · Relatório: '+nomes.join(', ');
   }
   function carrega(tent){
+    if(guardado){
+      fetch(LOJA+guardado+'.json',{cache:'no-store'}).then(function(r){ if(!r.ok) throw new Error('404'); return r.json(); }).then(function(j){
+        var r=j.resultado||j; var nomes=(r.empresas||[]).map(function(e){return e.nome||e.nome_escrito;});
+        render(r, nomes);
+      }).catch(function(){ app.innerHTML='<div class="estado">Não conseguimos abrir este relatório. Se recebeu o link por email, responda a esse email que nós reenviamos.</div>'; });
+      return;
+    }
     fetch('/api/motor-3clientes/?id='+encodeURIComponent(id)).then(function(r){return r.json();}).then(function(j){
       if(j.ok && j.status==='completed' && j.resultado){ var nomes=(j.resultado.empresas||[]).map(function(e){return e.nome||e.nome_escrito;}); render(j.resultado, nomes); return; }
       if(j.novoId){ id=j.novoId; }

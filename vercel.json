@@ -10,6 +10,15 @@
   "functions": {
     "api/motor-3clientes.js": {
       "maxDuration": 60
+    },
+    "api/cron-relatorios.js": {
+      "maxDuration": 60
     }
-  }
+  },
+  "crons": [
+    {
+      "path": "/api/cron-relatorios/",
+      "schedule": "* * * * *"
+    }
+  ]
 }
