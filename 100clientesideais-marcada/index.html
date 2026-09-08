@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reunião marcada | Vloom</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/logo.svg">
+<style>
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-style:normal;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-style:normal;font-display:swap}
+:root{--navy:#0f1d5a;--azul:#2c86b8;--azul-claro:#77cef4;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{font-family:var(--font);color:var(--navy);background:#fff;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased;display:flex;flex-direction:column}
+img{max-width:100%;display:block;height:auto}
+.topo{padding:26px 24px;display:flex;justify-content:center}
+.topo img{height:34px;width:auto}
+main{flex:1;display:flex;align-items:center;justify-content:center;padding:20px 24px 60px}
+.caixa{width:100%;max-width:620px;text-align:center}
+.visto{width:82px;height:82px;border-radius:50%;background:linear-gradient(150deg,var(--azul),var(--azul-claro));display:grid;place-items:center;margin:0 auto 26px;color:#fff;box-shadow:0 16px 34px rgba(44,134,184,.32);animation:entra .5s ease}
+@keyframes entra{from{transform:scale(.7);opacity:0}to{transform:scale(1);opacity:1}}
+@media(prefers-reduced-motion:reduce){.visto{animation:none}}
+h1{font-size:clamp(28px,4.4vw,44px);font-weight:800;letter-spacing:-.02em;line-height:1.12;color:var(--navy)}
+h1 em{font-style:normal;color:var(--azul)}
+.sub{font-size:clamp(16px,1.6vw,19px);line-height:1.55;color:#41496f;margin-top:16px}
+.sub b{color:var(--navy);font-weight:700}
+.passos{list-style:none;text-align:left;margin:34px auto 0;max-width:520px;display:grid;gap:12px}
+.passos li{display:grid;grid-template-columns:30px 1fr;gap:14px;align-items:start;background:#f5f9fd;border:1px solid rgba(44,134,184,.22);border-radius:12px;padding:16px 18px;font-size:15.5px;line-height:1.5;color:#41496f}
+.passos li b{color:var(--navy)}
+.passos li i{width:30px;height:30px;border-radius:50%;background:var(--azul);color:#fff;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:14px}
+.aviso{margin-top:30px;font-size:14px;line-height:1.55;color:#5b6386}
+.aviso a{color:var(--azul);font-weight:700;text-decoration:none}
+footer{padding:22px 24px;border-top:1px solid rgba(15,29,90,.1);font-size:12px;color:#6b7292}
+.legal{max-width:1100px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+.legal a{color:inherit}
+</style>
+<!-- Meta Pixel -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
+<script>
+/* ajuda para a Conversions API: mesmo event_id no Pixel e no servidor, para a Meta juntar os dois */
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+</head>
+<body>
+
+<div class="topo"><img src="assets/logo.svg" alt="Vloom"></div>
+
+<main>
+  <div class="caixa">
+    <div class="visto"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="m5 12.5 4.5 4.5L19 7" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+    <h1>Reunião marcada. <em>Até lá!</em></h1>
+    <p class="sub">Está tudo confirmado. A sua lista com as 100 empresas segue para o email que nos deixou, e a reunião fica no seu calendário.</p>
+    <ul class="passos">
+      <li><i>1</i><span><b>Confirme o convite no email.</b> Chega em minutos, com o link da videochamada. Se não aparecer, veja no spam.</span></li>
+      <li><i>2</i><span><b>Vamos preparar o seu caso antes.</b> Olhamos para a lista e para o que já faz hoje para chegar a estas empresas.</span></li>
+      <li><i>3</i><span><b>Traga as suas perguntas.</b> Saímos da reunião com um caminho concreto, faça ou não sentido trabalhar connosco.</span></li>
+    </ul>
+    <p class="aviso">Precisa de mudar a hora ou desmarcar? Use o link do convite, ou ligue para <a href="tel:+351914310656">(+351) 914 310 656</a>. Chamada para rede móvel nacional.</p>
+  </div>
+</main>
+
+<footer><div class="legal">
+  <span>&copy; 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
+  <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a> · Design by Vloom</span>
+</div></footer>
+
+<script>
+/* Quem chega aqui marcou a reunião: fica com a tag no GHL. */
+(function(){
+  var d={}; try{ d=JSON.parse(sessionStorage.getItem("vloom100")||"{}"); }catch(e){}
+  var q=new URLSearchParams(location.search);
+  var corpo={ contactId:d.contactId||q.get("contact_id")||"", email:d.email||q.get("email")||"" };
+  var eventId = (window.vloomFb ? window.vloomFb.id() : String(Date.now()));
+  try{ if(window.fbq) fbq('track','Schedule',{content_name:'100 clientes ideais'},{eventID:eventId}); }catch(e){}
+  if(window.vloomFb) window.vloomFb.capi({eventName:'Schedule',eventId:eventId,email:corpo.email,firstName:d.nome||'',contentName:'100 clientes ideais'});
+  if(!corpo.contactId && !corpo.email) return;
+  fetch("/api/marcou-100clientesideais/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(corpo)}).catch(function(){});
+})();
+</script>
+</body>
+</html>

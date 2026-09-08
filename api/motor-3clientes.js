@@ -47,17 +47,21 @@ module.exports = async function handler(req, res) {
     if (nomes.length < 3) return res.status(400).json({ ok: false, error: 'faltam nomes' });
     try {
       const confirmadas = Array.isArray(b.confirmadas) ? b.confirmadas.slice(0, 3).map(c => ({ nome: String(c.nome || '').slice(0, 120), descricao: String(c.descricao || '').slice(0, 160), localidade: String(c.localidade || '').slice(0, 80), site: /^https?:\/\/\S+$/i.test(String(c.site || '')) ? String(c.site) : '' })) : [];
+      const lead = {
+        email: String(b.email || '').slice(0, 160),
+        nome: String(b.nome || '').slice(0, 120),
+        contactId: String(b.contactId || '').slice(0, 60),
+      };
+      // Motor gratuito: o trabalho fica em fila e o cron trata dele (perfil, recolha, composição).
+      if (loja.temStore() && process.env.MOTOR !== 'openai') {
+        const id = 'job_' + loja.token();
+        const guardado = await loja.escrever(`pendentes/${id}.json`, { id, fase: 'perfil', nomes, confirmadas, tentativas: 0, criado: Date.now(), ...lead });
+        if (guardado) return res.status(200).json({ ok: true, id, status: 'queued' });
+      }
       const { ok, j } = await lancar(H, nomes, process.env.MOTOR_MODELO || 'gpt-5', confirmadas);
       if (!ok || !j.id) return res.status(200).json({ ok: false, error: j.error?.message || 'falhou a lançar' });
-      // fica registado quem espera por este relatório, para o email sair mesmo que a pessoa feche a página
       if (loja.temStore()) {
-        await loja.escrever(`pendentes/${j.id}.json`, {
-          id: j.id, nomes,
-          email: String(b.email || '').slice(0, 160),
-          nome: String(b.nome || '').slice(0, 120),
-          contactId: String(b.contactId || '').slice(0, 60),
-          criado: Date.now()
-        }).catch(() => {});
+        await loja.escrever(`pendentes/${j.id}.json`, { id: j.id, fase: 'openai', nomes, criado: Date.now(), ...lead }).catch(() => {});
       }
       return res.status(200).json({ ok: true, id: j.id, status: j.status });
     } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
@@ -65,6 +69,25 @@ module.exports = async function handler(req, res) {
 
   if (req.method === 'GET') {
     const id = String(req.query?.id || '');
+    if (/^job_[a-z0-9]+$/.test(id)) {
+      // trabalho do motor gratuito: o estado vive no guarda-tudo
+      const feito = (await loja.listar(`feitos/${id}.json`, 5))[0];
+      if (feito) {
+        const f = await loja.ler(feito.url);
+        if (f && f.token) {
+          const rel = (await loja.listar(`r/${f.token}.json`, 5))[0];
+          const r = rel ? await loja.ler(rel.url) : null;
+          if (r && r.resultado) return res.status(200).json({ ok: true, status: 'completed', resultado: r.resultado, token: f.token });
+        }
+      }
+      const pend = (await loja.listar(`pendentes/${id}.json`, 5))[0];
+      if (pend) {
+        const p = await loja.ler(pend.url);
+        const passos = { perfil: 4, recolha: 9, compor: 14, openai: 12 };
+        return res.status(200).json({ ok: true, status: 'in_progress', fase: (p && p.fase) || 'perfil', pesquisas: passos[(p && p.fase)] || 4 });
+      }
+      return res.status(200).json({ ok: false, error: 'não encontrado' });
+    }
     if (!/^resp_[A-Za-z0-9]+$/.test(id)) return res.status(400).json({ ok: false, error: 'id inválido' });
     try {
       const r = await fetch(`https://api.openai.com/v1/responses/${id}`, { headers: H });

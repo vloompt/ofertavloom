@@ -12,7 +12,7 @@
       "maxDuration": 60
     },
     "api/cron-relatorios.js": {
-      "maxDuration": 60
+      "maxDuration": 300
     }
   },
   "crons": [

@@ -86,3 +86,61 @@ function filtrarGenericos(r) {
 }
 const magro = r => !r || !Array.isArray(r.empresas) || r.empresas.length < 3 || !Array.isArray(r.semelhantes) || r.semelhantes.length < 8 || !(r.perfil && r.perfil.resumo);
 module.exports = { SCHEMA, INSTRUCOES, limpar, magro, filtrarGenericos };
+
+// ── Motor gratuito ────────────────────────────────────────────────────────────
+// Passo 1: identificar as três e dizer ONDE procurar as parecidas (categorias do
+// OpenStreetMap e zonas), para a recolha ser feita em fontes abertas e não de cor.
+const SCHEMA_PERFIL = { type: 'object', additionalProperties: false,
+  properties: {
+    empresas: { type: 'array', items: emp },
+    perfil: { type: 'object', additionalProperties: false,
+      properties: {
+        resumo: { type: 'string' }, setor: { type: 'string' }, faturacao: { type: 'string' },
+        dimensao: { type: 'string' }, geografia: { type: 'string' }, decisao: { type: 'string' },
+        criterios: { type: 'array', items: crit },
+      }, required: ['resumo','setor','faturacao','dimensao','geografia','decisao','criterios'] },
+    procura: { type: 'object', additionalProperties: false,
+      properties: {
+        filtros_osm: { type: 'array', items: { type: 'string' } },
+        zonas: { type: 'array', items: { type: 'string' } },
+        palavra_wikidata: { type: 'string' },
+      }, required: ['filtros_osm','zonas','palavra_wikidata'] },
+  }, required: ['empresas','perfil','procura'] };
+
+const INSTRUCOES_PERFIL = `És o motor de análise de mercado da Vloom, agência portuguesa de marketing e vendas.
+Recebes três empresas que alguém gostava de ter como clientes. Escreves em português de Portugal, na 3.ª pessoa.
+
+1. Identifica cada uma: setor, sede (só cidade ou concelho), dimensão, faturação aproximada, site oficial e LinkedIn se souberes com segurança; o que não souberes fica string vazia. NUNCA troques a empresa escrita por outra de nome parecido. Em nome_escrito guarda o nome tal como foi escrito.
+2. Perfil comum: resumo de uma a duas frases e 8 a 14 critérios objetivos, cada um com valor curto.
+3. Procura: diz onde ir buscar empresas iguais em fontes abertas.
+   - filtros_osm: 1 a 4 filtros de etiquetas do OpenStreetMap, no formato ["chave"="valor"], por exemplo ["tourism"="hotel"] ou ["shop"="car"] ou ["office"="company"]. Escolhe as etiquetas que melhor descrevem este tipo de negócio.
+   - zonas: 4 a 6 nomes EXATOS de concelhos portugueses onde este perfil existe, começando pelos maiores mercados, por exemplo Lisboa, Porto, Cascais, Braga, Faro.
+   - palavra_wikidata: uma palavra em português que apareça na descrição destas empresas, por exemplo hotel, seguradora, construtora.
+
+Regras: no máximo 8 palavras nos campos setor, faturacao, dimensao e geografia. Sem siglas. Sem URLs fora dos campos site e linkedin. Nomes comerciais curtos.
+
+ORTOGRAFIA, obrigatório: escreve português de Portugal COM acentos e cedilhas (serviços, restauração, hotelaria, presença, público, estratégia). Texto sem acentos é inaceitável.`;
+
+const INSTRUCOES_COMPOR = `És o motor de análise de mercado da Vloom, agência portuguesa de marketing e vendas. Escreves em português de Portugal, na 3.ª pessoa.
+
+Recebes: as três empresas já identificadas, o perfil comum, e uma LISTA DE EMPRESAS REAIS recolhida em fontes abertas (OpenStreetMap e Wikidata), com nome, morada, site e telefone.
+
+Regra sagrada: as empresas de semelhantes e prioritarias saem TODAS dessa lista. Não inventes nomes nem sites. Se a lista trouxer menos de 15 utilizáveis, usa as que houver e não completes com invenções. Copia os sites tal como vêm; onde não houver site, deixa string vazia.
+
+Faz:
+1. empresas: repete as três empresas identificadas, tal como te são dadas.
+2. perfil: repete o perfil dado, mantendo os critérios.
+3. semelhantes: entre 15 e 25 empresas da lista, as que melhor encaixam no perfil, com localidade, setor e uma linha a dizer porquê. Se a lista tiver menos de 15 utilizáveis, usa todas as que houver.
+4. prioritarias: 6 a 10 das semelhantes, as que atacarias primeiro, com a razão.
+5. decisores: só pessoas com nome que conheças com segurança destas empresas; se não tiveres, devolve lista vazia. Nunca inventes nomes, emails nem telefones.
+6. cargos: 3 a 6 cargos que decidem a compra neste perfil, e o papel de cada um.
+7. estrategia: 3 a 6 canais para chegar a estas empresas, com uma linha a dizer como.
+8. aviso: uma frase a dizer que é um primeiro passe automático a partir de fontes públicas abertas e que a Vloom confirma tudo à mão antes da reunião.
+
+Regras de forma: nomes comerciais curtos, sem forma jurídica; sem siglas; sem URLs fora dos campos site e linkedin; textos a começar por maiúscula.
+
+ORTOGRAFIA, obrigatório: escreve português de Portugal COM acentos e cedilhas (serviços, restauração, hotelaria, presença, público, estratégia). Texto sem acentos é inaceitável.`;
+
+module.exports.SCHEMA_PERFIL = SCHEMA_PERFIL;
+module.exports.INSTRUCOES_PERFIL = INSTRUCOES_PERFIL;
+module.exports.INSTRUCOES_COMPOR = INSTRUCOES_COMPOR;
