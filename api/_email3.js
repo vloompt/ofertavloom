@@ -39,7 +39,7 @@ function corpo({ link, primeiro, nomes, numeros }) {
 
     ${(n.semelhantes || n.prioritarias || n.criterios) ? `<tr><td style="padding:22px 26px 0">
       <table role="presentation" width="100%" cellpadding="0" cellspacing="0"><tr>
-        ${celula(n.semelhantes || 0, 'Empresas iguais')}
+        ${celula(n.semelhantes || 0, 'Empresas parecidas')}
         ${celula(n.prioritarias || 0, 'Para começar')}
         ${celula(n.criterios || 0, 'Critérios do perfil')}
       </tr></table>
@@ -48,13 +48,6 @@ function corpo({ link, primeiro, nomes, numeros }) {
     <tr><td align="center" style="padding:28px 32px 6px">
       <a href="${link}" style="display:inline-block;background:#8d489b;color:#ffffff;text-decoration:none;font-size:16px;font-weight:700;padding:16px 34px;border-radius:10px">Abrir o meu relatório</a>
       <p style="margin:12px 0 0;font-size:13px;color:#8b879f">O link é seu e fica sempre disponível. Dá para guardar em PDF.</p>
-    </td></tr>
-
-    <tr><td style="padding:26px 32px 0"><div style="height:1px;background:#eceaf3"></div></td></tr>
-
-    <tr><td style="padding:22px 32px 30px">
-      <p style="margin:0 0 10px;font-size:16px;line-height:1.6;color:#4a4763"><b style="color:#1d1640">O passo seguinte é uma conversa de quinze minutos.</b> Confirmamos a lista à mão, empresa a empresa, e mostramos-lhe o caminho até elas. Sem apresentação de agência.</p>
-      <a href="https://oferta.vloom.pt/3clientes/obrigado/" style="display:inline-block;border:2px solid #151030;color:#151030;text-decoration:none;font-size:14px;font-weight:700;padding:11px 20px;border-radius:8px">Escolher dia e hora</a>
     </td></tr>
 
     <tr><td style="background:#151030;padding:22px 32px">
