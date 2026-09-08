@@ -58,8 +58,14 @@ module.exports = async function handler(req, res) {
     const falhou = async motivo => {
       // limite de ritmo do Gemini não é falha do motor: espera-se o minuto seguinte
       if (/quota|rate limit|too_many_requests|429/i.test(String(motivo))) {
-        await guardar({ esperas: (p.esperas || 0) + 1 });
-        return { id: p.id, estado: 'à espera do limite por minuto' };
+        const e = (p.esperas || 0) + 1;
+        // se a quota gratuita do dia acabou mesmo, ninguém fica à espera: vai pela OpenAI
+        if (e >= 15) {
+          const respId = await lancarOpenAI(p.nomes, p.confirmadas);
+          if (respId) { await guardar({ fase: 'openai', respId, esperas: 0, tentativas: 0 }); return { id: p.id, estado: 'quota do dia esgotada, foi pela openai' }; }
+        }
+        await guardar({ esperas: e });
+        return { id: p.id, estado: 'à espera da quota gratuita (' + e + ')' };
       }
       const t = (p.tentativas || 0) + 1;
       if (t >= 2 && p.fase !== 'openai') {
