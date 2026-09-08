@@ -47,6 +47,7 @@ module.exports = async function handler(req, res) {
   const pendentes = await loja.listar('pendentes/', 100);
   const feitos = [];
   const fim = Date.now() + 230000; // deixa margem antes do limite da função
+  let usosGemini = 0; // uma chamada ao Gemini por corrida, para não bater no limite por minuto
 
   for (const b of pendentes) {
     if (Date.now() > fim) break;
@@ -55,6 +56,11 @@ module.exports = async function handler(req, res) {
     if (p.criado && Date.now() - p.criado > HORA) { await loja.apagar(b.url); feitos.push({ id: p.id, estado: 'expirou' }); continue; }
     const guardar = extra => loja.escrever(`pendentes/${p.id}.json`, { ...p, ...extra });
     const falhou = async motivo => {
+      // limite de ritmo do Gemini não é falha do motor: espera-se o minuto seguinte
+      if (/quota|rate limit|too_many_requests|429/i.test(String(motivo))) {
+        await guardar({ esperas: (p.esperas || 0) + 1 });
+        return { id: p.id, estado: 'à espera do limite por minuto' };
+      }
       const t = (p.tentativas || 0) + 1;
       if (t >= 2 && p.fase !== 'openai') {
         const respId = await lancarOpenAI(p.nomes, p.confirmadas);
@@ -66,6 +72,8 @@ module.exports = async function handler(req, res) {
 
     try {
       if (p.fase === 'perfil') {
+        if (usosGemini >= 1) continue;
+        usosGemini++;
         const g = await gerar({ instrucoes: INSTRUCOES_PERFIL, entrada: 'As três empresas: ' + (p.nomes || []).join(' · '), schema: SCHEMA_PERFIL, segundos: 120 });
         if (!g.ok || !g.resultado || !g.resultado.procura) { feitos.push(await falhou(g.erro || 'perfil vazio')); continue; }
         await guardar({ fase: 'recolha', perfil: g.resultado, tentativas: 0 });
@@ -86,6 +94,8 @@ module.exports = async function handler(req, res) {
       }
 
       if (p.fase === 'compor') {
+        if (usosGemini >= 1) continue;
+        usosGemini++;
         const ctxBlob = (await loja.listar(`ctx/${p.id}.json`, 5))[0];
         const ctx = ctxBlob ? await loja.ler(ctxBlob.url) : null;
         const lista = (ctx && ctx.lista) || [];
