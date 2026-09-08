@@ -47,7 +47,12 @@ Passos:
 2. Perfil comum: resumo em 1 a 2 frases, e 8 a 14 critérios objetivos (setor e CAE, faturação, dimensão, geografia, modelo de negócio B2B/B2C, canais de venda, maturidade digital, presença nas redes, estrutura de decisão, propriedade familiar ou grupo, idade da empresa, ticket médio, sazonalidade, tecnologia visível). Cada critério tem um valor curto.
 3. Semelhantes: 15 a 25 empresas REAIS e concretas com o mesmo perfil, em Portugal e, se fizer sentido, Espanha. Nome comercial, localidade, setor, site, LinkedIn, e uma linha a dizer porque encaixa. Proibido «várias», «ex.:», «redes de», «lojas independentes», categorias ou exemplos genéricos. Uma empresa por entrada.
 4. Prioritárias: 6 a 10 das semelhantes, as que atacarias primeiro, com a razão.
-5. Decisores: 4 a 12 pessoas REAIS com nome e cargo nas empresas prioritárias ou nas três escolhidas, com a URL pública do LinkedIn quando existir. Email e telefone só se estiverem publicados pela própria empresa (site, comunicados, registos); nunca inventes nem deduzas padrões de email. Se não houver, string vazia. Diz a fonte em uma linha.
+5. Decisores: pessoas REAIS que confirmaste nesta pesquisa, no máximo 12 e podendo ser zero. Regras duras:
+   - Só entra quem tiver perfil público encontrado por ti, com a URL completa do LinkedIn, ou um contacto publicado pela própria empresa.
+   - O cargo é copiado LITERALMENTE do que está escrito na fonte (o título do perfil, a assinatura no site). Máximo seis palavras. Proibido interpretar, resumir, traduzir ou acrescentar explicações entre parênteses. Se a fonte diz «Comercial», escreves «Comercial», nunca «Account manager (equipa comercial)».
+   - Na dúvida sobre o cargo ou sobre a pessoa, não a incluas. Vale mais uma lista curta e certa do que uma lista longa e errada.
+   - Email e telefone só se estiverem publicados pela própria empresa. Nunca deduzas padrões de email.
+   - Fonte: uma linha a dizer onde viste, sem URL.
 6. Cargos: 3 a 6 cargos que influenciam a compra neste perfil, e o papel de cada um.
 7. Estratégia: 3 a 6 canais para chegar a estas empresas (email, LinkedIn, Google, ABM, chamada, campanhas) com uma linha a dizer como.
 8. Aviso: uma frase honesta a dizer que é um primeiro passe automático com fontes públicas e que a Vloom confirma tudo à mão antes da reunião.
@@ -81,7 +86,13 @@ function filtrarGenericos(r) {
   const arr = x => ({ ...x, nome: String(x.nome).replace(/\s*\([^)]*\)\s*/g, ' ').trim() });
   if (Array.isArray(r.semelhantes)) r.semelhantes = r.semelhantes.filter(ok).map(arr);
   if (Array.isArray(r.prioritarias)) r.prioritarias = r.prioritarias.filter(ok).map(arr);
-  if (Array.isArray(r.decisores)) r.decisores = r.decisores.filter(d => d && d.nome && !/não público|desconhecid|^(contacto|contato|geral|departamento|equipa|equipe|direção|direcção|administração|secretariado)\b/i.test(d.nome.trim()) && /\s/.test(d.nome.trim()));
+  if (Array.isArray(r.decisores)) r.decisores = r.decisores
+    .filter(d => d && d.nome && !/não público|desconhecid|^(contacto|contato|geral|departamento|equipa|equipe|direção|direcção|administração|secretariado)\b/i.test(d.nome.trim()) && /\s/.test(d.nome.trim()))
+    // sem perfil ou contacto público não há como confirmar quem é: fora
+    .filter(d => (d.linkedin && /^https?:\/\//i.test(d.linkedin)) || d.email || d.telefone)
+    // o cargo é o que está escrito na fonte, sem interpretações entre parênteses
+    .map(d => ({ ...d, cargo: String(d.cargo || '').replace(/\s*\([^)]*\)\s*/g, ' ').replace(/\s{2,}/g, ' ').trim() }))
+    .filter(d => d.cargo && d.cargo.split(/\s+/).length <= 6);
   return r;
 }
 const magro = r => !r || !Array.isArray(r.empresas) || r.empresas.length < 3 || !Array.isArray(r.semelhantes) || r.semelhantes.length < 8 || !(r.perfil && r.perfil.resumo);
