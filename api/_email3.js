@@ -34,7 +34,7 @@ function corpo({ link, primeiro, nomes, numeros }) {
     ${empresas ? `<tr><td style="padding:18px 32px 0">${empresas}</td></tr>` : ''}
 
     <tr><td style="padding:18px 32px 0">
-      <p style="margin:0;font-size:16px;line-height:1.6;color:#4a4763">Partimos das três que nos indicou, tirámos delas o perfil comum e fomos procurar empresas iguais em Portugal. O relatório traz o site e os contactos de cada uma, quais atacaríamos primeiro e por que canal se chega até elas.</p>
+      <p style="margin:0;font-size:16px;line-height:1.6;color:#4a4763">Partimos das três que nos indicou, tirámos delas o perfil comum e fomos procurar empresas parecidas em Portugal. O relatório traz o site e os contactos de cada uma, quais atacaríamos primeiro e por que canal se chega até elas.</p>
     </td></tr>
 
     ${(n.semelhantes || n.prioritarias || n.criterios) ? `<tr><td style="padding:22px 26px 0">
@@ -51,9 +51,15 @@ function corpo({ link, primeiro, nomes, numeros }) {
     </td></tr>
 
     <tr><td style="background:#151030;padding:22px 32px">
-      <p style="margin:0 0 4px;font-size:14px;color:#ffffff;font-weight:700">Tiago Severino</p>
-      <p style="margin:0;font-size:13px;color:#b9b4d4">Vloom · Agência de Marketing e Publicidade Digital</p>
-      <p style="margin:10px 0 0;font-size:12px;color:#8983ab">Avenida Fontes Pereira de Melo 16, Lisboa · <a href="mailto:marketing@vloom.pt" style="color:#c9a9e6;text-decoration:none">marketing@vloom.pt</a></p>
+      <table role="presentation" cellpadding="0" cellspacing="0"><tr>
+        <td width="56" style="padding-right:14px">
+          <img src="https://oferta.vloom.pt/email/tiago.jpg" width="56" height="56" alt="Tiago Severino" style="display:block;border:0;width:56px;height:56px;border-radius:28px">
+        </td>
+        <td valign="middle">
+          <p style="margin:0 0 3px;font-size:15px;color:#ffffff;font-weight:700">Tiago Severino</p>
+          <p style="margin:0;font-size:13px;color:#b9b4d4">Vloom · Agência de Marketing e Publicidade Digital</p>
+        </td>
+      </tr></table>
     </td></tr>
   </table>
 
