@@ -63,16 +63,18 @@ p{color:var(--tinta2)}
 .card.pri{border-color:var(--roxo);box-shadow:6px 6px 0 var(--roxo)}
 .card.pri .num{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--roxo)}
 /* perfil */
-.perfil{display:grid;gap:22px}
-@media(min-width:860px){.perfil{grid-template-columns:1fr 1.2fr}}
+.perfil{display:block}
+@media(min-width:860px){.perfil{display:block}}
 .chips{display:flex;flex-wrap:wrap;gap:8px}
 .chips span{font-size:13px;font-weight:700;border:2px solid var(--tinta);border-radius:14px;padding:6px 12px;background:#fff;line-height:1.35}
 .chips span i{font-style:normal;font-weight:500;color:var(--tinta2);margin-right:6px}
-.crit{list-style:none;display:grid;gap:0;border-top:1px solid var(--linha)}
-.crit li{display:grid;grid-template-columns:1fr 1.4fr;gap:12px;padding:10px 0;border-bottom:1px solid var(--linha);font-size:14.5px}
+.crit{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:26px 0 0;padding:0;border-top:1px solid var(--linha)}
+.crit li{display:grid;grid-template-columns:minmax(120px,.9fr) 1.4fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--linha);font-size:14.5px;align-items:baseline}
 .crit li span:first-child{color:var(--tinta2)}
 .crit li span:last-child{font-weight:700}
-.decisao{margin-top:18px;padding:16px 18px;background:#fff;border-left:4px solid var(--roxo);font-size:14.5px}
+.decisao{margin-top:16px;padding:16px 20px;background:#fff;border-left:4px solid var(--roxo);border-radius:0 10px 10px 0;font-size:15px;max-width:none}
+.chips{margin-bottom:2px}
+@media (max-width:820px){.crit{grid-template-columns:1fr;gap:0}}
 /* decisores */
 .pessoas{display:grid;gap:12px}
 @media(min-width:700px){.pessoas{grid-template-columns:repeat(2,1fr)}}
@@ -165,7 +167,7 @@ footer img{height:22px}
     h+='<section><div class="wrap"><div class="rot"><span class="n">01</span><h2>O que nos escreveu</h2></div><div class="cards tres">'+emp.map(cardEmp).join('')+'</div></div></section>';
     h+='<section><div class="wrap"><div class="rot"><span class="n">02</span><h2>O perfil por trás delas</h2></div><div class="perfil"><div><div class="chips"><span><i>Setor</i>'+esc(p.setor)+'</span><span><i>Faturação</i>'+esc(p.faturacao)+'</span><span><i>Dimensão</i>'+esc(p.dimensao)+'</span><span><i>Geografia</i>'+esc(p.geografia)+'</span></div>'+(p.decisao?'<div class="decisao"><b>Como se decide:</b> '+esc(p.decisao)+'</div>':'')+'</div><ul class="crit">'+(p.criterios||[]).map(function(c){return '<li><span>'+esc(c.criterio)+'</span><span>'+esc(c.valor)+'</span></li>';}).join('')+'</ul></div></div></section>';
     h+='<section><div class="wrap"><div class="rot"><span class="n">03</span><h2>Por onde começaríamos</h2><span>'+pri.length+' contas prioritárias</span></div><div class="cards tres">'+pri.map(function(x,k){return cardSem(x,k,true);}).join('')+'</div></div></section>';
-    h+='<section><div class="wrap"><div class="rot"><span class="n">04</span><h2>Quem decide lá dentro</h2><span>'+(dec.length?'Recolhido de fontes públicas, confirmamos na reunião':'Cargos que pesam na decisão')+'</span></div>'+(dec.length?'<div class="pessoas">'+dec.map(pessoa).join('')+'</div>':'')+((r.cargos||[]).length?'<ul class="crit" style="margin-top:22px">'+(r.cargos||[]).map(function(c){return '<li><span>'+esc(c.cargo)+'</span><span style="font-weight:500;color:var(--tinta2)">'+esc(c.papel)+'</span></li>';}).join('')+'</ul>':'')+'</div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">04</span><h2>Quem decide lá dentro</h2><span>'+(dec.length?'Pode estar desatualizado':'Cargos que pesam na decisão')+'</span></div>'+(dec.length?'<div class="pessoas">'+dec.map(pessoa).join('')+'</div>':'')+(dec.length?'<p class="aviso" style="margin-top:18px">Estes nomes e cargos vêm de fontes públicas e <b>podem estar errados ou desatualizados</b>: as pessoas mudam de função e nem tudo está publicado. Confirmamos um a um antes da reunião.</p>':'')+((r.cargos||[]).length?'<ul class="crit" style="margin-top:22px">'+(r.cargos||[]).map(function(c){return '<li><span>'+esc(c.cargo)+'</span><span style="font-weight:500;color:var(--tinta2)">'+esc(c.papel)+'</span></li>';}).join('')+'</ul>':'')+'</div></section>';
     var longa=(r.lista||[]);
     if(longa.length>=20){
       h+='<section><div class="wrap"><div class="rot"><span class="n">05</span><h2>O mercado é maior do que estas três</h2><span>'+longa.length+' empresas com o mesmo perfil</span></div>'

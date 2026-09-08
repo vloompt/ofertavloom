@@ -97,7 +97,7 @@ function filtrarGenericos(r) {
   if (Array.isArray(r.semelhantes)) r.semelhantes = r.semelhantes.filter(ok).map(arr);
   if (Array.isArray(r.prioritarias)) r.prioritarias = r.prioritarias.filter(ok).map(arr);
   if (Array.isArray(r.decisores)) r.decisores = r.decisores
-    .filter(d => d && d.nome && !/não público|desconhecid|^(contacto|contato|geral|departamento|equipa|equipe|direção|direcção|administração|secretariado)\b/i.test(d.nome.trim()) && /\s/.test(d.nome.trim()))
+    .filter(d => d && d.nome && !/não público|desconhecid|reservas|comercial\b|vendas\b|marketing\b|events?\b|^(contacto|contato|geral|departamento|equipa|equipe|direção|direcção|administração|secretariado)\b/i.test(d.nome.trim()) && /\s/.test(d.nome.trim()) && !/[\/@]/.test(d.nome))
     // sem perfil ou contacto público não há como confirmar quem é: fora
     .filter(d => (d.linkedin && /^https?:\/\//i.test(d.linkedin)) || d.email || d.telefone)
     // o cargo é o que está escrito na fonte, sem interpretações entre parênteses
