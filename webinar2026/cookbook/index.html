@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Webinar ao vivo · 7 de outubro, 21h00 · Vloom</title>
+<meta name="description" content="Webinar grátis ao vivo, quarta-feira 7 de outubro às 21h00. Noventa minutos com os números à frente, para ver onde a sua aquisição de clientes está a perder dinheiro.">
+<link rel="icon" href="assets/logo.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<!--
+  Receita #1 do Funnel Hacker's Cookbook, à letra:
+  quatro secções, a conversão toda acima da dobra, UM campo (o email),
+  faixa escura de dois blocos logo a seguir, e três cartões de conteúdo.
+  Linguagem visual: folha de contas. Réguas, numerais, um acento só.
+  Sem gradientes, sem sombras, sem texturas, sem cantos redondos.
+-->
+<style>
+:root{
+  --papel:#FBFAF7; --papel2:#F3F1EC; --tinta:#16181D; --tinta2:#54565E;
+  --regua:#DAD7CE; --regua2:#EBE8E1;
+  --roxo:#8D489B; --vermelho:#B3341F;
+  --escuro:#16181D;
+  --disp:Archivo,"Helvetica Neue",Arial,sans-serif;
+  --corpo:"IBM Plex Sans","Helvetica Neue",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+body{background:var(--papel);color:var(--tinta);font-family:var(--corpo);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block;height:auto}
+a{color:inherit}
+.wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+h1,h2,h3,.disp{font-family:var(--disp);letter-spacing:-.025em;text-wrap:balance}
+.mono{font-family:var(--mono)}
+
+/* ---------- 1. barra de topo: três links, como manda a receita ---------- */
+.topo{border-bottom:1px solid var(--regua)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 28px}
+.topo img{height:24px;width:auto}
+.topo nav{display:flex;gap:26px;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2)}
+.topo nav a{text-decoration:none}
+.topo nav a:hover{color:var(--tinta)}
+@media(max-width:700px){.topo nav{gap:16px;font-size:10.5px;letter-spacing:.04em}}
+
+/* ---------- 2. herói ---------- */
+.hero{border-bottom:1px solid var(--regua)}
+.hero .grelha{display:grid;gap:0}
+@media(min-width:940px){.hero .grelha{grid-template-columns:1.05fr .95fr}}
+.hero .esq{padding:34px 0 38px;padding-right:56px}
+@media(max-width:939px){.hero .esq{padding-right:0;padding-bottom:40px}}
+.sobre{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--vermelho);
+ display:flex;align-items:center;gap:10px;margin-bottom:18px;max-width:520px}
+.sobre::after{content:"";flex:1;height:1px;background:var(--regua)}
+h1{font-size:clamp(32px,4.1vw,52px);font-weight:800;line-height:1.03}
+h1 em{font-style:normal;color:var(--roxo)}
+.sub{font-size:clamp(16px,1.6vw,18px);color:var(--tinta2);margin-top:16px;max-width:46ch;line-height:1.55}
+.sub b{color:var(--tinta);font-weight:600}
+
+/* a ficha: um campo, um botão */
+.ficha{margin-top:24px;border-top:2px solid var(--tinta);padding-top:18px;max-width:520px}
+.ficha label{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--tinta2);margin-bottom:9px}
+.linha{display:flex;gap:0;border:2px solid var(--tinta)}
+.linha input{flex:1;min-width:0;border:0;background:#fff;padding:17px 16px;font-family:var(--corpo);font-size:16.5px;color:var(--tinta)}
+.linha input:focus{outline:none;background:var(--papel2)}
+.linha button{flex:none;border:0;border-left:2px solid var(--tinta);background:var(--tinta);color:#fff;
+ font-family:var(--disp);font-size:14px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;padding:0 26px;cursor:pointer}
+.linha button:hover{background:var(--roxo)}
+.linha button[disabled]{opacity:.6;cursor:progress}
+@media(max-width:560px){.linha{flex-direction:column}.linha button{border-left:0;border-top:2px solid var(--tinta);padding:17px 20px}}
+.sob-ficha{font-size:14px;color:var(--tinta2);margin-top:14px;line-height:1.5}
+.sob-ficha b{color:var(--tinta);font-weight:600}
+.erro{border-left:3px solid var(--vermelho);background:#fdf2f0;color:#8c2a18;padding:11px 14px;font-size:14.5px;margin-top:14px}
+
+/* contagem, em numerais de máquina */
+.conta{display:flex;gap:0;margin-top:24px;border-top:1px solid var(--regua);border-bottom:1px solid var(--regua);max-width:520px}
+.conta div{flex:1;padding:12px 6px 10px;text-align:left;border-right:1px solid var(--regua)}
+.conta div:last-child{border-right:0}
+.conta div:first-child{padding-left:0}
+.conta b{display:block;font-family:var(--mono);font-size:28px;font-weight:500;line-height:1;font-variant-numeric:tabular-nums}
+.conta span{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta2);margin-top:7px}
+
+/* retrato: bloco chapado, sem sombra nem moldura */
+.hero .dir{background:var(--papel2);border-left:1px solid var(--regua);position:relative;min-height:520px;overflow:hidden}
+@media(max-width:939px){.hero .dir{border-left:0;border-top:1px solid var(--regua)}}
+.hero .dir img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 4%}
+.credito{position:absolute;left:0;right:0;bottom:0;padding:15px 28px;border-top:1px solid var(--regua);background:var(--papel2)}
+.credito b{display:block;font-family:var(--disp);font-size:17px;font-weight:700}
+.credito span{display:block;font-family:var(--mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--tinta2);margin-top:4px}
+
+/* ---------- 3. faixa escura, dois blocos ---------- */
+.faixa{background:var(--escuro);color:#fff}
+.faixa .grelha{display:grid;gap:0}
+@media(min-width:820px){.faixa .grelha{grid-template-columns:1fr 1fr}}
+.faixa .bl{padding:38px 0;display:flex;gap:20px;align-items:flex-start}
+@media(min-width:820px){.faixa .bl:first-child{padding-right:48px;border-right:1px solid #2C2F37}
+ .faixa .bl:last-child{padding-left:48px}}
+@media(max-width:819px){.faixa .bl:first-child{border-bottom:1px solid #2C2F37}}
+.faixa .n{font-family:var(--mono);font-size:12px;color:#8B8E98;flex:none;padding-top:4px}
+.faixa b{display:block;font-family:var(--disp);font-size:19px;font-weight:700;margin-bottom:8px;letter-spacing:-.015em}
+.faixa p{color:#A9ACB5;font-size:15.5px;line-height:1.6}
+
+/* ---------- 4. o que vai aprender ---------- */
+.aprender{padding:64px 0 72px}
+.aprender .cab{display:flex;align-items:baseline;gap:16px;border-bottom:2px solid var(--tinta);padding-bottom:14px;margin-bottom:0}
+.aprender .cab h2{font-size:clamp(24px,3vw,34px);font-weight:800;line-height:1.1}
+.aprender .cab span{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--tinta2);margin-left:auto;white-space:nowrap}
+@media(max-width:640px){.aprender .cab span{display:none}}
+.seg{display:grid;grid-template-columns:88px minmax(0,1fr) minmax(0,1.12fr);gap:28px;padding:28px 0;border-bottom:1px solid var(--regua)}
+.aprender .seg:last-child{border-bottom:0}
+@media(max-width:900px){.seg{grid-template-columns:88px minmax(0,1fr);gap:22px}}
+@media(max-width:640px){.seg{grid-template-columns:1fr;gap:10px}}
+.seg .rot{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--vermelho);padding-top:7px;white-space:nowrap}
+.seg h3{font-size:clamp(19px,2.1vw,24px);font-weight:700;line-height:1.25}
+.seg p{color:var(--tinta2);font-size:16px;line-height:1.62}
+@media(max-width:900px){.seg p{margin-top:10px}}
+.seg ul{list-style:none;display:flex;flex-wrap:wrap;gap:0 14px;margin-top:14px;padding-top:12px;border-top:1px solid var(--regua2)}
+.seg li{font-family:var(--mono);font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2)}
+.seg li+li::before{content:"·";margin-right:14px;color:var(--regua)}
+
+/* remate */
+.remate{border-top:2px solid var(--tinta);padding:52px 0 60px}
+.remate .grelha{display:grid;gap:26px;align-items:end}
+@media(min-width:820px){.remate .grelha{grid-template-columns:1.1fr .9fr}}
+.remate h2{font-size:clamp(23px,2.8vw,32px);font-weight:800;line-height:1.12}
+.remate p{color:var(--tinta2);margin-top:12px;font-size:16px}
+footer{border-top:1px solid var(--regua);padding:26px 0 34px;font-size:13.5px;color:var(--tinta2)}
+footer .fg{display:flex;flex-wrap:wrap;gap:12px 28px;justify-content:space-between;align-items:center}
+footer img{height:20px;width:auto;opacity:.6}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+ id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+ capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+ return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});}catch(e){return Promise.resolve();}}};
+</script>
+</head>
+<body>
+
+<header class="topo"><div class="wrap">
+  <img src="assets/logo.svg" alt="Vloom">
+  <nav>
+    <a href="#aprender">Programa</a>
+    <a href="#quando">Quando</a>
+    <a href="#registo">Reservar lugar</a>
+  </nav>
+</div></header>
+
+<section class="hero"><div class="wrap"><div class="grelha">
+  <div class="esq">
+    <p class="sobre">Webinar grátis ao vivo</p>
+    <h1>Os três buracos por onde foge o dinheiro do seu marketing <em>- e a ordem por que se tapam</em></h1>
+    <p class="sub">Noventa minutos, quarta-feira 7 de outubro às 21h00. Traga papel ou uma folha de cálculo: paramos a meio para calcular <b>quanto tem de investir este mês para chegar à sua meta</b>.</p>
+
+    <form class="ficha" id="registo" novalidate>
+      <label for="email">O seu email</label>
+      <div class="linha">
+        <input id="email" name="email" type="email" autocomplete="email" placeholder="nome@empresa.pt" required>
+        <button type="submit" id="botao">Reservar lugar</button>
+      </div>
+      <input type="text" name="empresa_site" id="empresa_site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+      <p class="sob-ficha">Recebe o link do Zoom já a seguir. <b>Um lembrete na véspera e outro uma hora antes.</b> Nada mais.</p>
+      <div class="erro" id="erro" hidden></div>
+    </form>
+
+    <div class="conta" id="quando">
+      <div><b id="c-d">--</b><span>Dias</span></div>
+      <div><b id="c-h">--</b><span>Horas</span></div>
+      <div><b id="c-m">--</b><span>Minutos</span></div>
+      <div><b id="c-s">--</b><span>Segundos</span></div>
+    </div>
+  </div>
+
+  <div class="dir">
+    <img src="assets/tiago.png" alt="Tiago Severino, fundador da Vloom">
+    <div class="credito">
+      <b>Tiago Severino</b>
+      <span>Fundador da Vloom · apresenta ao vivo</span>
+    </div>
+  </div>
+</div></div></section>
+
+<section class="faixa"><div class="wrap"><div class="grelha">
+  <div class="bl">
+    <span class="n">01</span>
+    <div><b>Entramos ao vivo uma só vez</b><p>Não é uma gravação a fingir de directo. É uma sessão, à hora marcada, com perguntas no fim. O replay fica no ar até sexta-feira, 9 de outubro, às 23h59 - depois sai.</p></div>
+  </div>
+  <div class="bl">
+    <span class="n">02</span>
+    <div><b>Sai com o seu número, não com apontamentos</b><p>A meio paramos para calcular: quanto vale um cliente seu, quantas reuniões precisa, quantas leads, e a verba do mês. O exercício é seu, com os seus dados.</p></div>
+  </div>
+</div></div></section>
+
+<section class="aprender" id="aprender"><div class="wrap">
+  <div class="cab">
+    <h2>O que vai aprender nesta sessão</h2>
+    <span>Três blocos · 90 minutos</span>
+  </div>
+
+  <div class="seg">
+    <div class="rot">Bloco 01</div>
+    <div>
+      <h3>A equação que diz, ao euro, quanto tem de investir este mês</h3>
+    </div>
+    <div>
+      <p>Quanto vale um cliente seu. Quantas reuniões precisa para o fechar. Quantas marcações para ter essas reuniões. Quantas leads para ter essas marcações. E só no fim, a verba. É a cadeia toda, ao contrário de como quase toda a gente a faz.</p>
+      <ul><li>Valor do cliente</li><li>Meta</li><li>Cadeia</li><li>Verba</li></ul>
+    </div>
+  </div>
+
+  <div class="seg">
+    <div class="rot">Bloco 02</div>
+    <div>
+      <h3>Porque é que a lead morre nos primeiros minutos</h3>
+    </div>
+    <div>
+      <p>Disponibilidade, rapidez, personalização e volume - os quatro pilares que decidem se uma lead vira reunião. Mais a sequência dos primeiros sete dias, dia a dia, e quem é o dono da lead dentro da sua empresa.</p>
+      <ul><li>Oferta</li><li>Criativo</li><li>Página</li><li>Sete dias</li></ul>
+    </div>
+  </div>
+
+  <div class="seg">
+    <div class="rot">Bloco 03</div>
+    <div>
+      <h3>O que dizer na reunião para ela acabar em contrato</h3>
+    </div>
+    <div>
+      <p>O diagnóstico antes da proposta. Como isolar uma objeção em vez de a discutir. As quatro que aparecem sempre - tempo, dinheiro, experiência e quem decide - e a escala de 1 a 10 que lhe diz onde está mesmo a pessoa.</p>
+      <ul><li>Pipeline</li><li>Diagnóstico</li><li>Objeções</li><li>Métricas</li></ul>
+    </div>
+  </div>
+</div></section>
+
+<section class="remate" id="registo-fim"><div class="wrap"><div class="grelha">
+  <div>
+    <h2>Quarta-feira, 7 de outubro, às 21h00</h2>
+    <p>Portas às 20h50. Começamos em ponto - quem entra atrasado entra a meio da primeira conta.</p>
+  </div>
+  <div>
+    <form class="ficha" id="registo2" novalidate style="margin-top:0;border-top:0;padding-top:0">
+      <label for="email2">O seu email</label>
+      <div class="linha">
+        <input id="email2" type="email" autocomplete="email" placeholder="nome@empresa.pt" required>
+        <button type="submit" id="botao2">Reservar lugar</button>
+      </div>
+    </form>
+  </div>
+</div></div></section>
+
+<footer><div class="wrap fg">
+  <img src="assets/logo.svg" alt="Vloom">
+  <span>Av. Fontes Pereira de Melo, 16 · Lisboa · marketing@vloom.pt</span>
+  <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></span>
+</div></footer>
+
+<script>
+(function(){
+  var ALVO=Date.UTC(2026,9,7,20,0,0);
+  var d=document.getElementById('c-d'),h=document.getElementById('c-h'),m=document.getElementById('c-m'),s=document.getElementById('c-s');
+  function dois(n){return n<10?'0'+n:''+n;}
+  function tick(){
+    var f=ALVO-Date.now();
+    if(f<=0){d.textContent='0';h.textContent='00';m.textContent='00';s.textContent='00';return;}
+    var seg=Math.floor(f/1000);
+    d.textContent=Math.floor(seg/86400);
+    h.textContent=dois(Math.floor(seg%86400/3600));
+    m.textContent=dois(Math.floor(seg%3600/60));
+    s.textContent=dois(seg%60);
+    setTimeout(tick,1000);
+  }
+  tick();
+
+  function liga(form, campo, botao, mostraErro){
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault();
+      var email=campo.value.trim();
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){ mostraErro('Confirme o email - o link do Zoom vai para aí.'); return; }
+      botao.disabled=true; botao.textContent='A guardar...';
+      try{
+        var eid=window.vloomFb.id();
+        fbq('track','Lead',{content_name:'Webinar 7 outubro 2026'},{eventID:eid});
+        window.vloomFb.capi({event:'Lead',eventId:eid,email:email,contentName:'Webinar 7 outubro 2026'});
+      }catch(e){}
+      var segue=function(){ location.href='../obrigado/'; };
+      fetch('/api/lead-webinar2026/',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({email:email,page:location.pathname,empresa_site:(document.getElementById('empresa_site')||{}).value||''})})
+        .then(segue).catch(segue);
+    });
+  }
+  var erro=document.getElementById('erro');
+  liga(document.getElementById('registo'),document.getElementById('email'),document.getElementById('botao'),
+    function(t){erro.textContent=t;erro.hidden=false;});
+  liga(document.getElementById('registo2'),document.getElementById('email2'),document.getElementById('botao2'),
+    function(t){alert(t);});
+})();
+</script>
+</body>
+</html>

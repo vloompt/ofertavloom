@@ -577,7 +577,7 @@ window.vloomFb={
           <div class="fld"><label for="empresa">Empresa</label><input id="empresa" name="empresa" type="text" autocomplete="organization" required></div>
           <div class="fld"><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
           <div class="fld"><label for="telefone">Telefone</label><input id="telefone" name="telefone" type="tel" autocomplete="tel" required></div>
-          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><label>Site da empresa<input type="text" name="empresa_site" tabindex="-1" autocomplete="off"></label></div>
+          <div aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden"><input type="text" name="cx_ref" tabindex="-1" autocomplete="off" value=""></div>
           <button class="bob" type="submit">Enviar candidatura<svg width="24" height="17" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <p class="rgpd">Ao enviar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
         
@@ -969,19 +969,25 @@ window.vloomFb={
     if(btn){ btn.disabled = true; btn.style.opacity = ".7"; }
     var q = new URLSearchParams(location.search);
     var dados = { nome:f.nome.value.trim(), empresa:f.empresa.value.trim(), email:f.email.value.trim(), telefone:f.telefone.value.trim(),
-                  empresa_site:(f.empresa_site?f.empresa_site.value:""), page:location.pathname, source:"LP 10 reuniões" };
+                  cx_ref:(f.cx_ref?f.cx_ref.value:""), page:location.pathname, source:"LP 10 reuniões" };
     ["utm_source","utm_medium","utm_campaign","utm_content","fbclid"].forEach(function(k){ if(q.get(k)) dados[k]=q.get(k); });
     function segue(){ window.location.href = "/10reunioes-marcar/"; }
-    // Um id por submissao: o Pixel e a Conversions API mandam o MESMO, a Meta junta os dois.
+    // O Lead so conta DEPOIS de o servidor confirmar o contacto. Se dispararmos
+    // antes, a Meta regista candidaturas que nunca chegaram ao GHL.
     var eventId = (window.vloomFb ? window.vloomFb.id() : String(Date.now()));
-    try{ if(window.fbq) fbq('track','Lead',{content_name:'LP 10 reunioes'},{eventID:eventId}); }catch(e){}
-    if(window.vloomFb) window.vloomFb.capi({eventName:'Lead',eventId:eventId,email:dados.email,phone:dados.telefone,firstName:dados.nome,contentName:'LP 10 reunioes'});
-    if(!LEAD_ENDPOINT){ segue(); return; }
+    function marcaLead(){
+      try{ if(window.fbq) fbq('track','Lead',{content_name:'LP 10 reunioes'},{eventID:eventId}); }catch(e){}
+      if(window.vloomFb) window.vloomFb.capi({eventName:'Lead',eventId:eventId,email:dados.email,phone:dados.telefone,firstName:dados.nome,contentName:'LP 10 reunioes'});
+    }
+    if(!LEAD_ENDPOINT){ marcaLead(); segue(); return; }
     fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dados)})
       .then(function(r){ return r.json().catch(function(){ return null; }); })
       .then(function(j){
-        // Guardar quem e, para a pagina de reuniao marcada poder por a tag de quem marcou.
-        try{ if(j&&j.contactId) sessionStorage.setItem('vloom10r', JSON.stringify({id:j.contactId,email:dados.email})); }catch(e){}
+        if(j && j.ok && j.contactId){
+          marcaLead();
+          // Guardar quem e, para a pagina de reuniao marcada poder por a tag de quem marcou.
+          try{ sessionStorage.setItem('vloom10r', JSON.stringify({id:j.contactId,email:dados.email})); }catch(e){}
+        }
         segue();
       })
       .catch(segue);

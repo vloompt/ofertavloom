@@ -36,7 +36,16 @@ module.exports = async function handler(req, res) {
   if (origem && !ORIGENS_OK.some(h => origem.includes(h))) {
     return res.status(403).json({ ok: false, error: 'origem não autorizada' });
   }
-  if (b.empresa_site) return res.status(200).json({ ok: true, bot: true }); // armadilha de robôs
+  // Armadilha de robôs. O nome do campo é neutro de propósito: chamava-se
+  // "empresa_site" e o preenchimento automático do browser reconhecia-o como
+  // "site da empresa", o que fazia cair candidaturas verdadeiras em silêncio.
+  const engodo = b.cx_ref || b.empresa_site;
+  if (engodo) {
+    console.warn('lead-10reunioes: descartado pela armadilha', {
+      email: b.email || b.nome, engodo: String(engodo).slice(0, 40),
+    });
+    return res.status(200).json({ ok: false, bot: true });
+  }
 
   if (!token || !locationId) return res.status(200).json({ ok: false, skipped: 'sem credenciais' });
 
