@@ -30,8 +30,14 @@ const SCHEMA = { type: 'object', additionalProperties: false,
     estrategia: { type: 'array', minItems: 3, maxItems: 6, items: { type: 'object', additionalProperties: false,
       properties: { canal: { type: 'string' }, como: { type: 'string' } }, required: ['canal','como'] } },
     aviso: { type: 'string' },
+    procura: { type: 'object', additionalProperties: false,
+      properties: {
+        filtros_osm: { type: 'array', items: { type: 'string' } },
+        zonas: { type: 'array', items: { type: 'string' } },
+        palavra_wikidata: { type: 'string' },
+      }, required: ['filtros_osm','zonas','palavra_wikidata'] },
   },
-  required: ['empresas','perfil','semelhantes','prioritarias','decisores','cargos','estrategia','aviso'] };
+  required: ['empresas','perfil','semelhantes','prioritarias','decisores','cargos','estrategia','aviso','procura'] };
 
 const INSTRUCOES = `És o motor de análise de mercado da Vloom, uma agência portuguesa de marketing e vendas B2B.
 Recebes três empresas que um potencial cliente gostava de ter como clientes. Trabalhas em português de Portugal, na 3.ª pessoa («a empresa», «o mercado»), sem tratar o leitor por «tu».
@@ -56,6 +62,10 @@ Passos:
 6. Cargos: 3 a 6 cargos que influenciam a compra neste perfil, e o papel de cada um.
 7. Estratégia: 3 a 6 canais para chegar a estas empresas (email, LinkedIn, Google, ABM, chamada, campanhas) com uma linha a dizer como.
 8. Aviso: uma frase honesta a dizer que é um primeiro passe automático com fontes públicas e que a Vloom confirma tudo à mão antes da reunião.
+9. Procura: onde ir buscar mais empresas deste perfil em dados abertos.
+   - filtros_osm: 1 a 4 filtros de etiquetas do OpenStreetMap na forma ["chave"="valor"], por exemplo ["tourism"="hotel"] ou ["shop"="car"] ou ["office"="company"].
+   - zonas: 6 a 10 nomes EXATOS de concelhos portugueses onde este perfil existe, começando pelos maiores mercados.
+   - palavra_wikidata: uma palavra em português que apareça na descrição destas empresas.
 
 Regras de forma, obrigatórias:
 - Nos campos setor, faturacao, dimensao e geografia do perfil: no máximo 8 palavras cada, sem frases, sem parênteses, sem fontes.

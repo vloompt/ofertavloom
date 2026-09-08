@@ -5,7 +5,7 @@ const { SCHEMA, SCHEMA_PERFIL, INSTRUCOES, INSTRUCOES_PERFIL, INSTRUCOES_COMPOR,
 const loja = require('./_blob.js');
 const enviarRelatorio = require('./_email3.js');
 const { gerar } = require('./_gemini.js');
-const { empresasOSM, empresasWikidata } = require('./_fontes.js');
+const { empresasOSM, empresasWikidata, cemEmpresas } = require('./_fontes.js');
 
 const HORA = 60 * 60 * 1000;
 
@@ -27,6 +27,20 @@ async function lancarOpenAI(nomes, confirmadas) {
   });
   const j = await r.json().catch(() => null);
   return r.ok && j && j.id ? j.id : null;
+}
+
+// A lista longa não vem do modelo: vem de dados abertos, e por isso é gratuita e verificável.
+async function juntarLista(resultado) {
+  try {
+    const proc = (resultado && resultado.procura) || {};
+    if (!proc.filtros_osm || !proc.filtros_osm.length) return resultado;
+    const lista = await cemEmpresas({ filtros: proc.filtros_osm.slice(0, 3), zonas: proc.zonas || [], palavra: proc.palavra_wikidata, alvo: 100 });
+    const jaLa = new Set((resultado.prioritarias || []).map(x => String(x.nome || '').toLowerCase().replace(/[^a-z0-9]/g, '')));
+    resultado.lista = lista
+      .filter(e => !jaLa.has(e.nome.toLowerCase().replace(/[^a-z0-9]/g, '')))
+      .map(e => ({ nome: e.nome, localidade: e.zona || '', site: e.site || '', telefone: e.telefone || '' }));
+  } catch {}
+  return resultado;
 }
 
 async function entregar(p, resultado) {
@@ -112,7 +126,7 @@ module.exports = async function handler(req, res) {
         if (!g.ok || !g.resultado) { feitos.push(await falhou(g.erro || 'composição falhou')); continue; }
         const resultado = filtrarGenericos(limpar(g.resultado));
         if (magro(resultado)) { feitos.push(await falhou('resultado magro')); continue; }
-        const e = await entregar(p, resultado);
+        const e = await entregar(p, await juntarLista(resultado));
         if (!e) { feitos.push(await falhou('não guardou')); continue; }
         await loja.apagar(b.url);
         if (ctxBlob) await loja.apagar(ctxBlob.url);
@@ -130,7 +144,7 @@ module.exports = async function handler(req, res) {
       const txt = (j.output || []).filter(o => o.type === 'message').flatMap(o => o.content || []).map(c => c.text || '').join('');
       let resultado; try { resultado = filtrarGenericos(limpar(JSON.parse(txt))); } catch { resultado = null; }
       if (!resultado || magro(resultado)) { await loja.apagar(b.url); feitos.push({ id: p.id, estado: 'magro' }); continue; }
-      const e = await entregar(p, resultado);
+      const e = await entregar(p, await juntarLista(resultado));
       await loja.apagar(b.url);
       feitos.push({ id: p.id, estado: 'enviado pela openai', email: e && e.email, link: e && e.link });
     } catch (err) {

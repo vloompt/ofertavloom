@@ -26,11 +26,16 @@ const limpaSite = s => {
 // Empresas de uma categoria OSM numa zona (concelho, distrito ou cidade).
 // O modelo escreve os filtros de várias maneiras; aqui ficam todos na forma ["chave"="valor"].
 function normaliza(f) {
-  let x = String(f || '').trim();
+  const x = String(f || '').trim();
   if (!x) return '';
-  if (!x.startsWith('[')) x = '[' + x + ']';
-  x = x.replace(/^\[+/, '[').replace(/\]+$/, ']');
-  return /^\[\s*"[^"]+"\s*[=~]\s*"[^"]+"\s*\]$/.test(x) ? x : '';
+  // aceita ["shop"="car"], shop=car, Shop = car, shop~"car|truck"
+  const m = /^\[?\s*"?([A-Za-z_:]+)"?\s*([=~])\s*"?([^"\]]+?)"?\s*\]?$/.exec(x);
+  if (!m) return '';
+  const chave = m[1].toLowerCase().trim();
+  const op = m[2];
+  const valor = m[3].trim();
+  if (!chave || !valor) return '';
+  return `["${chave}"${op}"${valor}"]`;
 }
 
 async function empresasOSM({ filtros, zona, limite = 40 }) {
@@ -83,3 +88,30 @@ async function empresasWikidata({ palavra, limite = 20 }) {
 }
 
 module.exports = { empresasOSM, empresasWikidata, overpass };
+
+// Junta empresas de várias zonas até chegar ao alvo, sem repetir e sem a lista ficar coxa.
+const ZONAS_BASE = ['Lisboa', 'Porto', 'Vila Nova de Gaia', 'Braga', 'Cascais', 'Sintra', 'Matosinhos', 'Coimbra', 'Oeiras', 'Guimarães', 'Aveiro', 'Faro', 'Leiria', 'Setúbal', 'Funchal', 'Viseu'];
+
+async function cemEmpresas({ filtros, zonas, palavra, alvo = 100 }) {
+  const ordem = [...new Set([...(zonas || []), ...ZONAS_BASE])].slice(0, 14);
+  const vistos = new Set(); const lista = [];
+  const junta = arr => {
+    for (const e of arr) {
+      const chave = e.nome.toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!chave || vistos.has(chave)) continue;
+      vistos.add(chave); lista.push(e);
+    }
+  };
+  // três zonas de cada vez, para não esperar por todas em série
+  for (let i = 0; i < ordem.length && lista.length < alvo; i += 3) {
+    const lote = await Promise.all(ordem.slice(i, i + 3).map(z => empresasOSM({ filtros, zona: z, limite: 60 })));
+    lote.forEach(junta);
+  }
+  if (lista.length < alvo && palavra) junta(await empresasWikidata({ palavra, limite: 30 }));
+  // primeiro as que têm site, que são as que servem para trabalhar
+  lista.sort((a, b) => (b.site ? 1 : 0) - (a.site ? 1 : 0));
+  return lista.slice(0, alvo);
+}
+
+module.exports.cemEmpresas = cemEmpresas;
+module.exports.ZONAS_BASE = ZONAS_BASE;
