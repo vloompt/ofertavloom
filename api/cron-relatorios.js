@@ -35,7 +35,7 @@ async function entregar(p, resultado) {
   if (!guardado) return null;
   await loja.escrever(`feitos/${p.id}.json`, { token: t, criado: Date.now() });
   const link = `https://oferta.vloom.pt/3clientes/relatorio/?r=${t}`;
-  const envio = await enviarRelatorio({ link, email: p.email, nome: p.nome, nomes: p.nomes, contactId: p.contactId });
+  const envio = await enviarRelatorio({ link, email: p.email, nome: p.nome, nomes: p.nomes, contactId: p.contactId, resultado });
   return { link, email: !!envio.ok };
 }
 

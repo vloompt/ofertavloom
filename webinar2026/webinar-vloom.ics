@@ -1,0 +1,21 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Vloom//Webinar 2026//PT
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+BEGIN:VEVENT
+UID:webinar-vloom-20261007@vloom.pt
+DTSTAMP:20260908T000000Z
+DTSTART:20261007T200000Z
+DTEND:20261007T223000Z
+SUMMARY:Webinar Vloom - o mapa da aquisicao de clientes
+DESCRIPTION:Noventa minutos ao vivo com Tiago Severino. Traga papel ou uma folha de calculo: vamos parar a meio para calcular os seus numeros. O link do Zoom esta no email de confirmacao.
+LOCATION:Zoom
+URL:https://oferta.vloom.pt/webinar2026/obrigado/
+BEGIN:VALARM
+TRIGGER:-PT60M
+ACTION:DISPLAY
+DESCRIPTION:O webinar da Vloom comeca daqui a uma hora
+END:VALARM
+END:VEVENT
+END:VCALENDAR
