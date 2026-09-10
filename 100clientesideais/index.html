@@ -427,10 +427,7 @@ window.vloomFb={
     ["utm_source","utm_medium","utm_campaign","utm_content","fbclid"].forEach(function(k){ if(q.get(k)) dados[k]=q.get(k); });
     try{ sessionStorage.setItem("vloom100", JSON.stringify(dados)); }catch(e){}
     function segue(){ window.location.href="/100clientesideais-marcar/"; }
-    /* Um id por envio: o Pixel e a Conversions API mandam o MESMO, a Meta junta os dois. */
-    var eventId = (window.vloomFb ? window.vloomFb.id() : String(Date.now()));
-    try{ if(window.fbq) fbq('track','Lead',{content_name:'LP 100 clientes ideais'},{eventID:eventId}); }catch(e){}
-    if(window.vloomFb) window.vloomFb.capi({eventName:'Lead',eventId:eventId,email:dados.email,phone:dados.telefone,firstName:dados.nome,contentName:'LP 100 clientes ideais'});
+    /* A conversão deste funil dispara na página seguinte (evento próprio Lead100ClientesIdeais). */
     if(!LEAD_ENDPOINT){ segue(); return; }
     fetch(LEAD_ENDPOINT,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(dados)})
       .then(function(r){ return r.json().catch(function(){ return null; }); })

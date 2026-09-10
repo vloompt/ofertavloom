@@ -3,11 +3,14 @@
 // Aviso para tiagoseverino@vloom.pt (ordem dele, 07/09/2026).
 // Env: GHL_PIT, GHL_LOCATION_VLOOM
 const GHL = 'https://services.leadconnectorhq.com';
+const loja = require('./_blob.js');
 const PIPELINE_VENDA = 'Un2h7k4hLMXrtz3t5MTe';
 const STAGE_CHEGADA = '1938d5e5-3ff5-42b8-ade2-b06cc58b3bb6';
 const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'localhost'];
-const AVISO = process.env.GHL_AVISO_100CLIENTESIDEAIS || 'tiagoseverino@vloom.pt';
-const AVISO_RECUO = 'marketing@vloom.pt'; // o contacto dele tem DND no email; sem isto o aviso perdia-se
+// O aviso vai ao contacto marketing@vloom.pt (que recebe) com o Tiago em cópia: o contacto dele no GHL
+// tem «não incomodar» no email, posto pelo próprio fornecedor (devolução/spam), e o GHL recusa enviar-lhe.
+const AVISO = 'marketing@vloom.pt';
+const AVISO_CC = (process.env.GHL_AVISO_100CLIENTESIDEAIS || 'tiagoseverino@vloom.pt').split(',').map(x => x.trim()).filter(Boolean);
 const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 const um = v => Array.isArray(v) ? String(v[0] || '').trim() : String(v || '').trim();
 const lista = v => (Array.isArray(v) ? v : [v]).map(x => String(x || '').trim()).filter(Boolean);
@@ -23,6 +26,39 @@ function contaEmpresas(setores, zonas, dims) {
     v += base * (d.t ? q / d.t : 0);
   }
   return Math.round(v);
+}
+
+
+// Email ao lead, com a marca Vloom. Sem botão de reunião (ordem dele, 10/09). Assinatura em imagem obrigatória.
+const IMG = 'https://oferta.vloom.pt/email/';
+function emailLeadHtml({ primeiro, quantas, linhas, ano }) {
+  return `<!doctype html><html><body style="margin:0;padding:0;background:#f4f3f9">
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f3f9;padding:28px 12px"><tr><td align="center">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden;font-family:Helvetica,Arial,sans-serif;color:#252158">
+  <tr><td style="background:#252158;background-image:linear-gradient(135deg,#252158 0%,#3b4a9c 60%,#8d489b 100%);padding:30px 40px 34px">
+    <img src="${IMG}vloom-logo-branco.png" width="120" alt="Vloom" style="display:block;border:0;width:120px;height:auto">
+    <p style="margin:26px 0 0;color:#77cef4;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">100 Clientes Ideais</p>
+    <h1 style="margin:10px 0 0;color:#ffffff;font-size:25px;line-height:1.3;font-weight:800">Recebemos o perfil do seu cliente ideal${primeiro ? ', ' + primeiro : ''}.</h1>
+  </td></tr>
+  <tr><td style="padding:34px 40px 6px">
+    <p style="margin:0;font-size:16px;line-height:1.6;color:#3d3f5c">Segundo o INE, existem em Portugal</p>
+    <p style="margin:6px 0 0;font-size:46px;line-height:1.1;font-weight:800;color:#8d489b">${quantas}</p>
+    <p style="margin:4px 0 0;font-size:16px;line-height:1.6;color:#3d3f5c">empresas com esse perfil.</p>
+  </td></tr>
+  <tr><td style="padding:24px 40px 4px">
+    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f7fb;border-radius:10px;overflow:hidden">${linhas}</table>
+  </td></tr>
+  <tr><td style="padding:24px 40px 8px">
+    <p style="margin:0;font-size:16px;line-height:1.65;color:#3d3f5c">Estamos a preparar as <b style="color:#252158">100 melhores</b> dessa lista, com nome, dimensão e quem decide lá dentro. Chega-lhe por email, deste mesmo endereço.</p>
+  </td></tr>
+  <tr><td style="padding:22px 40px 8px">
+    <p style="margin:0 0 14px;font-size:16px;color:#3d3f5c">Um abraço,</p>
+    <img src="${IMG}assinatura-tiago.png" width="480" alt="Tiago Severino, Head of Marketing, Vloom" style="display:block;border:0;width:100%;max-width:480px;height:auto">
+  </td></tr>
+  <tr><td style="padding:22px 40px 30px">
+    <p style="margin:0;border-top:1px solid #ecebf4;padding-top:16px;font-size:11px;line-height:1.5;color:#8b8fa8">Número de empresas: INE, Sistema de Contas Integradas das Empresas, ${ano}. Região e dimensão são contadas em separado. · <a href="https://vloom.pt/politica-de-privacidade/" style="color:#8b8fa8">Política de Privacidade</a></p>
+  </td></tr>
+</table></td></tr></table></body></html>`;
 }
 
 module.exports = async function handler(req, res) {
@@ -58,6 +94,19 @@ module.exports = async function handler(req, res) {
     const data = await up.json(); const contactId = data?.contact?.id || data?.id;
     if (!up.ok || !contactId) return res.status(200).json({ ok: false, ghl: data });
 
+    // Um pedido por contacto em 10 minutos. No telemóvel o botão era tocado várias vezes enquanto isto
+    // respondia, e cada toque dava nota, email 1, aviso e lista (Bárbara e D, 10/09/2026: 3 de cada).
+    // Cada pedido deixa um marcador, espera que os pedidos simultâneos deixem o seu, e só segue o mais antigo.
+    if (loja.temStore()) {
+      const eu = Date.now();
+      await loja.escrever(`lead100/${contactId}-${eu}.json`, { em: eu }).catch(() => null);
+      await new Promise(r => setTimeout(r, 1500));
+      const antes = (await loja.listar(`lead100/${contactId}-`, 50))
+        .map(x => Number(x.pathname.split('-').pop().replace('.json', '')))
+        .filter(t => t && t < eu && eu - t < 10 * 60 * 1000);
+      if (antes.length) return res.status(200).json({ ok: true, contactId, quantas, repetido: true });
+    }
+
     await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['100clientesideais-candidatura'] }) }).catch(() => {});
     const nota = ['Pedido da LP As 100 Empresas. Falta enviar a lista.',
       empresa ? `Empresa: ${empresa}` : '',
@@ -75,45 +124,42 @@ module.exports = async function handler(req, res) {
       try {
         const nf = n => Number(n).toLocaleString('pt-PT');
         const primeiro = esc((nome || '').split(' ')[0] || '');
-        const linhas = perfil.map(x => `<tr><td style="padding:5px 14px 5px 0;color:#5b6386;font-size:14px">${esc(x[0])}</td><td style="padding:5px 0;color:#0f1d5a;font-size:14px;font-weight:700">${esc(x[1])}</td></tr>`).join('');
-        const html = `<div style="font-family:Helvetica,Arial,sans-serif;color:#0f1d5a;line-height:1.55;max-width:560px">
-<p>${primeiro ? 'Olá ' + primeiro + ',' : 'Olá,'}</p>
-<p>Recebemos o perfil do seu cliente ideal. Segundo o INE, existem em Portugal
-<b style="font-size:20px">${nf(quantas)}</b> empresas com esse perfil.</p>
-<table style="border-collapse:collapse;margin:16px 0">${linhas}</table>
-<p>Estamos a preparar as <b>100 melhores</b> dessa lista, com nome, dimensão e quem decide lá dentro.
-Chega-lhe por email, deste mesmo endereço.</p>
-<p>Entretanto, o passo que faz a diferença é o próximo: mostrar-lhe como se constrói um sistema
-de aquisição de clientes para atrair empresas como estas.</p>
-<p><a href="https://oferta.vloom.pt/100clientesideais-marcar/" style="display:inline-block;background:#2c86b8;color:#fff;text-decoration:none;font-weight:700;padding:14px 22px;border-radius:6px">Escolher dia e hora</a></p>
-<p style="margin-top:22px">Um abraço,<br><b>Tiago Severino</b><br>Vloom<br>
-<a href="tel:+351914310656" style="color:#2c86b8">(+351) 914 310 656</a></p>
-<p style="font-size:11px;color:#8b90a8">Número de empresas: INE, Sistema de Contas Integradas das Empresas, ${INE.ano}. Região e dimensão são contadas em separado.</p>
-</div>`;
+        const linhas = perfil.map(x => `<tr><td style="padding:10px 16px;border-top:1px solid #ecebf4;color:#6b6f8f;font-size:14px;width:150px">${esc(x[0])}</td><td style="padding:10px 16px;border-top:1px solid #ecebf4;color:#252158;font-size:14px;font-weight:700">${esc(x[1])}</td></tr>`).join('');
+        const html = emailLeadHtml({ primeiro, quantas: nf(quantas), linhas, ano: INE.ano });
         const r = await fetch(`${GHL}/conversations/messages`, { method: 'POST', headers, body: JSON.stringify({
           type: 'Email', contactId, emailFrom: REMETENTE,
           subject: `${nf(quantas)} empresas em Portugal com o perfil do seu cliente ideal`, html }) });
-        email_lead = { status: r.status };
+        const rj = await r.json().catch(() => null);
+        email_lead = { status: r.status, msgId: rj?.emailMessageId || rj?.messageId || null };
       } catch (_) {}
+    }
+
+    // Fica em fila para a tarefa agendada montar e enviar a lista (api/cron-lista100.js).
+    let fila = null;
+    if (email && loja.temStore()) {
+      const id = `${contactId}-${Date.now()}`;
+      fila = !!(await loja.escrever(`pendentes100/${id}.json`, { id, contactId, email, nome, empresa,
+        perfil: { setores, zonas, dimensao: dims, decisor: lista(p.decisor), ticket: um(p.ticket) }, quantas, email1Id: email_lead?.msgId || null, criado: Date.now() }).catch(() => null));
     }
 
     let aviso = null;
     try {
       const html0 = null;
-      for (const destino of [AVISO, AVISO_RECUO]) {
-      const upT = await fetch(`${GHL}/contacts/upsert`, { method: 'POST', headers, body: JSON.stringify({ locationId, email: destino, firstName: destino === AVISO ? 'Tiago Severino' : 'Vloom Marketing' }) }).then(r => r.json());
+      for (const destino of [AVISO]) {
+      const upT = await fetch(`${GHL}/contacts/upsert`, { method: 'POST', headers, body: JSON.stringify({ locationId, email: destino, firstName: 'Vloom Marketing' }) }).then(r => r.json());
       const tId = upT?.contact?.id || upT?.id;
       if (tId) {
         const html = `<p><b>Pedido novo, As 100 Empresas</b></p>`
           + `<p>Nome: ${esc(nome) || 'sem dados'}<br>Empresa: ${esc(empresa) || 'sem dados'}<br>Email: ${esc(email) || 'sem dados'}<br>Telefone: ${esc(phone) || 'sem dados'}</p>`
           + `<p><b>Perfil de cliente ideal</b><br>${perfil.map(x => `${esc(x[0])}: ${esc(x[1])}`).join('<br>')}</p>`
           + `<p>A lista das 100 empresas ainda tem de ser preparada e enviada a este contacto.</p>`;
-        const r = await fetch(`${GHL}/conversations/messages`, { method: 'POST', headers, body: JSON.stringify({ type: 'Email', contactId: tId, subject: `100 empresas: ${nome || email}`, html }) });
-        aviso = { para: destino, status: r.status };
+        const r = await fetch(`${GHL}/conversations/messages`, { method: 'POST', headers, body: JSON.stringify({ type: 'Email', contactId: tId, emailCc: AVISO_CC, subject: `Lead novo, 100 Clientes Ideais: ${nome || email}`, html }) });
+        aviso = { para: destino, cc: AVISO_CC, status: r.status };
         if (r.ok) break;
       }
       }
     } catch (_) {}
-    return res.status(200).json({ ok: true, contactId, quantas, email_lead, aviso });
+    return res.status(200).json({ ok: true, contactId, quantas, email_lead, fila, aviso });
   } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
 };
+module.exports.emailLeadHtml = emailLeadHtml;

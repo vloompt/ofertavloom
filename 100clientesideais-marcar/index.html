@@ -398,7 +398,7 @@ window.vloomFb={
 <h1 class="elementor-heading-title elementor-size-default">A sua lista vai a caminho do seu email… <span style="color:#DEA9CC">Mas espere!</span>
 </h1> </div>
 <div class="elementor-element elementor-element-ded311d elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="ded311d" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default">
-									As 100 empresas com o perfil do seu cliente ideal seguem para o seu email. Até lá, <strong>se quiser ajuda para construir um sistema de aquisição de clientes que atrai empresas como estas</strong>, veja o vídeo e escolha em baixo um dia e uma hora para falarmos.								</div>
+									Estamos a preparar uma lista priorizada das empresas que melhor correspondem ao perfil escolhido. Enquanto isso, veja no vídeo como transformar esse mercado potencial em reuniões comerciais. <strong>Se quiser ajuda para construir um sistema de aquisição de clientes que atrai empresas como estas</strong>, escolha em baixo um dia e uma hora para falarmos.								</div>
 
 <div class="elementor-element elementor-element-24cdaf6 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="24cdaf6" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-8ef7ed6 e-con-full elementor-hidden-tablet elementor-hidden-mobile e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="8ef7ed6" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
@@ -1904,6 +1904,22 @@ var ElementorProFrontendConfig = {"ajaxurl":"https:\/\/marketing.vloom.pt\/wp-ad
       })
       .catch(function(){ if(++tent<180) setTimeout(pergunta,9000); });
   })();
+})();
+</script>
+<script>
+/* Conversão do funil 100 Clientes Ideais: CompleteRegistration, evento padrão que mais nenhum funil usa neste pixel.
+   Dispara ao aterrar aqui depois do formulário, uma só vez por envio; Pixel e CAPI com o mesmo id. */
+(function(){
+  var d={}; try{ d=JSON.parse(sessionStorage.getItem('vloom100')||'{}'); }catch(e){}
+  if(!d.email && !d.contactId) return;
+  if(sessionStorage.getItem('vloom100_fb')) return;
+  var id=(window.vloomFb?window.vloomFb.id():String(Date.now()));
+  sessionStorage.setItem('vloom100_fb',id);
+  function vai(){
+    try{ if(window.fbq) fbq('track','CompleteRegistration',{content_name:'100 Clientes Ideais'},{eventID:id}); }catch(e){}
+    if(window.vloomFb) window.vloomFb.capi({eventName:'CompleteRegistration',eventId:id,email:d.email,phone:d.telefone,firstName:d.nome,contentName:'100 Clientes Ideais'});
+  }
+  if(document.readyState==='complete') vai(); else window.addEventListener('load',vai);
 })();
 </script>
 </body>

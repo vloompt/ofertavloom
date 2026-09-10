@@ -13,11 +13,18 @@
     },
     "api/cron-relatorios.js": {
       "maxDuration": 300
+    },
+    "api/cron-lista100.js": {
+      "maxDuration": 300
     }
   },
   "crons": [
     {
       "path": "/api/cron-relatorios/",
+      "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron-lista100/",
       "schedule": "* * * * *"
     }
   ]

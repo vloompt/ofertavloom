@@ -88,8 +88,8 @@ window.vloomFb={
   var q=new URLSearchParams(location.search);
   var corpo={ contactId:d.contactId||q.get("contact_id")||"", email:d.email||q.get("email")||"" };
   var eventId = (window.vloomFb ? window.vloomFb.id() : String(Date.now()));
-  try{ if(window.fbq) fbq('track','Schedule',{content_name:'100 clientes ideais'},{eventID:eventId}); }catch(e){}
-  if(window.vloomFb) window.vloomFb.capi({eventName:'Schedule',eventId:eventId,email:corpo.email,firstName:d.nome||'',contentName:'100 clientes ideais'});
+  try{ if(window.fbq) fbq('track','Contact',{content_name:'100 clientes ideais'},{eventID:eventId}); }catch(e){}
+  if(window.vloomFb) window.vloomFb.capi({eventName:'Contact',eventId:eventId,email:corpo.email,firstName:d.nome||'',contentName:'100 clientes ideais'});
   if(!corpo.contactId && !corpo.email) return;
   fetch("/api/marcou-100clientesideais/",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(corpo)}).catch(function(){});
 })();

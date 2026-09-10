@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vloom · A sua lista de clientes ideais</title>
+<meta name="robots" content="noindex">
+<link rel="icon" href="../assets/logo.svg">
+<style>
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-bold-italic.woff2)format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-display:swap}
+:root{--papel:#f7f4ee;--papel2:#efeadf;--tinta:#151030;--tinta2:#5a5478;--linha:#ddd5c6;--roxo:#8d489b;--roxo-claro:#b06dbe;--azul:#2b7fa8;--azul-claro:#77cef4;--verde:#2fbf71;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--papel);color:var(--tinta);font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+img{max-width:100%;display:block}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+.topo{padding:22px 0;text-align:center}
+.topo img{height:28px;margin:0 auto}
+.cabeca{background:var(--tinta);color:var(--papel);padding:54px 0 0;position:relative;overflow:hidden}
+.cabeca::before{content:"";position:absolute;right:-12%;top:-40%;width:640px;height:640px;border-radius:50%;background:radial-gradient(circle,rgba(176,109,190,.35),transparent 65%);pointer-events:none}
+.cabeca .wrap{position:relative}
+.kick{display:inline-flex;align-items:center;gap:10px;font-size:11px;font-weight:800;letter-spacing:.2em;text-transform:uppercase;color:var(--azul-claro);margin-bottom:14px}
+.kick::before{content:"";width:22px;height:2px;background:var(--azul-claro)}
+h1{font-size:clamp(28px,4vw,50px);font-weight:800;letter-spacing:-.035em;line-height:1.05;text-wrap:balance;max-width:900px}
+h1 em{font-style:italic;color:var(--azul-claro)}
+.resumo{font-size:clamp(16px,1.6vw,19px);color:#c9c4e2;max-width:760px;margin-top:16px}
+.numeros{display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:38px;border-top:1px solid rgba(255,255,255,.18)}
+@media(min-width:760px){.numeros{grid-template-columns:repeat(4,1fr)}}
+.numeros div{padding:22px 18px 26px;border-right:1px solid rgba(255,255,255,.18)}
+.numeros div:last-child{border-right:0}
+.numeros b{display:block;font-size:clamp(34px,4.4vw,56px);font-weight:800;letter-spacing:-.05em;line-height:1;color:#fff}
+.numeros span{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9b3d2;margin-top:8px}
+section{padding:56px 0}
+section+section{border-top:1px solid var(--linha)}
+.rot{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:22px}
+.rot .n{font-size:30px;font-weight:800;line-height:1;letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1.5px var(--roxo)}
+.rot h2{font-size:clamp(22px,2.6vw,32px);font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.rot span{font-size:14px;color:var(--tinta2)}
+p{color:var(--tinta2)}
+/* cartões de empresa */
+.cards{display:grid;gap:16px}
+@media(min-width:700px){.cards{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.cards.tres{grid-template-columns:repeat(3,1fr)}}
+.card{background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:20px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card .cab{display:flex;align-items:center;gap:12px}
+.card .fav{width:40px;height:40px;border-radius:8px;border:1px solid var(--linha);background:#fff;display:grid;place-items:center;flex:none;overflow:hidden}
+.card .fav img{width:22px;height:22px}
+.card .fav i{font-style:normal;font-weight:800;color:var(--roxo)}
+.card b{font-size:17px;font-weight:800;letter-spacing:-.02em;line-height:1.2}
+.card small{display:block;font-size:13px;color:var(--tinta2);margin-top:2px}
+.card p{font-size:14.5px}
+.dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:13.5px}
+.dl dt{color:var(--tinta2)}.dl dd{color:var(--tinta);font-weight:500}
+.acoes{display:flex;flex-wrap:wrap;gap:8px;margin-top:auto;padding-top:6px}
+.acoes a{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:800;text-decoration:none;border:2px solid var(--tinta);border-radius:999px;padding:6px 12px;background:var(--papel)}
+.acoes a.site{background:var(--tinta);color:#fff}
+.acoes a.li{border-color:#0a66c2;color:#0a66c2}
+.acoes a svg{width:13px;height:13px}
+.card.pri{border-color:var(--roxo);box-shadow:6px 6px 0 var(--roxo)}
+.card.pri .num{font-size:12px;font-weight:800;letter-spacing:.14em;color:var(--roxo)}
+/* perfil */
+.destaques{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:4px 0 18px}
+.destaque{background:linear-gradient(180deg,#fff, #faf8f4);border:1px solid rgba(21,16,48,.10);border-radius:16px;padding:18px 20px;box-shadow:0 10px 26px -18px rgba(21,16,48,.5)}
+.destaque span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--roxo);font-weight:700;margin-bottom:8px}
+.destaque b{font-size:17px;line-height:1.35;color:var(--tinta);font-weight:700}
+.fichas{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:6px}
+.ficha{background:#fff;border:1px solid rgba(21,16,48,.09);border-left:3px solid rgba(141,72,155,.35);border-radius:12px;padding:15px 17px;transition:border-color .2s,transform .2s}
+.ficha:hover{border-left-color:var(--roxo);transform:translateY(-2px)}
+.ficha span{display:block;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--tinta2);margin-bottom:6px}
+.ficha b{font-size:15.5px;line-height:1.45;color:var(--tinta);font-weight:600}
+@media (max-width:980px){.destaques{grid-template-columns:repeat(2,1fr)}.fichas{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:640px){.destaques,.fichas{grid-template-columns:1fr}}
+@media(min-width:860px){.perfil{display:block}}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:13px;font-weight:700;border:2px solid var(--tinta);border-radius:14px;padding:6px 12px;background:#fff;line-height:1.35}
+.chips span i{font-style:normal;font-weight:500;color:var(--tinta2);margin-right:6px}
+.crit{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 40px;margin:26px 0 0;padding:0;border-top:1px solid var(--linha)}
+.crit li{display:grid;grid-template-columns:minmax(120px,.9fr) 1.4fr;gap:14px;padding:13px 0;border-bottom:1px solid var(--linha);font-size:14.5px;align-items:baseline}
+.crit li span:first-child{color:var(--tinta2)}
+.crit li span:last-child{font-weight:700}
+.decisao{margin:0 0 22px;padding:20px 24px;background:radial-gradient(120% 200% at 0% 0%,#2a1c52,#151030);color:#fff;border:0;border-radius:16px}
+.decisao span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#c9a9e6;font-weight:700;margin-bottom:7px}
+.decisao p{margin:0;font-size:16px;line-height:1.55;color:rgba(255,255,255,.9);max-width:70ch}
+.chips{margin-bottom:2px}
+@media (max-width:820px){.crit{grid-template-columns:1fr;gap:0}}
+/* decisores */
+.pessoas{display:grid;gap:12px}
+@media(min-width:700px){.pessoas{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.pessoas{grid-template-columns:repeat(3,1fr)}}
+.pessoa{background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:16px;display:flex;gap:12px;align-items:flex-start}
+.pessoa .av{width:44px;height:44px;border-radius:50%;background:var(--roxo);color:#fff;display:grid;place-items:center;font-weight:800;flex:none}
+.pessoa b{display:block;font-size:15px}
+.pessoa small{display:block;font-size:13px;color:var(--tinta2)}
+.pessoa .cont{font-size:13px;margin-top:6px;display:flex;flex-wrap:wrap;gap:6px 12px}
+.pessoa .cont a{color:var(--azul);font-weight:700;text-decoration:none}
+.pessoa .fonte{font-size:11.5px;color:var(--tinta2);margin-top:6px}
+/* canais */
+.canais{display:grid;gap:12px}
+@media(min-width:760px){.canais{grid-template-columns:repeat(3,1fr)}}
+.canal{background:#fff;border:2px solid var(--tinta);border-radius:8px;padding:18px}
+.canal b{display:block;font-size:15.5px;margin-bottom:6px}
+.canal p{font-size:14px}
+.aviso{font-size:13px;color:var(--tinta2);margin-top:26px}
+.fecho{padding:16px 0 64px}
+.fecho-cartao{display:flex;gap:34px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  background:radial-gradient(120% 140% at 8% 0%,#3a2260 0%,#1d1740 45%,#151030 100%);
+  color:#fff;border-radius:22px;padding:38px 40px;box-shadow:0 26px 60px -28px rgba(21,16,48,.75)}
+.fecho-txt{flex:1 1 380px;min-width:0}
+.fecho-eyebrow{display:inline-block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#c9a9e6;font-weight:700;margin-bottom:12px}
+.fecho h2{font-size:clamp(21px,2.3vw,28px);font-weight:700;letter-spacing:-.02em;line-height:1.25;margin:0}
+.fecho p{color:rgba(255,255,255,.72);margin:12px 0 0;max-width:52ch;font-size:16px}
+.fecho-acao{flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.fecho-btn{display:inline-flex;align-items:center;gap:12px;background:linear-gradient(92deg,#8d489b,#2c86b8);color:#fff;text-decoration:none;
+  font-weight:700;font-size:16px;padding:17px 30px;border-radius:12px;box-shadow:0 14px 30px -12px rgba(141,72,155,.9);transition:transform .2s,box-shadow .2s}
+.fecho-btn:hover{transform:translateY(-2px);box-shadow:0 20px 40px -14px rgba(141,72,155,1)}
+.fecho-nota{font-size:12.5px;color:rgba(255,255,255,.55)}
+@media (max-width:820px){.fecho-cartao{padding:30px 24px;gap:22px}.fecho-acao{width:100%}.fecho-btn{width:100%;justify-content:center}}
+.bob{display:inline-flex;align-items:center;gap:12px;background:var(--papel);color:var(--tinta);text-decoration:none;font-weight:800;text-transform:uppercase;letter-spacing:.06em;font-size:15px;padding:18px 30px;border:3px solid var(--tinta);border-radius:4px;box-shadow:7px 7px 0 var(--tinta);margin-top:22px}
+footer{background:var(--tinta);color:#a8a3c8;padding:30px 0;font-size:13px}
+footer .fg{display:flex;flex-wrap:wrap;gap:12px 24px;justify-content:space-between;align-items:center}
+footer img{height:22px}
+.estado{padding:80px 22px;text-align:center;color:var(--tinta2)}
+.listao ol{list-style:none;counter-reset:emp;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 34px}
+.listao li{counter-increment:emp;display:grid;grid-template-columns:auto 1fr auto;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid rgba(21,16,48,.09)}
+.listao li::before{content:counter(emp,decimal-leading-zero);font-family:inherit;font-size:12px;font-weight:700;color:var(--roxo);min-width:24px}
+.listao .ln{font-weight:600;color:var(--tinta);font-size:15.5px}
+.listao .ll{display:none}
+.listao .la{display:flex;gap:12px;white-space:nowrap}
+.listao .la a{font-size:12.5px;color:var(--tinta2);text-decoration:none;border-bottom:1px solid rgba(21,16,48,.18)}
+.listao .la a:hover{color:var(--roxo);border-color:var(--roxo)}
+@media (max-width:820px){.listao ol{grid-template-columns:1fr}.listao li{grid-template-columns:auto 1fr;row-gap:4px}.listao .la{grid-column:2}}
+.descarregar{display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:44px 22px 40px}
+.descarregar .pdf{display:inline-flex;align-items:center;gap:10px;background:var(--tinta);color:#fff;border:0;border-radius:8px;padding:14px 22px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 10px 24px -10px rgba(21,16,48,.6);transition:transform .2s,box-shadow .2s}
+.descarregar .pdf:hover{transform:translateY(-2px);box-shadow:0 16px 32px -12px rgba(21,16,48,.7)}
+.descarregar .pdf svg{width:19px;height:19px}
+.descarregar span{color:var(--tinta2);font-size:14px}
+@media print{
+  .fecho,footer,.descarregar,.topo{display:none}
+  .card,.pessoa,.canal,section{break-inside:avoid}
+  a{color:#151030;text-decoration:underline}
+  .cabeca{background:none;color:#151030}
+  body{background:#fff}
+  @page{margin:14mm}
+}
+
+/* lista 100 Clientes Ideais */
+.kick2{color:var(--azul-claro)}
+.acoes a.tel{background:#fff}
+.acoes a.go{border-color:rgba(21,16,48,.35);color:var(--tinta2)}
+.card small .loc{white-space:nowrap}
+.listao .la a.li{color:#0a66c2;border-color:rgba(10,102,194,.35)}
+.quem{margin:0 0 22px;padding:20px 24px;background:#fff;border:2px solid var(--tinta);border-radius:12px}
+.quem span{display:block;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--roxo);font-weight:700;margin-bottom:7px}
+.quem p{margin:0;font-size:15.5px;color:var(--tinta)}
+.descarregar .xls{background:#fff;color:var(--tinta);border:2px solid var(--tinta)}
+</style>
+</head>
+<body>
+<div class="topo"><img src="../assets/logo.svg" alt="Vloom"></div>
+<div id="app"><div class="estado">A carregar a sua lista…</div></div>
+<footer><div class="wrap fg"><img src="../assets/logo-branco.svg" alt="Vloom"><span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span><span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></span></div></footer>
+<script>
+(function(){
+  var esc=function(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});};
+  var app=document.getElementById('app');
+  var r=(new URLSearchParams(location.search).get('r')||'').replace(/[^a-z0-9]/gi,'');
+  var LOJA='https://2j2b4knzsaobmtlm.public.blob.vercel-storage.com/r100/';
+  if(!/^[a-z0-9]{10,40}$/.test(r)){ app.innerHTML='<div class="estado">Este link não tem uma lista associada.</div>'; return; }
+  var dom=function(u){ try{ return new URL(u).hostname.replace(/^www\./,''); }catch(e){ return ''; } };
+  var fav=function(site,nome){ var d=dom(site); var ini=esc((nome||'?').slice(0,1).toUpperCase()); return '<span class="fav">'+(d?'<img src="https://www.google.com/s2/favicons?domain='+esc(d)+'&sz=64" alt="" loading="lazy" onerror="this.parentNode.innerHTML=\'<i>'+ini+'</i>\'">':'<i>'+ini+'</i>')+'</span>'; };
+  var tel=function(t){ return String(t||'').split(/[;,\/]/)[0].trim(); };
+  var CARGO={'Dono ou administrador':'administrador','Direção comercial':'diretor comercial','Direção de marketing':'diretor de marketing','Direção financeira':'diretor financeiro','Direção de operações ou compras':'diretor de compras','Direção de recursos humanos':'diretor de recursos humanos','Qualquer cargo de decisão':'diretor'};
+  var iSite='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3.5 3 14.5 0 18M12 3c-3 3.5-3 14.5 0 18"/></svg>';
+  var iLi='<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM10 9h3.8v1.7h.1c.5-1 1.8-2 3.7-2 4 0 4.7 2.6 4.7 6V21h-4v-5.5c0-1.3 0-3-1.8-3s-2.1 1.4-2.1 2.9V21h-4z"/></svg>';
+  var iG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
+  var iTel='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>';
+  function render(d){
+    var L=d.lista||[], p=d.perfil||{}, nome=(d.nome||'').split(' ')[0];
+    var cargo=CARGO[(p.decisor||[])[0]]||'diretor';
+    var li=function(e){ return 'https://www.linkedin.com/search/results/people/?keywords='+encodeURIComponent(cargo+' '+e.nome); };
+    var go=function(e){ return 'https://www.google.com/search?q='+encodeURIComponent(e.nome+' '+(e.localidade||'')); };
+    var acoes=function(e){ var t=tel(e.telefone); return '<div class="acoes">'+(e.site?'<a class="site" href="'+esc(e.site)+'" target="_blank" rel="noopener nofollow">'+iSite+'Site</a>':'')
+      +(t?'<a class="tel" href="tel:'+esc(t.replace(/\s+/g,''))+'">'+iTel+esc(t)+'</a>':'')
+      +'<a class="li" href="'+li(e)+'" target="_blank" rel="noopener">'+iLi+'Quem decide</a>'
+      +'<a class="go" href="'+go(e)+'" target="_blank" rel="noopener">'+iG+'Google</a></div>'; };
+    var top=L.slice(0,6), resto=L.slice(6);
+    var comSite=L.filter(function(e){return e.site;}).length, comTel=L.filter(function(e){return tel(e.telefone);}).length;
+    var num=function(n){ return Number(n).toLocaleString('pt-PT'); };
+    var h='<div class="cabeca"><div class="wrap"><span class="kick">A sua lista'+(nome?', '+esc(nome):'')+'</span>'
+      +'<h1>As empresas com o perfil do seu <em>cliente ideal</em>.</h1>'
+      +'<p class="resumo">'+esc([(p.setores||[]).join(', '),(p.zonas||[]).join(', ')].filter(Boolean).join(' · '))+'</p>'
+      +'<div class="numeros">'
+        +(d.quantas?'<div><b>'+num(d.quantas)+'</b><span>Em Portugal, pelo INE</span></div>':'')
+        +'<div><b>'+L.length+'</b><span>Na sua lista</span></div>'
+        +'<div><b>'+comSite+'</b><span>Com site</span></div>'
+        +'<div><b>'+comTel+'</b><span>Com telefone</span></div>'
+      +'</div></div></div>';
+    var fichas=[['Setores',(p.setores||[]).join(', ')],['Regiões',(p.zonas||[]).join(', ')],['Dimensão',(p.dimensao||[]).join(', ')],['Quem decide',(p.decisor||[]).join(', ')],['Valor de um cliente',p.ticket||'']].filter(function(x){return x[1];});
+    h+='<section><div class="wrap"><div class="rot"><span class="n">01</span><h2>O perfil que escolheu</h2></div>'
+      +'<div class="fichas">'+fichas.map(function(f){return '<div class="ficha"><span>'+esc(f[0])+'</span><b>'+esc(f[1])+'</b></div>';}).join('')+'</div></div></section>';
+    h+='<section><div class="wrap"><div class="rot"><span class="n">02</span><h2>Por onde começar</h2><span>As empresas com mais dados de contacto</span></div>'
+      +'<div class="quem"><span>Quem decide lá dentro</span><p>Escolheu <b>'+esc((p.decisor||['quem decide'])[0])+'</b>. Em cada empresa, o botão <b>Quem decide</b> procura no LinkedIn as pessoas com esse cargo.</p></div>'
+      +'<div class="cards tres">'+top.map(function(e,k){ return '<div class="card pri"><span class="num">'+(k+1<10?'0':'')+(k+1)+'</span><div class="cab">'+fav(e.site,e.nome)+'<div><b>'+esc(e.nome)+'</b><small><span class="loc">'+esc(e.localidade)+'</span></small></div></div>'+acoes(e)+'</div>'; }).join('')+'</div></div></section>';
+    if(resto.length){
+      h+='<section><div class="wrap"><div class="rot"><span class="n">03</span><h2>A lista completa</h2><span>Mais '+resto.length+' empresas</span></div>'
+        +'<div class="listao"><ol start="7" style="counter-reset:emp 6">'+resto.map(function(e){ var t=tel(e.telefone);
+          return '<li><span class="ln">'+esc(e.nome)+'<small style="display:block;font-weight:400;font-size:12.5px;color:var(--tinta2)">'+esc(e.localidade)+'</small></span><span class="ll"></span>'
+            +'<span class="la">'+(e.site?'<a href="'+esc(e.site)+'" target="_blank" rel="noopener nofollow">Site</a>':'')
+            +(t?'<a href="tel:'+esc(t.replace(/\s+/g,''))+'">Ligar</a>':'')
+            +'<a class="li" href="'+li(e)+'" target="_blank" rel="noopener">Quem decide</a>'
+            +'<a href="'+go(e)+'" target="_blank" rel="noopener">Google</a></span></li>'; }).join('')+'</ol></div>'
+        +'<p class="aviso">Lista recolhida em dados abertos (OpenStreetMap e Wikidata). Os contactos são os que as próprias empresas publicaram.</p></div></section>';
+    }
+    h+='<div class="wrap descarregar"><button type="button" class="pdf xls" id="xls"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12m0 0-4.5-4.5M12 15l4.5-4.5M4 19h16"/></svg>Descarregar em Excel</button><span>Para trabalhar a lista na sua folha ou no seu CRM.</span></div>';
+    h+='<div class="fecho"><div class="wrap"><div class="fecho-cartao"><div class="fecho-txt"><span class="fecho-eyebrow">O passo seguinte</span>'
+      +'<h2>Construímos consigo um sistema de aquisição de clientes para atrair empresas como estas.</h2>'
+      +'<p>Uma conversa curta, por videochamada, a olhar para o seu mercado. Sem apresentação de agência.</p></div>'
+      +'<div class="fecho-acao"><a class="fecho-btn" href="/100clientesideais-marcar/">Marcar a reunião<svg viewBox="0 0 22 16" width="20" height="15" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></a>'
+      +'<span class="fecho-nota">Sem compromisso</span></div></div></div></div>';
+    app.innerHTML=h; document.title='Vloom · A sua lista'+(nome?', '+nome:'');
+    document.getElementById('xls').onclick=function(){ var q=function(v){return '"'+String(v||'').replace(/"/g,'""')+'"';};
+      var csv='\ufeff'+['Empresa;Localidade;Site;Telefone'].concat(L.map(function(e){return [q(e.nome),q(e.localidade),q(e.site),q(tel(e.telefone))].join(';');})).join('\n');
+      var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'})); a.download='100-clientes-ideais.csv'; a.click(); };
+  }
+  fetch(LOJA+r+'.json',{cache:'no-store'}).then(function(x){ if(!x.ok) throw 0; return x.json(); }).then(render)
+    .catch(function(){ app.innerHTML='<div class="estado">Não conseguimos abrir esta lista. Se o link veio no email, tente de novo daqui a um minuto.</div>'; });
+})();
+</script>
+</body>
+</html>
