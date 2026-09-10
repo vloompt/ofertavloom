@@ -407,9 +407,14 @@ window.vloomFb={
   }
 
   var LEAD_ENDPOINT="/api/lead-100clientesideais/";
+  var jaEnviou=false;
   f.addEventListener("submit",function(ev){
     ev.preventDefault();
+    if(jaEnviou) return;
     if(!f.checkValidity()){ f.reportValidity(); return; }
+    jaEnviou=true;
+    var btEnviar=f.querySelector("button[type=submit]");
+    if(btEnviar) btEnviar.disabled=true;
     var q=new URLSearchParams(location.search);
     var dados={
       nome:f.nome.value.trim(), empresa:f.empresa.value.trim(),
