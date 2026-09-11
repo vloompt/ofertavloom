@@ -15,6 +15,8 @@ const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&g
 const um = v => Array.isArray(v) ? String(v[0] || '').trim() : String(v || '').trim();
 const lista = v => (Array.isArray(v) ? v : [v]).map(x => String(x || '').trim()).filter(Boolean);
 const REMETENTE = process.env.GHL_REMETENTE_VLOOM || 'Tiago Severino <tiagoseverino@vloom.pt>';
+// Numeros de teste (ex.: 919000000): demasiado curto, ou 5+ digitos repetidos seguidos.
+const telefoneFalso = t => { const d = String(t || '').replace(/\D/g, ''); return d.length < 9 || /(\d)\1{4,}/.test(d); };
 const INE={ano:2023,fonte:"INE, Sistema de Contas Integradas das Empresas",total:1510274,s:{"Indústria e produção":{"t":76680,"z":{"Norte":35635,"Centro":19173,"Área Metropolitana de Lisboa":12395,"Alentejo":4748,"Algarve":2469,"Açores e Madeira":2260},"d":{"Até 10 pessoas":63638,"10 a 50":10100,"50 a 250":2566,"Mais de 250":376}},"Construção e imobiliário":{"t":172653,"z":{"Norte":55565,"Centro":36184,"Área Metropolitana de Lisboa":53889,"Alentejo":8067,"Algarve":13258,"Açores e Madeira":5690},"d":{"Até 10 pessoas":164438,"10 a 50":7349,"50 a 250":796,"Mais de 250":70}},"Saúde e clínicas":{"t":118558,"z":{"Norte":42292,"Centro":23643,"Área Metropolitana de Lisboa":37105,"Alentejo":6023,"Algarve":4602,"Açores e Madeira":4893},"d":{"Até 10 pessoas":116416,"10 a 50":1864,"50 a 250":240,"Mais de 250":38}},"Serviços profissionais":{"t":401064,"z":{"Norte":118738,"Centro":69466,"Área Metropolitana de Lisboa":159177,"Alentejo":17879,"Algarve":20958,"Açores e Madeira":14846},"d":{"Até 10 pessoas":395542,"10 a 50":4389,"50 a 250":843,"Mais de 250":290}},"Retalho e distribuição":{"t":217389,"z":{"Norte":81950,"Centro":49669,"Área Metropolitana de Lisboa":52969,"Alentejo":14740,"Algarve":10823,"Açores e Madeira":7238},"d":{"Até 10 pessoas":206031,"10 a 50":10087,"50 a 250":1120,"Mais de 250":151}},"Tecnologia e software":{"t":33908,"z":{"Norte":8737,"Centro":4836,"Área Metropolitana de Lisboa":16921,"Alentejo":1053,"Algarve":1234,"Açores e Madeira":1127},"d":{"Até 10 pessoas":32164,"10 a 50":1290,"50 a 250":358,"Mais de 250":96}},"Hotelaria e restauração":{"t":125679,"z":{"Norte":35041,"Centro":22059,"Área Metropolitana de Lisboa":32690,"Alentejo":7955,"Algarve":19820,"Açores e Madeira":8114},"d":{"Até 10 pessoas":118073,"10 a 50":6845,"50 a 250":699,"Mais de 250":62}},"Transportes e logística":{"t":54103,"z":{"Norte":13916,"Centro":7415,"Área Metropolitana de Lisboa":24873,"Alentejo":2368,"Algarve":3699,"Açores e Madeira":1832},"d":{"Até 10 pessoas":51696,"10 a 50":1949,"50 a 250":380,"Mais de 250":78}},"Outro":{"t":310240,"z":{"Norte":110238,"Centro":65448,"Área Metropolitana de Lisboa":67703,"Alentejo":30786,"Algarve":16975,"Açores e Madeira":19090},"d":{"Até 10 pessoas":306024,"10 a 50":3610,"50 a 250":550,"Mais de 250":56}}}};
 // Conta pelos dois cruzamentos reais do INE: setor x regiao e setor x dimensao.
 function contaEmpresas(setores, zonas, dims) {
@@ -74,7 +76,9 @@ module.exports = async function handler(req, res) {
   if (!token || !locationId) return res.status(200).json({ ok: false, skipped: 'sem credenciais' });
 
   const nome = (b.nome || '').trim(), email = (b.email || '').trim();
-  const phone = (b.telefone || b.phone || '').trim(), empresa = (b.empresa || '').trim();
+  let phone = (b.telefone || b.phone || '').trim();
+  const empresa = (b.empresa || '').trim();
+  if (phone && telefoneFalso(phone)) phone = '';
   if (!email && !phone) return res.status(400).json({ ok: false, error: 'sem contacto' });
 
   const p = b.perfil || {};

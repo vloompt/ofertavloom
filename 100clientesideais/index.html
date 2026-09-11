@@ -408,10 +408,18 @@ window.vloomFb={
 
   var LEAD_ENDPOINT="/api/lead-100clientesideais/";
   var jaEnviou=false;
+  /* apanha numeros de teste (ex.: 919000000): demasiado curtos, ou 5+ digitos repetidos seguidos */
+  function telefoneFalso(t){ var d=String(t||"").replace(/\D/g,""); return d.length<9 || /(\d)\1{4,}/.test(d); }
+  f.telefone.addEventListener("input",function(){ f.telefone.setCustomValidity(""); });
   f.addEventListener("submit",function(ev){
     ev.preventDefault();
     if(jaEnviou) return;
     if(!f.checkValidity()){ f.reportValidity(); return; }
+    if(telefoneFalso(f.telefone.value)){
+      f.telefone.setCustomValidity("Introduza um número de telemóvel real.");
+      f.telefone.reportValidity();
+      return;
+    }
     jaEnviou=true;
     var btEnviar=f.querySelector("button[type=submit]");
     if(btEnviar) btEnviar.disabled=true;
