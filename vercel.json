@@ -5,6 +5,11 @@
       "source": "/",
       "destination": "/website/",
       "permanent": false
+    },
+    {
+      "source": "/100empresas/",
+      "destination": "/100clientesideais/",
+      "permanent": false
     }
   ],
   "functions": {
