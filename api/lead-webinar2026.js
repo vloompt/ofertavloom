@@ -91,8 +91,19 @@ module.exports = async function handler(req, res) {
       const data = await up.json();
       const contactId = data?.contact?.id || data?.id;
       if (!up.ok || !contactId) return res.status(200).json({ ok: false });
-      await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sms'] }) }).catch(() => {});
-      return res.status(200).json({ ok: true, contactId });
+      // a conta não permite contactos duplicados: se o telemóvel já pertence a outro contacto, o GHL ignora-o
+      // sem erro. Nesse caso o SMS vai para o contacto dono desse telemóvel.
+      const lido = await fetch(`${GHL}/contacts/${contactId}`, { headers }).then(r => r.json()).catch(() => null);
+      let alvo = contactId, via = 'registo';
+      if (!lido?.contact?.phone) {
+        const dup = await fetch(`${GHL}/contacts/search/duplicate?locationId=${locationId}&number=${encodeURIComponent('+351' + num)}`, { headers }).then(r => r.json()).catch(() => null);
+        if (dup?.contact?.id && dup.contact.id !== contactId) {
+          alvo = dup.contact.id; via = 'contacto-existente';
+          await fetch(`${GHL}/contacts/${alvo}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Pediu lembrete do webinar de 7 de outubro por SMS. Registou-se com o email ${email}.` }) }).catch(() => {});
+        } else return res.status(200).json({ ok: false, error: 'telemóvel não gravado' });
+      }
+      await fetch(`${GHL}/contacts/${alvo}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sms'] }) }).catch(() => {});
+      return res.status(200).json({ ok: true, contactId: alvo, via });
     } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
   }
 

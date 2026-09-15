@@ -87,19 +87,26 @@ const marcar = (caminho, dados) => fetch(`${BLOB}/${caminho}`, {
 });
 
 // ── GHL: todos os inscritos ───────────────────────────────────────────────────
-async function inscritos(headers, locationId) {
+async function porEtiqueta(headers, locationId, etiqueta) {
   const todos = [];
   for (let page = 1; page <= 100; page++) {
     const r = await fetch(`${GHL}/contacts/search`, {
       method: 'POST', headers,
-      body: JSON.stringify({ locationId, page, pageLimit: 100, filters: [{ field: 'tags', operator: 'contains', value: 'webinar2026-registo' }] }),
+      body: JSON.stringify({ locationId, page, pageLimit: 100, filters: [{ field: 'tags', operator: 'contains', value: etiqueta }] }),
     });
     if (!r.ok) throw new Error('ghl pesquisa ' + r.status);
     const cs = (await r.json()).contacts || [];
     todos.push(...cs);
     if (cs.length < 100) break;
   }
-  return todos.filter(c => c.email && !(c.tags || []).includes('webinar2026-quer-gravacao'));
+  return todos.filter(c => !(c.tags || []).includes('webinar2026-quer-gravacao'));
+}
+// emails: inscritos com email. SMS: quem pediu SMS e tem telemóvel (um por número).
+async function inscritos(headers, locationId) {
+  const emails = (await porEtiqueta(headers, locationId, 'webinar2026-registo')).filter(c => c.email);
+  const vistos = new Set();
+  const sms = (await porEtiqueta(headers, locationId, 'webinar2026-sms')).filter(c => c.phone && !vistos.has(c.phone) && vistos.add(c.phone));
+  return { emails, sms };
 }
 
 async function telegram(texto) {
@@ -116,14 +123,12 @@ async function correr({ agora = Date.now(), simular = false, teste = false } = {
   if (!tipo) return { ok: true, fora: true };
   const token = process.env.GHL_PIT, locationId = process.env.GHL_LOCATION_VLOOM, zoom = process.env.ZOOM_LINK_WEBINAR2026;
   const headers = { Authorization: `Bearer ${token}`, Version: '2021-07-28', 'Content-Type': 'application/json' };
-  const lista = await inscritos(headers, locationId);
-  if (simular) return { ok: true, tipo, simulado: true, receberiam: lista.map(c => c.email) };
+  const { emails: lista, sms: listaSms } = await inscritos(headers, locationId);
+  if (simular) return { ok: true, tipo, simulado: true, receberiam: lista.map(c => c.email), sms: listaSms.map(c => c.phone) };
   const J = JANELAS[tipo];
   const tarefas = [];
-  for (const c of lista) {
-    if (J.email) tarefas.push({ canal: 'email', c });
-    if (J.sms && c.phone) tarefas.push({ canal: 'sms', c });
-  }
+  if (J.email) for (const c of lista) tarefas.push({ canal: 'email', c });
+  if (J.sms) for (const c of listaSms) tarefas.push({ canal: 'sms', c });
   const enviar = async ({ canal, c }) => {
     const primeiro = esc(String(c.firstName || '').trim().split(/\s+/)[0]);
     const corpo = canal === 'email'
