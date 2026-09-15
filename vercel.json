@@ -21,6 +21,9 @@
     },
     "api/cron-lista100.js": {
       "maxDuration": 300
+    },
+    "api/cron-lembretes-webinar.js": {
+      "maxDuration": 300
     }
   },
   "crons": [
@@ -31,6 +34,10 @@
     {
       "path": "/api/cron-lista100/",
       "schedule": "* * * * *"
+    },
+    {
+      "path": "/api/cron-lembretes-webinar/",
+      "schedule": "*/5 * * * *"
     }
   ]
 }
