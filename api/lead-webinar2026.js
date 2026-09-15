@@ -6,6 +6,8 @@
 const GHL = 'https://services.leadconnectorhq.com';
 const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'localhost'];
 const AVISO_INTERNO = process.env.GHL_AVISO_WEBINAR2026 || 'marketing@vloom.pt';
+// cópia para o Tiago (o contacto dele tem «não incomodar» no email, por isso vai em cópia, como no funil 100 Clientes Ideais)
+const AVISO_CC = (process.env.GHL_AVISO_CC_WEBINAR2026 || 'tiagoseverino@vloom.pt').split(',').map(x => x.trim()).filter(Boolean);
 const QUANDO = 'quarta-feira, 7 de outubro, às 21h00 de Lisboa';
 const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
@@ -127,9 +129,9 @@ module.exports = async function handler(req, res) {
 ${resposta ? `<p>Onde diz que a aquisição falha: ${esc(resposta)}</p>` : ''}`;
         const envio = await fetch(`${GHL}/conversations/messages`, {
           method: 'POST', headers,
-          body: JSON.stringify({ type: 'Email', contactId: tId, subject: `Registo webinar — ${nome || email}`, html }),
+          body: JSON.stringify({ type: 'Email', contactId: tId, emailCc: AVISO_CC, subject: `Registo webinar — ${nome || email}`, html }),
         });
-        aviso = { para: AVISO_INTERNO, status: envio.status };
+        aviso = { para: AVISO_INTERNO, cc: AVISO_CC, status: envio.status };
       }
     } catch (_) {}
 
