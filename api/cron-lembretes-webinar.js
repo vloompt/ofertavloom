@@ -102,13 +102,25 @@ async function telegram(texto) {
   }).catch(() => {});
 }
 
-async function correr({ agora = Date.now(), simular = false } = {}) {
+async function correr({ agora = Date.now(), simular = false, teste = false } = {}) {
   const tipo = Object.keys(JANELAS).find(k => agora >= JANELAS[k].de && agora < JANELAS[k].ate);
   if (!tipo) return { ok: true, fora: true };
   const token = process.env.GHL_PIT, locationId = process.env.GHL_LOCATION_VLOOM, zoom = process.env.ZOOM_LINK_WEBINAR2026;
   const headers = { Authorization: `Bearer ${token}`, Version: '2021-07-28', 'Content-Type': 'application/json' };
   const lista = await inscritos(headers, locationId);
   if (simular) return { ok: true, tipo, simulado: true, receberiam: lista.map(c => c.email) };
+  // teste: mesmo caminho real (pesquisa, filtro, email, envio GHL) sem marcadores nem Telegram. Só por chamada local.
+  if (teste) {
+    if (!zoom) return { ok: false, tipo, erro: 'sem link do Zoom' };
+    const res = [];
+    for (const c of lista) {
+      const primeiro = esc(String(c.firstName || '').trim().split(/\s+/)[0]);
+      const r = await fetch(`${GHL}/conversations/messages`, { method: 'POST', headers,
+        body: JSON.stringify({ type: 'Email', contactId: c.id, subject: ASSUNTO[tipo], html: emailHtml(tipo, { primeiro, zoom }) }) }).catch(() => null);
+      res.push({ email: c.email, status: r && r.status });
+    }
+    return { ok: true, tipo, teste: true, enviados: res };
+  }
 
   const marcas = await listarTudo(PREFIXO);
   const feitos = new Set(marcas.map(m => m.caminho));
