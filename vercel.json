@@ -39,5 +39,11 @@
       "path": "/api/cron-lembretes-webinar/",
       "schedule": "*/5 * * * *"
     }
+  ],
+  "rewrites": [
+    {
+      "source": "/webinar2026/entrar/",
+      "destination": "/api/entrar-webinar"
+    }
   ]
 }

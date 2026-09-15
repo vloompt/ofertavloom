@@ -62,6 +62,13 @@ footer img{height:22px;width:auto;margin:0 auto 12px}
 footer p+p{margin-top:6px}
 footer a{color:#fff}
 @media(prefers-reduced-motion:reduce){.mexe{animation:none}}
+.sms{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.sms input{flex:1 1 200px;min-width:0;height:48px;border:1px solid #D9DCE3;border-radius:999px;padding:0 18px;font:inherit;font-size:16px;color:var(--escuro)}
+.sms input:focus{outline:none;border-color:var(--escuro);box-shadow:0 0 0 3px rgba(26,45,102,.1)}
+.sms-msg{font-size:14.5px;margin-top:10px;color:#1D7A47;font-weight:600}
+.sms-msg.erro{color:#B3261E}
+.passo .nota{font-size:13.5px;color:var(--cinza);margin-top:12px}
+@media(max-width:599px){.sms .bt{width:100%}}
 </style>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -96,11 +103,14 @@ fbq('init','441661273501928');fbq('track','PageView');
 
   <div class="passo" id="p2">
     <span class="n">2</span>
-    <h2>Confirme que o nosso email chegou</h2>
-    <p>O link da sala Zoom vai para o email que deixou. Se não o vir na caixa principal, procure em Promoções ou Spam e marque-o como seguro, para o lembrete do dia chegar.</p>
-    <div class="acoes">
-      <button class="bt bt-linha" type="button" data-passo="2">Já confirmei</button>
-    </div>
+    <h2>Receba o lembrete por SMS</h2>
+    <p>Mandamos um SMS na véspera e outro quando a sala abrir, com o link para entrar. É opcional.</p>
+    <form class="sms" id="sms" novalidate>
+      <input id="tel" type="tel" inputmode="tel" autocomplete="tel" placeholder="O seu telemóvel" aria-label="O seu telemóvel">
+      <button class="bt bt-roxo" type="submit" id="sms-bt">Quero o SMS</button>
+    </form>
+    <p class="sms-msg" id="sms-msg" hidden></p>
+    <p class="nota">O link da sala também vai para o seu email. Se não o vir, procure em Promoções ou Spam.</p>
   </div>
 
   <div class="passo" id="p3">
@@ -138,6 +148,21 @@ fbq('init','441661273501928');fbq('track','PageView');
     var p=a.getAttribute('data-passo'); feitos[p]=1; document.getElementById('p'+p).classList.add('feito'); pinta();
     try{fbq('trackCustom','WebinarPasso'+p);}catch(e){}
   });});
+  // SMS opcional: grava o telemóvel no contacto (sem novos emails)
+  var fs=document.getElementById('sms'), msg=document.getElementById('sms-msg');
+  fs.addEventListener('submit',function(e){e.preventDefault();
+    var tel=document.getElementById('tel').value.replace(/[^0-9+]/g,'');
+    var num=tel.replace(/^\+?351/,'').replace(/^00351/,'');
+    msg.hidden=false; msg.className='sms-msg';
+    if(!/^9[1236]\d{7}$/.test(num)){msg.textContent='Confirme o número: 9 algarismos, a começar por 9.';msg.className='sms-msg erro';return;}
+    if(!d.email){msg.textContent='Não encontrámos o seu registo nesta página. Volte a inscrever-se ou escreva para marketing@vloom.pt.';msg.className='sms-msg erro';return;}
+    var bt=document.getElementById('sms-bt'); bt.disabled=true; bt.textContent='A guardar...';
+    fetch('/api/lead-webinar2026/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acao:'telefone',email:d.email,telefone:'+351'+num})})
+      .then(function(r){return r.json();}).then(function(j){
+        if(j&&j.ok){fs.hidden=true;msg.textContent='Combinado. Vai receber o SMS na véspera e quando a sala abrir.';feitos['2']=1;document.getElementById('p2').classList.add('feito');pinta();try{fbq('trackCustom','WebinarSMS');}catch(x){}}
+        else{bt.disabled=false;bt.textContent='Quero o SMS';msg.textContent='Não conseguimos guardar. Tente outra vez.';msg.className='sms-msg erro';}
+      }).catch(function(){bt.disabled=false;bt.textContent='Quero o SMS';msg.textContent='Não conseguimos guardar. Tente outra vez.';msg.className='sms-msg erro';});
+  });
   pinta();
 })();
 </script>

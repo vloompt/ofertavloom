@@ -82,6 +82,20 @@ module.exports = async function handler(req, res) {
   const headers = { Authorization: `Bearer ${token}`, Version: '2021-07-28', 'Content-Type': 'application/json' };
   const zoom = process.env.ZOOM_LINK_WEBINAR2026 || '';
 
+  // passo 2 da página de obrigado: só grava o telemóvel para os lembretes por SMS (sem emails)
+  if (b.acao === 'telefone') {
+    const num = String(phone).replace(/[^0-9]/g, '').replace(/^00351|^351/, '');
+    if (!/^9[1236]\d{7}$/.test(num)) return res.status(400).json({ ok: false, error: 'telemóvel inválido' });
+    try {
+      const up = await fetch(`${GHL}/contacts/upsert`, { method: 'POST', headers, body: JSON.stringify({ locationId, email, phone: '+351' + num }) });
+      const data = await up.json();
+      const contactId = data?.contact?.id || data?.id;
+      if (!up.ok || !contactId) return res.status(200).json({ ok: false });
+      await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sms'] }) }).catch(() => {});
+      return res.status(200).json({ ok: true, contactId });
+    } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
+  }
+
   try {
     const corpo = { locationId, email, source: 'Webinar 7 outubro 2026' };
     if (nome) corpo.firstName = nome;
