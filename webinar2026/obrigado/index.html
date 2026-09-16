@@ -64,6 +64,7 @@ footer img{height:22px;width:auto;margin:0 auto 12px}
 footer p+p{margin-top:6px}
 footer a{color:#fff}
 @media(prefers-reduced-motion:reduce){.mexe{animation:none}}
+[hidden]{display:none!important}
 .sms{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
 .sms input{flex:1 1 200px;min-width:0;height:48px;border:1px solid #D9DCE3;border-radius:999px;padding:0 18px;font:inherit;font-size:16px;color:var(--escuro)}
 .sms input:focus{outline:none;border-color:var(--escuro);box-shadow:0 0 0 3px rgba(26,45,102,.1)}
@@ -161,7 +162,7 @@ fbq('init','441661273501928');fbq('track','PageView');
     var bt=document.getElementById('sms-bt'); bt.disabled=true; bt.textContent='A guardar...';
     fetch('/api/lead-webinar2026/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({acao:'telefone',email:d.email,telefone:'+351'+num})})
       .then(function(r){return r.json();}).then(function(j){
-        if(j&&j.ok){fs.hidden=true;msg.textContent='Combinado. Vai receber o SMS na véspera e quando a sala abrir.';feitos['2']=1;document.getElementById('p2').classList.add('feito');pinta();try{fbq('trackCustom','WebinarSMS');}catch(x){}}
+        if(j&&j.ok){fs.hidden=true;bt.textContent='Guardado ✓';msg.textContent='Combinado. Vai receber o SMS na véspera e quando a sala abrir.';feitos['2']=1;document.getElementById('p2').classList.add('feito');pinta();try{fbq('trackCustom','WebinarSMS');}catch(x){}}
         else{bt.disabled=false;bt.textContent='Quero o SMS';msg.textContent='Não conseguimos guardar. Tente outra vez.';msg.className='sms-msg erro';}
       }).catch(function(){bt.disabled=false;bt.textContent='Quero o SMS';msg.textContent='Não conseguimos guardar. Tente outra vez.';msg.className='sms-msg erro';});
   });

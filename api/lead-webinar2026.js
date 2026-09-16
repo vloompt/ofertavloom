@@ -139,6 +139,13 @@ module.exports = async function handler(req, res) {
         body: JSON.stringify({ type: 'Email', contactId, subject: 'Lugar guardado: quarta, 7 de outubro às 21h00', html })
       });
       mail = { status: r.status, comLink: !!zoom };
+      if (!r.ok) {
+        const erro = await r.json().catch(() => ({}));
+        mail.erro = erro.canonicalCode || erro.message || String(r.status);
+        // p.ex. CONVERSATIONS_MSG_UNSUBSCRIBED_EMAIL: a pessoa cancelou os emails da Vloom e o GHL não deixa enviar
+        await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sem-email'] }) }).catch(() => {});
+        await fetch(`${GHL}/contacts/${contactId}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Webinar: o email de confirmação NÃO saiu (${erro.message || mail.erro}). Não vai receber os lembretes por email.` }) }).catch(() => {});
+      }
     } catch (_) {}
 
     // aviso interno por email
@@ -151,7 +158,8 @@ module.exports = async function handler(req, res) {
       if (tId) {
         const html = `<p><b>Registo novo — Webinar 7 de outubro</b></p>
 <p>Nome: ${esc(nome) || '—'}<br>Email: ${esc(email) || '—'}<br>Telefone: ${esc(phone) || '—'}</p>
-${resposta ? `<p>Onde diz que a aquisição falha: ${esc(resposta)}</p>` : ''}`;
+${resposta ? `<p>Onde diz que a aquisição falha: ${esc(resposta)}</p>` : ''}
+${mail && mail.erro ? `<p style="color:#B3261E"><b>⚠️ Não recebeu o email de confirmação nem vai receber os lembretes por email:</b> ${esc(mail.erro === 'CONVERSATIONS_MSG_UNSUBSCRIBED_EMAIL' ? 'este email cancelou a subscrição dos emails da Vloom' : mail.erro)}.</p>` : ''}`;
         const envio = await fetch(`${GHL}/conversations/messages`, {
           method: 'POST', headers,
           body: JSON.stringify({ type: 'Email', contactId: tId, emailCc: AVISO_CC, subject: `Registo webinar — ${nome || email}`, html }),
