@@ -3,8 +3,10 @@
 <title>Blueprint de Aquisição de Clientes · Escolas de formação · Vloom</title>
 <meta name="description" content="16 aulas (2h07) com o sistema da Vloom para escolas de formação. 97€, pagamento único, IVA incluído.">
 <meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0F0C2E">
-<link rel="preload" href="../assets/fonts/gotham-bold.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://buy.stripe.com">
+<!-- Meta Pixel simulador.vloom.pt (441661273501928): PageView + ViewContent; InitiateCheckout no clique (lib.js); Purchase na obrigado/ -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');fbq('track','ViewContent',{content_name:'Blueprint Formação',content_ids:['blueprint-formacao'],content_type:'product',value:97,currency:'EUR'});</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1" alt=""></noscript>
 <style>
 @font-face{font-family:Gotham;src:url(../assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:Gotham;src:url(../assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-display:swap}
@@ -381,7 +383,7 @@ footer a{color:var(--txt2)}
   var cid=q.get('cid'); if(cid&&/^[A-Za-z0-9_-]{1,200}$/.test(cid)) extra.push('client_reference_id='+cid);
   document.querySelectorAll('.js-comprar').forEach(function(a){
     if(extra.length) a.href=a.href+(a.href.indexOf('?')<0?'?':'&')+extra.join('&');
-    a.addEventListener('click',function(){try{(window.dataLayer=window.dataLayer||[]).push({event:'begin_checkout',curso:'formacao',value:97,currency:'EUR'});if(window.fbq)fbq('track','InitiateCheckout',{value:97,currency:'EUR'});}catch(e){}});
+    a.addEventListener('click',function(){try{(window.dataLayer=window.dataLayer||[]).push({event:'begin_checkout',curso:'formacao',value:97,currency:'EUR'});if(window.fbq)fbq('track','InitiateCheckout',{content_name:'Blueprint Formação',content_ids:['blueprint-formacao'],content_type:'product',value:97,currency:'EUR'});}catch(e){}});
   });
   var fixa=document.getElementById('fixa'),topo=document.getElementById('cta-topo'),fim=document.querySelector('footer');
   if(fixa&&topo&&'IntersectionObserver' in window){var vT=true,vF=false,p=function(){fixa.classList.toggle('on',!vT&&!vF);};
