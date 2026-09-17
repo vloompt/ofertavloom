@@ -1,0 +1,395 @@
+<!doctype html><html lang="pt-PT"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Blueprint de Aquisição de Clientes · Escolas de formação · Vloom</title>
+<meta name="description" content="16 aulas (2h07) com o sistema da Vloom para escolas de formação. 97€, pagamento único, IVA incluído.">
+<meta name="robots" content="noindex,nofollow"><meta name="theme-color" content="#0F0C2E">
+<link rel="preload" href="../assets/fonts/gotham-bold.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preconnect" href="https://buy.stripe.com">
+<style>
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-medium.woff2)format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-bold-italic.woff2)format("woff2");font-weight:700;font-style:italic;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-display:swap}
+:root{--bg:#0F0C2E;--bg2:#161241;--card:rgba(255,255,255,.04);--card2:rgba(255,255,255,.07);--linha:rgba(255,255,255,.10);--linha2:rgba(255,255,255,.16);
+ --txt:#FFFFFF;--txt2:rgba(255,255,255,.72);--txt3:rgba(255,255,255,.5);--roxo:#B48BC4;--gelo:#77CEF4;--ember:#FF7A3D;--ember2:#FF8F5A;
+ --font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif;--r:14px;--r2:20px;--w:1200px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--font);background:var(--bg);color:var(--txt);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%;height:auto}
+a{color:inherit;text-decoration:none}
+.w{max-width:var(--w);margin:0 auto;padding:0 24px}
+.sec{padding:96px 0}
+@media(max-width:720px){.sec{padding:64px 0}}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--roxo);margin-bottom:14px}
+h1{font-size:clamp(34px,4.6vw,56px);font-weight:700;line-height:1.08;letter-spacing:-.02em;text-wrap:balance}
+h2{font-size:clamp(28px,3.4vw,40px);font-weight:700;line-height:1.15;letter-spacing:-.015em;text-wrap:balance}
+h3{font-size:19px;font-weight:700;line-height:1.3}
+.lead{font-size:18px;line-height:1.65;color:var(--txt2);max-width:56ch}
+.cab{max-width:720px;margin-bottom:48px}
+.cab .lead{margin-top:14px}
+/* botões */
+.btn{display:inline-flex;align-items:center;gap:10px;height:52px;padding:0 24px;border-radius:12px;background:var(--ember);color:#1B1743;font-weight:700;font-size:15px;
+ transition:background .2s ease,transform .15s ease;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--ember2)}.btn:active{transform:scale(.98)}
+.btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.btn.sec{background:var(--card2);color:#fff;border:1px solid var(--linha2)}
+.btn.sec:hover{background:rgba(255,255,255,.11)}
+.btn.lg{height:58px;padding:0 30px;font-size:16px}
+.rgpd{font-size:12px;color:var(--txt3);margin-top:12px;line-height:1.5}
+.rgpd a{text-decoration:underline;text-underline-offset:2px}
+/* nav */
+.nav{position:sticky;top:0;z-index:40;background:rgba(15,12,46,.82);backdrop-filter:saturate(1.4) blur(14px);-webkit-backdrop-filter:saturate(1.4) blur(14px);border-bottom:1px solid var(--linha)}
+.nav .w{display:flex;align-items:center;justify-content:space-between;height:68px}
+.nav img{height:28px;width:auto;filter:brightness(0) invert(1)}
+.nav .links{display:flex;gap:28px;font-size:14px;font-weight:500;color:var(--txt2)}
+.nav .links a:hover{color:#fff}
+.nav .btn{height:42px;padding:0 18px;font-size:14px}
+@media(max-width:900px){.nav .links{display:none}}
+/* herói */
+.heroi{padding:84px 0 80px;position:relative;overflow:hidden}
+.heroi .glow{position:absolute;right:-10%;top:-20%;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(141,72,155,.28),rgba(59,74,156,.12) 45%,transparent 68%);pointer-events:none}
+.heroi .w{display:grid;gap:56px;align-items:center;position:relative}
+@media(min-width:980px){.heroi .w{grid-template-columns:.95fr 1.05fr}}
+.laptop{position:relative}
+.laptop .tampa{border:10px solid #23204a;border-bottom-width:14px;border-radius:18px 18px 4px 4px;background:#000;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.08)}
+.laptop .tampa img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top}
+.laptop .base{height:14px;margin:0 -3%;background:linear-gradient(#3a365f,#23204a);border-radius:0 0 14px 14px;box-shadow:0 18px 40px -16px rgba(0,0,0,.8)}
+.laptop .base::after{content:"";display:block;width:14%;height:5px;margin:0 auto;background:#141130;border-radius:0 0 6px 6px}
+.faixa{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:28px}
+.faixa .mini{display:block;border-radius:10px;overflow:hidden;border:1px solid var(--linha);background:var(--card);transition:border-color .2s ease}
+.faixa .mini:hover{border-color:var(--linha2)}
+.faixa .mini img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.faixa .mini .txt{padding:10px 12px 12px}
+.faixa .mini small{display:block;font-size:11px;color:var(--roxo);font-weight:700;letter-spacing:.06em;margin-bottom:4px}
+.faixa .mini span{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-size:13px;line-height:1.35;color:#fff;font-weight:500}
+@media(max-width:720px){.faixa{grid-template-columns:repeat(2,1fr)}}
+.heroi .lead{margin-top:20px}
+.heroi .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
+.heroi .preco{display:flex;align-items:baseline;gap:10px;margin-top:28px}
+.heroi .preco b{font-size:34px;font-weight:700;letter-spacing:-.02em}
+.heroi .preco span{font-size:14px;color:var(--txt3)}
+.sinais{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:22px;font-size:13.5px;color:var(--txt3)}
+.sinais span{display:inline-flex;align-items:center;gap:7px}
+.sinais svg{color:var(--gelo)}
+.produto{position:relative}
+/* logos */
+.logos{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);padding:28px 0}
+.logos .w{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:20px 32px}
+.logos p{font-size:13px;color:var(--txt3);white-space:nowrap}
+.logos .fila{display:flex;flex-wrap:wrap;align-items:center;gap:20px 36px}
+.logos img{height:22px;width:auto;opacity:.55}
+/* três cartões */
+.grid3{display:grid;gap:20px}
+@media(min-width:800px){.grid3{grid-template-columns:repeat(3,1fr)}}
+.cartao{background:var(--card);border:1px solid var(--linha);border-radius:var(--r2);overflow:hidden;transition:border-color .2s ease,background .2s ease}
+.cartao:hover{border-color:var(--linha2);background:var(--card2)}
+.cartao img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.cartao .corpo{padding:22px 24px 26px}
+.cartao .corpo p{margin-top:8px;color:var(--txt2);font-size:15px}
+.cartao .corpo small{display:block;margin-top:14px;font-size:13px;color:var(--txt3)}
+/* funil */
+.funil{background:var(--bg2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.funil .cols{display:grid;gap:56px;align-items:center}
+@media(min-width:980px){.funil .cols{grid-template-columns:1fr 1.15fr}}
+.resultado{margin-top:32px;padding:26px 28px;border-radius:var(--r2);background:var(--card);border:1px solid var(--linha);display:grid;gap:8px}
+.resultado b{font-size:56px;font-weight:700;letter-spacing:-.03em;line-height:1;color:var(--ember)}
+.resultado b small{font-size:16px;letter-spacing:0;color:var(--txt2);margin-left:10px;font-weight:500}
+.resultado p{font-size:15px;color:var(--txt2)}
+.funil .nota{margin-top:18px;font-size:13px;color:var(--txt3);max-width:56ch}
+.barras{display:grid;gap:14px;padding:32px;border-radius:var(--r2);background:var(--card);border:1px solid var(--linha)}
+.barras .linha{display:grid;grid-template-columns:150px 1fr;gap:16px;align-items:center}
+.barras .rot{font-size:14px;color:var(--txt2);text-align:right}
+.barras .pista{height:52px;border-radius:10px;background:rgba(255,255,255,.04)}
+.barras .barra{height:100%;border-radius:10px;background:linear-gradient(90deg,#3B4A9C,#8D489B);display:flex;align-items:center;justify-content:flex-end;padding:0 16px;min-width:90px}
+.barras .barra b{font-size:20px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.barras .ultima .barra{background:var(--ember);color:#1B1743}
+@media(max-width:720px){.barras{padding:18px}.barras .linha{grid-template-columns:1fr;gap:6px}.barras .rot{text-align:left;font-size:13px}.barras .pista{height:44px}}
+.fila5{display:grid;gap:12px;margin-top:40px}
+@media(min-width:900px){.fila5{grid-template-columns:repeat(5,1fr)}}
+@media(max-width:899px){.fila5 div{display:flex;align-items:baseline;gap:14px;padding:16px 18px}.fila5 b{font-size:26px;min-width:88px}.fila5 span{margin:0}}
+.fila5 div{background:var(--card);border:1px solid var(--linha);border-radius:var(--r);padding:22px 20px}
+.fila5 b{display:block;font-size:34px;font-weight:700;letter-spacing:-.02em;line-height:1}
+.fila5 div:last-child{border-color:rgba(255,122,61,.5)}
+.fila5 div:last-child b{color:var(--ember)}
+.fila5 span{display:block;margin-top:8px;font-size:14px;color:var(--txt2)}
+.funil .fecho{margin-top:28px;font-size:18px;max-width:64ch}
+.funil .nota{margin-top:10px;font-size:13.5px;color:var(--txt3);max-width:72ch}
+/* aulas */
+.aulas .cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:16px;max-width:none}
+.grid4{display:grid;gap:12px;grid-template-columns:repeat(2,1fr)}
+@media(min-width:600px){.grid4{gap:18px}}
+@media(max-width:599px){.aula .txt{padding:10px 12px 14px}.aula .txt small{font-size:10.5px}.aula .txt strong{font-size:13.5px}.aula .num,.aula .dur{font-size:11px;padding:3px 6px;left:8px;top:8px}.aula .dur{left:auto;top:auto;right:8px;bottom:8px}}
+@media(min-width:1000px){.grid4{grid-template-columns:repeat(4,1fr)}}
+.aula{background:var(--card);border:1px solid var(--linha);border-radius:var(--r);overflow:hidden;transition:transform .2s ease,border-color .2s ease}
+.aula:hover{transform:translateY(-2px);border-color:var(--linha2)}
+.aula .thumb{position:relative}
+.aula img{width:100%;aspect-ratio:16/9;object-fit:cover}
+.aula .dur{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.72);color:#fff;font-size:12px;font-weight:500;padding:4px 8px;border-radius:6px}
+.aula .num{position:absolute;left:10px;top:10px;background:rgba(15,12,46,.8);color:#fff;font-size:12px;font-weight:700;padding:4px 8px;border-radius:6px;letter-spacing:.04em}
+.aula .txt{padding:14px 16px 18px}
+.aula .txt small{display:block;font-size:12px;color:var(--roxo);font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.aula .txt strong{display:block;margin-top:6px;font-size:15px;font-weight:700;line-height:1.35}
+.aulas .cta{margin-top:40px;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+/* citação + mentor */
+.mentor{background:var(--bg2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.mentor .cols{display:grid;gap:48px;align-items:center}
+@media(min-width:900px){.mentor .cols{grid-template-columns:.72fr 1.28fr;align-items:start}}
+.retrato{position:relative;aspect-ratio:4/5;border-radius:var(--r2);overflow:hidden;border:1px solid var(--linha2);background:#241D5E}
+.retrato::before{content:"";position:absolute;inset:auto 0 0;height:38%;z-index:1;background:linear-gradient(transparent,rgba(15,12,46,.8))}
+.retrato img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
+.retrato .nome{position:absolute;left:20px;bottom:18px;z-index:2;font-size:14px;color:#fff;font-weight:700}
+.retrato .nome small{display:block;font-size:12px;font-weight:400;color:var(--txt2);margin-top:2px}
+.mentor .cita{padding:24px 28px;border-radius:var(--r2);background:var(--card);border-left:3px solid var(--ember)}
+.mentor blockquote{font-size:clamp(20px,2.1vw,26px);font-weight:700;font-style:italic;line-height:1.35;letter-spacing:-.01em}
+.mentor figcaption{margin-top:10px;font-size:13px;color:var(--txt3)}
+.mentor .bio{margin-top:24px;color:var(--txt2);max-width:56ch}
+.factos{display:grid;grid-template-columns:repeat(3,1fr);margin-top:28px;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.factos div{padding:22px 20px 22px 0}
+.factos div+div{padding-left:24px;border-left:1px solid var(--linha)}
+.factos b{display:block;font-size:40px;font-weight:700;letter-spacing:-.03em;line-height:1;color:#fff}
+.factos b i{font-style:normal;color:var(--ember)}
+.factos span{display:block;margin-top:8px;font-size:13.5px;color:var(--txt3);line-height:1.4}
+@media(max-width:720px){.factos{grid-template-columns:1fr}.factos div+div{padding-left:0;border-left:0;border-top:1px solid var(--linha)}.factos div{padding:18px 0}}
+.cred{display:grid;gap:18px 40px;margin-top:26px;align-items:center}
+@media(min-width:800px){.cred{grid-template-columns:auto 1fr}}
+.cred p{font-size:12.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--txt3)}
+.selos{display:flex;gap:20px;align-items:center}
+.selos img{width:84px;height:84px;border-radius:50%;object-fit:contain;background:#fff;box-shadow:0 10px 30px -10px rgba(0,0,0,.6)}
+.marcas{overflow:hidden;position:relative;-webkit-mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask-image:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.marcas .tira{display:flex;align-items:center;gap:44px;width:max-content;animation:rodar 38s linear infinite}
+.marcas:hover .tira{animation-play-state:paused}
+.marcas img{height:20px;width:auto;opacity:.55;flex:none}
+@keyframes rodar{to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.marcas .tira{animation:none}}
+/* prova */
+.prova .cols{display:grid;gap:40px;align-items:center}
+@media(min-width:900px){.prova .cols{grid-template-columns:1.1fr .9fr}}
+.video{position:relative;display:block;border-radius:var(--r2);overflow:hidden;border:1px solid var(--linha2);background:#000;cursor:pointer;width:100%;padding:0}
+.video img{width:100%;aspect-ratio:16/9;object-fit:cover;opacity:.85;transition:opacity .2s ease,transform .4s ease}
+.video:hover img{opacity:1;transform:scale(1.02)}
+.video .play{position:absolute;left:50%;top:50%;width:68px;height:68px;margin:-34px 0 0 -34px;border-radius:50%;background:#fff;color:#1B1743;display:grid;place-items:center;box-shadow:0 10px 30px rgba(0,0,0,.4)}
+.video .play svg{margin-left:3px}
+.video .meta{display:none}
+.prova iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:var(--r2)}
+.prova .estrelas{color:#F5B62E;font-size:16px;letter-spacing:2px;margin-bottom:14px}
+.prova blockquote{font-size:clamp(20px,2vw,26px);font-weight:700;line-height:1.35}
+.prova .quem{margin-top:16px;font-size:14px;color:var(--txt2)}
+.prova .quem b{color:#fff;display:block}
+.prova .nums{display:flex;gap:28px;margin-top:26px;padding-top:22px;border-top:1px solid var(--linha)}
+.prova .nums b{display:block;font-size:28px;font-weight:700;letter-spacing:-.02em}
+.prova .nums span{font-size:13px;color:var(--txt3)}
+.prova .aviso{margin-top:22px;font-size:13px;color:var(--txt3);max-width:48ch}
+/* para quem */
+.grid2{display:grid;gap:20px}
+@media(min-width:800px){.grid2{grid-template-columns:1fr 1fr}}
+.para{background:var(--bg2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.lista{background:var(--bg);border:1px solid var(--linha);border-radius:var(--r2);padding:28px;border-top:3px solid var(--gelo)}
+.lista.nao{border-top-color:var(--ember)}
+.lista .tag{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gelo);margin-bottom:14px}
+.lista.nao .tag{color:var(--ember)}
+.lista ul{list-style:none}
+.lista li{display:flex;align-items:center;gap:16px;padding:12px 0;color:var(--txt2);font-size:15.5px;line-height:1.5;border-top:1px solid var(--linha)}
+.lista li:first-child{border-top:0}
+.lista li .ico{flex:none;width:64px;height:64px;border-radius:14px;background:radial-gradient(circle at 50% 40%,rgba(103,68,154,.55),rgba(59,74,156,.15) 75%);display:grid;place-items:center}
+.lista.nao li .ico{background:radial-gradient(circle at 50% 40%,rgba(255,122,61,.35),rgba(255,122,61,.06) 75%)}
+.lista li .ico img{width:50px;height:50px;object-fit:contain;filter:drop-shadow(0 6px 10px rgba(0,0,0,.4))}
+.lista.nao li .ico img{filter:grayscale(1) drop-shadow(0 6px 10px rgba(0,0,0,.4));opacity:.8}
+.perfil{margin-top:20px;display:grid;gap:8px 28px;align-items:center;padding:24px 28px;border-radius:var(--r2);background:linear-gradient(90deg,rgba(59,74,156,.22),rgba(141,72,155,.12));border:1px solid var(--linha2);font-size:15px;color:var(--txt2)}
+@media(min-width:800px){.perfil{grid-template-columns:auto 1fr}}
+.perfil .n{font-size:40px;font-weight:700;letter-spacing:-.03em;color:#fff;line-height:1}
+.perfil .n small{display:block;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--roxo);margin-top:6px}
+.perfil b{color:#fff}
+/* preço */
+.preco-sec{background:var(--bg2);border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.oferta{max-width:960px;margin:0 auto;background:var(--bg);border:1px solid var(--linha2);border-radius:24px;overflow:hidden;display:grid}
+@media(min-width:860px){.oferta{grid-template-columns:1fr 1fr}}
+.oferta .esq{padding:40px}
+.oferta .capa{margin:-40px -40px 24px;border-bottom:1px solid var(--linha)}
+.oferta .capa img{width:100%;aspect-ratio:16/9;object-fit:cover;object-position:top;display:block}
+@media(max-width:720px){.oferta .capa{margin:-28px -22px 20px}}
+.oferta .dir{padding:40px;background:var(--card);border-left:1px solid var(--linha)}
+@media(max-width:859px){.oferta .dir{border-left:0;border-top:1px solid var(--linha)}}
+.oferta h3{font-size:22px}
+.oferta ul{list-style:none;margin-top:20px}
+.oferta li{display:flex;gap:12px;padding:9px 0;font-size:15px;color:var(--txt2)}
+.oferta li svg{flex:none;margin-top:3px;color:var(--gelo)}
+.oferta .valor{font-size:64px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.oferta .valor small{display:block;font-size:14px;font-weight:400;letter-spacing:0;color:var(--txt3);margin-top:8px}
+.oferta .ancora{margin:20px 0 26px;font-size:14.5px;color:var(--txt2)}
+.oferta .btn{width:100%;justify-content:center}
+.passos{margin-top:26px;display:grid;gap:10px;font-size:13.5px;color:var(--txt3)}
+.passos div{display:flex;gap:10px;align-items:baseline}
+.passos b{flex:none;width:22px;height:22px;border-radius:50%;background:var(--card2);color:#fff;font-size:11px;display:grid;place-items:center}
+/* faq */
+.faq .w{max-width:820px}
+.faq details{border-bottom:1px solid var(--linha)}
+.faq details:first-of-type{border-top:1px solid var(--linha)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;font-size:17px;font-weight:700}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary svg{flex:none;color:var(--txt3);transition:transform .2s ease}
+.faq details[open] summary svg{transform:rotate(45deg)}
+.faq details p{padding:0 0 22px;color:var(--txt2);max-width:64ch}
+/* fim */
+.fim{padding-top:0}
+.fim .caixa{position:relative;overflow:hidden;border-radius:24px;background:linear-gradient(135deg,#1D1850,var(--bg2) 60%);border:1px solid var(--linha2);display:grid}
+@media(min-width:860px){.fim .caixa{grid-template-columns:.85fr 1.15fr}.fim .pessoa{order:-1}}
+.fim .txt{padding:64px 48px;position:relative;z-index:2}
+.fim h2{max-width:18ch}
+.fim p{margin:16px 0 30px;color:var(--txt2);max-width:44ch}
+.fim .pessoa{position:relative;min-height:320px}
+.fim .pessoa::before{content:"";position:absolute;left:50%;bottom:-30%;width:120%;height:120%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle,rgba(141,72,155,.45),transparent 62%)}
+.fim .pessoa img{position:absolute;left:50%;bottom:0;transform:translateX(-50%);height:100%;max-height:520px;width:auto;filter:drop-shadow(0 30px 40px rgba(0,0,0,.5))}
+@media(max-width:859px){.fim .txt{padding:44px 24px 28px}.fim .pessoa{min-height:280px}}
+.faq{padding-bottom:64px}
+footer{border-top:1px solid var(--linha);padding:40px 0 100px;font-size:13px;color:var(--txt3)}
+footer .w{display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px}
+footer img{height:24px;width:auto;filter:brightness(0) invert(1);margin-bottom:12px}
+footer a{color:var(--txt2)}
+/* barra fixa telemóvel */
+.fixa{position:fixed;left:0;right:0;bottom:0;z-index:30;background:rgba(15,12,46,.95);backdrop-filter:blur(12px);border-top:1px solid var(--linha);padding:10px 16px calc(10px + env(safe-area-inset-bottom));
+ display:flex;align-items:center;justify-content:space-between;gap:12px;transform:translateY(110%);transition:transform .25s ease}
+.fixa.on{transform:none}
+.fixa b{font-size:22px;font-weight:700}
+.fixa b small{font-size:11px;font-weight:400;color:var(--txt3);margin-left:6px}
+.fixa .btn{height:46px;padding:0 18px;font-size:14px}
+@media(min-width:900px){.fixa{display:none}}
+@media(max-width:720px){.btn:not(.nav .btn):not(.fixa .btn){width:100%;justify-content:center}.nav .btn{height:40px;padding:0 14px;font-size:13px}.heroi{padding:44px 0 56px}.oferta .esq,.oferta .dir{padding:28px 22px}.oferta .valor{font-size:52px}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+
+<nav class="nav"><div class="w"><a href="#topo" aria-label="Vloom"><img src="../assets/img/logo-vloom.svg" alt="Vloom" width="157" height="62"></a>
+ <div class="links"><a href="#aulas">As 16 aulas</a><a href="#resultados">Resultados</a><a href="#preco">Preço</a><a href="#faq">Perguntas</a></div>
+ <a class="btn  js-comprar" href="https://buy.stripe.com/7sY4gy8jZdiH12n39p87K02">Comprar · 97€<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div></nav>
+
+<header class="heroi" id="topo"><div class="glow" aria-hidden="true"></div><div class="w">
+ <div>
+  <p class="eyebrow">Curso online · Escolas de formação</p>
+  <h1>O sistema que enche as turmas de uma escola de formação.</h1>
+  <p class="lead">16 aulas com o método que a Vloom usa nas escolas que acompanha: 300 pedidos de informação e 12 novos alunos em 30 dias, do anúncio até à matrícula.</p>
+  <div class="preco"><b>97€</b><span>pagamento único · IVA incluído</span></div>
+  <div class="acoes" id="cta-topo"><a class="btn lg js-comprar" href="https://buy.stripe.com/7sY4gy8jZdiH12n39p87K02">Quero o Blueprint<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><a class="btn sec lg" href="#aulas">Ver as 16 aulas</a></div>
+  <p class="rgpd">Ao clicar aceita todos os termos da nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+  <div class="sinais"><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> 16 aulas · 2h07</span><span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> Acesso imediato por email</span><span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg> Pagamento seguro Stripe</span></div>
+ </div>
+ <div class="produto">
+  <div class="laptop"><div class="tampa"><img src="../assets/img/player-formacao-desktop.jpg" alt="O curso por dentro: leitor das aulas" width="1400" height="875" fetchpriority="high"></div><div class="base"></div></div>
+  <div class="faixa"><a href="#aulas" class="mini"><img src="../assets/thumbs/formacao-03.jpg" alt="" width="1200" height="675" loading="lazy"><div class="txt"><small>AULA 03</small><span>O primeiro telefonema</span></div></a><a href="#aulas" class="mini"><img src="../assets/thumbs/formacao-04.jpg" alt="" width="1200" height="675" loading="lazy"><div class="txt"><small>AULA 04</small><span>Lembretes contra faltas</span></div></a><a href="#aulas" class="mini"><img src="../assets/thumbs/formacao-12.jpg" alt="" width="1200" height="675" loading="lazy"><div class="txt"><small>AULA 12</small><span>Thank you pages</span></div></a><a href="#aulas" class="mini"><img src="../assets/thumbs/formacao-15.jpg" alt="" width="1200" height="675" loading="lazy"><div class="txt"><small>AULA 15</small><span>Painel de diagnóstico</span></div></a></div>
+ </div>
+</div></header>
+
+<section class="logos"><div class="w"><p>A Vloom trabalha com marcas como</p><div class="fila"><img src="../assets/img/logos-brancos/sheraton1.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/sktechers1.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/weleda1.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/cas1.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/allianz1.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/ca1.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/bdrfinan.png" alt="" loading="lazy" onerror="this.remove()"><img src="../assets/img/logos-brancos/seg1.png" alt="" loading="lazy" onerror="this.remove()"></div></div></section>
+
+<section class="sec"><div class="w">
+ <div class="cab"><p class="eyebrow">O que muda</p><h2>O anúncio traz o contacto. O sistema transforma-o em aluno.</h2>
+  <p class="lead">Quase todas as escolas perdem alunos depois do anúncio: no telefone, nas faltas e na medição. As três peças que o curso resolve primeiro:</p></div>
+ <div class="grid3"><article class="cartao"><img src="../assets/thumbs/formacao-03.jpg" alt="" loading="lazy" width="1200" height="675"><div class="corpo"><h3>Telefone</h3><p>O script do primeiro telefonema e o protocolo de 7 dias que chega a 80% dos interessados.</p><small>Aula 03 · O primeiro telefonema: script completo</small></div></article><article class="cartao"><img src="../assets/thumbs/formacao-04.jpg" alt="" loading="lazy" width="1200" height="675"><div class="corpo"><h3>Faltas</h3><p>Os lembretes que fazem o interessado aparecer à entrevista de admissão.</p><small>Aula 04 · No-shows: lembretes automáticos e manuais</small></div></article><article class="cartao"><img src="../assets/thumbs/formacao-15.jpg" alt="" loading="lazy" width="1200" height="675"><div class="corpo"><h3>Diagnóstico</h3><p>O painel de 4 métricas que mostra onde a escola está a perder alunos.</p><small>Aula 15 · Painel de diagnóstico: onde está a falhar</small></div></article></div>
+</div></section>
+
+<section class="funil sec"><div class="w">
+ <div class="cols">
+  <div>
+   <p class="eyebrow">As contas</p><h2>O que 1.000€ em anúncios devem dar a uma escola.</h2>
+   <p class="lead" style="margin-top:16px">O curso começa pela matemática: cada etapa tem uma percentagem de referência. Quando um número foge, sabe exatamente onde está o furo.</p>
+   <div class="resultado"><span class="eyebrow" style="margin:0 0 6px">Resultado de referência</span><b>6,5×<small>o investimento</small></b><p>13 alunos com 500€ de margem são 6.500€: cerca de 6,5 vezes o investimento.</p></div>
+   <p class="nota">Exemplo das aulas 2 e 6. São metas de referência e não uma garantia: dependem da sua oferta, da sua cidade e de quem atende o telefone.</p>
+  </div>
+  <div class="barras" role="img" aria-label="Funil de 1.000€ em anúncios"><div class="linha"><span class="rot">em anúncios por mês</span><div class="pista"><div class="barra" style="width:100%"><b>1.000€</b></div></div></div><div class="linha"><span class="rot">pedidos de informação</span><div class="pista"><div class="barra" style="width:66%"><b>333</b></div></div></div><div class="linha"><span class="rot">contactos atendidos</span><div class="pista"><div class="barra" style="width:46%"><b>266</b></div></div></div><div class="linha"><span class="rot">novos alunos</span><div class="pista"><div class="barra" style="width:30%"><b>13</b></div></div></div><div class="linha ultima"><span class="rot">o investimento</span><div class="pista"><div class="barra" style="width:18%"><b>6,5×</b></div></div></div></div>
+ </div>
+</div></section>
+
+<section class="aulas sec" id="aulas"><div class="w">
+ <div class="cab"><div><p class="eyebrow">O programa</p><h2>16 aulas. 2h07. Do anúncio à matrícula.</h2></div><p class="lead" style="max-width:36ch">Cada aula tem o objetivo e os pontos-chave escritos por baixo do vídeo, para rever sem voltar a ver tudo.</p></div>
+ <div class="grid4"><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-01.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">01</span><span class="dur">4 min</span></div><div class="txt"><small>Fundações</small><strong>Boas-vindas e critérios de qualificação</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-02.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">02</span><span class="dur">5 min</span></div><div class="txt"><small>Fundações</small><strong>Visão macro: os números</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-03.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">03</span><span class="dur">13 min</span></div><div class="txt"><small>Do lead à entrevista de admissão</small><strong>O primeiro telefonema: script completo</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-04.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">04</span><span class="dur">7 min</span></div><div class="txt"><small>Do lead à entrevista de admissão</small><strong>No-shows: lembretes automáticos e manuais</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-05.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">05</span><span class="dur">9 min</span></div><div class="txt"><small>Do lead à entrevista de admissão</small><strong>Protocolo de 7 dias para o lead que não atende</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-06.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">06</span><span class="dur">6 min</span></div><div class="txt"><small>Do lead à entrevista de admissão</small><strong>Quanto dinheiro estás a perder</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-07.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">07</span><span class="dur">7 min</span></div><div class="txt"><small>O plano de 90 dias</small><strong>Plano de execução de 90 dias</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-08.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">08</span><span class="dur">8 min</span></div><div class="txt"><small>O plano de 90 dias</small><strong>Fase A: a investigação (mensagem, oferta, isco)</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-09.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">09</span><span class="dur">10 min</span></div><div class="txt"><small>Anúncios e medição</small><strong>Anúncios: os 9 cuidados</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-10.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">10</span><span class="dur">6 min</span></div><div class="txt"><small>Anúncios e medição</small><strong>Medição: pixel da Meta e tags Google</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-11.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">11</span><span class="dur">9 min</span></div><div class="txt"><small>Páginas e emails</small><strong>Landing pages: os 10 cuidados</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-12.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">12</span><span class="dur">8 min</span></div><div class="txt"><small>Páginas e emails</small><strong>Thank you pages</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-13.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">13</span><span class="dur">9 min</span></div><div class="txt"><small>Páginas e emails</small><strong>Emails de recuperação: os 7 cuidados</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-14.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">14</span><span class="dur">7 min</span></div><div class="txt"><small>Equipa, diagnóstico e fecho</small><strong>Fase C: formação comercial e software</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-15.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">15</span><span class="dur">12 min</span></div><div class="txt"><small>Equipa, diagnóstico e fecho</small><strong>Painel de diagnóstico: onde está a falhar</strong></div></article><article class="aula"><div class="thumb"><img src="../assets/thumbs/formacao-16.jpg" alt="" loading="lazy" width="1200" height="675"><span class="num">16</span><span class="dur">8 min</span></div><div class="txt"><small>Equipa, diagnóstico e fecho</small><strong>Fecho do blueprint</strong></div></article></div>
+ <div class="cta"><a class="btn lg js-comprar" href="https://buy.stripe.com/7sY4gy8jZdiH12n39p87K02">Quero as 16 aulas<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><span class="rgpd" style="margin:0">Ao clicar aceita os termos da nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</span></div>
+</div></section>
+
+<section class="mentor sec"><div class="w">
+ <div class="cab"><p class="eyebrow">Quem ensina</p><h2>Tiago Severino, fundador da Vloom.</h2></div>
+ <div class="cols">
+  <div class="retrato"><img src="../assets/img/mentor-formacao.jpg" alt="Tiago Severino" loading="lazy" width="1200" height="1500"><div class="nome">Tiago Severino<small>Fundador da Vloom · Lisboa</small></div></div>
+  <div>
+   <figure class="cita"><blockquote>«Ou ligas rápido ou estás a aquecer leads para outras escolas venderem»</blockquote><figcaption>Aula 3 · O primeiro telefonema</figcaption></figure>
+   <p class="bio">Há mais de uma década a montar sistemas de aquisição de clientes. Este curso é o que a Vloom faz todos os dias com os seus clientes, explicado aula a aula para o poder montar com a sua equipa.</p>
+   <div class="factos"><div><b><i>+</i>10</b><span>anos a montar sistemas de aquisição</span></div><div><b><i>+</i>2M€</b><span>faturados para os clientes com estes sistemas</span></div><div><b>16</b><span>aulas gravadas pelo próprio, 2h07 de método</span></div></div>
+   <div class="cred"><p>Certificado por</p><div class="selos">
+    <img src="../assets/img/selos/meta.webp" alt="Meta Certified Media Buying Professional" loading="lazy" width="314" height="313">
+    <img src="../assets/img/selos/google-search.webp" alt="Google Ads Search Certified" loading="lazy" width="554" height="554">
+   </div></div>
+   <div class="cred"><p>Marcas que acompanhou</p><div class="marcas"><div class="tira"><img src="../assets/img/logos-brancos/sheraton1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/sktechers1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/weleda1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/cas1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/allianz1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/ca1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/bdrfinan.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/seg1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/hellmans.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/calve.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/nortecar.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/meusuper.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/euro1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/exs1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/mad1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/eco1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/smil1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/tedbx.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/try1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/sheraton1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/sktechers1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/weleda1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/cas1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/allianz1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/ca1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/bdrfinan.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/seg1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/hellmans.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/calve.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/nortecar.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/meusuper.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/euro1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/exs1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/mad1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/eco1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/smil1.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/tedbx.png" alt="" width="120" height="20" onerror="this.remove()"><img src="../assets/img/logos-brancos/try1.png" alt="" width="120" height="20" onerror="this.remove()"></div></div></div>
+  </div>
+ </div>
+</div></section>
+
+<section class="prova sec" id="resultados"><div class="w">
+ <div class="cab"><p class="eyebrow">Resultados</p><h2>O mesmo sistema, em clientes reais.</h2></div>
+ <div class="cols">
+ <button class="video" type="button" data-vimeo="817572943" aria-label="Ver o testemunho de João Matos"><img src="../assets/img/testemunho-817572943.jpg" alt="" loading="lazy" width="1280" height="720"><span class="play"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+  <span class="meta"><span>João Matos</span><span>Escola Formação Ativa · Guimarães</span></span></button>
+ <div><p class="eyebrow">No seu setor</p><div class="estrelas">★★★★★</div>
+  <blockquote>«Com o Vloom posso dizer que aumentei as vendas que tinha em pelo menos 200 a 300%!»</blockquote>
+  <p class="quem"><b>João Matos</b>Escola Formação Ativa · Guimarães</p>
+  <div class="nums"><div><b>+200 a 300%</b><span>nas vendas</span></div><div><b>+1.000</b><span>leads por mês</span></div></div>
+  <p class="aviso">Resultado do serviço feito pela Vloom com o mesmo sistema que o curso ensina. O curso é para quem o quer montar com a própria equipa.</p>
+ </div>
+ </div>
+</div></section>
+
+<section class="para sec"><div class="w">
+ <div class="cab"><p class="eyebrow">Antes de comprar</p><h2>Para quem é. E para quem não é.</h2><p class="lead">Preferimos dizer já quem não vai tirar partido do curso do que vender a quem não devia comprar.</p></div>
+ <div class="grid2">
+  <div class="lista sim"><div class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg> É para si se</div><ul><li><span class="ico"><img src="../assets/img/ico/06.png" alt="" loading="lazy" width="240" height="240"></span><span>Tem uma escola que já vende e quer turmas cheias com previsibilidade.</span></li><li><span class="ico"><img src="../assets/img/ico/03.png" alt="" loading="lazy" width="240" height="240"></span><span>Tem alguém a falar com os interessados, ou vai ter.</span></li><li><span class="ico"><img src="../assets/img/ico/14.png" alt="" loading="lazy" width="240" height="240"></span><span>Quer montar o sistema com a sua equipa, passo a passo.</span></li></ul></div>
+  <div class="lista nao"><div class="tag"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg> Não é para si se</div><ul><li><span class="ico"><img src="../assets/img/ico/09.png" alt="" loading="lazy" width="240" height="240"></span><span>Procura alunos sem investir em anúncios.</span></li><li><span class="ico"><img src="../assets/img/ico/04.png" alt="" loading="lazy" width="240" height="240"></span><span>Não tem capacidade para abrir mais turmas.</span></li><li><span class="ico"><img src="../assets/img/ico/15.png" alt="" loading="lazy" width="240" height="240"></span><span>Quer que seja outra pessoa a fazer tudo. Nesse caso, fale connosco.</span></li></ul></div>
+ </div>
+ <div class="perfil"><div class="n">500 mil €<small>faturação anual</small></div><div><b>Perfil ideal.</b> Desenhado para escolas que faturam a partir de 500 mil euros por ano e investem pelo menos 1.000€ por mês em anúncios. Numa escola mais pequena os números mudam, mas o método é o mesmo.</div></div>
+</div></section>
+
+<section class="preco-sec sec" id="preco"><div class="w">
+ <div class="cab" style="text-align:center;margin-left:auto;margin-right:auto"><p class="eyebrow">O preço</p><h2>Tudo o que leva por 97€.</h2></div>
+ <div class="oferta">
+  <div class="esq"><div class="capa"><img src="../assets/img/player-formacao-desktop.jpg" alt="O curso por dentro" loading="lazy" width="1400" height="875"></div><h3>Blueprint de Aquisição de Clientes<br><span style="color:var(--roxo)">Escolas de formação</span></h3>
+   <ul><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>16 aulas em vídeo, 2h07 no total</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Script do primeiro telefonema, frase a frase</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Protocolo de 7 dias com as mensagens prontas</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Lembretes antes da entrevista de admissão</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Os 9 cuidados dos anúncios e os 10 das páginas</span></li><li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Painel de diagnóstico com as 4 métricas</span></li></ul></div>
+  <div class="dir"><div class="valor">97€<small>Pagamento único · IVA incluído</small></div>
+   <p class="ancora">Um único aluno recuperado paga o curso.</p>
+   <a class="btn lg js-comprar" href="https://buy.stripe.com/7sY4gy8jZdiH12n39p87K02">Quero o Blueprint<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><p class="rgpd">Ao clicar aceita todos os termos da nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+   <div class="passos"><div><b>1</b>Paga no checkout seguro do Stripe.</div><div><b>2</b>Recebe o acesso e a palavra-passe no email, em 1 a 2 minutos.</div><div><b>3</b>Começa pela aula 1, ao seu ritmo.</div></div></div>
+ </div>
+</div></section>
+
+<section class="faq sec" id="faq"><div class="w">
+ <div class="cab"><p class="eyebrow">Perguntas frequentes</p><h2>O que nos costumam perguntar.</h2></div>
+ <details><summary>Quanto tempo preciso para ver o curso?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>São 16 aulas de 4 a 13 minutos, 2h07 no total. Vê ao seu ritmo e volta às aulas sempre que precisar.</p></details><details><summary>Tenho de investir em anúncios?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Sim. O curso ensina a investir bem, não a deixar de investir. O exemplo das aulas usa 1.000€ por mês, que não estão incluídos nos 97€.</p></details><details><summary>Preciso de conhecimentos técnicos?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Não. A aula 10 mostra passo a passo o que tem de estar instalado antes de anunciar. O resto é método: números, telefone, páginas e seguimento.</p></details><details><summary>Já fiz anúncios e não resultou. O que muda?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Na maior parte dos casos o furo está depois do anúncio: no telefone, nas faltas e no seguimento. Por isso 4 das 16 aulas são sobre o que acontece depois do pedido de informação.</p></details><details><summary>A minha equipa pode ver?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O acesso é pessoal, com o seu email. As aulas 3 a 6 foram feitas para ver com quem fala com os interessados.</p></details><details><summary>Isto é para me vender o serviço da Vloom?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>O curso vale por si. Na última aula explicamos o próximo passo para quem preferir que seja a Vloom a montar o sistema. Não é obrigatório.</p></details><details><summary>Como pago e como recebo o acesso?<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></summary><p>Com cartão, Apple Pay ou Google Pay, no checkout seguro do Stripe. O acesso chega por email em 1 a 2 minutos, com uma palavra-passe só sua.</p></details>
+</div></section>
+
+<section class="fim sec"><div class="w"><div class="caixa">
+ <div class="txt"><p class="eyebrow">Comece hoje</p>
+ <h2>Cada pedido de informação sem resposta é dinheiro que já pagou.</h2>
+ <p>Sem contagem decrescente nem vagas limitadas. O preço é este e o acesso chega ao email em 2 minutos.</p>
+ <a class="btn lg js-comprar" href="https://buy.stripe.com/7sY4gy8jZdiH12n39p87K02">Quero o Blueprint · 97€<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a><p class="rgpd">Ao clicar aceita todos os termos da nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p></div>
+ <div class="pessoa"><img src="../assets/img/tiago-mao-lado.png" alt="Tiago Severino" loading="lazy" width="1041" height="1472"></div>
+</div></div></section>
+
+<footer><div class="w"><div><img src="../assets/img/logo-vloom.svg" alt="Vloom" width="157" height="62">Vloom · Agência de Marketing &amp; Publicidade Digital, Lda<br>Palácio Sottomayor, Avenida Fontes Pereira de Melo, 16, Lisboa</div>
+ <div><a href="mailto:tiagoseverino@vloom.pt">tiagoseverino@vloom.pt</a><br><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></div></div></footer>
+
+<div class="fixa" id="fixa"><b>97€<small>IVA incluído</small></b><a class="btn  js-comprar" href="https://buy.stripe.com/7sY4gy8jZdiH12n39p87K02">Quero o Blueprint<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search),extra=[];
+  var em=q.get('email'); if(em&&/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em)) extra.push('prefilled_email='+encodeURIComponent(em));
+  var cid=q.get('cid'); if(cid&&/^[A-Za-z0-9_-]{1,200}$/.test(cid)) extra.push('client_reference_id='+cid);
+  document.querySelectorAll('.js-comprar').forEach(function(a){
+    if(extra.length) a.href=a.href+(a.href.indexOf('?')<0?'?':'&')+extra.join('&');
+    a.addEventListener('click',function(){try{(window.dataLayer=window.dataLayer||[]).push({event:'begin_checkout',curso:'formacao',value:97,currency:'EUR'});if(window.fbq)fbq('track','InitiateCheckout',{value:97,currency:'EUR'});}catch(e){}});
+  });
+  var fixa=document.getElementById('fixa'),topo=document.getElementById('cta-topo'),fim=document.querySelector('footer');
+  if(fixa&&topo&&'IntersectionObserver' in window){var vT=true,vF=false,p=function(){fixa.classList.toggle('on',!vT&&!vF);};
+    new IntersectionObserver(function(e){vT=e[0].isIntersecting;p();}).observe(topo);
+    new IntersectionObserver(function(e){vF=e[0].isIntersecting;p();}).observe(fim);}
+  document.querySelectorAll('[data-vimeo]').forEach(function(b){b.addEventListener('click',function(){
+    var f=document.createElement('iframe');f.src='https://player.vimeo.com/video/'+b.dataset.vimeo+'?autoplay=1&title=0&byline=0&portrait=0';
+    f.allow='autoplay; fullscreen; picture-in-picture';f.setAttribute('allowfullscreen','');f.title=b.getAttribute('aria-label')||'Testemunho';
+    b.replaceWith(f);});});
+})();</script>
+</body></html>
