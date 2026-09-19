@@ -38,13 +38,14 @@ module.exports = async function handler(req, res) {
     event_name: b.eventName || 'Lead',
     event_time: Math.floor(Date.now() / 1000),
     event_id: b.eventId,
-    action_source: 'website',
+    action_source: b.actionSource || 'website',
     event_source_url: b.sourceUrl,
     user_data,
     custom_data: {},
   };
   if (b.value != null) { event.custom_data.value = b.value; event.custom_data.currency = b.currency || 'EUR'; }
   if (b.contentName) event.custom_data.content_name = b.contentName;
+  if (Array.isArray(b.contentIds)) { event.custom_data.content_ids = b.contentIds; event.custom_data.content_type = 'product'; }
 
   try {
     const r = await fetch(`https://graph.facebook.com/v21.0/${PIXEL}/events?access_token=${TOKEN}`, {

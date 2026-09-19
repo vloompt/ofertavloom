@@ -56,7 +56,8 @@ small a{color:#fff}
   // igual ao que o webhook do Stripe manda pela Conversions API (deduplicação).
   var q=new URLSearchParams(location.search);
   var sid=q.get('session_id')||'';
-  var eid=sid||('bp-dentaria-'+Date.now()+'-'+Math.random().toString(36).slice(2,8));
+  if(!sid) return;
+  var eid=sid;
   var chave='vloom_purchase_'+(sid||'nosid');
   try{ if(sid&&localStorage.getItem(chave)) return; }catch(e){}
   var dados={content_name:'Blueprint Dentária',content_ids:['blueprint-dentaria'],content_type:'product',num_items:1,value:97,currency:'EUR'};

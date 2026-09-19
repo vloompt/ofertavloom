@@ -118,7 +118,7 @@ async function telegram(texto) {
   }).catch(() => {});
 }
 
-async function correr({ agora = Date.now(), simular = false, teste = false } = {}) {
+async function correr({ agora = Date.now(), simular = false, teste = false, apenas = null } = {}) {
   const tipo = Object.keys(JANELAS).find(k => agora >= JANELAS[k].de && agora < JANELAS[k].ate);
   if (!tipo) return { ok: true, fora: true };
   const token = process.env.GHL_PIT, locationId = process.env.GHL_LOCATION_VLOOM, zoom = process.env.ZOOM_LINK_WEBINAR2026;
@@ -139,9 +139,12 @@ async function correr({ agora = Date.now(), simular = false, teste = false } = {
   };
   // teste: mesmo caminho real (pesquisa, filtro, textos, envio GHL) sem marcadores nem Telegram. Só por chamada local.
   if (teste) {
+    if (typeof apenas !== 'string' || !apenas.includes('@')) return { ok: false, tipo, erro: 'teste exige apenas: <email de teste>' };
+    const tarefasTeste = tarefas.filter(x => x.c.email && x.c.email.toLowerCase() === apenas.toLowerCase());
+    if (tarefasTeste.length === 0) return { ok: false, tipo, erro: 'o contacto de teste não está inscrito' };
     if (!zoom) return { ok: false, tipo, erro: 'sem link do Zoom' };
     const res = [];
-    for (const x of tarefas) res.push({ canal: x.canal, email: x.c.email, status: await enviar(x) });
+    for (const x of tarefasTeste) res.push({ canal: x.canal, email: x.c.email, status: await enviar(x) });
     return { ok: true, tipo, teste: true, enviados: res };
   }
 
@@ -156,13 +159,25 @@ async function correr({ agora = Date.now(), simular = false, teste = false } = {
   }
   const trinco = marcas.find(m => m.caminho === `${PREFIXO}trinco-${tipo}.json`);
   if (trinco && agora - trinco.em < 4 * 60 * 1000) return { ok: true, tipo, ocupado: true };
-  await marcar(`${PREFIXO}trinco-${tipo}.json`, { tipo });
+  const rTrinco = await marcar(`${PREFIXO}trinco-${tipo}.json`, { tipo });
+  if (!rTrinco.ok) return { ok: false, tipo, erro: 'trinco' };
 
   const porFazer = tarefas.filter(x => !feitos.has(`${PREFIXO}${tipo}/${x.canal}/${x.c.id}.json`));
-  let enviados = 0, falhas = 0;
+  let enviados = 0, falhas = 0, erroMarcador = 0;
   for (const x of porFazer.slice(0, POR_CORRIDA)) {
     const st = await enviar(x);
-    if (st >= 200 && st < 300) { enviados++; await marcar(`${PREFIXO}${tipo}/${x.canal}/${x.c.id}.json`, { email: x.c.email }); }
+    if (st >= 200 && st < 300) {
+      enviados++;
+      const rMarca = await marcar(`${PREFIXO}${tipo}/${x.canal}/${x.c.id}.json`, { email: x.c.email });
+      if (!rMarca.ok) {
+        erroMarcador++;
+        if (!feitos.has(`${PREFIXO}alerta-marcador-${tipo}.json`)) {
+          await telegram('⚠️ <b>Webinar: parei os lembretes «' + tipo + '»</b>\nNão consegui registar um envio no Blob. Parei a volta para não repetir mensagens à mesma pessoa.');
+          await marcar(`${PREFIXO}alerta-marcador-${tipo}.json`, { tipo });
+        }
+        break;
+      }
+    }
     else falhas++;
   }
   const faltam = porFazer.length - enviados;
@@ -172,7 +187,7 @@ async function correr({ agora = Date.now(), simular = false, teste = false } = {
     await telegram(`✅ <b>Webinar: lembrete «${nomes[tipo]}» enviado</b>\n${nEmail} emails · ${nSms} SMS${falhas ? ` · ${falhas} falhas nesta volta` : ''}.`);
     await marcar(`${PREFIXO}resumo-${tipo}.json`, { nEmail, nSms });
   }
-  return { ok: true, tipo, inscritos: lista.length, enviados, falhas, faltam };
+  return { ok: true, tipo, inscritos: lista.length, enviados, falhas, faltam, erroMarcador };
 }
 
 module.exports = async function handler(req, res) {
