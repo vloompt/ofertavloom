@@ -10,6 +10,8 @@ const GHL = 'https://services.leadconnectorhq.com';
 const BLOB = 'https://blob.vercel-storage.com';
 const PREFIXO = 'lembretes-webinar2026/';
 const POR_CORRIDA = 40;
+const TETO_SMS = 150;
+const TETO_EMAIL = 600;
 const JANELAS = {
   vespera: { de: Date.parse('2026-10-06T17:00:00Z'), ate: Date.parse('2026-10-06T21:00:00Z'), email: true, sms: true },   // 6 out, 18h00
   hoje: { de: Date.parse('2026-10-07T11:00:00Z'), ate: Date.parse('2026-10-07T14:00:00Z'), email: true, sms: false },      // 7 out, 12h00
@@ -163,6 +165,15 @@ async function correr({ agora = Date.now(), simular = false, teste = false, apen
   if (!rTrinco.ok) return { ok: false, tipo, erro: 'trinco' };
 
   const porFazer = tarefas.filter(x => !feitos.has(`${PREFIXO}${tipo}/${x.canal}/${x.c.id}.json`));
+  const nSmsPorFazer = porFazer.filter(x => x.canal === 'sms').length;
+  const nEmailPorFazer = porFazer.filter(x => x.canal === 'email').length;
+  if (nSmsPorFazer > TETO_SMS || nEmailPorFazer > TETO_EMAIL) {
+    if (!feitos.has(`${PREFIXO}alerta-teto-${tipo}.json`)) {
+      await telegram(`⚠️ <b>Webinar: o lembrete «${tipo}» NÃO saiu</b>\n${nEmailPorFazer} emails e ${nSmsPorFazer} SMS por enviar nesta janela.\nparei: inscrições acima do normal, confirme antes.`);
+      await marcar(`${PREFIXO}alerta-teto-${tipo}.json`, { tipo, nEmailPorFazer, nSmsPorFazer });
+    }
+    return { ok: false, tipo, erro: 'teto excedido' };
+  }
   let enviados = 0, falhas = 0, erroMarcador = 0;
   for (const x of porFazer.slice(0, POR_CORRIDA)) {
     const st = await enviar(x);

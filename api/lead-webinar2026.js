@@ -3,6 +3,7 @@
 // nota com a resposta, e email de confirmação com o link do Zoom.
 // Sem oportunidade no pipeline: um webinar traz centenas de registos e não são candidaturas.
 // Env: GHL_PIT, GHL_LOCATION_VLOOM, ZOOM_LINK_WEBINAR2026, GHL_AVISO_WEBINAR2026
+const loja = require('./_blob.js');
 const GHL = 'https://services.leadconnectorhq.com';
 const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'localhost'];
 const AVISO_INTERNO = process.env.GHL_AVISO_WEBINAR2026 || 'marketing@vloom.pt';
@@ -10,6 +11,15 @@ const AVISO_INTERNO = process.env.GHL_AVISO_WEBINAR2026 || 'marketing@vloom.pt';
 const AVISO_CC = (process.env.GHL_AVISO_CC_WEBINAR2026 || 'tiagoseverino@vloom.pt').split(',').map(x => x.trim()).filter(Boolean);
 const QUANDO = 'quarta-feira, 7 de outubro, às 21h00 de Lisboa';
 const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
+
+async function telegram(texto) {
+  const t = process.env.TELEGRAM_BOT_TOKEN, chat = process.env.TELEGRAM_CHAT_ID;
+  if (!t || !chat) return;
+  await fetch(`https://api.telegram.org/bot${t}/sendMessage`, {
+    method: 'POST', headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: chat, text: texto, parse_mode: 'HTML', disable_web_page_preview: true }),
+  }).catch(() => {});
+}
 
 // Email ao lead, com a marca Vloom (mesma linha gráfica do email de 100 Clientes Ideais).
 const IMG = 'https://oferta.vloom.pt/email/';
@@ -98,8 +108,10 @@ module.exports = async function handler(req, res) {
       if (!lido?.contact?.phone) {
         const dup = await fetch(`${GHL}/contacts/search/duplicate?locationId=${locationId}&number=${encodeURIComponent('+351' + num)}`, { headers }).then(r => r.json()).catch(() => null);
         if (dup?.contact?.id && dup.contact.id !== contactId) {
-          alvo = dup.contact.id; via = 'contacto-existente';
-          await fetch(`${GHL}/contacts/${alvo}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Pediu lembrete do webinar de 7 de outubro por SMS. Registou-se com o email ${email}.` }) }).catch(() => {});
+          // o telemóvel já pertence a outro contacto: não ativar SMS nesse contacto alheio, só deixar nota nos dois
+          await fetch(`${GHL}/contacts/${dup.contact.id}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Pediu lembrete do webinar de 7 de outubro por SMS. Registou-se com o email ${email}.` }) }).catch(() => {});
+          await fetch(`${GHL}/contacts/${contactId}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: 'telemóvel pertence a outro contacto, SMS não ativado' }) }).catch(() => {});
+          return res.status(200).json({ ok: false, error: 'telemóvel já associado a outro contacto' });
         } else return res.status(200).json({ ok: false, error: 'telemóvel não gravado' });
       }
       await fetch(`${GHL}/contacts/${alvo}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sms'] }) }).catch(() => {});
@@ -116,9 +128,27 @@ module.exports = async function handler(req, res) {
     const contactId = data?.contact?.id || data?.id;
     if (!up.ok || !contactId) return res.status(200).json({ ok: false, ghl: data });
 
+    // Selo de emergência: mais de 30 registos numa hora é fora do normal (robô de spam). O contacto continua
+    // a ser criado, mas sem email ao lead nem aviso interno — só a tag, para o Tiago confirmar antes.
+    let suspeito = false;
+    if (loja.temStore()) {
+      const hora = new Date().toISOString().slice(0, 13).replace(/[-T:]/g, '');
+      await loja.escrever(`rl/webinar-${hora}/${contactId}-${Date.now()}.json`, { em: Date.now() }).catch(() => null);
+      const nestaHora = await loja.listar(`rl/webinar-${hora}/`, 200);
+      if (nestaHora.length > 30) {
+        suspeito = true;
+        const jaAvisado = await loja.listar(`rl/webinar-alerta-${hora}.json`, 1);
+        if (!jaAvisado.length) {
+          await loja.escrever(`rl/webinar-alerta-${hora}.json`, { hora, em: Date.now() }).catch(() => null);
+          await telegram(`⚠️ <b>Webinar: mais de 30 registos na última hora</b>\nA marcar como suspeito (sem email ao lead nem aviso interno). Confirme antes.`);
+        }
+      }
+    }
+
     const tags = ['webinar2026-registo'];
     const seg = segmento(resposta);
     if (seg) tags.push(seg);
+    if (suspeito) tags.push('webinar2026-suspeito');
     await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags }) }).catch(() => {});
 
     const nota = ['Registo no webinar de 7 de outubro de 2026.',
@@ -127,9 +157,9 @@ module.exports = async function handler(req, res) {
       b.page ? `Página: ${b.page}` : ''].filter(Boolean).join('\n');
     await fetch(`${GHL}/contacts/${contactId}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: nota }) }).catch(() => {});
 
-    // confirmação por email, na linha gráfica da Vloom
+    // confirmação por email, na linha gráfica da Vloom (suspeito: nem esta nem o aviso interno saem)
     let mail = null;
-    try {
+    if (!suspeito) try {
       const linhaZoom = zoom
         ? `<p style="margin:0 0 4px;font-size:14px;font-weight:700;color:#252158">O seu link para entrar:</p><p style="margin:0;font-size:16px"><a href="${zoom}" style="color:#8d489b">${zoom}</a></p>`
         : `<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3f5c">O link do Zoom segue neste email assim que a sala abrir. Fica também na página de confirmação.</p>`;
@@ -150,7 +180,7 @@ module.exports = async function handler(req, res) {
 
     // aviso interno por email
     let aviso = null;
-    try {
+    if (!suspeito) try {
       const upT = await fetch(`${GHL}/contacts/upsert`, {
         method: 'POST', headers, body: JSON.stringify({ locationId, email: AVISO_INTERNO, firstName: 'Vloom Marketing' }),
       }).then(r => r.json()).catch(() => null);
