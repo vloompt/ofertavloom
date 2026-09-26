@@ -52,7 +52,7 @@ h1 .l2{display:block;font-size:clamp(38px,4.6vw,66px);font-weight:800;letter-spa
 .sub{font-size:clamp(15px,1.32vw,19px);color:var(--texto2);line-height:1.6;max-width:640px;margin:22px auto 0}
 .sub b{color:var(--navy);font-weight:700;border-bottom:1.5px solid var(--azul)}
 
-/* figura + cartão: a figura cola ao rodapé; o cartão estica até lá também */
+/* figura cola ao rodapé; o cartão alinha ao topo e guarda folga até ao rodapé */
 .grid{display:grid;align-items:end;margin:0 auto;width:100%;max-width:1228px;flex:1 1 100%}
 @media(min-width:980px){.grid{grid-template-columns:44.6% 3.3% 42.3% 9.8%;gap:0;margin-top:70px}}
 .figura{display:none}
@@ -60,10 +60,10 @@ h1 .l2{display:block;font-size:clamp(38px,4.6vw,66px);font-weight:800;letter-spa
   .figura{display:block;align-self:end;line-height:0}
   .figura img{width:100%;height:auto;max-width:none;margin:0;filter:drop-shadow(-14px 18px 34px rgba(15,29,90,.28))}
 }
-.cartao{align-self:stretch;display:flex;background:rgba(15,29,90,.08);border:1px solid rgba(15,29,90,.12);
-  border-radius:20px 20px 0 0;padding:16px 16px 0;width:100%;margin:0}
+.cartao{align-self:start;display:flex;background:rgba(15,29,90,.08);border:1px solid rgba(15,29,90,.12);
+  border-radius:20px;padding:16px;width:100%;margin:0 0 40px}
 .cartao-in{flex:1;display:flex;flex-direction:column;background:linear-gradient(165deg,var(--navy2) 0%,var(--navy) 60%,#0b1747 100%);
-  border-radius:14px 14px 0 0;padding:30px 28px 30px;color:#fff;box-shadow:0 30px 60px rgba(15,29,90,.28)}
+  border-radius:14px;padding:30px 28px 30px;color:#fff;box-shadow:0 30px 60px rgba(15,29,90,.28)}
 .faixa{font-size:17px;font-weight:800;color:#fff;text-align:left;line-height:1.35;letter-spacing:-.01em;
   padding-bottom:18px;margin-bottom:18px;border-bottom:1px solid rgba(255,255,255,.18)}
 .faixa b{color:var(--azul-claro)}
@@ -112,12 +112,12 @@ input.campo{background-image:none;cursor:text;padding-right:13px}
 .voltar{background:none;border:0;font:inherit;font-size:13px;font-weight:700;color:#b9c4e6;cursor:pointer;margin-top:10px;display:block;width:100%;text-align:center}
 .voltar:hover{color:#fff}
 @media(max-width:979px){
-  .cartao{border-radius:20px;padding:12px;margin:34px 0 34px}
+  .cartao{border-radius:20px;padding:12px;margin:28px 0 56px}
   .cartao-in{border-radius:14px}
   .cabeca{padding-top:28px}
 }
 @media(min-width:980px){
-  .cartao{margin-bottom:46px;border-radius:20px}
+  .cartao{align-self:start;margin-bottom:56px;border-radius:20px}
   .cartao-in{border-radius:14px}
 }
 
