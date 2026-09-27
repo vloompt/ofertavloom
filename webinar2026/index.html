@@ -267,6 +267,10 @@ footer .aviso{font-size:12.5px;color:#9EA7CB;max-width:600px;margin-left:auto;ma
 .certs-foto .selos{display:flex;align-items:center;justify-content:center;gap:12px}
 @media(max-width:599px){.certs-foto .selos{flex-wrap:wrap}.certs-foto .selos span{flex-basis:100%;margin:0 0 2px;text-align:center}}
 .certs-foto .selos{flex-wrap:wrap}.certs-foto .selos span{flex-basis:100%;text-align:center;margin:0 0 4px}
+[hidden]{display:none!important}
+.ja-inscrito{max-width:520px;margin:18px 0 0;background:#F1F7F3;border:1px solid #CDE6D8;border-radius:12px;padding:12px 16px;font-size:15px;color:#1D7A47}
+.ja-inscrito a{color:#1D7A47;font-weight:700}
+.ja-inscrito button{background:none;border:0;font:inherit;color:#1D7A47;text-decoration:underline;cursor:pointer;padding:0}
 </style>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -292,7 +296,8 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     <p class="sobre">Webinar gratuito · quarta, 7 de outubro, 21h00</p>
     <h1 class="titulo">Como ter <em>clientes novos todos os meses</em> sem depender da sorte</h1>
     <p class="sub">Já pôs dinheiro em anúncios e não resultou? Aprenda a transformar atenção em leads, leads em reuniões e reuniões em clientes.</p>
-    <form class="form" id="registo" novalidate>
+    <p class="ja-inscrito" id="ja-inscrito" hidden>Já está inscrito. <a href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">Abrir a sala Zoom</a> · <button type="button" id="inscrever-outra">inscrever outro email</button></p>
+  <form class="form" id="registo" novalidate>
       <input id="nome" type="text" autocomplete="given-name" placeholder="O seu primeiro nome" aria-label="O seu primeiro nome" required>
       <input id="email" type="email" inputmode="email" autocomplete="email" placeholder="O seu email de trabalho" aria-label="O seu email de trabalho" required>
       <button class="cta mexe" type="submit" id="enviar">Quero o meu lugar</button>
@@ -393,6 +398,9 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     f.src='https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1'; f.allow='autoplay; fullscreen; picture-in-picture'; f.allowFullscreen=true; f.title='Caso de estudo';
     bt.replaceWith(f); try{fbq('trackCustom','VerCasoEstudo',{video:id});}catch(x){}
   });});
+  // quem já se inscreveu neste dispositivo vê o link, em vez de repetir o registo
+  try{ if(localStorage.getItem('webinar2026-inscrito')){ var ji=document.getElementById('ja-inscrito'); ji.hidden=false;
+    document.getElementById('inscrever-outra').addEventListener('click',function(){ji.hidden=true;localStorage.removeItem('webinar2026-inscrito');document.getElementById('nome').focus();}); } }catch(e){}
   document.getElementById('gravacao').addEventListener('click',function(){
     modo='gravacao'; enviar.textContent='Quero a gravação'; micro.textContent='Enviamos-lhe a gravação logo a seguir à sessão.'; document.getElementById('nome').focus();
   });
@@ -404,7 +412,7 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     enviar.disabled=true; enviar.textContent='A guardar...';
     try{var eid=window.vloomFb.id();
       // A conversão (SubmitApplication) dispara na página de obrigado; aqui só se guarda o que ela precisa.
-      sessionStorage.setItem('webinar2026',JSON.stringify({nome:nome,email:email,eid:eid}));}catch(e){}
+      sessionStorage.setItem('webinar2026',JSON.stringify({nome:nome,email:email,eid:eid}));localStorage.setItem('webinar2026-inscrito','1');}catch(e){}
     var segue=function(){location.href='obrigado/';};
     fetch('/api/lead-webinar2026/',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({nome:nome,email:email,resposta:modo==='gravacao'?'Quer a gravação':'Ao vivo',page:location.pathname,empresa_site:document.getElementById('empresa_site').value})})

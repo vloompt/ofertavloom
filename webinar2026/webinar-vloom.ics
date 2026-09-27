@@ -9,9 +9,9 @@ DTSTAMP:20260908T000000Z
 DTSTART:20261007T200000Z
 DTEND:20261007T223000Z
 SUMMARY:Webinar Vloom com Tiago Severino
-DESCRIPTION:Webinar gratuito ao vivo com Tiago Severino. Tenha a mao quatro numeros: valor de um cliente\, margem\, meta e taxa de fecho. O link do Zoom esta no email de confirmacao.
-LOCATION:Zoom
-URL:https://oferta.vloom.pt/webinar2026/obrigado/
+DESCRIPTION:Webinar gratuito ao vivo com Tiago Severino. Entre por aqui: https://oferta.vloom.pt/webinar2026/entrar/ . Tenha a mao quatro numeros: valor de um cliente\, margem\, meta e taxa de fecho. O link do Zoom esta no email de confirmacao.
+LOCATION:Zoom - https://oferta.vloom.pt/webinar2026/entrar/
+URL:https://oferta.vloom.pt/webinar2026/entrar/
 BEGIN:VALARM
 TRIGGER:-PT60M
 ACTION:DISPLAY

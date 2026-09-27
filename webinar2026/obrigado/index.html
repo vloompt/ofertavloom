@@ -72,6 +72,12 @@ footer a{color:#fff}
 .sms-msg.erro{color:#B3261E}
 .passo .nota{font-size:13.5px;color:var(--cinza);margin-top:12px}
 @media(max-width:599px){.sms .bt{width:100%}}
+.sala-link{max-width:520px;margin:26px auto 0;background:#F7F4FA;border:1px solid var(--linha);border-radius:16px;padding:20px 22px}
+.sala-link .rot{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#8d489b}
+.sala-link .bt{margin-top:12px}
+.sala-link .lig{margin-top:10px;font-size:14px;word-break:break-all}
+.sala-link .lig a{color:#8d489b}
+.sala-link .nota{margin-top:8px;font-size:13px;color:var(--cinza)}
 </style>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -88,7 +94,13 @@ fbq('init','441661273501928');fbq('track','PageView');
 <section class="topo"><div class="largo">
   <span class="estado"><i><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6.2 5 8.6 9.5 3.6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Lugar guardado</span>
   <h1 class="titulo" id="ola">Está inscrito. Faltam só 3 passos.</h1>
-  <p class="sub">Quarta-feira, 7 de outubro, às 21h00, ao vivo no Zoom. O link da sala vai para o seu email.</p>
+  <p class="sub">Quarta-feira, 7 de outubro, às 21h00, ao vivo no Zoom.</p>
+  <div class="sala-link">
+    <p class="rot">O seu link para entrar</p>
+    <a class="bt bt-roxo" href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">Abrir a sala Zoom</a>
+    <p class="lig"><a href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">oferta.vloom.pt/webinar2026/entrar</a></p>
+    <p class="nota">Guarde este link. Vai também no email de confirmação e nos lembretes.</p>
+  </div>
   <div class="progresso" aria-hidden="true"><span id="barra"></span></div>
   <p class="progresso-txt" id="progresso-txt">1 de 3 passos feitos</p>
 </div></section>
@@ -99,7 +111,7 @@ fbq('init','441661273501928');fbq('track','PageView');
     <h2>Guarde a data na agenda</h2>
     <p>Quarta-feira, 7 de outubro, às 21h00 de Lisboa. A sala abre às 20h50.</p>
     <div class="acoes">
-      <a class="bt bt-roxo mexe" data-passo="1" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Webinar+Vloom+com+Tiago+Severino&amp;dates=20261007T200000Z/20261007T223000Z&amp;details=Webinar+gratuito+ao+vivo+com+Tiago+Severino.+O+link+do+Zoom+est%C3%A1+no+email+de+confirma%C3%A7%C3%A3o.&amp;location=Zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Google Calendar</a>
+      <a class="bt bt-roxo mexe" data-passo="1" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Webinar+Vloom+com+Tiago+Severino&amp;dates=20261007T200000Z/20261007T223000Z&amp;details=Webinar+gratuito+ao+vivo+com+Tiago+Severino.+Entre+por+aqui%3A+https%3A%2F%2Foferta.vloom.pt%2Fwebinar2026%2Fentrar%2F&amp;location=Zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Google Calendar</a>
       <a class="bt bt-linha" data-passo="1" href="../webinar-vloom.ics">Apple ou Outlook</a>
     </div>
   </div>
@@ -135,6 +147,7 @@ fbq('init','441661273501928');fbq('track','PageView');
   // Conversão do registo: SubmitApplication, uma vez por inscrição (pixel + CAPI com o mesmo eventID).
   var d={}; try{d=JSON.parse(sessionStorage.getItem('webinar2026')||'{}');}catch(e){}
   if(d.nome){document.getElementById('ola').textContent=d.nome.split(' ')[0]+', está inscrito. Faltam só 3 passos.';}
+  try{if(d.email)localStorage.setItem('webinar2026-inscrito','1');}catch(e){}
   if(d.eid && !d.convertido){
     try{fbq('track','SubmitApplication',{content_name:'Webinar 7 outubro 2026'},{eventID:d.eid});}catch(e){}
     try{
