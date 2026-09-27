@@ -145,13 +145,17 @@ module.exports = async function handler(req, res) {
       }
     }
 
+    // já inscrito? é repetição: a confirmação volta a sair (pode não ter chegado à primeira), o aviso interno não
+    const jaTinha = await fetch(`${GHL}/contacts/${contactId}`, { headers }).then(r => r.json()).catch(() => null);
+    const repetido = (jaTinha?.contact?.tags || []).includes('webinar2026-registo');
+
     const tags = ['webinar2026-registo'];
     const seg = segmento(resposta);
     if (seg) tags.push(seg);
     if (suspeito) tags.push('webinar2026-suspeito');
     await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags }) }).catch(() => {});
 
-    const nota = ['Registo no webinar de 7 de outubro de 2026.',
+    const nota = [repetido ? 'Registo REPETIDO no webinar de 7 de outubro de 2026 (já estava inscrito; aviso interno não repetido).' : 'Registo no webinar de 7 de outubro de 2026.',
       resposta ? `Onde diz que a aquisição falha: ${resposta}` : '',
       phone ? 'Deixou telemóvel para o lembrete por SMS.' : 'Sem telemóvel.',
       b.page ? `Página: ${b.page}` : ''].filter(Boolean).join('\n');
@@ -178,9 +182,9 @@ module.exports = async function handler(req, res) {
       }
     } catch (_) {}
 
-    // aviso interno por email
-    let aviso = null;
-    if (!suspeito) try {
+    // aviso interno por email: só no primeiro registo de cada pessoa
+    let aviso = repetido ? { saltado: 'registo repetido' } : null;
+    if (!suspeito && !repetido) try {
       const upT = await fetch(`${GHL}/contacts/upsert`, {
         method: 'POST', headers, body: JSON.stringify({ locationId, email: AVISO_INTERNO, firstName: 'Vloom Marketing' }),
       }).then(r => r.json()).catch(() => null);
@@ -198,7 +202,7 @@ ${mail && mail.erro ? `<p style="color:#B3261E"><b>⚠️ Não recebeu o email d
       }
     } catch (_) {}
 
-    return res.status(200).json({ ok: true, contactId, mail, aviso });
+    return res.status(200).json({ ok: true, contactId, repetido, mail, aviso });
   } catch (e) {
     return res.status(200).json({ ok: false, error: String(e) });
   }
