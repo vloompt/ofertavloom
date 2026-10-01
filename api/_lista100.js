@@ -2,6 +2,7 @@
 // abertos (OpenStreetMap e Wikidata) e sai uma lista de até 100 empresas reais, com site e telefone
 // quando existem. Os dados abertos não trazem número de trabalhadores nem o nome de quem decide.
 const { empresasWikidata } = require('./_fontes.js');
+const { enviarTelegram } = require('./_telegram.js');
 const OVERPASS = 'https://overpass-api.de/api/interpreter';
 const UA = 'VloomRelatorios/1.0 (marketing@vloom.pt)';
 const limpaSite = s => { const u = String(s || '').trim(); return /^https?:\/\/\S+$/i.test(u) ? u.split('?')[0].slice(0, 160) : ''; };
@@ -162,8 +163,7 @@ async function alertar({ titulo, linhas = [] }) {
   const bot = process.env.TELEGRAM_BOT_TOKEN, chat = process.env.TELEGRAM_CHAT_ID;
   if (bot && chat) {
     const txt = `🚨 <b>100 Clientes Ideais</b>\n<b>${esc(titulo)}</b>\n\n` + linhas.map(l => esc(l)).join('\n');
-    const r = await fetch(`https://api.telegram.org/bot${bot}/sendMessage`, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ chat_id: chat, text: txt, parse_mode: 'HTML', disable_web_page_preview: true }) }).catch(() => null);
+    const r = await enviarTelegram(txt); // com o banner da Vloom por cima (api/_telegram.js)
     out.telegram = r ? r.status : 'erro';
   }
   const token = process.env.GHL_PIT, locationId = process.env.GHL_LOCATION_VLOOM;

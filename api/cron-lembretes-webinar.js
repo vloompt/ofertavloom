@@ -6,6 +6,7 @@
 // por isso um contacto nunca recebe o mesmo lembrete duas vezes.
 // Env: GHL_PIT, GHL_LOCATION_VLOOM, ZOOM_LINK_WEBINAR2026, BLOB_READ_WRITE_TOKEN, CRON_SECRET,
 //      TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID
+const { enviarTelegram } = require('./_telegram.js');
 const GHL = 'https://services.leadconnectorhq.com';
 const BLOB = 'https://blob.vercel-storage.com';
 const PREFIXO = 'lembretes-webinar2026/';
@@ -112,12 +113,7 @@ async function inscritos(headers, locationId) {
 }
 
 async function telegram(texto) {
-  const t = process.env.TELEGRAM_BOT_TOKEN, chat = process.env.TELEGRAM_CHAT_ID;
-  if (!t || !chat) return;
-  await fetch(`https://api.telegram.org/bot${t}/sendMessage`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: chat, text: texto, parse_mode: 'HTML', disable_web_page_preview: true }),
-  }).catch(() => {});
+  await enviarTelegram(texto); // com o banner da Vloom por cima (api/_telegram.js)
 }
 
 async function correr({ agora = Date.now(), simular = false, teste = false, apenas = null } = {}) {

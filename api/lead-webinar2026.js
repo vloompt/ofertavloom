@@ -4,6 +4,7 @@
 // Sem oportunidade no pipeline: um webinar traz centenas de registos e não são candidaturas.
 // Env: GHL_PIT, GHL_LOCATION_VLOOM, ZOOM_LINK_WEBINAR2026, GHL_AVISO_WEBINAR2026
 const loja = require('./_blob.js');
+const { enviarTelegram } = require('./_telegram.js');
 const GHL = 'https://services.leadconnectorhq.com';
 const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'localhost'];
 const AVISO_INTERNO = process.env.GHL_AVISO_WEBINAR2026 || 'marketing@vloom.pt';
@@ -13,12 +14,7 @@ const QUANDO = 'quarta-feira, 7 de outubro, às 21h00 de Lisboa';
 const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
 async function telegram(texto) {
-  const t = process.env.TELEGRAM_BOT_TOKEN, chat = process.env.TELEGRAM_CHAT_ID;
-  if (!t || !chat) return;
-  await fetch(`https://api.telegram.org/bot${t}/sendMessage`, {
-    method: 'POST', headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ chat_id: chat, text: texto, parse_mode: 'HTML', disable_web_page_preview: true }),
-  }).catch(() => {});
+  await enviarTelegram(texto); // com o banner da Vloom por cima (api/_telegram.js)
 }
 
 // Email ao lead, com a marca Vloom (mesma linha gráfica do email de 100 Clientes Ideais).
