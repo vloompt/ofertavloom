@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Gravação do webinar · Vloom</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&display=swap">
+<!-- Gravação do webinar de 7 de outubro de 2026. Vai no email do pós-webinar.
+     O vídeo vive no Vercel Blob; aqui está cortado ao início e sem a faixa dos participantes. -->
+<style>
+:root{--escuro:#1A2D66;--acento:#8D489B;--acento2:#76398A;--texto:#4B5163;--cinza:#6B6F80;--linha:#ECE8F1}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;color:var(--texto);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+.largo{max-width:960px;margin:0 auto;padding:0 20px}
+.estreito{max-width:680px;margin:0 auto;padding:0 20px}
+.titulo{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;color:var(--escuro);line-height:1.08;text-wrap:balance}
+.barra{border-bottom:1px solid var(--linha)}
+.barra .largo{display:flex;justify-content:center;align-items:center;min-height:58px}
+.barra img{height:24px;width:auto}
+.topo{padding:40px 0 22px;text-align:center}
+.sobre{font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;font-weight:700;color:var(--acento)}
+.topo h1{font-size:clamp(30px,5vw,46px);margin-top:12px}
+.topo p{margin:14px auto 0;max-width:620px;color:var(--cinza)}
+.video{background:#0d0e22;border-radius:16px;overflow:hidden;box-shadow:0 18px 50px rgba(26,45,102,.18)}
+.video video{display:block;width:100%;height:auto;aspect-ratio:2056/1080;background:#0d0e22}
+.nota{margin-top:12px;text-align:center;font-size:14px;color:var(--cinza)}
+.passo{margin:44px auto 0;background:#F7F4FA;border:1px solid var(--linha);border-radius:18px;padding:30px 28px;text-align:center}
+.passo h2{font-size:clamp(24px,3.6vw,32px)}
+.passo p{margin:12px auto 0;max-width:540px}
+.bt{display:inline-flex;align-items:center;justify-content:center;height:54px;padding:0 30px;border-radius:999px;font-weight:700;font-size:16.5px;text-decoration:none;font-family:inherit;background:var(--acento);color:#fff;margin-top:22px}
+.bt:hover{background:var(--acento2)}
+.pequeno{margin-top:12px;font-size:13.5px;color:var(--cinza)}
+footer{margin-top:56px;border-top:1px solid var(--linha);padding:22px 0 34px;text-align:center;font-size:13px;color:var(--cinza)}
+footer a{color:inherit}
+</style>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+</script>
+</head>
+<body>
+
+<header class="barra"><div class="largo"><img src="../img/logo.svg" alt="Vloom"></div></header>
+
+<section class="topo"><div class="estreito">
+  <p class="sobre">Gravação · webinar de 7 de outubro</p>
+  <h1 class="titulo">Como ter clientes novos todos os meses sem depender da sorte</h1>
+  <p>A sessão completa, com Tiago Severino. Pode parar, voltar atrás e rever as contas com os seus números.</p>
+</div></section>
+
+<section><div class="largo">
+  <div class="video">
+    <video controls preload="metadata" playsinline poster="capa.jpg">
+      <source src="https://2j2b4knzsaobmtlm.public.blob.vercel-storage.com/webinar2026/webinar-vloom-7out2026.mp4" type="video/mp4">
+    </video>
+  </div>
+  <p class="nota">2 horas e 13 minutos · tenha uma folha à mão para os números</p>
+
+  <div class="passo estreito">
+    <h2 class="titulo">Quer aplicar isto na sua empresa?</h2>
+    <p>O passo seguinte é uma reunião de diagnóstico. Olhamos para os seus números, encontramos o elo mais fraco e dizemos-lhe com franqueza se faz sentido trabalharmos juntos.</p>
+    <a class="bt" id="marcar" href="https://marketing.vloom.pt/marcar-reuniao-webinar/">Marcar reunião de diagnóstico</a>
+    <p class="pequeno">Sem obrigação de contratar.</p>
+  </div>
+</div></section>
+
+<footer><div class="largo">Vloom · <a href="https://vloom.pt/politica-de-privacidade/">Política de Privacidade</a></div></footer>
+
+<script>
+document.getElementById('marcar').addEventListener('click',function(){try{fbq('trackCustom','WebinarGravacaoMarcar');}catch(e){}});
+var v=document.querySelector('video'),visto=false;
+v.addEventListener('play',function(){if(visto)return;visto=true;try{fbq('trackCustom','WebinarGravacaoPlay');}catch(e){}});
+</script>
+</body>
+</html>
