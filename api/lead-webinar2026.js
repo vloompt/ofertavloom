@@ -1,67 +1,32 @@
-// Registo no webinar de 7 de outubro de 2026.
-// Contacto no GHL com tag do webinar e tag do segmento (a resposta do passo 1),
-// nota com a resposta, e email de confirmação com o link do Zoom.
+// Registo no webinar (edição em curso: api/_webinar.js).
+// Contacto no GHL com a etiqueta da edição e a do segmento (a resposta do passo 1), e nota com a resposta.
+// O email de confirmação já não é escrito aqui: a etiqueta «webinar-inscrito» dispara o workflow
+// «🎥 Webinar · Inscrição confirmada» do GHL, que é onde o texto vive.
 // Sem oportunidade no pipeline: um webinar traz centenas de registos e não são candidaturas.
-// Env: GHL_PIT, GHL_LOCATION_VLOOM, ZOOM_LINK_WEBINAR2026, GHL_AVISO_WEBINAR2026
+// Env: GHL_PIT, GHL_LOCATION_VLOOM, GHL_AVISO_WEBINAR2026
 const loja = require('./_blob.js');
 const { enviarTelegram } = require('./_telegram.js');
+const { EDICAO, ETIQUETAS, disparar } = require('./_webinar.js');
 const GHL = 'https://services.leadconnectorhq.com';
 const ORIGENS_OK = ['oferta.vloom.pt', 'vloom.pt', 'vercel.app', 'surge.sh', 'localhost'];
 const AVISO_INTERNO = process.env.GHL_AVISO_WEBINAR2026 || 'marketing@vloom.pt';
 // cópia para o Tiago (o contacto dele tem «não incomodar» no email, por isso vai em cópia, como no funil 100 Clientes Ideais)
 const AVISO_CC = (process.env.GHL_AVISO_CC_WEBINAR2026 || 'tiagoseverino@vloom.pt').split(',').map(x => x.trim()).filter(Boolean);
-const QUANDO = 'quarta-feira, 7 de outubro, às 21h00 de Lisboa';
 const esc = s => String(s || '').replace(/[<>&]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c]));
 
 async function telegram(texto) {
   await enviarTelegram(texto); // com o banner da Vloom por cima (api/_telegram.js)
 }
 
-// Email ao lead, com a marca Vloom (mesma linha gráfica do email de 100 Clientes Ideais).
-const IMG = 'https://oferta.vloom.pt/email/';
-function emailLeadHtml({ primeiro, linhaZoom }) {
-  return `<!doctype html><html><body style="margin:0;padding:0;background:#f4f3f9">
-<table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f4f3f9;padding:28px 12px"><tr><td align="center">
-<table role="presentation" width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#ffffff;border-radius:14px;overflow:hidden;font-family:Helvetica,Arial,sans-serif;color:#252158">
-  <tr><td style="background:#252158;background-image:linear-gradient(135deg,#252158 0%,#3b4a9c 60%,#8d489b 100%);padding:30px 40px 34px">
-    <img src="${IMG}vloom-logo-branco.png" width="120" alt="Vloom" style="display:block;border:0;width:120px;height:auto">
-    <p style="margin:26px 0 0;color:#77cef4;font-size:12px;letter-spacing:.2em;text-transform:uppercase;font-weight:700">Webinar · 7 de outubro</p>
-    <h1 style="margin:10px 0 0;color:#ffffff;font-size:25px;line-height:1.3;font-weight:800">O seu lugar está guardado${primeiro ? ', ' + primeiro : ''}.</h1>
-  </td></tr>
-  <tr><td style="padding:34px 40px 6px">
-    <p style="margin:0;font-size:16px;line-height:1.6;color:#3d3f5c">O webinar é <b style="color:#252158">${QUANDO}</b>. As portas abrem às 20h50 e começamos em ponto.</p>
-  </td></tr>
-  <tr><td style="padding:20px 40px 4px">${linhaZoom}</td></tr>
-  <tr><td style="padding:20px 40px 4px">
-    <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="background:#f7f7fb;border-radius:10px;overflow:hidden"><tr><td style="padding:20px 24px">
-      <p style="margin:0 0 12px;font-size:13px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:#8d489b">Antes de quarta</p>
-      <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#3d3f5c">1. Marque na agenda — 7 de outubro, 21h00.</p>
-      <p style="margin:0 0 8px;font-size:15px;line-height:1.6;color:#3d3f5c">2. Tenha à mão quatro números: valor de um cliente, margem, meta e taxa de fecho. A meio vai usá-los para fazer a sua conta.</p>
-      <p style="margin:0;font-size:15px;line-height:1.6;color:#3d3f5c">3. Reserve as duas horas. A sessão tem exercícios e não se acompanha em diagonal.</p>
-    </td></tr></table>
-  </td></tr>
-  <tr><td style="padding:20px 40px 8px">
-    <p style="margin:0;font-size:16px;line-height:1.65;color:#3d3f5c">Enviamos um lembrete na véspera — e outro uma hora antes de começar.</p>
-  </td></tr>
-  <tr><td style="padding:22px 40px 8px">
-    <p style="margin:0 0 14px;font-size:16px;color:#3d3f5c">Até quarta,</p>
-    <img src="${IMG}assinatura-tiago.png" width="480" alt="Tiago Severino, Head of Marketing, Vloom" style="display:block;border:0;width:100%;max-width:480px;height:auto">
-  </td></tr>
-  <tr><td style="padding:22px 40px 30px">
-    <p style="margin:0;border-top:1px solid #ecebf4;padding-top:16px;font-size:11px;line-height:1.5;color:#8b8fa8"><a href="https://vloom.pt/politica-de-privacidade/" style="color:#8b8fa8">Política de Privacidade</a></p>
-  </td></tr>
-</table></td></tr></table></body></html>`;
-}
-
 // segmento a partir da resposta do micro-compromisso
 function segmento(r) {
   const t = String(r || '').toLowerCase();
-  if (t.includes('quantas leads')) return 'webinar2026-falha-numeros';
-  if (t.includes('não viram reuniões')) return 'webinar2026-falha-conversao';
-  if (t.includes('não fecho')) return 'webinar2026-falha-comercial';
-  if (t.includes('volume')) return 'webinar2026-falha-volume';
-  if (t.includes('gravação')) return 'webinar2026-quer-gravacao';
-  if (t.includes('ao vivo')) return 'webinar2026-ao-vivo';
+  if (t.includes('quantas leads')) return 'webinar-falha-numeros';
+  if (t.includes('não viram reuniões')) return 'webinar-falha-conversao';
+  if (t.includes('não fecho')) return 'webinar-falha-comercial';
+  if (t.includes('volume')) return 'webinar-falha-volume';
+  if (t.includes('gravação')) return ETIQUETAS.querGravacao;
+  if (t.includes('ao vivo')) return `webinar-${EDICAO.id}-quer-ao-vivo`;
   return '';
 }
 
@@ -86,7 +51,6 @@ module.exports = async function handler(req, res) {
   if (!email) return res.status(400).json({ ok: false, error: 'sem email' });
 
   const headers = { Authorization: `Bearer ${token}`, Version: '2021-07-28', 'Content-Type': 'application/json' };
-  const zoom = process.env.ZOOM_LINK_WEBINAR2026 || '';
 
   // passo 2 da página de obrigado: só grava o telemóvel para os lembretes por SMS (sem emails)
   if (b.acao === 'telefone') {
@@ -105,18 +69,18 @@ module.exports = async function handler(req, res) {
         const dup = await fetch(`${GHL}/contacts/search/duplicate?locationId=${locationId}&number=${encodeURIComponent('+351' + num)}`, { headers }).then(r => r.json()).catch(() => null);
         if (dup?.contact?.id && dup.contact.id !== contactId) {
           // o telemóvel já pertence a outro contacto: não ativar SMS nesse contacto alheio, só deixar nota nos dois
-          await fetch(`${GHL}/contacts/${dup.contact.id}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Pediu lembrete do webinar de 7 de outubro por SMS. Registou-se com o email ${email}.` }) }).catch(() => {});
+          await fetch(`${GHL}/contacts/${dup.contact.id}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Pediu lembrete do webinar de ${EDICAO.curta} por SMS. Registou-se com o email ${email}.` }) }).catch(() => {});
           await fetch(`${GHL}/contacts/${contactId}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: 'telemóvel pertence a outro contacto, SMS não ativado' }) }).catch(() => {});
           return res.status(200).json({ ok: false, error: 'telemóvel já associado a outro contacto' });
         } else return res.status(200).json({ ok: false, error: 'telemóvel não gravado' });
       }
-      await fetch(`${GHL}/contacts/${alvo}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sms'] }) }).catch(() => {});
+      await fetch(`${GHL}/contacts/${alvo}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: [ETIQUETAS.sms] }) }).catch(() => {});
       return res.status(200).json({ ok: true, contactId: alvo, via });
     } catch (e) { return res.status(200).json({ ok: false, error: String(e) }); }
   }
 
   try {
-    const corpo = { locationId, email, source: 'Webinar 7 outubro 2026' };
+    const corpo = { locationId, email, source: `Webinar ${EDICAO.curta} ${EDICAO.id.slice(0, 4)}` };
     if (nome) corpo.firstName = nome;
     if (phone) corpo.phone = phone;
     const up = await fetch(`${GHL}/contacts/upsert`, { method: 'POST', headers, body: JSON.stringify(corpo) });
@@ -143,39 +107,27 @@ module.exports = async function handler(req, res) {
 
     // já inscrito? é repetição: a confirmação volta a sair (pode não ter chegado à primeira), o aviso interno não
     const jaTinha = await fetch(`${GHL}/contacts/${contactId}`, { headers }).then(r => r.json()).catch(() => null);
-    const repetido = (jaTinha?.contact?.tags || []).includes('webinar2026-registo');
+    const repetido = (jaTinha?.contact?.tags || []).includes(ETIQUETAS.registo);
 
-    const tags = ['webinar2026-registo'];
+    const tags = [ETIQUETAS.registo];
     const seg = segmento(resposta);
     if (seg) tags.push(seg);
-    if (suspeito) tags.push('webinar2026-suspeito');
+    if (suspeito) tags.push(ETIQUETAS.suspeito);
     await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags }) }).catch(() => {});
 
-    const nota = [repetido ? 'Registo REPETIDO no webinar de 7 de outubro de 2026 (já estava inscrito; aviso interno não repetido).' : 'Registo no webinar de 7 de outubro de 2026.',
+    const nota = [repetido ? `Registo REPETIDO no webinar de ${EDICAO.curta} (já estava inscrito; aviso interno não repetido).` : `Registo no webinar de ${EDICAO.curta}.`,
       resposta ? `Onde diz que a aquisição falha: ${resposta}` : '',
       phone ? 'Deixou telemóvel para o lembrete por SMS.' : 'Sem telemóvel.',
       b.page ? `Página: ${b.page}` : ''].filter(Boolean).join('\n');
     await fetch(`${GHL}/contacts/${contactId}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: nota }) }).catch(() => {});
 
-    // confirmação por email, na linha gráfica da Vloom (suspeito: nem esta nem o aviso interno saem)
+    // confirmação: a etiqueta dispara o workflow «🎥 Webinar · Inscrição confirmada» do GHL (suspeito: nem esta nem o aviso interno).
+    // Em registo repetido volta a sair, porque pode não ter chegado à primeira.
     let mail = null;
     if (!suspeito) try {
-      const linhaZoom = zoom
-        ? `<p style="margin:0 0 4px;font-size:14px;font-weight:700;color:#252158">O seu link para entrar:</p><p style="margin:0;font-size:16px"><a href="${zoom}" style="color:#8d489b">${zoom}</a></p>`
-        : `<p style="margin:0;font-size:16px;line-height:1.6;color:#3d3f5c">O link do Zoom segue neste email assim que a sala abrir. Fica também na página de confirmação.</p>`;
-      const html = emailLeadHtml({ primeiro: esc(nome), linhaZoom });
-      const r = await fetch(`${GHL}/conversations/messages`, {
-        method: 'POST', headers,
-        body: JSON.stringify({ type: 'Email', contactId, subject: 'Lugar guardado: quarta, 7 de outubro às 21h00', html })
-      });
-      mail = { status: r.status, comLink: !!zoom };
-      if (!r.ok) {
-        const erro = await r.json().catch(() => ({}));
-        mail.erro = erro.canonicalCode || erro.message || String(r.status);
-        // p.ex. CONVERSATIONS_MSG_UNSUBSCRIBED_EMAIL: a pessoa cancelou os emails da Vloom e o GHL não deixa enviar
-        await fetch(`${GHL}/contacts/${contactId}/tags`, { method: 'POST', headers, body: JSON.stringify({ tags: ['webinar2026-sem-email'] }) }).catch(() => {});
-        await fetch(`${GHL}/contacts/${contactId}/notes`, { method: 'POST', headers, body: JSON.stringify({ body: `Webinar: o email de confirmação NÃO saiu (${erro.message || mail.erro}). Não vai receber os lembretes por email.` }) }).catch(() => {});
-      }
+      const st = await disparar(GHL, headers, contactId, ETIQUETAS.inscrito);
+      mail = { status: st, via: 'ghl-workflow' };
+      if (!(st >= 200 && st < 300)) mail.erro = 'etiqueta não entrou (' + st + ')';
     } catch (_) {}
 
     // aviso interno por email: só no primeiro registo de cada pessoa
@@ -186,13 +138,13 @@ module.exports = async function handler(req, res) {
       }).then(r => r.json()).catch(() => null);
       const tId = upT?.contact?.id || upT?.id;
       if (tId) {
-        const html = `<p><b>Registo novo — Webinar 7 de outubro</b></p>
+        const html = `<p><b>Registo novo · Webinar ${EDICAO.curta}</b></p>
 <p>Nome: ${esc(nome) || '—'}<br>Email: ${esc(email) || '—'}<br>Telefone: ${esc(phone) || '—'}</p>
 ${resposta ? `<p>Onde diz que a aquisição falha: ${esc(resposta)}</p>` : ''}
-${mail && mail.erro ? `<p style="color:#B3261E"><b>⚠️ Não recebeu o email de confirmação nem vai receber os lembretes por email:</b> ${esc(mail.erro === 'CONVERSATIONS_MSG_UNSUBSCRIBED_EMAIL' ? 'este email cancelou a subscrição dos emails da Vloom' : mail.erro)}.</p>` : ''}`;
+${mail && mail.erro ? `<p style="color:#B3261E"><b>⚠️ A confirmação pode não ter saído:</b> ${esc(mail.erro)}.</p>` : ''}`;
         const envio = await fetch(`${GHL}/conversations/messages`, {
           method: 'POST', headers,
-          body: JSON.stringify({ type: 'Email', contactId: tId, emailCc: AVISO_CC, subject: `Registo webinar — ${nome || email}`, html }),
+          body: JSON.stringify({ type: 'Email', contactId: tId, emailCc: AVISO_CC, subject: `Registo webinar: ${nome || email}`, html }),
         });
         aviso = { para: AVISO_INTERNO, cc: AVISO_CC, status: envio.status };
       }

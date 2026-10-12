@@ -6,7 +6,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Lugar guardado · Webinar Vloom, 7 de outubro às 21h00</title>
+<title>Lugar guardado · Webinar Vloom, 11 de novembro às 21h00</title>
 <meta name="robots" content="noindex">
 <meta name="theme-color" content="#ffffff">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,7 +94,7 @@ fbq('init','441661273501928');fbq('track','PageView');
 <section class="topo"><div class="largo">
   <span class="estado"><i><svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2.5 6.2 5 8.6 9.5 3.6" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></i>Lugar guardado</span>
   <h1 class="titulo" id="ola">Está inscrito. Faltam só 3 passos.</h1>
-  <p class="sub">Quarta-feira, 7 de outubro, às 21h00, ao vivo no Zoom.</p>
+  <p class="sub">Quarta-feira, 11 de novembro, às 21h00, ao vivo no Zoom.</p>
   <div class="sala-link">
     <p class="rot">O seu link para entrar</p>
     <a class="bt bt-roxo" href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">Abrir a sala Zoom</a>
@@ -109,9 +109,9 @@ fbq('init','441661273501928');fbq('track','PageView');
   <div class="passo" id="p1">
     <span class="n">1</span>
     <h2>Guarde a data na agenda</h2>
-    <p>Quarta-feira, 7 de outubro, às 21h00 de Lisboa. A sala abre às 20h50.</p>
+    <p>Quarta-feira, 11 de novembro, às 21h00 de Lisboa. A sala abre às 20h50.</p>
     <div class="acoes">
-      <a class="bt bt-roxo mexe" data-passo="1" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Webinar+Vloom+com+Tiago+Severino&amp;dates=20261007T200000Z/20261007T223000Z&amp;details=Webinar+gratuito+ao+vivo+com+Tiago+Severino.+Entre+por+aqui%3A+https%3A%2F%2Foferta.vloom.pt%2Fwebinar2026%2Fentrar%2F&amp;location=Zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Google Calendar</a>
+      <a class="bt bt-roxo mexe" data-passo="1" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&amp;text=Webinar+Vloom+com+Tiago+Severino&amp;dates=20261111T210000Z/20261111T233000Z&amp;details=Webinar+gratuito+ao+vivo+com+Tiago+Severino.+Entre+por+aqui%3A+https%3A%2F%2Foferta.vloom.pt%2Fwebinar2026%2Fentrar%2F&amp;location=Zoom"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>Google Calendar</a>
       <a class="bt bt-linha" data-passo="1" href="../webinar-vloom.ics">Apple ou Outlook</a>
     </div>
   </div>
@@ -147,13 +147,13 @@ fbq('init','441661273501928');fbq('track','PageView');
   // Conversão do registo: SubmitApplication, uma vez por inscrição (pixel + CAPI com o mesmo eventID).
   var d={}; try{d=JSON.parse(sessionStorage.getItem('webinar2026')||'{}');}catch(e){}
   if(d.nome){document.getElementById('ola').textContent=d.nome.split(' ')[0]+', está inscrito. Faltam só 3 passos.';}
-  try{if(d.email)localStorage.setItem('webinar2026-inscrito','1');}catch(e){}
+  try{if(d.email)localStorage.setItem('webinar-2026-11-inscrito','1');}catch(e){}
   if(d.eid && !d.convertido){
-    try{fbq('track','SubmitApplication',{content_name:'Webinar 7 outubro 2026'},{eventID:d.eid});}catch(e){}
+    try{fbq('track','SubmitApplication',{content_name:'Webinar 11 novembro 2026'},{eventID:d.eid});}catch(e){}
     try{
       var ck=function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';};
       fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
-        body:JSON.stringify({eventName:'SubmitApplication',eventId:d.eid,email:d.email,firstName:d.nome,contentName:'Webinar 7 outubro 2026',fbp:ck('_fbp'),fbc:ck('_fbc'),sourceUrl:location.href})});
+        body:JSON.stringify({eventName:'SubmitApplication',eventId:d.eid,email:d.email,firstName:d.nome,contentName:'Webinar 11 novembro 2026',fbp:ck('_fbp'),fbc:ck('_fbc'),sourceUrl:location.href})});
     }catch(e){}
     d.convertido=1; try{sessionStorage.setItem('webinar2026',JSON.stringify(d));}catch(e){}
   }

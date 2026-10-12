@@ -6,10 +6,10 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Webinar gratuito · 7 de outubro, 21h00 · Vloom</title>
-<meta name="description" content="Webinar gratuito ao vivo com Tiago Severino, quarta-feira 7 de outubro às 21h00. Saiba como construir um sistema de aquisição de clientes digital para o seu negócio.">
+<title>Webinar gratuito · 11 de novembro, 21h00 · Vloom</title>
+<meta name="description" content="Webinar gratuito ao vivo com Tiago Severino, quarta-feira 11 de novembro às 21h00. Saiba como construir um sistema de aquisição de clientes digital para o seu negócio.">
 <meta name="theme-color" content="#ffffff">
-<meta property="og:title" content="Webinar gratuito ao vivo · 7 de outubro, 21h00">
+<meta property="og:title" content="Webinar gratuito ao vivo · 11 de novembro, 21h00">
 <meta property="og:description" content="Saiba como construir um sistema de aquisição de clientes digital para o seu negócio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -293,7 +293,7 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
 
 <section class="heroi"><div class="largo grelha">
   <div class="texto">
-    <p class="sobre">Webinar gratuito · quarta, 7 de outubro, 21h00</p>
+    <p class="sobre">Webinar gratuito · quarta, 11 de novembro, 21h00</p>
     <h1 class="titulo">Como ter <em>clientes novos todos os meses</em> sem depender da sorte</h1>
     <p class="sub">Já pôs dinheiro em anúncios e não resultou? Aprenda a transformar atenção em leads, leads em reuniões e reuniões em clientes.</p>
     <p class="ja-inscrito" id="ja-inscrito" hidden>Já está inscrito. <a href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">Abrir a sala Zoom</a> · <button type="button" id="inscrever-outra">inscrever outro email</button></p>
@@ -376,7 +376,7 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
 </div></section>
 
 <section class="fecho"><div class="largo">
-  <h2 class="titulo">Quarta-feira, 7 de outubro, às 21h00</h2>
+  <h2 class="titulo">Quarta-feira, 11 de novembro, às 21h00</h2>
   <p>Gratuito, no Zoom. Tenha à mão quatro números: valor de um cliente, margem, meta e taxa de fecho.</p>
   <a class="cta mexe" href="#registo">Quero o meu lugar</a>
 </div></section>
@@ -399,8 +399,8 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     bt.replaceWith(f); try{fbq('trackCustom','VerCasoEstudo',{video:id});}catch(x){}
   });});
   // quem já se inscreveu neste dispositivo vê o link, em vez de repetir o registo
-  try{ if(localStorage.getItem('webinar2026-inscrito')){ var ji=document.getElementById('ja-inscrito'); ji.hidden=false;
-    document.getElementById('inscrever-outra').addEventListener('click',function(){ji.hidden=true;localStorage.removeItem('webinar2026-inscrito');document.getElementById('nome').focus();}); } }catch(e){}
+  try{ if(localStorage.getItem('webinar-2026-11-inscrito')){ var ji=document.getElementById('ja-inscrito'); ji.hidden=false;
+    document.getElementById('inscrever-outra').addEventListener('click',function(){ji.hidden=true;localStorage.removeItem('webinar-2026-11-inscrito');document.getElementById('nome').focus();}); } }catch(e){}
   document.getElementById('gravacao').addEventListener('click',function(){
     modo='gravacao'; enviar.textContent='Quero a gravação'; micro.textContent='Enviamos-lhe a gravação logo a seguir à sessão.'; document.getElementById('nome').focus();
   });
@@ -412,7 +412,7 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     enviar.disabled=true; enviar.textContent='A guardar...';
     try{var eid=window.vloomFb.id();
       // A conversão (SubmitApplication) dispara na página de obrigado; aqui só se guarda o que ela precisa.
-      sessionStorage.setItem('webinar2026',JSON.stringify({nome:nome,email:email,eid:eid}));localStorage.setItem('webinar2026-inscrito','1');}catch(e){}
+      sessionStorage.setItem('webinar2026',JSON.stringify({nome:nome,email:email,eid:eid}));localStorage.setItem('webinar-2026-11-inscrito','1');}catch(e){}
     var segue=function(){location.href='obrigado/';};
     fetch('/api/lead-webinar2026/',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({nome:nome,email:email,resposta:modo==='gravacao'?'Quer a gravação':'Ao vivo',page:location.pathname,empresa_site:document.getElementById('empresa_site').value})})

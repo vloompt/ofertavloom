@@ -4,10 +4,10 @@ PRODID:-//Vloom//Webinar 2026//PT
 CALSCALE:GREGORIAN
 METHOD:PUBLISH
 BEGIN:VEVENT
-UID:webinar-vloom-20261007@vloom.pt
+UID:webinar-vloom-20261111@vloom.pt
 DTSTAMP:20260908T000000Z
-DTSTART:20261007T200000Z
-DTEND:20261007T223000Z
+DTSTART:20261111T210000Z
+DTEND:20261111T233000Z
 SUMMARY:Webinar Vloom com Tiago Severino
 DESCRIPTION:Webinar gratuito ao vivo com Tiago Severino. Entre por aqui: https://oferta.vloom.pt/webinar2026/entrar/ . Tenha a mao quatro numeros: valor de um cliente\, margem\, meta e taxa de fecho.
 LOCATION:Zoom - https://oferta.vloom.pt/webinar2026/entrar/
