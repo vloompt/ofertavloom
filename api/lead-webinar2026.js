@@ -110,6 +110,10 @@ module.exports = async function handler(req, res) {
     const repetido = (jaTinha?.contact?.tags || []).includes(ETIQUETAS.registo);
 
     const tags = [ETIQUETAS.registo];
+    // de que página veio (teste STS de 16/10/2026: carta de vendas longa contra a página curta). Fica a 1.ª origem marcada.
+    const prefixoPagina = `webinar-${EDICAO.id}-pagina-`;
+    if (!(jaTinha?.contact?.tags || []).some(t => t.startsWith(prefixoPagina)))
+      tags.push(prefixoPagina + (String(b.page || '').includes('/carta') ? 'carta' : 'curta'));
     const seg = segmento(resposta);
     if (seg) tags.push(seg);
     if (suspeito) tags.push(ETIQUETAS.suspeito);

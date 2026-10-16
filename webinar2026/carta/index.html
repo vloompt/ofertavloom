@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Webinar gratuito · 11 de novembro, 21h00 · Vloom</title>
+<meta name="description" content="Webinar gratuito ao vivo com Tiago Severino, quarta-feira 11 de novembro às 21h00. Descubra onde a sua aquisição de clientes perde dinheiro e o que corrigir primeiro.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<meta property="og:title" content="Webinar gratuito ao vivo · 11 de novembro, 21h00">
+<meta property="og:description" content="Descubra onde a sua aquisição de clientes perde dinheiro e o que corrigir primeiro.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap">
+<!--
+  Versão CARTA DE VENDAS da página do webinar (teste STS de 16/10/2026: o mesmo anúncio vencedor
+  a apontar para aqui e para a página curta). Mesmo sistema visual da página principal (Anton + Inter,
+  cores da Vloom). O registo vai para a mesma API e para a mesma página de obrigado; a API marca a
+  origem com a etiqueta webinar-<edição>-pagina-carta.
+-->
+<style>
+:root{--escuro:#1A2D66;--acento:#8D489B;--acento2:#76398A;--texto:#4B5163;--cinza:#6B6F80;--linha:#ECE8F1;--lilas:#F7F4FA}
+*{box-sizing:border-box;margin:0;padding:0}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;background:#fff;color:var(--texto);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased}
+img,video{max-width:100%;display:block}
+a{color:inherit}
+b,strong{color:var(--escuro);font-weight:700}
+.largo{max-width:1060px;margin:0 auto;padding:0 20px}
+.estreito{max-width:720px;margin:0 auto;padding:0 20px}
+.titulo{font-family:Anton,Impact,"Arial Narrow",sans-serif;font-weight:400;color:var(--escuro);text-wrap:balance;line-height:1.1;letter-spacing:-.005em}
+.titulo em{font-style:normal;color:var(--acento)}
+h2.titulo{font-size:32px;text-align:center}
+@media(min-width:900px){h2.titulo{font-size:44px}}
+.sobre{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--acento);text-align:center}
+.secao{padding:64px 0}
+@media(min-width:900px){.secao{padding:88px 0}}
+.secao.lilas{background:var(--lilas)}
+.secao.escura{background:var(--escuro);color:#D5DAEE}
+.secao.escura .titulo,.secao.escura b{color:#fff}
+.texto p+p{margin-top:16px}
+.texto{margin-top:26px}
+.centro{text-align:center}
+
+.cta{display:inline-flex;align-items:center;justify-content:center;height:58px;padding:0 30px;border:0;border-radius:999px;background:var(--acento);color:#fff;
+ font-family:inherit;font-size:17px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap;box-shadow:0 12px 24px -12px rgba(141,72,155,.6);transition:background .15s ease}
+.cta:hover{background:var(--acento2)}
+.cta:focus-visible{outline:3px solid #C9AEDB;outline-offset:3px}
+@keyframes abana{0%,30%,100%{transform:translate(0,0) rotate(0)}3%{transform:translate(-4px,0) rotate(-1.5deg)}6%{transform:translate(4px,0) rotate(1.5deg)}9%{transform:translate(-4px,0) rotate(-1.2deg)}12%{transform:translate(4px,0) rotate(1.2deg)}15%{transform:translate(-3px,0) rotate(-.8deg)}18%{transform:translate(3px,0) rotate(.8deg)}21%{transform:translate(-2px,0)}24%{transform:translate(2px,0)}27%{transform:translate(-1px,0)}}
+.mexe{animation:abana 3s cubic-bezier(.36,.07,.19,.97) infinite}
+.mexe:hover,.mexe:focus{animation-play-state:paused}
+.bloco-cta{text-align:center;margin-top:40px}
+.bloco-cta .cta{min-width:300px}
+.bloco-cta small{display:block;font-size:14px;color:var(--cinza);margin-top:12px}
+.secao.escura .bloco-cta small{color:#AEB6D8}
+@media(max-width:420px){.bloco-cta .cta{min-width:0;width:100%}}
+
+/* barra de topo com contador */
+.barra{position:sticky;top:0;z-index:30;background:rgba(255,255,255,.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-bottom:1px solid var(--linha)}
+.barra .largo{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.barra img{height:24px;width:auto}
+.barra .quando{font-size:14px;color:var(--escuro);font-weight:600;text-align:center}
+.barra .quando span{color:var(--acento)}
+.barra .cta{height:42px;padding:0 20px;font-size:14px;box-shadow:none}
+@media(max-width:759px){.barra .cta,.barra .quando .data{display:none}.barra .quando{font-size:13px}}
+
+/* herói */
+.heroi{padding:44px 0 56px;text-align:center}
+@media(min-width:900px){.heroi{padding:72px 0 72px}}
+.heroi .qualifica{font-size:15px;font-weight:600;color:var(--escuro);max-width:640px;margin:0 auto;padding:8px 16px;border:1px solid var(--linha);border-radius:999px;display:inline-block}
+.heroi h1{font-size:38px;margin:22px auto 0;max-width:900px;text-align:center}
+@media(min-width:900px){.heroi h1{font-size:clamp(44px,5.4vw,70px)}}
+.heroi h1 em{text-decoration:underline;text-decoration-color:#DCC8EA;text-decoration-thickness:.07em;text-underline-offset:.14em;text-decoration-skip-ink:none}
+.heroi .sub{font-size:18px;max-width:640px;margin:22px auto 0}
+@media(min-width:900px){.heroi .sub{font-size:20px}}
+.form{max-width:540px;margin:30px auto 0;display:flex;flex-direction:column;gap:10px}
+@media(min-width:600px){.form{flex-direction:row;flex-wrap:wrap}.form .cta{flex:1 1 100%}}
+.form input{width:100%;min-width:0;height:58px;flex:0 0 58px;border:1px solid #D9DCE3;border-radius:999px;padding:0 22px;font-family:inherit;font-size:17px;line-height:normal;color:var(--escuro);background:#fff;-webkit-appearance:none;appearance:none}
+@media(min-width:600px){.form input{flex:1 1 200px;width:auto}}
+.form input:focus{outline:none;border-color:var(--escuro);box-shadow:0 0 0 3px rgba(26,45,102,.1)}
+.micro{font-size:14px;color:var(--cinza);margin-top:12px}
+.rgpd{font-size:12px;color:#8A8EA0;margin-top:8px}
+.rgpd a{color:inherit}
+.erro{color:#B3261E;font-size:14px;margin-top:8px}
+.contador{display:flex;justify-content:center;gap:10px;margin-top:26px}
+.contador div{min-width:66px;background:var(--lilas);border-radius:12px;padding:8px 6px 6px;text-align:center}
+.contador b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:30px;line-height:1.1;color:var(--escuro)}
+.contador span{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--cinza)}
+.contador-rot{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza);margin-top:28px}
+.secao.escura .contador div{background:rgba(255,255,255,.08)}
+.secao.escura .contador b{color:#fff}
+.secao.escura .contador span,.secao.escura .contador-rot{color:#AEB6D8}
+.citacao{display:flex;gap:14px;align-items:center;text-align:left;max-width:520px;margin:34px auto 0;padding-top:28px;border-top:1px solid var(--linha)}
+.citacao img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none}
+.citacao blockquote{font-size:16px;line-height:1.45;color:var(--escuro);font-weight:600}
+.citacao figcaption{font-size:13.5px;color:var(--cinza);margin-top:4px}
+.ja-inscrito{max-width:520px;margin:18px auto 0;background:#F1F7F3;border:1px solid #CDE6D8;border-radius:12px;padding:12px 16px;font-size:15px;color:#1D7A47}
+.ja-inscrito a{color:#1D7A47;font-weight:700}
+.ja-inscrito button{background:none;border:0;font:inherit;color:#1D7A47;text-decoration:underline;cursor:pointer;padding:0}
+
+/* dor */
+.lista-dor{list-style:none;margin-top:26px;display:grid;gap:12px}
+.lista-dor li{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:16px 18px 16px 52px;position:relative;font-weight:500;color:var(--escuro);line-height:1.5}
+.lista-dor li::before{content:"";position:absolute;left:18px;top:19px;width:20px;height:20px;border-radius:50%;background:#FBE9EA url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M6.5 6.5l7 7M13.5 6.5l-7 7' stroke='%23C2414A' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E") center/20px no-repeat}
+.frase{font-family:Anton,Impact,sans-serif;font-size:28px;line-height:1.2;color:var(--escuro);text-align:center;margin:44px auto 0;max-width:640px;text-wrap:balance}
+@media(min-width:900px){.frase{font-size:34px}}
+.frase em{font-style:normal;color:var(--acento)}
+
+/* imagens de slide */
+.slide{margin:34px auto 0;max-width:900px}
+.slide img{width:100%;height:auto;border-radius:16px;box-shadow:0 30px 60px -32px rgba(26,45,102,.5)}
+.slide figcaption{font-size:13.5px;color:var(--cinza);text-align:center;margin-top:12px}
+.secao.escura .slide figcaption{color:#AEB6D8}
+
+/* motores */
+.mot-grid{display:grid;gap:16px;margin-top:36px}
+@media(min-width:760px){.mot-grid{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(min-width:1000px){.mot-grid{grid-template-columns:repeat(4,1fr)}}
+.mot{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px 20px 24px}
+.mot-media{margin:-6px -4px 16px;border-radius:12px;overflow:hidden;background:var(--lilas);aspect-ratio:16/10}
+.mot-media video{width:100%;height:100%;object-fit:cover}
+.mot-media.zero{display:grid;place-items:center;font-family:Anton,Impact,sans-serif;font-size:56px;color:var(--acento);background:linear-gradient(135deg,#F1E8F6,#E3D3EE)}
+.mot .num{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--acento)}
+.mot h3{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:26px;line-height:1.1;color:var(--escuro);margin-top:6px}
+.mot p{font-size:15.5px;line-height:1.55;margin-top:8px}
+
+/* números */
+.num-grid{display:grid;gap:16px;margin-top:36px}
+@media(min-width:760px){.num-grid{grid-template-columns:repeat(3,1fr);gap:20px}}
+.numero{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:24px 22px}
+.numero b{display:block;font-family:Anton,Impact,sans-serif;font-weight:400;font-size:46px;line-height:1;color:#fff}
+.numero span{display:block;font-weight:600;color:#fff;margin-top:10px;line-height:1.35}
+.numero small{display:block;font-size:14px;color:#AEB6D8;margin-top:6px;line-height:1.45}
+
+/* 5 fugas */
+.fugas{list-style:none;margin-top:36px;display:grid;gap:16px;counter-reset:f}
+.fugas li{counter-increment:f;display:grid;grid-template-columns:52px 1fr;gap:16px;background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px 22px 24px}
+.fugas li::before{content:counter(f);display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--acento);color:#fff;font-weight:800;font-size:18px}
+.fugas h3{font-size:19px;line-height:1.35;color:var(--escuro);font-weight:800}
+.fugas p{font-size:16px;line-height:1.6;margin-top:6px}
+.fugas small{display:block;font-size:12.5px;color:var(--cinza);margin-top:8px}
+@media(max-width:520px){.fugas li{grid-template-columns:1fr;gap:10px}}
+
+/* calculadora */
+.calc{display:grid;gap:22px;margin-top:36px;background:#fff;border:1px solid var(--linha);border-radius:22px;padding:24px;box-shadow:0 30px 60px -40px rgba(26,45,102,.45)}
+@media(min-width:860px){.calc{grid-template-columns:1fr 1fr;gap:34px;padding:34px}}
+.campos{display:grid;gap:14px}
+.campo label{display:block;font-size:14.5px;font-weight:600;color:var(--escuro);margin-bottom:6px}
+.campo .linha-in{display:flex;align-items:center;border:1px solid #D9DCE3;border-radius:12px;background:#fff;overflow:hidden}
+.campo .linha-in:focus-within{border-color:var(--escuro);box-shadow:0 0 0 3px rgba(26,45,102,.1)}
+.campo input{flex:1;min-width:0;height:50px;border:0;padding:0 14px;font:inherit;font-size:17px;color:var(--escuro);background:transparent;-webkit-appearance:none;appearance:none}
+.campo input:focus{outline:none}
+.campo .uni{padding:0 14px;font-size:15px;color:var(--cinza);font-weight:600}
+.resultado{background:var(--escuro);color:#D5DAEE;border-radius:18px;padding:24px 22px;display:flex;flex-direction:column;gap:14px}
+.resultado .linha-r{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:12px}
+.resultado .linha-r span{font-size:15px}
+.resultado .linha-r b{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:30px;color:#fff;white-space:nowrap}
+.resultado .destaque{background:rgba(141,72,155,.35);border-radius:12px;padding:14px 16px;border:0}
+.resultado .destaque b{color:#fff;font-size:36px}
+.resultado p{font-size:14px;color:#AEB6D8;line-height:1.5}
+
+/* apresentador */
+.apres{display:grid;gap:32px;margin-top:44px;align-items:center}
+@media(min-width:860px){.apres{grid-template-columns:400px 1fr;gap:64px}}
+.apres .retrato{position:relative;border-radius:28px;overflow:hidden;max-width:400px;width:100%;margin:0 auto;aspect-ratio:4/5;
+ background:radial-gradient(120% 80% at 50% 100%,#8D489B 0%,#3B3F86 45%,#1A2D66 100%)}
+.apres .retrato img{position:absolute;left:50%;top:7%;transform:translateX(-50%);width:96%;height:auto;max-width:none}
+.apres .nome{font-family:Anton,Impact,sans-serif;font-size:36px;line-height:1.1;color:var(--escuro)}
+.apres .cargo{font-size:15px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--acento);margin-top:6px}
+.apres .historia{margin-top:20px}
+.apres .historia p{font-size:18px;line-height:1.7}
+.apres .historia p+p{margin-top:16px}
+.apres .certs{display:flex;align-items:center;gap:16px;margin-top:26px;padding-top:22px;border-top:1px solid var(--linha)}
+.apres .certs span{font-size:14px;color:var(--cinza);line-height:1.4;max-width:190px}
+.apres .certs img{height:64px;width:auto}
+.marcas{margin-top:56px;padding-top:40px;border-top:1px solid var(--linha)}
+.marcas-grelha{display:grid;grid-template-columns:repeat(3,1fr);gap:28px 20px;align-items:center;justify-items:center;margin-top:24px}
+@media(min-width:760px){.marcas-grelha{grid-template-columns:repeat(5,1fr);gap:36px 32px}}
+.marcas-grelha img{height:28px;width:auto;max-width:120px;object-fit:contain;filter:grayscale(1);opacity:.55}
+.marcas-grelha img[alt="Sheraton"]{height:42px}
+.marcas-grelha img[alt="Smile Bath"],.marcas-grelha img[alt="Exercise School"]{height:34px}
+
+/* herói em duas colunas com a sala Zoom */
+@media(min-width:960px){
+ .heroi{text-align:left;padding:56px 0 72px}
+ .heroi .grelha{display:grid;grid-template-columns:1.05fr .95fr;grid-template-areas:"texto sala" "extra sala";column-gap:56px;row-gap:0;align-items:center}
+ .lado-texto{grid-area:texto;align-self:end}.lado-sala{grid-area:sala}.lado-extra{grid-area:extra;align-self:start}
+ .heroi h1{text-align:left;margin-left:0;font-size:clamp(42px,4.4vw,60px)}
+ .heroi .sub,.heroi .form,.heroi .ja-inscrito{margin-left:0}
+ .heroi .contador{justify-content:flex-start}
+ .heroi .citacao{margin-left:0}
+}
+.sala{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:6px;background:#1C1D22;padding:6px;border-radius:20px;box-shadow:0 30px 60px -30px rgba(26,45,102,.55);margin-top:34px}
+@media(min-width:960px){.sala{margin-top:0}}
+.sala .q{position:relative;border-radius:10px;overflow:hidden;background:#2A2B31;aspect-ratio:16/10}
+.sala .q-tiago{grid-column:1/3;aspect-ratio:4/3;box-shadow:inset 0 0 0 3px #3DD68C}
+.sala .q video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sala .q-tiago::after{content:"";position:absolute;inset:0;border:3px solid #3DD68C;border-radius:10px;pointer-events:none}
+.sala .q span{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;line-height:1;padding:4px 7px;border-radius:4px}
+.sala .q-tiago span{font-size:13px;padding:5px 9px;left:12px;bottom:12px}
+.sala .vivo{position:absolute;left:18px;top:18px;z-index:3;display:inline-flex;align-items:center;gap:6px;background:#E5484D;color:#fff;font-weight:700;font-size:11.5px;letter-spacing:.08em;padding:4px 10px;border-radius:6px}
+.sala .vivo i{width:7px;height:7px;border-radius:50%;background:#fff;animation:pisca 1.4s ease-in-out infinite}
+@keyframes pisca{50%{opacity:.25}}
+.sala-leg{font-size:13.5px;color:var(--cinza);margin-top:12px;text-align:center}
+/* para quem */
+.quem-grid{display:grid;gap:18px;margin-top:36px}
+@media(min-width:760px){.quem-grid{grid-template-columns:1fr 1fr}}
+.quem{border-radius:20px;padding:26px 24px;background:#fff;border:1px solid var(--linha)}
+.quem.sim{border:2px solid var(--acento);box-shadow:0 24px 48px -32px rgba(141,72,155,.55)}
+.quem h3{font-family:Anton,Impact,sans-serif;font-weight:400;font-size:24px;line-height:1.15;color:var(--escuro)}
+.quem.nao h3{color:var(--cinza)}
+.quem ul{list-style:none;margin-top:16px;display:grid;gap:12px}
+.quem li{padding-left:32px;position:relative;line-height:1.5;font-size:16px}
+.quem.sim li{color:var(--escuro);font-weight:500}
+.quem li::before{content:"";position:absolute;left:0;top:2px;width:22px;height:22px;border-radius:50%}
+.quem.sim li::before{background:var(--acento) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M6.5 11.5l3 3 6-7' fill='none' stroke='%23fff' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/22px no-repeat}
+.quem.nao li::before{background:#ECEDF2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 22 22'%3E%3Cpath d='M7 11h8' stroke='%236B6F80' stroke-width='2.2' stroke-linecap='round'/%3E%3C/svg%3E") center/22px no-repeat}
+
+/* o que leva */
+.leva{list-style:none;margin-top:32px;display:grid;gap:12px}
+@media(min-width:760px){.leva{grid-template-columns:1fr 1fr}}
+.leva li{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:16px 18px 16px 50px;position:relative;line-height:1.5;font-size:16px}
+.leva li::before{content:"";position:absolute;left:18px;top:18px;width:20px;height:20px;border-radius:50%;background:#F1E8F6 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%238D489B' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px no-repeat}
+
+/* testemunhos */
+.depos{display:grid;gap:16px;margin-top:36px}
+@media(min-width:760px){.depos{grid-template-columns:repeat(2,1fr);gap:20px}}
+@media(min-width:760px) and (max-width:999px){.depo:last-child{grid-column:1/-1}}
+@media(min-width:1000px){.depos{grid-template-columns:repeat(6,1fr)}.depo{grid-column:span 2}.depo:nth-child(4),.depo:nth-child(5){grid-column:span 3}}
+.depo{background:#fff;border:1px solid var(--linha);border-radius:18px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:16px}
+.depo .estrelas{color:#F5B301;letter-spacing:2px;font-size:15px}
+.depo blockquote{font-size:17px;font-weight:600;line-height:1.45;color:var(--escuro);flex:1}
+.depo figcaption{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--cinza);line-height:1.35}
+.depo figcaption img{width:44px;height:44px;border-radius:50%;object-fit:cover;flex:none}
+.depo figcaption b{display:block;font-size:15px}
+.cs-grid{display:grid;gap:26px;margin-top:40px}
+@media(min-width:700px){.cs-grid{grid-template-columns:1fr 1fr;gap:28px 22px}}
+@media(min-width:1000px){.cs-grid{grid-template-columns:repeat(3,1fr)}}
+.cse{margin:0}
+.cse .tv-play{display:block;position:relative;width:100%;border:0;padding:0;background:#000;cursor:pointer;overflow:hidden;border-radius:14px;line-height:0}
+.cse .tv-play img{width:100%;height:auto}
+.cse iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:14px;display:block}
+.tv-bt{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:58px;height:58px;border-radius:50%;background:rgba(141,72,155,.95);border:3px solid rgba(255,255,255,.9);display:grid;place-items:center;padding-left:4px;color:#fff;box-shadow:0 10px 26px rgba(0,0,0,.4);transition:transform .15s}
+.cse .tv-play:hover .tv-bt{transform:translate(-50%,-50%) scale(1.07)}
+.cse figcaption{padding:14px 2px 0}
+.cse figcaption b{display:block;font-size:17px;line-height:1.35}
+.cse figcaption small{display:block;font-size:14.5px;color:var(--cinza);margin-top:2px}
+
+/* logos */
+.confianca{padding:48px 0 40px;border-top:1px solid var(--linha)}
+.rotulo{text-align:center;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--cinza)}
+.faixa-logos{position:relative;overflow:hidden;margin-top:22px;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.rolo{display:flex;align-items:center;width:max-content;height:44px;animation:rola 60s linear infinite}
+.rolo .grupo{display:flex;align-items:center;gap:56px;padding-right:56px}
+.rolo img{height:22px;width:auto;max-width:120px;object-fit:contain;filter:grayscale(1);opacity:.42;flex:none}
+.rolo img[data-alt="Sheraton"],.rolo img[alt="Sheraton"]{height:32px}
+@keyframes rola{to{transform:translateX(-50%)}}
+@media(max-width:759px){.rolo .grupo{gap:40px;padding-right:40px}.rolo img{height:20px}}
+
+/* FAQ */
+.faq{margin-top:32px;display:grid;gap:12px}
+.faq details{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:0 20px}
+.faq summary{cursor:pointer;list-style:none;font-weight:700;color:var(--escuro);padding:18px 30px 18px 0;position:relative;line-height:1.4}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";position:absolute;right:0;top:14px;font-size:24px;font-weight:400;color:var(--acento)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{padding:0 0 18px;font-size:16px}
+.faq button.link{background:none;border:0;font:inherit;color:var(--acento);font-weight:700;text-decoration:underline;cursor:pointer;padding:0}
+
+/* fecho */
+.caminhos{display:grid;gap:16px;margin-top:36px}
+@media(min-width:760px){.caminhos{grid-template-columns:1fr 1fr}}
+.caminho{border-radius:18px;padding:24px 22px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12)}
+.caminho.bom{background:rgba(141,72,155,.3);border-color:rgba(201,174,219,.5)}
+.caminho h3{font-size:18px;font-weight:800;color:#fff}
+.caminho p{margin-top:8px;font-size:16px}
+.assinatura{font-family:Anton,Impact,sans-serif;font-size:22px;color:#fff;margin-top:34px;text-align:center}
+
+/* janela do formulário */
+dialog{margin:auto;border:0;border-radius:22px;padding:0;max-width:480px;width:calc(100% - 32px);box-shadow:0 40px 80px -20px rgba(16,22,48,.5)}
+dialog::backdrop{background:rgba(16,22,48,.6)}
+.janela{padding:30px 24px 24px;text-align:center;position:relative}
+.janela .fechar{position:absolute;right:12px;top:10px;width:40px;height:40px;border:0;background:none;font-size:26px;color:var(--cinza);cursor:pointer}
+.janela .titulo{font-size:30px;text-align:center}
+.janela p.quando{font-size:15px;margin-top:8px}
+.janela .form{flex-direction:column}
+.janela .form input,.janela .form .cta{flex:0 0 58px;width:100%}
+
+footer{background:#121F4A;color:#C8CEE4;padding:40px 20px calc(40px + env(safe-area-inset-bottom));font-size:13.5px;line-height:1.6;text-align:center}
+footer img{height:22px;width:auto;margin:0 auto 14px}
+footer p+p{margin-top:8px}
+footer a{color:#fff}
+footer .aviso{font-size:12.5px;color:#9EA7CB;max-width:600px;margin-left:auto;margin-right:auto}
+@media(prefers-reduced-motion:reduce){.mexe,.rolo{animation:none}html{scroll-behavior:auto}}
+</style>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+ id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+ capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+ return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});}catch(e){return Promise.resolve();}}};
+</script>
+</head>
+<body>
+
+<header class="barra"><div class="largo">
+  <img src="../img/logo.svg" alt="Vloom">
+  <p class="quando"><span class="data">Quarta, 11 de novembro, 21h00 · </span>começa daqui a <span data-curto>…</span></p>
+  <button class="cta abre" type="button">Quero o meu lugar</button>
+</div></header>
+
+<!-- 1. HERÓI -->
+<section class="heroi"><div class="largo grelha">
+  <div class="lado-texto">
+  <p class="qualifica">Para donos e decisores de empresas que já investem em marketing</p>
+  <h1 class="titulo">Os anúncios trazem leads. <em>Então porque é que os clientes não aparecem?</em></h1>
+  <p class="sub">Num webinar gratuito de duas horas, ao vivo, mostro-lhe onde a sua aquisição de clientes perde dinheiro e o que corrigir primeiro. Com as contas feitas para a sua empresa.</p>
+  <p class="ja-inscrito" id="ja-inscrito" hidden>Já está inscrito. <a href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">Abrir a sala Zoom</a> · <button type="button" id="inscrever-outra">inscrever outro email</button></p>
+  <form class="form registo" id="registo" novalidate>
+    <input name="nome" type="text" autocomplete="given-name" placeholder="O seu primeiro nome" aria-label="O seu primeiro nome" required>
+    <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="O seu email de trabalho" aria-label="O seu email de trabalho" required>
+    <button class="cta mexe" type="submit">Quero o meu lugar</button>
+    <input type="text" name="empresa_site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+  </form>
+  <p class="erro" hidden></p>
+  <p class="micro">Gratuito · ao vivo no Zoom · quarta, 11 de novembro, às 21h00 de Lisboa</p>
+  <p class="rgpd">Ao enviar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+  </div>
+  <div class="lado-sala">
+    <figure class="sala" aria-label="Tiago Severino a apresentar o webinar numa sala Zoom, com participantes">
+      <span class="vivo"><i></i>AO VIVO</span>
+      <div class="q q-tiago"><video autoplay muted loop playsinline preload="metadata" poster="../img/sala/v-tiago.jpg"><source src="../img/sala/v-tiago.mp4" type="video/mp4"></video><span>Tiago Severino</span></div>
+      <div class="q"><video autoplay muted loop playsinline preload="metadata" poster="../img/sala/x-medico.jpg"><source src="../img/sala/x-medico.mp4" type="video/mp4"></video><span>Carlos Mendes</span></div>
+      <div class="q"><video autoplay muted loop playsinline preload="metadata" poster="../img/sala/x-oculos.jpg"><source src="../img/sala/x-oculos.mp4" type="video/mp4"></video><span>Rui Costa</span></div>
+      <div class="q"><video autoplay muted loop playsinline preload="metadata" poster="../img/sala/x-a.jpg"><source src="../img/sala/x-a.mp4" type="video/mp4"></video><span>Jorge Almeida</span></div>
+      <div class="q"><video autoplay muted loop playsinline preload="metadata" poster="../img/sala/x-b.jpg"><source src="../img/sala/x-b.mp4" type="video/mp4"></video><span>Marta Sousa</span></div>
+    </figure>
+    <p class="sala-leg">Duas horas ao vivo no Zoom, com exercícios feitos com os seus números.</p>
+  </div>
+  <div class="lado-extra">
+  <p class="contador-rot">Começa daqui a</p>
+  <div class="contador" data-contador><div><b data-d>00</b><span>dias</span></div><div><b data-h>00</b><span>horas</span></div><div><b data-m>00</b><span>min</span></div><div><b data-s>00</b><span>seg</span></div></div>
+  <figure class="citacao">
+    <img src="../img/joao.jpg" alt="João Matos" width="240" height="240">
+    <div><blockquote>“Com a Vloom posso dizer que aumentei as vendas que tinha em pelo menos 200 a 300%.”</blockquote>
+    <figcaption><b>João Matos</b>, Formação Ativa, Guimarães</figcaption></div>
+  </figure>
+  </div>
+</div></section>
+
+
+<!-- 2. A DOR -->
+<section class="secao lilas"><div class="estreito">
+  <p class="sobre">Conhece esta cena?</p>
+  <h2 class="titulo">O momento mais caro do marketing</h2>
+  <div class="texto">
+    <p>A campanha está no ar. O relatório mostra cliques, alcance e leads a entrar. No fim do mês, a faturação está igual à do mês anterior.</p>
+    <p>A agência diz que o problema é a equipa comercial. A equipa comercial diz que as leads não prestam. E ninguém consegue dizer onde é que o dinheiro ficou.</p>
+  </div>
+  <ul class="lista-dor">
+    <li>Relatórios cheios de impressões, cliques e métricas que não pagam contas.</li>
+    <li>Leads que não atendem, não aparecem nas reuniões ou não são qualificadas.</li>
+    <li>Ouvir que o problema é da equipa comercial sempre que questiona resultados.</li>
+    <li>Andar a saltar entre experiências, agências e freelancers sem sucesso.</li>
+  </ul>
+  <p class="frase">Se isto lhe soa familiar, a falha raramente está em si ou no seu produto. <em>Está numa passagem que ninguém mediu.</em></p>
+</div></section>
+
+<!-- 3. REENQUADRAMENTO -->
+<section class="secao"><div class="estreito">
+  <h2 class="titulo">“O marketing não resultou” diz tanto como “o carro não anda”</h2>
+  <div class="texto">
+    <p>Foi a oferta? A mensagem? O custo por lead? A rapidez do contacto? A comparência? O fecho?</p>
+    <p>Entre o euro que investe e o cliente que paga há seis passagens. Em cada uma perde-se sempre uma parte: nem toda a atenção dá uma lead, nem toda a lead dá uma reunião, nem toda a reunião dá um cliente.</p>
+    <p><b>A plataforma de anúncios só controla a primeira passagem.</b> O resto está nas mãos da sua empresa. Quando uma delas falha, pagou para ser visto e não ganhou clientes.</p>
+  </div>
+</div>
+<div class="largo">
+  <figure class="slide"><img src="../img/carta/caminho.jpg" alt="O caminho do dinheiro, do anúncio até à margem: investimento, atenção, lead, reunião, cliente e margem" loading="lazy" width="1280" height="720"><figcaption>Slide do webinar: o caminho do dinheiro, do anúncio até à margem.</figcaption></figure>
+</div>
+<div class="estreito">
+  <p class="frase">A pergunta certa é outra: <em>em que passagem perde os clientes que já pagou para atrair?</em></p>
+</div></section>
+
+<!-- 4. MECANISMO -->
+<section class="secao lilas"><div class="largo">
+  <p class="sobre">O que vai aprender</p>
+  <h2 class="titulo">Uma fundação e três motores</h2>
+  <p class="centro" style="max-width:640px;margin:16px auto 0">É o mesmo circuito que usamos todos os dias na Vloom. Começa numa conta simples e só depois chega ao anúncio.</p>
+  <div class="mot-grid">
+    <div class="mot"><div class="mot-media"><video autoplay muted loop playsinline preload="metadata" poster="../img/carta/economia.jpg" aria-label="A conta da economia: valor do cliente vezes margem dá o espaço para aquisição"><source src="../img/carta/economia.mp4" type="video/mp4"></video></div><span class="num">Fundação</span><h3>A economia</h3><p>Quanto vale um cliente, qual é a margem e quanto pode pagar para o adquirir sem perder dinheiro.</p></div>
+    <div class="mot"><div class="mot-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Anúncios Google e Meta a alimentar o funil"><source src="../img/pilares/trafego.webm" type="video/webm"><source src="../img/pilares/trafego.mp4" type="video/mp4"></video></div><span class="num">Motor 1</span><h3>Tráfego</h3><p>O mercado, a oferta, a mensagem, o anúncio e a página que transformam atenção em leads.</p></div>
+    <div class="mot"><div class="mot-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Calendário a encher de reuniões"><source src="../img/pilares/pipeline.mp4" type="video/mp4"></video></div><span class="num">Motor 2</span><h3>Pipeline</h3><p>Responder em menos de 5 minutos e acompanhar cada lead durante 7 dias, até ela marcar e aparecer.</p></div>
+    <div class="mot"><div class="mot-media"><video autoplay muted loop playsinline preload="metadata" aria-label="Painel do CRM com o funil e o valor das oportunidades"><source src="../img/pilares/comercial.mp4" type="video/mp4"></video></div><span class="num">Motor 3</span><h3>Comercial</h3><p>Preparar a reunião, perceber se a pessoa está pronta a comprar e responder às objeções.</p></div>
+  </div>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero o meu lugar</button><small>Gratuito · quarta, 11 de novembro, às 21h00</small></div>
+</div></section>
+
+<!-- 5. PROVA ÂNCORA -->
+<section class="secao escura"><div class="largo">
+  <p class="sobre" style="color:#C9AEDB">Não nasceu num quadro branco</p>
+  <h2 class="titulo">1.291.223,93 € faturados com este circuito</h2>
+  <p class="centro" style="max-width:640px;margin:16px auto 0">O nosso software de faturação, real. É este o sistema que nos pôs a faturar e é este que montamos nos clientes.</p>
+  <figure class="slide"><img src="../img/carta/faturacao.jpg" alt="Captura do software de faturação da Vloom com 1.291.223,93 euros faturados" loading="lazy" width="1280" height="720"><figcaption>Total acumulado registado no software de faturação da Vloom.</figcaption></figure>
+  <div class="num-grid">
+    <div class="numero"><b>3.277</b><span>leads em três meses</span><small>Segurança Máxima, escola de condução. Custo médio na ordem dos 0,84 € por lead.</small></div>
+    <div class="numero"><b>+30.000</b><span>chamadas para marcação</span><small>Hospital Veterinário de Lisboa, ao longo de cinco anos de sistema.</small></div>
+    <div class="numero"><b>+100</b><span>leads logo no primeiro mês</span><small>CAB, Clínica da Avenida, clínica dentária em Barcelos.</small></div>
+  </div>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero o meu lugar</button><small>Duas horas ao vivo, com os seus números</small></div>
+</div></section>
+
+<!-- 6. AS 5 FUGAS -->
+<section class="secao"><div class="estreito">
+  <p class="sobre">O diagnóstico</p>
+  <h2 class="titulo">As 5 fugas que encontramos em quase todas as empresas</h2>
+  <ol class="fugas">
+    <li><div><h3>Começar pelo anúncio em vez da conta</h3><p>Escolhe-se uma plataforma e inventa-se um orçamento. Sem saber quanto vale um cliente e qual é a margem, ninguém consegue dizer quanto pode pagar por uma lead.</p></div></li>
+    <li><div><h3>Responder tarde</h3><p>Ligar nos primeiros 5 minutos, em vez de aos 30, torna 100 vezes mais provável falar com a pessoa. Numa auditoria a 2.241 empresas, o tempo médio de resposta foi de 42 horas.</p><small>Fontes: Lead Response Management Study (Oldroyd, MIT) e Harvard Business Review, 2011.</small></div></li>
+    <li><div><h3>Desistir à primeira chamada</h3><p>A média do mercado é de 1,3 tentativas por lead. Na Vloom seguimos um processo de 7 dias, com o canal, a mensagem e a hora definidos para cada dia.</p></div></li>
+    <li><div><h3>Não medir quem aparece</h3><p>Com 60% de comparência, 40 reuniões realizadas exigem 67 marcações. Subir a comparência traz crescimento sem comprar uma única lead a mais.</p></div></li>
+    <li><div><h3>Chamar «falta de qualidade» a cinco problemas diferentes</h3><p>Leads contactadas tarde, mal qualificadas, pouco preparadas, que não comparecem ou que entram numa reunião sem diagnóstico. Cada um destes problemas tem uma correção diferente.</p></div></li>
+  </ol>
+  <p class="frase">Quantas destas reconhece na sua empresa? <em>No webinar vemos qual é a que mais lhe custa.</em></p>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero o meu lugar</button><small>Gratuito · ao vivo no Zoom</small></div>
+</div></section>
+
+<!-- 7. CALCULADORA -->
+<section class="secao lilas"><div class="largo">
+  <p class="sobre">Faça já a primeira conta</p>
+  <h2 class="titulo">Quantas leads precisa para chegar à sua meta?</h2>
+  <p class="centro" style="max-width:640px;margin:16px auto 0">Os números de partida são o exemplo que usamos no webinar. Troque-os pelos da sua empresa.</p>
+  <div class="calc" id="calc">
+    <div class="campos">
+      <div class="campo"><label for="c-valor">Quanto vale um cliente</label><div class="linha-in"><input id="c-valor" type="number" inputmode="decimal" min="0" value="1500"><span class="uni">€</span></div></div>
+      <div class="campo"><label for="c-margem">Margem bruta</label><div class="linha-in"><input id="c-margem" type="number" inputmode="decimal" min="0" max="100" value="20"><span class="uni">%</span></div></div>
+      <div class="campo"><label for="c-meta">Clientes novos que quer por mês</label><div class="linha-in"><input id="c-meta" type="number" inputmode="numeric" min="0" value="10"><span class="uni">clientes</span></div></div>
+      <div class="campo"><label for="c-fecho">Reuniões que acabam em venda</label><div class="linha-in"><input id="c-fecho" type="number" inputmode="decimal" min="1" max="100" value="25"><span class="uni">%</span></div></div>
+      <div class="campo"><label for="c-show">Marcações que aparecem na reunião</label><div class="linha-in"><input id="c-show" type="number" inputmode="decimal" min="1" max="100" value="60"><span class="uni">%</span></div></div>
+      <div class="campo"><label for="c-marca">Leads que marcam reunião</label><div class="linha-in"><input id="c-marca" type="number" inputmode="decimal" min="1" max="100" value="20"><span class="uni">%</span></div></div>
+    </div>
+    <div class="resultado" aria-live="polite">
+      <div class="linha-r"><span>Reuniões realizadas por mês</span><b data-r="reunioes">40</b></div>
+      <div class="linha-r"><span>Reuniões marcadas por mês</span><b data-r="marcacoes">67</b></div>
+      <div class="linha-r"><span>Leads por mês</span><b data-r="leads">335</b></div>
+      <div class="linha-r"><span>Espaço para adquirir cada cliente</span><b data-r="espaco">300 €</b></div>
+      <div class="linha-r destaque"><span>Pode pagar até, por lead</span><b data-r="cpl">8,96 €</b></div>
+      <p>No webinar fazemos esta conta consigo ao vivo e vemos qual destes números é o mais barato de melhorar.</p>
+    </div>
+  </div>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero fazer a conta ao vivo</button><small>Tenha à mão: valor de um cliente, margem, meta e taxa de fecho</small></div>
+</div></section>
+
+<!-- 8. APRESENTADOR -->
+<section class="secao"><div class="largo">
+  <p class="sobre">Quem lhe vai mostrar isto</p>
+  <h2 class="titulo">Comecei com a câmara de um telemóvel</h2>
+  <div class="apres">
+    <div class="retrato"><img src="../img/tiago.png" alt="Tiago Severino" loading="lazy" width="687" height="1500"></div>
+    <div>
+      <p class="nome">Tiago Severino</p>
+      <p class="cargo">Fundador da Vloom</p>
+      <div class="historia">
+        <p>Em 2014 andava por Lisboa a vender serviços de redes sociais com a câmara do telemóvel. Fiz palestras pequenas e trabalhos baratos. Aprendi muitas coisas da maneira mais cara: a falhar com o meu tempo e com o meu dinheiro.</p>
+        <p>Um dia lancei uma campanha de cerca de 30 € e apareceu um cliente. Pareceu-me magia. Com o tempo percebi que era um mecanismo. E um mecanismo pode ser estudado, repetido, medido e melhorado.</p>
+        <p>Desde então, a Vloom testou dezenas de ofertas, páginas, anúncios, sequências, guiões e processos comerciais. Pelo caminho faturou 1.291.223,93 €. Muitas ideias morreram em menos de 24 horas. <b>O que ficou é o que lhe vou mostrar.</b></p>
+      </div>
+      <div class="certs"><span>Certificado pela Google e pela Meta, as plataformas onde o seu investimento corre.</span><img src="../img/cert/google-search.png" alt="Certificação Google Ads Search" loading="lazy"><img src="../img/cert/meta-media-buying.png" alt="Certificação Meta Media Buying Professional" loading="lazy"></div>
+    </div>
+  </div>
+  <div class="marcas">
+    <p class="rotulo">Algumas das marcas com quem trabalhámos</p>
+    <div class="marcas-grelha"><img src="../img/logos/sheraton1.png" alt="Sheraton" loading="lazy"><img src="../img/logos/sktechers1.png" alt="Skechers" loading="lazy"><img src="../img/logos/bdrfinan.png" alt="Doutor Finanças" loading="lazy"><img src="../img/logos/Prancheta-1.png" alt="NoSolo Italia" loading="lazy"><img src="../img/logos/nortecar.png" alt="Nortecar" loading="lazy"><img src="../img/logos/weleda1.png" alt="Weleda" loading="lazy"><img src="../img/logos/calve.png" alt="Calvé" loading="lazy"><img src="../img/logos/ca1.png" alt="Crédito Agrícola" loading="lazy"><img src="../img/logos/euro1.png" alt="Eurofirms" loading="lazy"><img src="../img/logos/try1.png" alt="Try Moto" loading="lazy"></div>
+  </div>
+</div></section>
+
+
+<!-- 9. PARA QUEM É -->
+<section class="secao lilas"><div class="estreito">
+  <p class="sobre">Antes de se inscrever</p>
+  <h2 class="titulo">Este webinar é para si?</h2>
+  <div class="quem-grid">
+    <div class="quem sim"><h3>É para si se:</h3><ul>
+      <li>Tem uma oferta validada: já há procura e já tem clientes.</li>
+      <li>Tem capacidade para servir mais clientes.</li>
+      <li>Quer medir e decidir com números, sem depender da sorte.</li>
+    </ul></div>
+    <div class="quem nao"><h3>Ainda não é para si se:</h3><ul>
+      <li>Ainda não sabe exatamente o que vende.</li>
+      <li>A entrega do seu serviço está em crise.</li>
+      <li>Não consegue responder às oportunidades que já tem.</li>
+    </ul></div>
+  </div>
+  <p class="centro" style="margin-top:24px">Nesses casos o primeiro trabalho é resolver isso. Não o vou incentivar a comprar tráfego para amplificar um problema.</p>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">É para mim, quero o meu lugar</button></div>
+</div></section>
+
+<!-- 10. O QUE LEVA -->
+<section class="secao"><div class="largo">
+  <p class="sobre">Dentro das duas horas</p>
+  <h2 class="titulo">O que leva do webinar</h2>
+  <ul class="leva">
+    <li>A conta que lhe diz <b>quanto pode pagar por cada cliente</b>, com a sua margem e a sua meta.</li>
+    <li>Quantas <b>leads, marcações e reuniões</b> precisa por mês para lá chegar.</li>
+    <li>Como escolher o mercado, a oferta e a mensagem <b>antes</b> de pôr dinheiro em anúncios.</li>
+    <li>O que uma página tem de ter para transformar visitas em leads.</li>
+    <li>Como responder em menos de 5 minutos e o <b>processo de 7 dias</b> para não perder leads que já pagou.</li>
+    <li>Como preparar a reunião, perceber se a pessoa está pronta a comprar e responder às objeções.</li>
+    <li>Como encontrar o <b>elo mais fraco</b> e decidir o que corrigir primeiro.</li>
+    <li>Uma ação que consegue começar a executar logo a seguir, sem esperar por mais teoria.</li>
+  </ul>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero o meu lugar</button><small>Gratuito · quarta, 11 de novembro, às 21h00</small></div>
+</div></section>
+
+<!-- 11. TESTEMUNHOS -->
+<section class="secao lilas"><div class="largo">
+  <p class="sobre">Quem já aplicou</p>
+  <h2 class="titulo">Este sistema, aplicado em negócios reais</h2>
+  <div class="depos">
+    <figure class="depo"><span class="estrelas">★★★★★</span><blockquote>“Com a Vloom posso dizer que aumentei as vendas que tinha em pelo menos 200 a 300%.”</blockquote><figcaption><img src="../img/joao.jpg" alt="" loading="lazy"><span><b>João Matos</b>Formação Ativa, formação profissional</span></figcaption></figure>
+    <figure class="depo"><span class="estrelas">★★★★★</span><blockquote>“Com a Vloom, logo no primeiro mês, tivemos mais de 100 leads.”</blockquote><figcaption><img src="../img/sala/r-bernardo.jpg" alt="" loading="lazy"><span><b>Bernardo Caria</b>CAB, Clínica da Avenida</span></figcaption></figure>
+    <figure class="depo"><span class="estrelas">★★★★★</span><blockquote>“Hoje a minha principal fonte de renda são as aulas online, graças ao marketing digital da Vloom.”</blockquote><figcaption><img src="../img/anita.jpg" alt="" loading="lazy"><span><b>Anita Santos Rubin</b>Escola de dança</span></figcaption></figure>
+    <figure class="depo"><span class="estrelas">★★★★★</span><blockquote>“Trabalhar com a Vloom é diferente de trabalhar com outras agências: funciona maravilhosamente bem.”</blockquote><figcaption><img src="../img/thierry.jpg" alt="" loading="lazy"><span><b>Thierry Henrot</b>Marriott International</span></figcaption></figure>
+    <figure class="depo"><span class="estrelas">★★★★★</span><blockquote>“Acho que o resultado tem sido muito positivo. Não trocaríamos de agência.”</blockquote><figcaption><img src="../img/ines.jpg" alt="" loading="lazy"><span><b>Inês Gonçalves</b>Casa das Peles e Try Moto</span></figcaption></figure>
+  </div>
+  <div class="cs-grid">
+    <figure class="cse" data-vimeo="1036736815"><button class="tv-play" type="button" aria-label="Ver o caso de estudo Formação Ativa"><img src="../img/casos/formcaoativa.jpg" alt="Caso de estudo Formação Ativa" loading="lazy" width="768" height="434"><span class="tv-bt"><svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span></button><figcaption><b>Formação Ativa</b><small>Mais de 1.000 leads por mês</small></figcaption></figure>
+    <figure class="cse" data-vimeo="1036740176"><button class="tv-play" type="button" aria-label="Ver o caso de estudo CAB, Clínica da Avenida"><img src="../img/casos/Display20252.jpg" alt="Caso de estudo CAB, Clínica da Avenida" loading="lazy" width="768" height="434"><span class="tv-bt"><svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span></button><figcaption><b>CAB, Clínica da Avenida</b><small>Mais de 100 leads por mês</small></figcaption></figure>
+    <figure class="cse" data-vimeo="814195931"><button class="tv-play" type="button" aria-label="Ver o caso de estudo Hospital Veterinário de Lisboa"><img src="../img/casos/hvl2025.jpg" alt="Caso de estudo Hospital Veterinário de Lisboa" loading="lazy" width="768" height="434"><span class="tv-bt"><svg width="22" height="26" viewBox="0 0 26 30" fill="none" aria-hidden="true"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span></button><figcaption><b>Hospital Veterinário de Lisboa</b><small>Mais de 30.000 chamadas para consultas</small></figcaption></figure>
+  </div>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero o meu lugar</button></div>
+</div></section>
+
+<!-- 12. PORQUE É GRÁTIS -->
+<section class="secao"><div class="estreito">
+  <h2 class="titulo">Porque é que é gratuito?</h2>
+  <div class="texto">
+    <p>Porque no fim da sessão explico como é trabalhar com a Vloom, para quem quiser ajuda a montar isto na sua empresa. Prefiro dizer-lhe já.</p>
+    <p>Não precisa de comprar nada para aproveitar as duas horas. As contas e os processos que mostro ficam consigo, mesmo que nunca trabalhe connosco. Mesmo assim, a sessão tem de valer o seu tempo: esse é o compromisso.</p>
+  </div>
+</div></section>
+
+<!-- 13. FAQ -->
+<section class="secao lilas"><div class="estreito">
+  <h2 class="titulo">Perguntas frequentes</h2>
+  <div class="faq">
+    <details><summary>Quanto custa?</summary><p>Nada. O webinar é gratuito.</p></details>
+    <details><summary>Quando é e quanto tempo dura?</summary><p>Quarta-feira, 11 de novembro, às 21h00 de Lisboa, no Zoom. Dura cerca de duas horas e tem exercícios curtos, por isso reserve o tempo completo.</p></details>
+    <details><summary>E se não puder estar ao vivo?</summary><p>Inscreva-se na mesma e diga-nos que prefere a gravação: enviamos-lhe a sessão completa. <button type="button" class="link" id="quero-gravacao">Quero a gravação</button></p></details>
+    <details><summary>Tenho de preparar alguma coisa?</summary><p>Tenha à mão quatro números: valor de um cliente, margem, meta e taxa de fecho. Antes da sessão enviamos-lhe uma folha para os preencher.</p></details>
+    <details><summary>Preciso de perceber de marketing?</summary><p>Não. Vamos trabalhar a lógica que a tecnologia deve servir, sem ensinar botões. Se percebe a lógica, consegue executar com ajuda, contratar melhor e identificar depressa uma promessa vazia.</p></details>
+    <details><summary>Isto serve para o meu setor?</summary><p>Já aplicámos este circuito em hotelaria, saúde, formação, seguros, retalho, restauração, automóvel e finanças. Serve para empresas com uma oferta validada que querem clientes novos todos os meses.</p></details>
+    <details><summary>Vai tentar vender-me alguma coisa?</summary><p>No fim explico como é trabalhar com a Vloom, para quem quiser. Pode sair antes disso e leva na mesma tudo o que foi ensinado.</p></details>
+  </div>
+</div></section>
+
+<!-- 14. FECHO -->
+<section class="secao escura"><div class="estreito">
+  <h2 class="titulo">Como quer gerir a aquisição de clientes no próximo mês?</h2>
+  <div class="caminhos">
+    <div class="caminho"><h3>Às cegas</h3><p>Mais orçamento, mais um fornecedor e a esperança de que desta vez resulte.</p></div>
+    <div class="caminho bom"><h3>Com o circuito à vista</h3><p>Sabe quanto pode investir, quantas oportunidades precisa e qual é o próximo elo a corrigir.</p></div>
+  </div>
+  <p class="contador-rot centro">Quarta, 11 de novembro, às 21h00 · começa daqui a</p>
+  <div class="contador" data-contador><div><b data-d>00</b><span>dias</span></div><div><b data-h>00</b><span>horas</span></div><div><b data-m>00</b><span>min</span></div><div><b data-s>00</b><span>seg</span></div></div>
+  <div class="bloco-cta"><button class="cta mexe abre" type="button">Quero o meu lugar</button><small>Gratuito · ao vivo no Zoom</small></div>
+  <p class="assinatura">Tiago Severino</p>
+</div></section>
+
+<footer>
+  <img src="../img/logo-branco.svg" alt="Vloom">
+  <p>No fim da sessão explico como é trabalhar com a Vloom. Não precisa de comprar nada para aproveitar a sessão.</p>
+  <p><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a> · <a href="mailto:marketing@vloom.pt">marketing@vloom.pt</a></p>
+  <p class="aviso">Av. Fontes Pereira de Melo, 16, Lisboa. Os resultados variam de empresa para empresa: a sessão ensina método e não garante resultados.</p>
+</footer>
+
+<dialog id="janela" aria-labelledby="janela-titulo">
+  <div class="janela">
+    <button class="fechar" type="button" aria-label="Fechar">×</button>
+    <h2 class="titulo" id="janela-titulo">Guarde o seu lugar</h2>
+    <p class="quando">Quarta, 11 de novembro, às 21h00 · gratuito, no Zoom</p>
+    <form class="form registo" novalidate>
+      <input name="nome" type="text" autocomplete="given-name" placeholder="O seu primeiro nome" aria-label="O seu primeiro nome" required>
+      <input name="email" type="email" inputmode="email" autocomplete="email" placeholder="O seu email de trabalho" aria-label="O seu email de trabalho" required>
+      <button class="cta" type="submit">Quero o meu lugar</button>
+      <input type="text" name="empresa_site" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+    </form>
+    <p class="erro" hidden></p>
+    <p class="rgpd">Ao enviar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
+  </div>
+</dialog>
+
+<script>
+(function(){
+  var INICIO=Date.parse('2026-11-11T21:00:00Z'), modo='vivo';
+  var janela=document.getElementById('janela');
+  function dois(n){return (n<10?'0':'')+n;}
+  // contadores
+  function tique(){
+    var f=Math.max(0,INICIO-Date.now()), d=Math.floor(f/864e5), h=Math.floor(f/36e5)%24, m=Math.floor(f/6e4)%60, s=Math.floor(f/1e3)%60;
+    document.querySelectorAll('[data-contador]').forEach(function(c){c.querySelector('[data-d]').textContent=dois(d);c.querySelector('[data-h]').textContent=dois(h);c.querySelector('[data-m]').textContent=dois(m);c.querySelector('[data-s]').textContent=dois(s);});
+    document.querySelectorAll('[data-curto]').forEach(function(c){c.textContent=d>0?(d+(d===1?' dia':' dias')+' e '+h+'h'):(h+'h '+dois(m)+'m');});
+  }
+  tique(); setInterval(tique,1000);
+  // janela do formulário
+  function abrir(gravacao){
+    modo=gravacao?'gravacao':'vivo';
+    janela.querySelector('.titulo').textContent=gravacao?'Receba a gravação':'Guarde o seu lugar';
+    janela.querySelector('button[type=submit]').textContent=gravacao?'Quero a gravação':'Quero o meu lugar';
+    try{janela.showModal();}catch(e){janela.setAttribute('open','');}
+    setTimeout(function(){janela.querySelector('input[name=nome]').focus();},60);
+    try{fbq('trackCustom','AbrirFormulario',{pagina:'carta'});}catch(x){}
+  }
+  document.querySelectorAll('.abre').forEach(function(b){b.addEventListener('click',function(){abrir(false);});});
+  document.getElementById('quero-gravacao').addEventListener('click',function(){abrir(true);});
+  janela.querySelector('.fechar').addEventListener('click',function(){janela.close();});
+  janela.addEventListener('click',function(e){if(e.target===janela)janela.close();});
+  janela.addEventListener('close',function(){modo='vivo';});
+  // casos em vídeo
+  document.querySelectorAll('.cse[data-vimeo]').forEach(function(fig){var bt=fig.querySelector('.tv-play');bt.addEventListener('click',function(){
+    var id=fig.getAttribute('data-vimeo'), f=document.createElement('iframe');
+    f.src='https://player.vimeo.com/video/'+id+'?autoplay=1&title=0&byline=0&portrait=0&dnt=1'; f.allow='autoplay; fullscreen; picture-in-picture'; f.allowFullscreen=true; f.title='Caso de estudo';
+    bt.replaceWith(f); try{fbq('trackCustom','VerCasoEstudo',{video:id,pagina:'carta'});}catch(x){}
+  });});
+  // calculadora (a mesma conta do webinar: 10 clientes, fecho 25%, comparência 60%, 20% das leads marcam)
+  var eur=new Intl.NumberFormat('pt-PT',{style:'currency',currency:'EUR',minimumFractionDigits:2,maximumFractionDigits:2});
+  var eur0=new Intl.NumberFormat('pt-PT',{style:'currency',currency:'EUR',maximumFractionDigits:0});
+  var int=new Intl.NumberFormat('pt-PT',{maximumFractionDigits:0});
+  function v(id){var x=parseFloat(String(document.getElementById(id).value).replace(',','.'));return isFinite(x)&&x>0?x:0;}
+  function conta(){
+    var valor=v('c-valor'), margem=v('c-margem')/100, meta=v('c-meta'), fecho=v('c-fecho')/100, show=v('c-show')/100, marca=v('c-marca')/100;
+    var reun=fecho?Math.ceil(meta/fecho):0, marc=show?Math.ceil(reun/show):0, leads=marca?Math.ceil(marc/marca):0;
+    var espaco=valor*margem, cpl=leads?espaco*meta/leads:0;
+    var r=function(k,t){document.querySelector('[data-r="'+k+'"]').textContent=t;};
+    r('reunioes',int.format(reun)); r('marcacoes',int.format(marc)); r('leads',int.format(leads));
+    r('espaco',eur0.format(espaco)); r('cpl',eur.format(cpl));
+  }
+  document.querySelectorAll('#calc input').forEach(function(i){i.addEventListener('input',conta);});
+  var mexeu=false; document.getElementById('calc').addEventListener('input',function(){if(!mexeu){mexeu=true;try{fbq('trackCustom','UsouCalculadora',{pagina:'carta'});}catch(x){}}});
+  conta();
+  // já inscrito neste dispositivo
+  try{ if(localStorage.getItem('webinar-2026-11-inscrito')){ var ji=document.getElementById('ja-inscrito'); ji.hidden=false;
+    document.getElementById('inscrever-outra').addEventListener('click',function(){ji.hidden=true;localStorage.removeItem('webinar-2026-11-inscrito');document.querySelector('#registo input[name=nome]').focus();}); } }catch(e){}
+  // registo (as duas cópias do formulário fazem o mesmo; a conversão dispara na página de obrigado)
+  document.querySelectorAll('form.registo').forEach(function(form){
+    var erro=form.parentNode.querySelector('.erro'), bt=form.querySelector('button[type=submit]');
+    form.addEventListener('submit',function(ev){
+      ev.preventDefault(); erro.hidden=true;
+      var nome=form.nome.value.trim(), email=form.email.value.trim();
+      if(!nome){erro.textContent='Diga-nos o seu nome.';erro.hidden=false;form.nome.focus();return;}
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){erro.textContent='Confirme o email: é para aí que enviamos o link.';erro.hidden=false;form.email.focus();return;}
+      bt.disabled=true; bt.textContent='A guardar...';
+      try{var eid=window.vloomFb.id();
+        sessionStorage.setItem('webinar2026',JSON.stringify({nome:nome,email:email,eid:eid}));localStorage.setItem('webinar-2026-11-inscrito','1');}catch(e){}
+      var segue=function(){location.href='/webinar2026/obrigado/';};
+      fetch('/api/lead-webinar2026/',{method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({nome:nome,email:email,resposta:modo==='gravacao'?'Quer a gravação':'Ao vivo',page:location.pathname,empresa_site:form.empresa_site.value})})
+        .then(segue).catch(segue);
+    });
+  });
+})();
+</script>
+</body>
+</html>
