@@ -22,7 +22,7 @@ async function telegram(texto) {
 function segmento(r) {
   const t = String(r || '').toLowerCase();
   if (t.includes('quantas leads')) return 'webinar-falha-numeros';
-  if (t.includes('não viram reuniões')) return 'webinar-falha-conversao';
+  if (t.includes('não viram reuniões') || t.includes('não se transformam em reuniões')) return 'webinar-falha-conversao';
   if (t.includes('não fecho')) return 'webinar-falha-comercial';
   if (t.includes('volume')) return 'webinar-falha-volume';
   if (t.includes('gravação')) return ETIQUETAS.querGravacao;

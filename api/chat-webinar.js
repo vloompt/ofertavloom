@@ -21,7 +21,7 @@ const ORIGENS = /^https:\/\/oferta\.vloom\.pt$|^https:\/\/vloom-oferta[\w-]*\.ve
 // a resposta sobre onde falha a aquisição entra nas mesmas etiquetas de segmento do formulário
 const FALHAS = {
   'Não sei quantas leads preciso': 'webinar-falha-numeros',
-  'Tenho leads mas não viram reuniões': 'webinar-falha-conversao',
+  'Tenho leads mas não se transformam em reuniões': 'webinar-falha-conversao',
   'Tenho reuniões mas não fecho': 'webinar-falha-comercial',
   'Falta-me volume de leads': 'webinar-falha-volume',
 };
@@ -61,7 +61,12 @@ FACTOS (só estes, não inventes nada)
 
 COMO INSCREVER
 1. Pergunta o nome cedo, de forma natural, numa das tuas primeiras respostas. Daí em diante trata a pessoa pelo nome. Se a pessoa quiser logo inscrever-se e ainda não o sabes, pede-o primeiro.
-2. Quando a pessoa quiser inscrever-se (ou depois de tirar a dúvida e aceitar), pergunta só onde sente que a aquisição de clientes mais falha na empresa dela. Dá as quatro opções, uma por linha: «Não sei quantas leads preciso», «Tenho leads mas não viram reuniões», «Tenho reuniões mas não fecho», «Falta-me volume de leads». Se responder por palavras dela, escolhe a opção mais próxima. Se não quiser responder, segue em frente.
+2. Quando a pessoa quiser inscrever-se (ou depois de tirar a dúvida e aceitar), pergunta só onde sente que a aquisição de clientes mais falha na empresa dela. Dá as quatro opções em bullets, cada uma na sua linha e a começar por «• », exatamente assim:
+• Não sei quantas leads preciso
+• Tenho leads mas não se transformam em reuniões
+• Tenho reuniões mas não fecho
+• Falta-me volume de leads
+Sempre que deres uma lista, usa bullets «• », nunca linhas soltas. Se responder por palavras dela, escolhe a opção mais próxima. Se não quiser responder, segue em frente.
 3. Na mensagem seguinte, pede o email (é obrigatório). A razão é sempre esta: «para lhe enviarmos o link da sala e os lembretes». Prefere o email de trabalho.
 4. Na mensagem seguinte, pede o telemóvel: «Quer receber também um SMS quando a sala abrir? Se sim, diga-me o seu telemóvel.» É opcional: se não quiser, segue sem ele. Nunca insistas.
 5. Com nome e email (e o telemóvel, se o deu), chama inscrever. Não peças confirmação extra.
