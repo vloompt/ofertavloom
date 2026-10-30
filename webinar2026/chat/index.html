@@ -306,6 +306,21 @@ footer .aviso{font-size:12.5px;color:#9EA7CB;max-width:600px;margin-left:auto;ma
 .alt-form{display:block;margin:10px 0 0;background:none;border:0;padding:0;font:14px Inter,sans-serif;color:var(--cinza);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 @media(max-width:899px){.chat{max-width:none;height:68vh;min-height:430px}}
 @media(prefers-reduced-motion:reduce){.a-escrever i{animation:none}}
+
+/* topo limpo: texto à esquerda, chat como única peça à direita */
+.barra .cta{display:none}
+.barra .largo{justify-content:flex-start}
+.heroi{padding:32px 0 48px}
+.heroi .grelha{gap:22px}
+.heroi .provas{border-top:0;padding-top:0;margin-top:6px;gap:16px}
+.certs-linha{flex-wrap:nowrap;gap:8px}
+.certs-linha img{height:38px}
+.certs-linha span{flex:1;min-width:0;font-size:13.5px;line-height:1.35;margin:0 0 0 4px}
+.certs-linha b{color:var(--escuro);font-weight:600}
+.palco .chat{margin-top:0;max-width:none}
+@media(min-width:900px){.heroi{padding:52px 0 64px}.heroi .grelha{grid-template-columns:1fr 1fr;column-gap:64px;row-gap:26px;grid-template-areas:"texto palco" "provas palco";align-items:start}
+ .texto{align-self:end}.provas{align-self:start}.palco .chat{height:540px}}
+@media(max-width:899px){.palco .chat{height:62vh;min-height:420px}.certs-linha span{flex-basis:auto}}
 </style>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
 n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -332,6 +347,9 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     <h1 class="titulo">Como ter <em>clientes novos todos os meses</em> sem depender da sorte</h1>
     <p class="sub">Já pôs dinheiro em anúncios e não resultou? Aprenda a transformar atenção em leads, leads em reuniões e reuniões em clientes.</p>
     <p class="ja-inscrito" id="ja-inscrito" hidden>Já está inscrito. <a href="https://oferta.vloom.pt/webinar2026/entrar/" target="_blank" rel="noopener">Abrir a sala Zoom</a> · <button type="button" id="inscrever-outra">inscrever outro email</button></p>
+
+  </div>
+  <div class="palco">
     <div class="chat" id="chat">
       <div class="chat-topo">
         <img src="/icon-512.png" alt="" width="34" height="34">
@@ -362,17 +380,6 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
     <p class="erro" id="erro" hidden></p>
     <p class="detalhe" id="detalhe">Ao vivo no Zoom. Não pode estar? <button type="button" id="gravacao">Enviamos-lhe a gravação.</button></p>
     </div>
-
-  </div>
-  <div class="palco">
-  <figure class="foto-palco sala" aria-label="Tiago Severino a apresentar o webinar numa sala Zoom, com participantes">
-    <div class="q q-tiago"><img src="../img/sala/tiago.jpg" alt="Tiago Severino a apresentar o webinar" width="960" height="720"><span>Tiago Severino</span></div>
-    <div class="q"><img src="../img/sala/e-medico.jpg" alt="" width="640" height="400" loading="lazy"><span>Carlos Mendes</span></div>
-    <div class="q"><img src="../img/sala/e-oculos.jpg" alt="" width="640" height="400" loading="lazy"><span>Rui Costa</span></div>
-    <div class="q"><img src="../img/sala/e-a.jpg" alt="" width="640" height="400" loading="lazy"><span>Jorge Almeida</span></div>
-    <div class="q"><img src="../img/sala/e-b.jpg" alt="" width="640" height="400" loading="lazy"><span>Marta Sousa</span></div>
-  </figure>
-  <div class="certs-foto"><div class="selos"><span><b>Tiago Severino</b> é certificado pela Google e pela Meta</span><img src="../img/cert/google-search.png" alt="Certificação Google Ads Search"><img src="../img/cert/meta-media-buying.png" alt="Certificação Meta Media Buying"></div></div>
   </div>
   <div class="provas">
     <figure class="citacao">
@@ -380,6 +387,7 @@ window.vloomFb={cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=(
       <div><blockquote>“Aumentei as vendas em pelo menos 200 a 300%.”</blockquote>
       <figcaption><b>João Matos</b>, Formação Ativa, Guimarães</figcaption></div>
     </figure>
+    <div class="certs-linha"><img src="../img/cert/google-search.png" alt="Certificação Google Ads Search"><img src="../img/cert/meta-media-buying.png" alt="Certificação Meta Media Buying"><span><b>Tiago Severino</b> é certificado pela Google e pela Meta</span></div>
   </div>
 </div></section>
 
