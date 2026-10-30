@@ -113,7 +113,7 @@ module.exports = async function handler(req, res) {
     // de que página veio (teste STS de 16/10/2026: carta de vendas longa contra a página curta). Fica a 1.ª origem marcada.
     const prefixoPagina = `webinar-${EDICAO.id}-pagina-`;
     if (!(jaTinha?.contact?.tags || []).some(t => t.startsWith(prefixoPagina)))
-      tags.push(prefixoPagina + (String(b.page || '').includes('/carta') ? 'carta' : 'curta'));
+      tags.push(prefixoPagina + (String(b.page || '').includes('/carta') ? 'carta' : String(b.page || '').includes('/chat') ? 'chat' : 'curta'));
     const seg = segmento(resposta);
     if (seg) tags.push(seg);
     if (suspeito) tags.push(ETIQUETAS.suspeito);
