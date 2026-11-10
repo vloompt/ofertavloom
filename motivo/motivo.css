@@ -128,3 +128,5 @@ html,body{overflow-x:clip}
 .selos p b{color:#fff}
 .ticker{padding-top:40px}
 .cit-d{margin-bottom:70px}
+
+@media(max-width:760px){.destaque figcaption.placa{margin-top:14px;width:100%}}
