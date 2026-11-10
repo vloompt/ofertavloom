@@ -326,7 +326,7 @@ for pasta, p in PAGINAS.items():
 # «parar» (email #5): sem vídeo e sem venda. Só confirma.
 d = AQUI / "parar"; d.mkdir(exist_ok=True)
 (d / "index.html").write_text(cabeca("Combinado", "Pedido recebido").replace(f'<a class="mini" href="{MARCAR}">Marcar 15 minutos</a>', "") + f"""
-<section class="hero parar">
+<section class="hero aurora parar">
   <div class="wrap">
     <div class="centro estreito">
       <div class="ok-ic">{CHECK}</div>
