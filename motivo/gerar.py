@@ -8,7 +8,7 @@ import pathlib
 AQUI = pathlib.Path(__file__).parent
 A = "/10reunioes/assets/"
 MARCAR = "https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&utm_medium=email&utm_campaign=vloom-motivos"
-V = "?v=5"
+V = "?v=6"
 
 SETA = '<svg width="24" height="17" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 PLAY = '<svg width="22" height="26" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg>'
@@ -87,6 +87,47 @@ PAGINAS = {
       "Na Casa das Peles, <b>a própria equipa aparece nos conteúdos</b>. Trabalhamos com quem lá está.",
     ],
     outros=["ines", "thierry"]),
+}
+
+# Carta: a MINHA resposta ao motivo que a pessoa escolheu (vem do email do motivo,
+# reescrita para fazer sentido). Aparece ANTES do testemunho.
+CARTA = {
+  "e-caro": dict(
+    h1="Pediu-me para falar de preço. <em>Vou ser honesto.</em>",
+    texto=[
+      "O nosso serviço custa dinheiro. Não vou fingir que não.",
+      "Mas <b>caro e custar dinheiro não são a mesma coisa</b>. Caro é pagar todos os meses por algo que não sabe se lhe traz clientes.",
+      "Quando cada cliente tem origem conhecida, a pergunta deixa de ser «quanto custa?» e passa a ser <b>«quanto me devolve?»</b>.",
+      "O Dr. Bernardo Caria, de uma clínica em Barcelos, também achou caro. Avançou na mesma.",
+    ],
+    ponte="Não acredite só em mim. <em>Ouça o Dr. Bernardo.</em>"),
+  "nao-e-a-altura": dict(
+    h1="Posso ser direto? <em>Nunca é.</em>",
+    texto=[
+      "A decisão fica à espera de uma condição que nunca chega: «quando tiver tempo, faço», «quando as coisas acalmarem, trato disso».",
+      "É como dizer «quando ficar saudável, volto ao médico». <b>A lógica está ao contrário.</b>",
+      "Quanto mais ocupado está, melhor é a altura. Um sistema que só funciona quando tem tempo para o alimentar não serve. <b>O nosso trabalho é pô-lo a funcionar enquanto trata do resto.</b>",
+      "A Anita Santos Rubin começou connosco no pior momento possível: em plena quarentena.",
+    ],
+    ponte="Não acredite só em mim. <em>Ouça a Anita.</em>"),
+  "ja-tentamos": dict(
+    h1="Acredito. <em>É mais comum do que pensa.</em>",
+    texto=[
+      "Quase sempre, o que falhou não foi o esforço. <b>Foi não haver um sistema por trás</b>: anúncios, seguimento de cada lead e a conta de quanto custou cada cliente.",
+      "Sem isso, até o melhor conteúdo é um tiro no escuro.",
+      "Se já tentou e não resultou, isso não é um argumento contra. É como no amor: <b>raramente se casa com a primeira namorada</b>.",
+      "O Sheraton Lisboa também já tinha trabalhado com agências antes de nós.",
+    ],
+    ponte="Não acredite só em mim. <em>Ouça o diretor-geral do Sheraton.</em>"),
+  "alguem-interno": dict(
+    h1="Ótimo. <em>Não é para substituir ninguém.</em>",
+    texto=[
+      "Não lhe vou dizer que essa pessoa faz mal o trabalho. Provavelmente faz bem.",
+      "Mas há uma diferença entre publicar conteúdo e ter um sistema montado. <b>Publicar é pôr conteúdo cá fora e esperar que alguém repare. Ter um sistema é saber quanto custa cada cliente que entra pela porta.</b>",
+      "A sua equipa continua a publicar. Nós montamos a parte que traz os clientes e mede quanto custou cada um.",
+      "A clínica do Dr. Bernardo Caria já fazia redes sociais antes de trabalhar connosco.",
+    ],
+    ponte="Não acredite só em mim. <em>Ouça o Dr. Bernardo.</em>"),
 }
 
 def cabeca(titulo, selo, preload=""):
@@ -176,21 +217,33 @@ def pagina(p):
     res = "".join(f"<li>{CHECK}<span>{r}</span></li>" for r in p["res"])
     pontos = "".join(f'<div class="dor"><span class="aspas">0{i}</span><p>{x}</p></div>' for i, x in enumerate(p["pontos"], 1))
     outros = "".join(dep(k) for k in p["outros"])
+    c = CARTA[[k for k, v in PAGINAS.items() if v is p][0]]
+    texto = "".join(f"<p>{x}</p>" for x in c["texto"])
     return cabeca(p["motivo"], f'Escolheu: “{p["motivo"]}”', f'<link rel="preload" as="image" href="{A}caras/{p["poster"]}">\n') + f"""
-<section class="hero">
+<section class="hero aurora">
   <div class="wrap">
     <div class="centro estreito">
-      <p class="eyebrow">{p['eyebrow']}</p>
-      <h1>{p['h1']}</h1>
-      <div class="garantia-linha">{p['linha']}</div>
+      <span class="pilula">Escolheu <b>“{p['motivo']}”</b></span>
+      <h1>{c['h1']}</h1>
     </div>
+    <article class="carta-v">
+      <div class="carta-de"><img src="/email/tiago.jpg" alt="Tiago Severino" width="56" height="56"><div><b>Tiago Severino</b><span>Fundador da Vloom</span></div></div>
+      {texto}
+    </article>
+  </div>
+</section>
 
+<section class="ver">
+  <div class="wrap">
+    <div class="centro estreito"><h2>{c['ponte']}</h2></div>
     <figure class="destaque" data-vimeo="{p['vimeo']}" data-t="{p['t']}">
+      <div class="moldura">
       <button class="tv-play" type="button" aria-label="Ver o testemunho de {p['nome']}">
         <img src="{A}caras/{p['poster']}" alt="{p['nome']}, {p['quem']}" width="1280" height="720">
         <span class="tv-bt">{PLAY}</span>
         <span class="tv-tag">Ver o testemunho</span>
       </button>
+      </div>
       <figcaption>
         <div class="quem-d"><b>{p['nome']}</b><span>{p['quem']}</span></div>
         <ul class="res-d">{res}</ul>
