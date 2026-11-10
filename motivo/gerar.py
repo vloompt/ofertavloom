@@ -287,7 +287,7 @@ def pagina(p):
     <div class="centro estreito">
       <span class="kicker">Testemunhos</span>
       <span class="estrelas">★★★★★</span>
-      <h2>{'O' if p['nome'] != 'Anita Santos Rubin' else 'A'} {primeiro_nome(p['nome'])} é um de muitos. <em>Ouça quem trabalha connosco.</em></h2>
+      <h2>{'O' if p['nome'] != 'Anita Santos Rubin' else 'A'} {primeiro_nome(p['nome'])} não é caso único. <em>Ouça quem trabalha connosco.</em></h2>
     </div>
     <div class="deps">
       {outros}
