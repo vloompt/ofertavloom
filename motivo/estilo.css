@@ -1,0 +1,36 @@
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-book.woff2)format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-bold.woff2)format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Gotham;src:url(/10reunioes/assets/fonts/gotham-black.woff2)format("woff2");font-weight:800;font-display:swap}
+:root{--fundo:#100d26;--painel:#1b1740;--linha:rgba(255,255,255,.13);--texto:#eceafa;--texto2:#a8a3c8;--roxo:#8d489b;--roxo-claro:#b06dbe;--azul:#77cef4;--noite:#252158;--font:Gotham,"Helvetica Neue",Helvetica,Arial,sans-serif}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:var(--font);background:var(--fundo);color:var(--texto);font-size:18px;line-height:1.65;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+.wrap{max-width:980px;margin:0 auto;padding:0 22px;width:100%}
+.estreito{max-width:760px}
+.topo{padding:56px 0 34px;text-align:center;position:relative;overflow:hidden}
+.topo::before{content:"";position:absolute;top:-40%;left:50%;transform:translateX(-50%);width:900px;height:600px;background:radial-gradient(ellipse at center,rgba(141,72,155,.32),transparent 66%);pointer-events:none}
+.topo .wrap{position:relative;z-index:1}
+.lg{height:30px;width:auto;margin:0 auto 34px;display:block}
+.tick{width:64px;height:64px;margin:0 auto 24px;border-radius:50%;background:rgba(119,206,244,.12);border:1px solid rgba(119,206,244,.45);display:grid;place-items:center;color:var(--azul)}
+h1{font-size:clamp(30px,4.4vw,52px);font-weight:800;line-height:1.08;letter-spacing:-.03em;text-wrap:balance}
+h1 em{font-style:normal;color:var(--roxo-claro)}
+.lede{font-size:clamp(16px,1.8vw,19px);color:var(--texto2);max-width:620px;margin:22px auto 0}
+.lede b{color:var(--texto)}
+section{padding:44px 0}
+.texto{background:var(--painel);border:1px solid var(--linha);border-radius:18px;padding:34px 34px 30px}
+.texto p{margin:0 0 16px}
+.texto b{color:#fff}
+.texto ul{margin:0 0 16px 22px}
+.texto li{margin:4px 0;font-style:italic;color:var(--texto2)}
+blockquote{margin:22px 0;padding:18px 22px;border-left:4px solid var(--azul);background:rgba(119,206,244,.06);border-radius:0 12px 12px 0;font-style:italic;font-size:19px}
+blockquote cite{display:block;margin-top:8px;font-style:normal;font-size:14px;color:var(--texto2)}
+.ass{margin-top:26px !important;padding-top:20px;border-top:1px solid var(--linha);color:var(--texto2)}
+.ass span{font-size:14px}
+.fim{text-align:center;background:var(--noite);padding:56px 0}
+.fim h2{font-size:clamp(24px,2.8vw,34px);font-weight:800;letter-spacing:-.03em;line-height:1.15}
+.fim p{color:var(--texto2);margin:12px auto 26px;max-width:520px}
+.bt{display:inline-block;background:var(--roxo);color:#fff;text-decoration:none;font-weight:800;padding:17px 34px;border-radius:999px;font-size:17px;transition:background .2s}
+.bt:hover{background:var(--roxo-claro)}
+footer{margin-top:auto;border-top:1px solid var(--linha);padding:28px 0;font-size:13px;color:var(--texto2)}
+footer .legal{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:space-between}
+footer a{color:var(--texto2)}
+@media(max-width:560px){.texto{padding:24px 20px}}
