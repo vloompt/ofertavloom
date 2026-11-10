@@ -130,3 +130,5 @@ html,body{overflow-x:clip}
 .cit-d{margin-bottom:70px}
 
 @media(max-width:760px){.destaque figcaption.placa{margin-top:14px;width:100%}}
+
+.destaque figcaption.placa{margin-top:16px;width:100%}

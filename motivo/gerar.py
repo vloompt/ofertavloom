@@ -8,7 +8,7 @@ import pathlib
 AQUI = pathlib.Path(__file__).parent
 A = "/10reunioes/assets/"
 MARCAR = "https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&utm_medium=email&utm_campaign=vloom-motivos"
-V = "?v=11"
+V = "?v=12"
 
 SETA = '<svg width="24" height="17" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 PLAY = '<svg width="22" height="26" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg>'
