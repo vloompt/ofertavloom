@@ -7,21 +7,33 @@
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/motivo/estilo.css">
+<link rel="stylesheet" href="/motivo/estilo.css?v=2">
 </head>
 <body>
-<div class="topo"><div class="wrap estreito">
-  <img class="lg" src="/10reunioes/assets/logo-branco.svg" alt="Vloom">
-  <div class="tick"><svg width="30" height="24" viewBox="0 0 30 24" fill="none"><path d="M2.5 12.5 11 21 27.5 3" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+<header class="barra"><div class="wrap"><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"></div></header>
+
+<main>
+<section class="heroi so"><div class="wrap estreito">
+  <span class="escolha">Pedido recebido</span>
   <h1>Combinado.<br>Eu <em>paro aqui</em>.</h1>
   <p class="lede">Não lhe volto a escrever sobre isto. Amigos como dantes.</p>
-</div></div>
-<section><div class="wrap estreito texto"><p>Se um dia mudar de ideias, basta responder a qualquer email meu. Eu leio todos.</p>
-  <p class="ass">Vou voltar ao trabalho,<br><b>Tiago Severino</b><br><span>Vloom · Head of Marketing</span></p>
+  <p class="lede">Se um dia mudar de ideias, basta responder a qualquer email meu. Leio todos.</p>
+  <p class="ass">Tiago Severino<span>Vloom · Head of Marketing</span></p>
 </div></section>
+</main>
 <footer><div class="wrap legal">
   <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
   <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></span>
 </div></footer>
+<script>
+document.querySelectorAll('.tv').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://player.vimeo.com/video/'+b.dataset.vimeo+'?autoplay=1&title=0&byline=0&portrait=0'+(b.dataset.t?'#t='+b.dataset.t:'');
+    f.allow='autoplay; fullscreen; picture-in-picture'; f.title=b.getAttribute('aria-label');
+    b.innerHTML=''; b.appendChild(f); b.classList.add('on');
+  },{once:true});
+});
+</script>
 </body>
 </html>

@@ -7,32 +7,56 @@
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/motivo/estilo.css">
+<link rel="preload" as="image" href="/10reunioes/assets/caras/anita-poster.jpg">
+<link rel="stylesheet" href="/motivo/estilo.css?v=2">
 </head>
 <body>
-<div class="topo"><div class="wrap estreito">
-  <img class="lg" src="/10reunioes/assets/logo-branco.svg" alt="Vloom">
-  <div class="tick"><svg width="30" height="24" viewBox="0 0 30 24" fill="none"><path d="M2.5 12.5 11 21 27.5 3" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <h1>"Agora não é a melhor altura."<br><em>Nunca é.</em></h1>
-  <p class="lede">Escolheu <b>“Agora não é a melhor altura”</b>. Poupo-lhe os outros três: o email sobre este já seguiu para a sua caixa. Fica aqui também, para não ter de o procurar.</p>
-</div></div>
-<section><div class="wrap estreito texto">
-<p>Posso ser direto? É sempre a mesma coisa. A decisão fica à espera de uma condição que nunca chega:</p>
-<ul><li>“Quando tiver tempo, faço”;</li><li>“Quando as coisas acalmarem, trato disso”.</li></ul>
-<p>É o mesmo que dizer “quando ficar saudável volto ao médico”. A lógica está ao contrário.</p>
-<p>Uma perspetiva que talvez ajude: <b>quanto MAIS ocupado está, melhor é a altura</b>. Porque um sistema que só funciona quando tem tempo para o alimentar não presta.</p>
-<p>O nosso trabalho é exatamente esse: fazer com que funcione enquanto está ocupado.</p>
+<header class="barra"><div class="wrap"><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"></div></header>
 
-  <p class="ass">Vou voltar ao trabalho,<br><b>Tiago Severino</b><br><span>Vloom · Head of Marketing</span></p>
+<main>
+<section class="heroi"><div class="wrap grelha">
+  <div class="txt">
+    <span class="escolha">Escolheu <b>“Agora não é a melhor altura”</b></span>
+    <h1>Começou na <em>pior altura</em> possível.<br>Foi o que mudou tudo.</h1>
+    <p class="lede">A Anita Santos Rubin, seis vezes campeã do mundo de salsa, começou a trabalhar connosco em plena quarentena.</p>
+  </div>
+  <figure class="video">
+    <button class="tv" type="button" data-vimeo="817572683" data-t="" aria-label="Ver o testemunho de Anita Santos Rubin">
+      <img src="/10reunioes/assets/caras/anita-poster.jpg" alt="Anita Santos Rubin, Escola de dança" width="1280" height="720">
+      <span class="tv-bt"><svg width="26" height="30" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span>
+      <span class="tv-tag">Ver o testemunho</span>
+    </button>
+    <figcaption><b>Anita Santos Rubin</b><span>Escola de dança</span><ul class="chips"><li>Aulas online são hoje a principal fonte de rendimento</li><li>7× o investimento de volta</li></ul></figcaption>
+  </figure>
 </div></section>
+
+<section class="cit"><div class="wrap estreito">
+  <blockquote>“Pude começar a dar as minhas aulas online no momento em que eu mais precisava, na quarentena.”<cite>Anita Santos Rubin · Escola de dança</cite></blockquote>
+  <div class="carta"><p>A altura certa nunca chega. Quando há tempo, falta urgência. Quando há urgência, falta tempo.</p><p>O Sheraton Lisboa também nos procurou no fim da pandemia, um dos períodos mais difíceis de sempre para a hotelaria.</p><p>Um sistema que só funciona quando tem tempo para o alimentar não serve. O nosso trabalho é pô-lo a funcionar enquanto está ocupado com o resto.</p>
+    <p class="ass">Vou voltar ao trabalho,<br><b>Tiago Severino</b><span>Vloom · Head of Marketing</span></p>
+  </div>
+</div></section>
+
 <section class="fim"><div class="wrap estreito">
   <h2>Quer ver os números para o seu caso?</h2>
-  <p>Quinze minutos. Mostro-lhe quanto lhe custaria cada cliente e diz-me se faz sentido.</p>
+  <p>Quinze minutos. Mostro-lhe quanto lhe custaria cada cliente novo e diz-me se faz sentido.</p>
   <a class="bt" href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&utm_medium=email&utm_campaign=vloom-motivos">Marcar 15 minutos</a>
+  <small>Já não recebe os emails sobre os outros motivos.</small>
 </div></section>
+</main>
 <footer><div class="wrap legal">
   <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
   <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></span>
 </div></footer>
+<script>
+document.querySelectorAll('.tv').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://player.vimeo.com/video/'+b.dataset.vimeo+'?autoplay=1&title=0&byline=0&portrait=0'+(b.dataset.t?'#t='+b.dataset.t:'');
+    f.allow='autoplay; fullscreen; picture-in-picture'; f.title=b.getAttribute('aria-label');
+    b.innerHTML=''; b.appendChild(f); b.classList.add('on');
+  },{once:true});
+});
+</script>
 </body>
 </html>

@@ -7,33 +7,56 @@
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/motivo/estilo.css">
+<link rel="preload" as="image" href="/10reunioes/assets/caras/thierry-poster.jpg">
+<link rel="stylesheet" href="/motivo/estilo.css?v=2">
 </head>
 <body>
-<div class="topo"><div class="wrap estreito">
-  <img class="lg" src="/10reunioes/assets/logo-branco.svg" alt="Vloom">
-  <div class="tick"><svg width="30" height="24" viewBox="0 0 30 24" fill="none"><path d="M2.5 12.5 11 21 27.5 3" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-  <h1>"Já tentámos<br>e <em>não resultou</em>."</h1>
-  <p class="lede">Escolheu <b>“Já tentámos e não resultou”</b>. Poupo-lhe os outros três: o email sobre este já seguiu para a sua caixa. Fica aqui também, para não ter de o procurar.</p>
-</div></div>
-<section><div class="wrap estreito texto">
-<p>Não lhe vou dizer que a pessoa da sua equipa é má. Provavelmente não é.</p>
-<p>Mas há uma diferença entre publicar conteúdo e ter um sistema montado.</p>
-<p>Publicar é fazer anúncios e esperar. Ter um sistema é <b>saber quanto custa cada cliente que entra pela porta</b>.</p>
-<p>João Matos, o empresário de Guimarães que hoje recebe +1000 leads por mês, também já tinha tentado. Andava a atirar uns trocos às redes, a ver se alguém respondia.</p>
-<p>O que mudou não foi o esforço: foi ter um <b>SISTEMA</b> por trás.</p>
-<p>Se já tentou e não resultou, isso não é um argumento contra. É como no amor: raramente se casa com a primeira namorada.</p>
+<header class="barra"><div class="wrap"><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"></div></header>
 
-  <p class="ass">Vou voltar ao trabalho,<br><b>Tiago Severino</b><br><span>Vloom · Head of Marketing</span></p>
+<main>
+<section class="heroi"><div class="wrap grelha">
+  <div class="txt">
+    <span class="escolha">Escolheu <b>“Já tentámos e não resultou”</b></span>
+    <h1>“Não queremos uma agência<br>que só <em>executa o brief</em>.”</h1>
+    <p class="lede">Thierry Henrot, diretor-geral do Sheraton Lisboa, sabia bem o que não queria de uma agência. O vídeo começa no momento em que ele o explica.</p>
+  </div>
+  <figure class="video">
+    <button class="tv" type="button" data-vimeo="825008560" data-t="3m56s" aria-label="Ver o testemunho de Thierry Henrot">
+      <img src="/10reunioes/assets/caras/thierry-poster.jpg" alt="Thierry Henrot, Diretor-geral, Sheraton Lisboa" width="1280" height="720">
+      <span class="tv-bt"><svg width="26" height="30" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg></span>
+      <span class="tv-tag">Ver o testemunho</span>
+    </button>
+    <figcaption><b>Thierry Henrot</b><span>Diretor-geral, Sheraton Lisboa</span><ul class="chips"><li>Alcance +300% em 5 meses</li><li>Engajamento a dobrar no 1.º mês</li></ul></figcaption>
+  </figure>
 </div></section>
+
+<section class="cit"><div class="wrap estreito">
+  <blockquote>“Trabalhar com a Vloom é um pouco diferente de outras agências. Funciona maravilhosamente bem.”<cite>Thierry Henrot · Diretor-geral, Sheraton Lisboa</cite></blockquote>
+  <div class="carta"><p>Se já tentou e não resultou, não está sozinho. Muitos dos nossos clientes chegaram depois de uma experiência que correu mal.</p><p>A diferença raramente está no esforço. Está em haver um sistema por trás: saber de onde vem cada cliente e quanto custou.</p><p>É como no amor: raramente se casa com a primeira namorada.</p>
+    <p class="ass">Vou voltar ao trabalho,<br><b>Tiago Severino</b><span>Vloom · Head of Marketing</span></p>
+  </div>
+</div></section>
+
 <section class="fim"><div class="wrap estreito">
   <h2>Quer ver os números para o seu caso?</h2>
-  <p>Quinze minutos. Mostro-lhe quanto lhe custaria cada cliente e diz-me se faz sentido.</p>
+  <p>Quinze minutos. Mostro-lhe quanto lhe custaria cada cliente novo e diz-me se faz sentido.</p>
   <a class="bt" href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&utm_medium=email&utm_campaign=vloom-motivos">Marcar 15 minutos</a>
+  <small>Já não recebe os emails sobre os outros motivos.</small>
 </div></section>
+</main>
 <footer><div class="wrap legal">
   <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
   <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></span>
 </div></footer>
+<script>
+document.querySelectorAll('.tv').forEach(function(b){
+  b.addEventListener('click',function(){
+    var f=document.createElement('iframe');
+    f.src='https://player.vimeo.com/video/'+b.dataset.vimeo+'?autoplay=1&title=0&byline=0&portrait=0'+(b.dataset.t?'#t='+b.dataset.t:'');
+    f.allow='autoplay; fullscreen; picture-in-picture'; f.title=b.getAttribute('aria-label');
+    b.innerHTML=''; b.appendChild(f); b.classList.add('on');
+  },{once:true});
+});
+</script>
 </body>
 </html>
