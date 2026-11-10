@@ -5,35 +5,86 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Vloom · Combinado</title>
 <meta name="robots" content="noindex">
+<link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="stylesheet" href="/motivo/estilo.css?v=3">
+<link rel="stylesheet" href="/motivo/base.css?v=4">
+<link rel="stylesheet" href="/motivo/motivo.css?v=4">
 </head>
 <body>
-<header class="barra"><div class="wrap"><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"></div></header>
+<header>
+  <div class="wrap hd">
+    <img class="lg" src="/10reunioes/assets/logo-branco.svg" alt="Vloom">
+    <span class="selo-topo">Pedido recebido</span>
+    
+  </div>
+</header>
 
-<main>
-<section class="heroi so"><div class="wrap estreito">
-  <span class="escolha">Pedido recebido</span>
-  <h1>Combinado.<br>Eu <em>paro aqui</em>.</h1>
-  <p class="lede">Não lhe volto a escrever sobre isto. Amigos como dantes.</p>
-  <p class="lede">Se um dia mudar de ideias, basta responder a qualquer email meu. Leio todos.</p>
-  <p class="ass">Tiago Severino<span>Vloom · Head of Marketing</span></p>
-</div></section>
-</main>
-<footer><div class="wrap legal">
-  <span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span>
-  <span><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></span>
-</div></footer>
+<section class="hero parar">
+  <div class="wrap">
+    <div class="centro estreito">
+      <div class="ok-ic"><svg width="15" height="12" viewBox="0 0 15 12" fill="none" aria-hidden="true"><path d="m1.5 6 4 4.5L13.5 1.5" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+      <p class="eyebrow">Pedido recebido</p>
+      <h1>Combinado. <em>Eu paro aqui.</em></h1>
+      <div class="garantia-linha">Não lhe volto a escrever sobre isto. <b>Amigos como dantes.</b></div>
+      <p class="lede">Se um dia mudar de ideias, basta responder a qualquer email meu. Leio todos.</p>
+      <p class="assina"><b>Tiago Severino</b><span>Fundador da Vloom</span></p>
+    </div>
+  </div>
+</section>
+<div class="ticker">
+  <div class="rot">Marcas que já confiaram o crescimento delas à Vloom</div>
+  <div class="pista"><div class="ticker-inner" id="pista"></div></div>
+</div>
+<footer>
+  <div class="wrap">
+    <div class="fg">
+      <div><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"><p>Agência de Marketing e Publicidade Digital.<br>Atraia clientes sem risco.</p></div>
+      <div><b>Contactos</b><p><a href="tel:+351914310656">(+351) 914 310 656</a><br><span style="font-size:11.5px;opacity:.7">Chamada para rede móvel nacional</span><br><a href="https://vloom.pt" target="_blank" rel="noopener">vloom.pt</a></p></div>
+      <div><b>Legal</b><p><a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a></p></div>
+    </div>
+    <div class="legal"><span>© 2026 Vloom, Agência de Marketing e Publicidade Digital, Lda.</span><span>Design by Vloom</span></div>
+  </div>
+</footer>
 <script>
-document.querySelectorAll('.tv').forEach(function(b){
-  b.addEventListener('click',function(){
-    var f=document.createElement('iframe');
-    f.src='https://player.vimeo.com/video/'+b.dataset.vimeo+'?autoplay=1&title=0&byline=0&portrait=0'+(b.dataset.t?'#t='+b.dataset.t:'');
-    f.allow='autoplay; fullscreen; picture-in-picture'; f.title=b.getAttribute('aria-label');
-    b.innerHTML=''; b.appendChild(f); b.classList.add('on');
-  },{once:true});
-});
+(function(){
+  document.querySelectorAll('.dep,.destaque').forEach(function(fig){
+    var bt=fig.querySelector('.tv-play'); if(!bt) return;
+    bt.addEventListener('click',function(){
+      var t=fig.getAttribute('data-t');
+      var f=document.createElement('iframe');
+      f.src='https://player.vimeo.com/video/'+fig.getAttribute('data-vimeo')+'?autoplay=1&title=0&byline=0&portrait=0'+(t?'#t='+t:'');
+      f.allow='autoplay; fullscreen; picture-in-picture'; f.setAttribute('allowfullscreen','');
+      f.title='Testemunho de cliente da Vloom'; bt.replaceWith(f);
+    });
+  });
+})();
+(function(){
+  var m=[["sheraton1","Marriott International"],["weleda1","Weleda"],["sktechers1","Skechers"],["allianz1","Allianz"],["seg1","Segurança Máxima"],["try1","Try Moto"],["nortecar","Nortecar"],["cas1","Casa das Peles"],["euro1","Eurofirms"],["ca1","CA"],["meusuper","Meu Super"],["calve","Calvé"],["hellmans","Hellmann's"],["tedbx","TEDx"],["bdrfinan","BDR"],["exs1","Exs"],["smil1","Smile Bath"]];
+  var p=document.getElementById("pista"); if(!p) return; var h="";
+  for(var v=0;v<2;v++) m.forEach(function(x){ h+='<span class="lg"><img src="/10reunioes/assets/logos-uni/'+x[0]+'.png" alt="'+x[1]+'" loading="lazy"></span>'; });
+  p.innerHTML=h;
+})();
+/* cada BOB abana quando entra no ecra e volta a abanar se voltar a entrar */
+(function(){
+  var bobs=[].slice.call(document.querySelectorAll('.bob'));
+  if(!bobs.length) return;
+  if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if(!('IntersectionObserver' in window)){ bobs.forEach(function(b){b.classList.add('viva');}); return; }
+  var obs=new IntersectionObserver(function(ents){
+    ents.forEach(function(e){
+      var el=e.target;
+      if(e.isIntersecting){
+        el.classList.remove('viva');
+        void el.offsetWidth;            /* reinicia a animacao */
+        setTimeout(function(){ el.classList.add('viva'); }, 260);
+      } else {
+        el.classList.remove('viva');
+      }
+    });
+  },{threshold:.55});
+  bobs.forEach(function(b){ obs.observe(b); });
+})();
 </script>
 </body>
 </html>

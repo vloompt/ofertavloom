@@ -1,0 +1,30 @@
+/* extras das páginas /motivo/ — o resto vem de base.css (cópia da LP /10reunioes/) */
+.hero .centro h1{max-width:900px;margin:0 auto}
+.destaque{margin:52px auto 0;max-width:940px}
+.destaque .tv-play{border-radius:20px;line-height:0;box-shadow:0 40px 90px -30px rgba(0,0,0,.85),0 0 0 1px rgba(255,255,255,.12),0 0 80px -10px rgba(141,72,155,.45)}
+.destaque .tv-play img{width:100%;height:100%;object-fit:cover;opacity:.95;transition:transform .6s ease,opacity .3s}
+.destaque .tv-play:hover img{opacity:1;transform:scale(1.025)}
+.destaque .tv-bt{width:92px;height:92px;z-index:2;box-shadow:0 0 0 12px rgba(141,72,155,.28);transition:transform .25s,box-shadow .25s}
+.destaque .tv-play:hover .tv-bt{transform:translate(-50%,-50%) scale(1.07);box-shadow:0 0 0 18px rgba(141,72,155,.22)}
+.destaque .tv-tag{position:absolute;z-index:2;left:18px;top:16px;background:rgba(16,13,38,.82);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.14);color:#fff;font-size:11px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;padding:9px 14px;border-radius:99px;line-height:1}
+.destaque iframe{width:100%;aspect-ratio:16/9;border:0;border-radius:20px;display:block}
+.destaque figcaption{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;margin-top:22px;text-align:left}
+.quem-d b{display:block;font-size:19px;font-weight:800;letter-spacing:-.01em}
+.quem-d span{display:block;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--texto2);margin-top:4px}
+.res-d{list-style:none;display:flex;flex-wrap:wrap;gap:10px}
+.res-d li{display:inline-flex;align-items:center;gap:9px;font-size:13.5px;font-weight:800;color:var(--texto);background:rgba(141,72,155,.16);border:1px solid rgba(176,109,190,.4);border-radius:99px;padding:10px 16px}
+.res-d li svg{color:var(--azul);flex:none}
+.cit-d{margin-top:44px;max-width:720px;text-align:center;justify-content:center}
+.cit-d p{font-size:clamp(18px,2vw,22px);line-height:1.45}
+.dores-grid.tres{max-width:1100px;margin-left:auto;margin-right:auto}
+@media(min-width:860px){.dores-grid.tres{grid-template-columns:repeat(3,1fr)}}
+.dores-grid.tres .aspas{font-size:46px;top:10px;color:rgba(119,206,244,.16)}
+.dores-grid.tres .dor p{font-style:normal;padding-right:28px}
+.dores-grid.tres .dor p b{color:#fff}
+.parar{padding-bottom:110px}
+.parar .ok-ic{width:72px;height:72px;margin:0 auto 26px;border-radius:50%;display:grid;place-items:center;color:var(--azul);background:rgba(119,206,244,.1);border:1px solid rgba(119,206,244,.45)}
+.parar .ok-ic svg{width:30px;height:24px}
+.assina{margin-top:34px;font-size:15px}
+.assina b{display:block;font-size:17px}
+.assina span{display:block;font-size:11px;font-weight:800;letter-spacing:.13em;text-transform:uppercase;color:var(--texto2);margin-top:4px}
+@media(max-width:640px){.destaque{margin-top:36px}.destaque .tv-bt{width:70px;height:70px}.destaque figcaption{flex-direction:column;align-items:flex-start}}
