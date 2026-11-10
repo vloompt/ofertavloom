@@ -77,7 +77,7 @@ def cabeca(titulo):
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preload" as="image" href="{CARAS}{{poster}}">
-<link rel="stylesheet" href="/motivo/estilo.css?v=2">
+<link rel="stylesheet" href="/motivo/estilo.css?v=3">
 </head>
 <body>
 <header class="barra"><div class="wrap"><img src="/10reunioes/assets/logo-branco.svg" alt="Vloom"></div></header>
