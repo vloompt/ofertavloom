@@ -1,5 +1,5 @@
-# Gera as páginas de destino dos links «é este o meu caso» (email #1 da sequência
-# 🤝 Compareceu Sem Pedir Proposta, GHL Vloom 8b4d36b2) e do «parar» do email #5.
+# Gera as páginas de destino dos links "é este o meu caso" (email #1 da sequência
+# 🤝 Compareceu Sem Pedir Proposta, GHL Vloom 8b4d36b2) e do "parar" do email #5.
 # Linguagem visual = a da LP /10reunioes/ (base.css é cópia do CSS dela).
 # Cada motivo = um cliente REAL que disse aquilo em vídeo (transcrições conferidas
 # a 10/11/2026; o vídeo arranca no segundo em que ele o diz).
@@ -8,7 +8,7 @@ import pathlib
 AQUI = pathlib.Path(__file__).parent
 A = "/10reunioes/assets/"
 MARCAR = "https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&utm_medium=email&utm_campaign=vloom-motivos"
-V = "?v=7"
+V = "?v=10"
 
 SETA = '<svg width="24" height="17" viewBox="0 0 22 16" fill="none" aria-hidden="true"><path d="M1 8h19M14 1.5 20.5 8 14 14.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>'
 PLAY = '<svg width="22" height="26" viewBox="0 0 26 30" fill="none"><path d="M3 2.5 23.5 15 3 27.5V2.5Z" fill="currentColor" stroke="currentColor" stroke-width="3.5" stroke-linejoin="round"/></svg>'
@@ -30,7 +30,7 @@ PAGINAS = {
     linha="<b>Caro é pagar por algo que não sabe se lhe traz clientes.</b> Ele sabe exatamente quanto entrou por causa do serviço que paga.",
     vimeo="1155016610", t="1m44s", poster="cab-poster.jpg",
     nome="Dr. Bernardo Caria", quem="Clínica CAB, Barcelos",
-    res=["+100 leads no 1.º mês", "Investimento pago com os primeiros clientes"],
+    res=[("+100","leads no 1.º mês"), ("2 a 3","tratamentos pagaram o investimento")],
     citacao="Rapidamente percebemos que é uma coisa que custa muito dinheiro, mas não é caro, porque conseguíamos ir buscar o dinheiro que estávamos a investir.",
     pontos_h2="O que <em>muda a conta</em>",
     pontos=[
@@ -46,7 +46,7 @@ PAGINAS = {
     linha="<b>A altura certa nunca chega.</b> Quando há tempo, falta urgência. Quando há urgência, falta tempo.",
     vimeo="817572683", t="", poster="anita-poster.jpg",
     nome="Anita Santos Rubin", quem="Seis vezes campeã do mundo de salsa",
-    res=["As aulas online são hoje a principal fonte de rendimento", "De 75 para mais de 200 alunas online"],
+    res=[("75 → 200+","alunas online"), ("N.º 1","fonte de rendimento: as aulas online")],
     citacao="Pude começar a dar as minhas aulas online no momento em que eu mais precisava, na quarentena.",
     pontos_h2="Porque é que <em>ocupado é a melhor altura</em>",
     pontos=[
@@ -62,7 +62,7 @@ PAGINAS = {
     linha="<b>A diferença raramente está no esforço.</b> Está em haver um sistema por trás: saber de onde vem cada cliente e quanto custou.",
     vimeo="825008560", t="3m56s", poster="thierry-poster.jpg",
     nome="Thierry Henrot", quem="Diretor-geral, Sheraton Lisboa",
-    res=["Alcance +300% em 5 meses", "Engajamento a dobrar no 1.º mês"],
+    res=[("+300%","alcance em 5 meses"), ("2×","engajamento no 1.º mês")],
     citacao="Trabalhar com a Vloom é um pouco diferente de outras agências. Funciona maravilhosamente bem.",
     pontos_h2="Se já tentou, <em>não está sozinho</em>",
     pontos=[
@@ -78,7 +78,7 @@ PAGINAS = {
     linha="<b>Publicar e trazer clientes são trabalhos diferentes.</b> Não substituímos ninguém: juntamo-nos ao que já tem.",
     vimeo="1155016610", t="1m10s", poster="cab-poster.jpg",
     nome="Dr. Bernardo Caria", quem="Clínica CAB, Barcelos",
-    res=["+100 leads no 1.º mês", "Cada paciente com origem conhecida"],
+    res=[("+100","leads no 1.º mês"), ("1.302","leads em 9 meses")],
     citacao="As redes sociais são um investimento a longo prazo que eu nem sei medir. Agora, quando um paciente vem daqui, sabemos: este dinheiro entrou por causa deste serviço.",
     pontos_h2="O que a sua equipa <em>continua a fazer</em>",
     pontos=[
@@ -95,21 +95,21 @@ CARTA = {
   "e-caro": dict(
     h1="Pediu-me para falar de preço. <em>Vou ser honesto.</em>",
     texto=[
-      "O nosso serviço custa dinheiro. Não vou fingir que não.",
+      "O nosso serviço custa dinheiro e não vou fingir o contrário.",
       "Mas <b>caro e custar dinheiro não são a mesma coisa</b>. Caro é pagar todos os meses por algo que não sabe se lhe traz clientes.",
-      "Quando cada cliente tem origem conhecida, a pergunta deixa de ser «quanto custa?» e passa a ser <b>«quanto me devolve?»</b>.",
+      "Quando cada cliente tem origem conhecida, a pergunta deixa de ser \"quanto custa?\" e passa a ser <b>\"quanto me devolve?\"</b>.",
       "O Dr. Bernardo Caria, de uma clínica em Barcelos, também achou caro. Avançou na mesma.",
     ],
-    ponte="Não acredite só em mim. <em>Ouça o Dr. Bernardo.</em>"),
+    ponte="Quem o explica melhor é <em>o Dr. Bernardo.</em>"),
   "nao-e-a-altura": dict(
     h1="Posso ser direto? <em>Nunca é.</em>",
     texto=[
-      "A decisão fica à espera de uma condição que nunca chega: «quando tiver tempo, faço», «quando as coisas acalmarem, trato disso».",
-      "É como dizer «quando ficar saudável, volto ao médico». <b>A lógica está ao contrário.</b>",
+      "A decisão fica à espera de uma condição que nunca chega: \"quando tiver tempo, faço\", \"quando as coisas acalmarem, trato disso\".",
+      "É como dizer \"quando ficar saudável, volto ao médico\". <b>A lógica está ao contrário.</b>",
       "Quanto mais ocupado está, melhor é a altura. Um sistema que só funciona quando tem tempo para o alimentar não serve. <b>O nosso trabalho é pô-lo a funcionar enquanto trata do resto.</b>",
       "A Anita Santos Rubin começou connosco no pior momento possível: em plena quarentena.",
     ],
-    ponte="Não acredite só em mim. <em>Ouça a Anita.</em>"),
+    ponte="Quem o explica melhor é <em>a Anita.</em>"),
   "ja-tentamos": dict(
     h1="Acredito. <em>É mais comum do que pensa.</em>",
     texto=[
@@ -118,16 +118,16 @@ CARTA = {
       "Se já tentou e não resultou, isso não é um argumento contra. É como no amor: <b>raramente se casa com a primeira namorada</b>.",
       "O Sheraton Lisboa também já tinha trabalhado com agências antes de nós.",
     ],
-    ponte="Não acredite só em mim. <em>Ouça o diretor-geral do Sheraton.</em>"),
+    ponte="Quem o explica melhor é <em>o diretor-geral do Sheraton.</em>"),
   "alguem-interno": dict(
-    h1="Ótimo. <em>Não é para substituir ninguém.</em>",
+    h1="Ótimo. <em>A sua equipa fica.</em>",
     texto=[
-      "Não lhe vou dizer que essa pessoa faz mal o trabalho. Provavelmente faz bem.",
+      "Essa pessoa provavelmente faz bem o trabalho dela. Ninguém vai ser substituído.",
       "Mas há uma diferença entre publicar conteúdo e ter um sistema montado. <b>Publicar é pôr conteúdo cá fora e esperar que alguém repare. Ter um sistema é saber quanto custa cada cliente que entra pela porta.</b>",
       "A sua equipa continua a publicar. Nós montamos a parte que traz os clientes e mede quanto custou cada um.",
       "A clínica do Dr. Bernardo Caria já fazia redes sociais antes de trabalhar connosco.",
     ],
-    ponte="Não acredite só em mim. <em>Ouça o Dr. Bernardo.</em>"),
+    ponte="Quem o explica melhor é <em>o Dr. Bernardo.</em>"),
 }
 
 def cabeca(titulo, selo, preload=""):
@@ -167,6 +167,11 @@ def dep(k):
       </div>"""
 
 TICKER = """<div class="ticker">
+  <div class="selos">
+    <img src="/10reunioes/assets/cert/meta-media-buying.png" alt="Meta Certified Media Buying Professional" loading="lazy">
+    <img src="/10reunioes/assets/cert/google-search.png" alt="Google Ads Search Certified" loading="lazy">
+    <p>A <b>Vloom</b> é certificada pela <b>Meta</b> e pela <b>Google</b>.</p>
+  </div>
   <div class="rot">Marcas que já confiaram o crescimento delas à Vloom</div>
   <div class="pista"><div class="ticker-inner" id="pista"></div></div>
 </div>"""
@@ -214,16 +219,16 @@ def primeiro_nome(n):
     return n.split()[1] if n.startswith("Dr.") else n.split()[0]
 
 def pagina(p):
-    res = "".join(f"<li>{CHECK}<span>{r}</span></li>" for r in p["res"])
+    res = "".join(f'<div class="num"><b>{n}</b><span>{t}</span></div>' for n, t in p["res"])
     pontos = "".join(f'<div class="dor"><span class="aspas">0{i}</span><p>{x}</p></div>' for i, x in enumerate(p["pontos"], 1))
     outros = "".join(dep(k) for k in p["outros"])
     c = CARTA[[k for k, v in PAGINAS.items() if v is p][0]]
     texto = "".join(f"<p>{x}</p>" for x in c["texto"])
-    return cabeca(p["motivo"], f'Escolheu: “{p["motivo"]}”', f'<link rel="preload" as="image" href="{A}caras/{p["poster"]}">\n') + f"""
+    return cabeca(p["motivo"], f'Escolheu: "{p["motivo"]}"', f'<link rel="preload" as="image" href="{A}caras/{p["poster"]}">\n') + f"""
 <section class="hero aurora">
   <div class="wrap">
     <div class="centro estreito">
-      <span class="pilula">Escolheu <b>“{p['motivo']}”</b></span>
+      <span class="pilula">Escolheu <b>"{p['motivo']}"</b></span>
       <h1>{c['h1']}</h1>
     </div>
     <article class="carta-v">
@@ -244,25 +249,21 @@ def pagina(p):
         <span class="tv-tag">Ver o testemunho</span>
       </button>
       </div>
-      <figcaption>
-        <div class="quem-d"><b>{p['nome']}</b><span>{p['quem']}</span></div>
-        <ul class="res-d">{res}</ul>
+      <figcaption class="placa">
+        <div class="quem-d"><img src="{A}caras/{p['poster']}" alt=""><div><b>{p['nome']}</b><span>{p['quem']}</span></div></div>
+        {res}
       </figcaption>
     </figure>
 
     <div class="prova-hero cit-d">
       <div>
         <span class="st">★★★★★</span>
-        <p>“{p['citacao']}”</p>
+        <p>"{p['citacao']}"</p>
         <span class="quem">{p['nome']} · {p['quem']}</span>
       </div>
     </div>
 
-    <div class="certs-hero">
-      <span class="c"><img src="{A}cert/meta-media-buying.png" alt="Meta Certified Media Buying Professional" loading="lazy"></span>
-      <span class="c"><img src="{A}cert/google-search.png" alt="Google Ads Search Certified" loading="lazy"></span>
-      <span class="txt">Certificados pela <b>Meta</b> e pela <b>Google</b>.</span>
-    </div>
+
   </div>
 </section>
 
@@ -286,7 +287,7 @@ def pagina(p):
     <div class="centro estreito">
       <span class="kicker">Testemunhos</span>
       <span class="estrelas">★★★★★</span>
-      <h2>Não é só {'o' if p['nome'] != 'Anita Santos Rubin' else 'a'} {primeiro_nome(p['nome'])}. <em>Ouça quem trabalha connosco.</em></h2>
+      <h2>{'O' if p['nome'] != 'Anita Santos Rubin' else 'A'} {primeiro_nome(p['nome'])} é um de muitos. <em>Ouça quem trabalha connosco.</em></h2>
     </div>
     <div class="deps">
       {outros}
@@ -297,7 +298,7 @@ def pagina(p):
 <section class="last">
   <div class="wrap lastg">
     <figure class="last-fig">
-      <picture><source media="(max-width:899px)" srcset="{A}tiago-convite-mobile.png" width="760" height="1390"><img src="{A}tiago-convite.png" alt="Tiago Severino, fundador da Vloom" width="900" height="1043" loading="lazy"></picture>
+      <div class="tiago-f"><img src="{A}tiago.png" alt="Tiago Severino, fundador da Vloom" width="687" height="1500" loading="lazy"></div>
       <figcaption><b>Tiago Severino</b><span>Fundador da Vloom</span></figcaption>
     </figure>
     <div class="last-txt">
@@ -323,7 +324,7 @@ for pasta, p in PAGINAS.items():
     d = AQUI / pasta; d.mkdir(exist_ok=True)
     (d / "index.html").write_text(pagina(p))
 
-# «parar» (email #5): sem vídeo e sem venda. Só confirma.
+# "parar" (email #5): sem vídeo e sem venda. Só confirma.
 d = AQUI / "parar"; d.mkdir(exist_ok=True)
 (d / "index.html").write_text(cabeca("Combinado", "Pedido recebido").replace(f'<a class="mini" href="{MARCAR}">Marcar 15 minutos</a>', "") + f"""
 <section class="hero aurora parar">
@@ -332,7 +333,7 @@ d = AQUI / "parar"; d.mkdir(exist_ok=True)
       <div class="ok-ic">{CHECK}</div>
       <p class="eyebrow">Pedido recebido</p>
       <h1>Combinado. <em>Eu paro aqui.</em></h1>
-      <div class="garantia-linha">Não lhe volto a escrever sobre isto. <b>Amigos como dantes.</b></div>
+      <div class="garantia-linha">Fica por aqui: sobre isto, deixo de lhe escrever. <b>Amigos como dantes.</b></div>
       <p class="lede">Se um dia mudar de ideias, basta responder a qualquer email meu. Leio todos.</p>
       <p class="assina"><b>Tiago Severino</b><span>Fundador da Vloom</span></p>
     </div>
