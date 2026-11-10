@@ -53,6 +53,12 @@
 </footer>
 <script>
 (function(){
+  if(/[?&]origem=sequencia/.test(location.search)){
+    var pl=document.querySelector('.pilula'); if(pl) pl.style.display='none';
+    var st=document.querySelector('.selo-topo'); if(st) st.textContent='Vloom · Testemunhos de clientes';
+  }
+})();
+(function(){
   document.querySelectorAll('.dep,.destaque').forEach(function(fig){
     var bt=fig.querySelector('.tv-play'); if(!bt) return;
     bt.addEventListener('click',function(){
