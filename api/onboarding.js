@@ -3,7 +3,7 @@
 //
 // POST {acao:'submeter', id?, k?, dados}  → guarda as respostas, devolve {id, k}
 // POST {acao:'token', id, k, tipo, nome}  → token de envio direto do browser para o Blob
-// POST {acao:'concluir', id, k}           → marca como concluído e avisa a equipa (email + nota no GHL)
+// POST {acao:'submeter', concluir:true, …} → grava e marca como concluído; avisa a equipa (email + nota no GHL) uma vez
 // GET  ?id=…&k=…                          → respostas + ficheiros, para a ficha da equipa
 //
 // Tudo no Vercel Blob: onboarding/<id>/dados.json e onboarding/<id>/ficheiros/<tipo>/<nome>.
@@ -49,6 +49,8 @@ const lerDados = async id => {
   const b = (await loja.listar(`onboarding/${id}/dados.json`, 5))[0];
   return b ? loja.ler(b.url + '?t=' + Date.now()) : null;
 };
+// o estado vem da listagem (sem cache), nunca do dados.json
+const concluido = async id => (await loja.listar(`onboarding/${id}/concluido.json`, 5))[0] || null;
 const listarFicheiros = async id => (await loja.listar(`onboarding/${id}/ficheiros/`, 1000)).map(b => {
   const partes = b.pathname.split('/');
   return { tipo: partes[3], nome: partes.slice(4).join('/'), url: b.url, downloadUrl: b.downloadUrl, tamanho: b.size };
@@ -112,7 +114,8 @@ module.exports = async function handler(req, res) {
       if (!autorizado(id, k)) return res.status(403).json({ ok: false });
       const dados = await lerDados(id);
       if (!dados) return res.status(404).json({ ok: false });
-      return res.status(200).json({ ok: true, ...dados, ficheiros: await listarFicheiros(id) });
+      const fim = await concluido(id);
+      return res.status(200).json({ ok: true, ...dados, estado: fim ? 'concluido' : 'submetido', concluidoEm: fim ? fim.uploadedAt : null, ficheiros: await listarFicheiros(id) });
     }
     if (req.method !== 'POST') return res.status(405).json({ ok: false });
 
@@ -122,13 +125,20 @@ module.exports = async function handler(req, res) {
       const dados = b.dados && typeof b.dados === 'object' ? b.dados : null;
       if (!dados || !String(dados.companyName || '').trim() || !String(dados.respEmail || '').trim()) return res.status(400).json({ ok: false, erro: 'faltam dados' });
       let id = b.id, k = b.k, anterior = null;
-      if (id && autorizado(id, k)) anterior = await lerDados(id);
+      if (id && autorizado(id, k)) anterior = await lerDados(id); // só para a data de criação (que nunca muda)
       else { id = loja.token(); k = chave(id); }
       const agora = new Date().toISOString();
-      const registo = { id, dados, estado: anterior?.estado === 'concluido' ? 'concluido' : 'submetido', criadoEm: anterior?.criadoEm || agora, atualizadoEm: agora, concluidoEm: anterior?.concluidoEm || null, code: String(b.code || '').slice(0, 60) || null };
+      const registo = { id, dados, criadoEm: anterior?.criadoEm || agora, atualizadoEm: agora, code: String(b.code || '').slice(0, 60) || null };
       const ok = await escrever(`onboarding/${id}/dados.json`, registo);
       if (!ok) return res.status(500).json({ ok: false, erro: 'não gravou' });
-      return res.status(200).json({ ok: true, id, k });
+      if (!b.concluir) return res.status(200).json({ ok: true, id, k });
+
+      // concluir: grava com as respostas acabadas de chegar (nunca relidas da cache) e avisa só da primeira vez
+      const ficheiros = await listarFicheiros(id);
+      if (await concluido(id)) return res.status(200).json({ ok: true, id, k, ficheiros: ficheiros.length, aviso: { saltado: 'já avisado' } });
+      await escrever(`onboarding/${id}/concluido.json`, { concluidoEm: agora });
+      const aviso = await avisarEquipa(id, k, dados, ficheiros);
+      return res.status(200).json({ ok: true, id, k, ficheiros: ficheiros.length, aviso });
     }
 
     if (b.acao === 'token') {
@@ -136,20 +146,6 @@ module.exports = async function handler(req, res) {
       const tipo = TIPOS.includes(b.tipo) ? b.tipo : 'outros';
       const pathname = `onboarding/${b.id}/ficheiros/${tipo}/${Date.now().toString(36)}-${limpaNome(b.nome)}`;
       return res.status(200).json({ ok: true, pathname, token: tokenCliente(pathname) });
-    }
-
-    if (b.acao === 'concluir') {
-      if (!autorizado(b.id, b.k)) return res.status(403).json({ ok: false });
-      const registo = await lerDados(b.id);
-      if (!registo) return res.status(404).json({ ok: false });
-      const ficheiros = await listarFicheiros(b.id);
-      const jaConcluido = registo.estado === 'concluido';
-      registo.estado = 'concluido';
-      registo.concluidoEm = registo.concluidoEm || new Date().toISOString();
-      await escrever(`onboarding/${b.id}/dados.json`, registo);
-      // avisa só da primeira vez (voltar atrás e concluir de novo não repete o email)
-      const aviso = jaConcluido ? { saltado: 'já avisado' } : await avisarEquipa(b.id, b.k, registo.dados || {}, ficheiros);
-      return res.status(200).json({ ok: true, ficheiros: ficheiros.length, aviso });
     }
 
     return res.status(400).json({ ok: false, erro: 'ação desconhecida' });

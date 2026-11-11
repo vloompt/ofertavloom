@@ -136,8 +136,8 @@ textarea.vloom-input{min-height:80px;line-height:1.55}
   let st = { passo: 0, dados: {}, id: null, k: null, ficheiros: [] };
   try { const g = JSON.parse(localStorage.getItem(CHAVE) || 'null'); if (g && g.dados) st = Object.assign(st, g); } catch (_) {}
   st.passo = Math.min(Math.max(0, st.passo | 0), FIM);
-  // ficheiros que ficaram "a enviar" numa visita anterior não terminaram
-  st.ficheiros.forEach(f => { if (f.estado === 'a enviar') f.estado = 'falhou'; });
+  // ao voltar à página só ficam na lista os ficheiros que chegaram mesmo (os falhados voltam a escolher-se)
+  st.ficheiros = st.ficheiros.filter(f => f.estado === 'enviado');
   // quem volta a meio vê a entrada com "continuar"; quem já concluiu vê o fim
   let retomar = st.passo > 0 && st.passo < FIM ? st.passo : 0;
   if (retomar) st.passo = 0;
@@ -262,8 +262,8 @@ textarea.vloom-input{min-height:80px;line-height:1.55}
     if (!r.ok || !j.ok) throw new Error(j.erro || ('erro ' + r.status));
     return j;
   }
-  async function submeter() {
-    const j = await post({ acao: 'submeter', id: st.id, k: st.k, code: CODE, dados: st.dados });
+  async function submeter(concluir) {
+    const j = await post({ acao: 'submeter', concluir: !!concluir, id: st.id, k: st.k, code: CODE, dados: st.dados });
     st.id = j.id; st.k = j.k; guardar(false);
   }
 
@@ -282,8 +282,7 @@ textarea.vloom-input{min-height:80px;line-height:1.55}
       if (p.zonas) {
         if (st.ficheiros.some(f => f.estado === 'a enviar')) { mostraErro('Ainda há ficheiros a enviar. Aguarde um momento.'); return; }
         btn.disabled = true; btn.textContent = 'A concluir…'; mostraErro('');
-        await submeter();
-        await post({ acao: 'concluir', id: st.id, k: st.k });
+        await submeter(true);
       }
     } catch (e) {
       btn.disabled = false; btn.textContent = rotuloSeguir();
@@ -317,8 +316,7 @@ textarea.vloom-input{min-height:80px;line-height:1.55}
           x.setRequestHeader('authorization', 'Bearer ' + t.token);
           x.setRequestHeader('x-api-version', '11');
           x.setRequestHeader('x-content-type', file.type || 'application/octet-stream');
-          x.setRequestHeader('x-add-random-suffix', '0');
-          x.setRequestHeader('x-allow-overwrite', '1');
+          // sufixo e sobrescrita vão dentro do token (o Blob recusa estes cabeçalhos vindos do browser)
           let ultimo = 0;
           x.upload.onprogress = e => { if (e.lengthComputable) { f.pct = Math.round(e.loaded / e.total * 100); if (Date.now() - ultimo > 250) { ultimo = Date.now(); desenhaFicheiros(); } } };
           x.onload = () => (x.status >= 200 && x.status < 300) ? ok() : falha(new Error(x.status + ' ' + String(x.responseText).slice(0, 160)));
