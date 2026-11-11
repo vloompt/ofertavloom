@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha de onboarding · Vloom</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<style>
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-book.woff2) format('woff2');font-weight:300 400;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-medium.woff2) format('woff2');font-weight:500 600;font-display:swap}
+@font-face{font-family:Gotham;src:url(../assets/fonts/gotham-bold.woff2) format('woff2');font-weight:700 800;font-display:swap}
+:root{--marinho:#141034;--roxo:#472a70;--azul:#3b4a9c;--txt:#232048;--suave:#6f6c8f;--linha:#e6e3f0;--papel:#f6f5fb}
+*{box-sizing:border-box}
+body{margin:0;font-family:Gotham,'Helvetica Neue',Arial,sans-serif;color:var(--txt);background:var(--papel);-webkit-font-smoothing:antialiased}
+header{background:linear-gradient(140deg,#0e0c1e,#1a1535 55%,#0f1428);color:#fff;padding:28px 20px 26px}
+.in{max-width:1100px;margin:0 auto}
+header img{height:26px}
+header h1{margin:18px 0 6px;font-size:clamp(24px,4vw,34px);font-weight:800}
+header p{margin:0;color:rgba(255,255,255,.7);font-size:14.5px;line-height:1.6}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.acoes button,.acoes a{font:inherit;font-size:14px;font-weight:600;border-radius:30px;padding:11px 20px;cursor:pointer;text-decoration:none;border:1px solid rgba(255,255,255,.25);color:#fff;background:rgba(255,255,255,.06)}
+.acoes .forte{background:linear-gradient(120deg,var(--roxo),var(--azul));border-color:transparent}
+main{max-width:1100px;margin:0 auto;padding:26px 20px 70px;display:grid;grid-template-columns:1fr 330px;gap:26px;align-items:start}
+section{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:22px 24px;margin-bottom:18px}
+section h2{margin:0 0 16px;font-size:18px;font-weight:800;color:var(--marinho)}
+section h2 small{display:block;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--azul);margin-bottom:4px}
+.qa{padding:12px 0;border-top:1px solid var(--linha)}
+.qa:first-of-type{border-top:0;padding-top:0}
+.qa .q{font-size:13px;color:var(--suave);margin-bottom:5px}
+.qa .r{font-size:15px;line-height:1.6;white-space:pre-wrap}
+.qa .r.vazio{color:#b0adc6;font-style:italic}
+table.ct{border-collapse:collapse;width:100%;font-size:14.5px}
+table.ct td{padding:6px 8px;border-top:1px solid var(--linha)}
+table.ct td:first-child{color:var(--suave);width:28px}
+aside{position:sticky;top:18px}
+aside section h2{font-size:16px}
+.grupo{margin-bottom:14px}
+.grupo b{display:block;font-size:13px;color:var(--suave);margin-bottom:6px}
+.grupo a{display:flex;gap:8px;justify-content:space-between;font-size:14px;color:var(--txt);text-decoration:none;padding:7px 0;border-top:1px solid var(--linha)}
+.grupo a span:first-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.grupo a span:last-child{color:var(--suave);flex:none;font-size:12.5px}
+.grupo a:hover span:first-child{color:var(--azul);text-decoration:underline}
+.estado{display:inline-block;font-size:12px;font-weight:700;border-radius:20px;padding:4px 10px;background:#e7f7ef;color:#167a4b}
+.estado.sub{background:#fff4dc;color:#946200}
+.msg{max-width:600px;margin:80px auto;text-align:center;color:var(--suave)}
+@media (max-width:880px){main{grid-template-columns:1fr}aside{position:static;order:-1}}
+@media print{header .acoes,aside .acoes{display:none}main{display:block}aside{position:static}body{background:#fff}section{break-inside:avoid-page}}
+</style>
+</head>
+<body>
+<div id="raiz"><p class="msg">A carregar…</p></div>
+<script src="../perguntas.js"></script>
+<script>
+(async function () {
+  const { PASSOS, MOTIVACOES } = window.ONB;
+  const NOMES_ZONA = Object.fromEntries((PASSOS.find(p => p.zonas) || { zonas: [] }).zonas.map(z => [z.k, z.l]));
+  const esc = s => String(s == null ? '' : s).replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+  const qs = new URLSearchParams(location.search);
+  const raiz = document.getElementById('raiz');
+  let r;
+  try {
+    const res = await fetch(`/api/onboarding?id=${encodeURIComponent(qs.get('id') || '')}&k=${encodeURIComponent(qs.get('k') || '')}`, { cache: 'no-store' });
+    r = await res.json();
+    if (!r.ok) throw new Error(res.status);
+  } catch (e) { raiz.innerHTML = '<p class="msg">Este link não é válido ou o onboarding já não existe.</p>'; return; }
+
+  const d = r.dados || {};
+  const tam = b => b > 1e6 ? (b / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1e3)) + ' KB';
+  const data = s => s ? new Date(s).toLocaleString('pt-PT', { dateStyle: 'long', timeStyle: 'short' }) : '—';
+
+  function resposta(c) {
+    const v = d[c.k];
+    if (c.tipo === 'contactos') {
+      const l = (Array.isArray(v) ? v : []).filter(x => (x.nome || '').trim() || (x.tel || '').trim());
+      return l.length ? `<table class="ct">${l.map((x, i) => `<tr><td>${i + 1}</td><td>${esc(x.nome)}</td><td>${esc(x.tel)}</td></tr>`).join('')}</table>` : '<div class="r vazio">Sem resposta</div>';
+    }
+    if (c.tipo === 'cartoes') {
+      const l = (Array.isArray(v) ? v : []).map(x => (MOTIVACOES.find(m => m.v === x) || { t: x }).t);
+      return l.length ? `<div class="r">${esc(l.join(' + '))}</div>` : '<div class="r vazio">Sem resposta</div>';
+    }
+    const t = Array.isArray(v) ? v.join(', ') : String(v || '').trim();
+    return t ? `<div class="r">${esc(t)}</div>` : '<div class="r vazio">Sem resposta</div>';
+  }
+
+  const blocos = PASSOS.filter(p => p.campos).map(p => `<section><h2><small>${esc(p.sec)}</small>${esc(p.titulo)}</h2>${p.campos.map(c => `<div class="qa"><div class="q">${esc(c.l)}</div>${resposta(c)}</div>`).join('')}</section>`).join('');
+
+  const porTipo = {};
+  (r.ficheiros || []).forEach(f => (porTipo[f.tipo] = porTipo[f.tipo] || []).push(f));
+  const nomeLimpo = n => n.replace(/^[a-z0-9]+-/, '');
+  const ficheirosHTML = Object.keys(porTipo).length
+    ? Object.entries(porTipo).map(([t, l]) => `<div class="grupo"><b>${esc(NOMES_ZONA[t] || t)}</b>${l.map(f => `<a href="${esc(f.downloadUrl || f.url)}"><span>${esc(nomeLimpo(f.nome))}</span><span>${tam(f.tamanho)}</span></a>`).join('')}</div>`).join('')
+    : '<p style="color:var(--suave);font-size:14px;margin:0">O cliente não enviou ficheiros.</p>';
+
+  document.title = `${d.companyName || 'Onboarding'} · Onboarding Vloom`;
+  raiz.innerHTML = `<header><div class="in">
+      <img src="../assets/logo-vloom-branco.png" alt="Vloom">
+      <h1>${esc(d.companyName || 'Empresa sem nome')}</h1>
+      <p><span class="estado${r.estado === 'concluido' ? '' : ' sub'}">${r.estado === 'concluido' ? 'Concluído' : 'Respostas enviadas, ficheiros por concluir'}</span></p>
+      <p style="margin-top:10px">Preenchido por ${esc(d.respName || '—')} · ${esc(d.respEmail || '—')} · ${esc(d.respPhone || '—')}<br>Última alteração: ${data(r.atualizadoEm)}</p>
+      <div class="acoes"><button class="forte" id="doc">Descarregar respostas (Word)</button>${(r.ficheiros || []).length ? `<button id="todos">Descarregar os ${r.ficheiros.length} ficheiros</button>` : ''}<button onclick="print()">Imprimir ou guardar PDF</button></div>
+    </div></header>
+    <main><div id="respostas">${blocos}</div>
+      <aside><section><h2>Ficheiros (${(r.ficheiros || []).length})</h2>${ficheirosHTML}</section></aside></main>`;
+
+  document.getElementById('doc').onclick = () => {
+    const corpo = PASSOS.filter(p => p.campos).map(p => `<h2>${esc(p.sec)} · ${esc(p.titulo)}</h2>${p.campos.map(c => `<p><b>${esc(c.l)}</b></p>${resposta(c).replace(/class="[^"]*"/g, '')}`).join('')}`).join('');
+    const html = `<html><head><meta charset="utf-8"><title>${esc(d.companyName)}</title></head><body style="font-family:Arial;font-size:11pt"><h1>Onboarding Vloom · ${esc(d.companyName)}</h1><p>Preenchido por ${esc(d.respName)} (${esc(d.respEmail)}, ${esc(d.respPhone)}) · ${data(r.atualizadoEm)}</p>${corpo}</body></html>`;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob(['﻿' + html], { type: 'application/msword' }));
+    a.download = `Onboarding - ${(d.companyName || 'cliente').replace(/[\\/:*?"<>|]/g, '')}.doc`;
+    a.click();
+  };
+  const todos = document.getElementById('todos');
+  if (todos) todos.onclick = async () => {
+    for (const f of r.ficheiros) {
+      const a = document.createElement('a'); a.href = f.downloadUrl || f.url; a.download = ''; document.body.appendChild(a); a.click(); a.remove();
+      await new Promise(ok => setTimeout(ok, 700));
+    }
+  };
+})();
+</script>
+</body>
+</html>

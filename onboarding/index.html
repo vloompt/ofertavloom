@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="pt-PT">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Onboarding Vloom</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link rel="preload" href="assets/fonts/gotham-book.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/gotham-bold.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-book.woff2) format('woff2');font-weight:300 400;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-medium.woff2) format('woff2');font-weight:500 600;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-bold.woff2) format('woff2');font-weight:700 800;font-display:swap}
+@font-face{font-family:Gotham;src:url(assets/fonts/gotham-black.woff2) format('woff2');font-weight:900;font-display:swap}
+:root{--roxo:#472a70;--azul:#3b4a9c;--azul2:#6f86ff;--txt:#f3f1fb;--suave:rgba(243,241,251,.66);--linha:rgba(255,255,255,.12);--campo:rgba(255,255,255,.06);--ok:#7be0b0;--erro:#ff8f8f}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%}
+body{font-family:Gotham,'Helvetica Neue',Arial,sans-serif;color:var(--txt);background:#0e0c1e;-webkit-font-smoothing:antialiased}
+.vloom-bg{position:fixed;inset:0;z-index:0;background:
+ radial-gradient(ellipse 80% 60% at 20% 0%,rgba(71,42,112,.55) 0%,transparent 60%),
+ radial-gradient(ellipse 60% 50% at 80% 100%,rgba(59,74,156,.45) 0%,transparent 60%),
+ linear-gradient(160deg,#0e0c1e 0%,#1a1535 45%,#0f1428 100%)}
+.topo{position:sticky;top:0;z-index:5;padding:18px 20px 10px;background:linear-gradient(#0e0c1e 60%,rgba(14,12,30,0))}
+.topo-in{max-width:720px;margin:0 auto;display:flex;align-items:center;gap:18px}
+.topo img{height:26px;width:auto}
+.barra{flex:1;height:6px;border-radius:6px;background:rgba(255,255,255,.08);overflow:hidden}
+.barra i{display:block;height:100%;width:0;border-radius:6px;background:linear-gradient(90deg,var(--roxo),var(--azul2),var(--roxo));background-size:200% 100%;animation:brilho 3s linear infinite;transition:width .5s ease}
+@keyframes brilho{to{background-position:-200% 0}}
+.pct{font-size:12px;color:var(--suave);min-width:34px;text-align:right}
+main{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:22px 20px 70px;min-height:calc(100vh - 60px);display:flex;flex-direction:column}
+main.cheio{justify-content:center;min-height:100vh}
+.passo{animation:entra .32s ease both}
+.passo.voltar{animation-name:entraVolta}
+@keyframes entra{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+@keyframes entraVolta{from{opacity:0;transform:translateY(-32px)}to{opacity:1;transform:none}}
+.sec{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--azul2);font-weight:700;margin:0 0 10px}
+h1{font-size:clamp(26px,5vw,36px);line-height:1.18;font-weight:800;margin:0 0 10px;letter-spacing:-.01em}
+.sub{color:var(--suave);font-size:16px;line-height:1.6;margin:0 0 26px}
+.vloom-info-card{border-left:3px solid var(--azul2);background:rgba(111,134,255,.08);border-radius:0 12px 12px 0;padding:14px 18px;margin:0 0 26px;font-size:14.5px;line-height:1.65;color:rgba(243,241,251,.85)}
+.vloom-info-card p{margin:0 0 8px}.vloom-info-card p:last-child{margin:0}
+.campo{margin:0 0 24px}
+.campo>label,.campo>.rot{display:block;font-weight:600;font-size:15.5px;line-height:1.45;margin:0 0 6px}
+.campo .req{color:var(--azul2)}
+.dica{display:block;font-size:13.5px;color:var(--suave);line-height:1.5;margin:0 0 10px}
+.vloom-input{width:100%;font:inherit;font-size:16px;color:var(--txt);background:var(--campo);border:1px solid var(--linha);border-radius:12px;padding:14px 16px;outline:none;transition:border-color .2s,background .2s;resize:vertical}
+textarea.vloom-input{min-height:80px;line-height:1.55}
+.vloom-input:focus{border-color:var(--azul2);background:rgba(255,255,255,.09)}
+.vloom-input::placeholder{color:rgba(243,241,251,.35)}
+.campo.mal .vloom-input{border-color:var(--erro)}
+.msg-erro{color:var(--erro);font-size:13.5px;margin-top:6px;display:none}
+.campo.mal .msg-erro{display:block}
+.pills{display:flex;flex-wrap:wrap;gap:10px}
+.pill{font:inherit;font-size:14.5px;color:var(--txt);background:var(--campo);border:1px solid var(--linha);border-radius:40px;padding:10px 18px;cursor:pointer;transition:.18s}
+.pill:hover{border-color:rgba(255,255,255,.3)}
+.pill.on{background:linear-gradient(120deg,var(--roxo),var(--azul));border-color:transparent;font-weight:600}
+.cartoes{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.option-card{text-align:left;font:inherit;color:var(--txt);background:var(--campo);border:1px solid var(--linha);border-radius:14px;padding:16px;cursor:pointer;transition:.18s;position:relative}
+.option-card:hover{border-color:rgba(255,255,255,.3);transform:translateY(-2px)}
+.option-card b{display:block;font-size:16px;margin-bottom:6px;padding-right:26px}
+.option-card span{display:block;font-size:13px;line-height:1.5;color:var(--suave)}
+.option-card em{display:block;font-style:normal;font-size:12px;margin-top:8px;color:var(--azul2)}
+.option-card.on{border-color:var(--azul2);background:rgba(111,134,255,.14)}
+.option-card.on::after{content:'✓';position:absolute;top:12px;right:14px;width:22px;height:22px;border-radius:50%;background:var(--azul2);color:#0e0c1e;font-size:13px;font-weight:800;display:grid;place-items:center}
+.option-card.off{opacity:.45}
+.contador{font-size:13px;color:var(--suave);margin-top:10px}
+.contactos .linha{display:grid;grid-template-columns:26px 1fr 1fr;gap:10px;align-items:center;margin-bottom:10px}
+.contactos .n{color:var(--suave);font-size:13px;text-align:right}
+.contactos .vloom-input{padding:12px 14px}
+.mais{font:inherit;font-size:14px;color:var(--azul2);background:none;border:1px dashed rgba(111,134,255,.5);border-radius:10px;padding:10px 16px;cursor:pointer;margin-top:4px}
+.nav{display:flex;gap:12px;align-items:center;margin-top:12px;padding-top:10px}
+.btn-primary{font:inherit;font-weight:700;font-size:16px;color:#fff;border:0;border-radius:40px;padding:16px 30px;cursor:pointer;background:linear-gradient(120deg,var(--roxo),var(--azul) 60%,#5b6fe0);box-shadow:0 10px 30px rgba(59,74,156,.35);transition:transform .15s,box-shadow .15s}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 14px 36px rgba(59,74,156,.5)}
+.btn-primary:disabled{opacity:.55;cursor:wait;transform:none}
+.btn-back{font:inherit;font-size:15px;color:var(--suave);background:none;border:1px solid var(--linha);border-radius:40px;padding:15px 22px;cursor:pointer}
+.btn-back:hover{color:var(--txt);border-color:rgba(255,255,255,.3)}
+.guardado{margin-left:auto;font-size:12.5px;color:var(--suave)}
+.upload-zone{border:1.5px dashed rgba(255,255,255,.22);border-radius:14px;padding:18px;background:rgba(255,255,255,.03);transition:.18s;cursor:pointer}
+.upload-zone:hover,.upload-zone.arrasta{border-color:var(--azul2);background:rgba(111,134,255,.08)}
+.upload-zone .zt{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.upload-zone .zt>span{font-size:13.5px;color:var(--azul2);white-space:nowrap}
+.lista-f{margin:10px 0 0;padding:0;list-style:none;font-size:13.5px;cursor:default}
+.lista-f:empty{display:none}
+.lista-f li{display:flex;gap:10px;align-items:center;padding:7px 0;border-top:1px solid rgba(255,255,255,.06)}
+.lista-f .nm{flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lista-f .st{color:var(--suave);font-size:12.5px}
+.lista-f .st.ok{color:var(--ok)}.lista-f .st.erro{color:var(--erro)}
+.lista-f progress{width:90px;height:6px;accent-color:var(--azul2)}
+.inicio{text-align:center}
+.inicio img{height:44px;margin:0 auto 34px;display:block}
+.inicio h1{font-size:clamp(30px,6vw,46px)}
+.inicio .sub{max-width:540px;margin:0 auto 26px}
+.factos{display:flex;justify-content:center;flex-wrap:wrap;margin:0 0 34px;color:var(--suave);font-size:14px}
+.factos span{padding:0 16px;border-left:1px solid var(--linha)}
+.factos span:first-child{border-left:0}
+.retoma{margin:22px auto 0;max-width:460px;font-size:13.5px;line-height:1.55;color:var(--suave)}
+.retoma button{font:inherit;color:var(--azul2);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0}
+.passos-fim{display:grid;gap:12px;text-align:left;max-width:520px;margin:0 auto 30px}
+.passos-fim div{display:flex;gap:14px;align-items:flex-start;background:var(--campo);border:1px solid var(--linha);border-radius:14px;padding:16px}
+.passos-fim b{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(120deg,var(--roxo),var(--azul));font-size:14px}
+.passos-fim p{margin:4px 0 0;line-height:1.5}
+.encoraja{position:fixed;left:50%;bottom:22px;z-index:9;transform:translate(-50%,30px);opacity:0;pointer-events:none;width:max-content;max-width:min(560px,calc(100% - 32px));background:rgba(26,21,53,.96);border:1px solid rgba(111,134,255,.35);border-radius:14px;padding:13px 18px;font-size:14.5px;line-height:1.5;box-shadow:0 18px 40px rgba(0,0,0,.4);transition:.35s ease}
+.encoraja.on{opacity:1;transform:translate(-50%,0)}
+.aviso-erro{background:rgba(255,143,143,.1);border:1px solid rgba(255,143,143,.4);color:#ffd2d2;border-radius:12px;padding:12px 16px;font-size:14px;margin:0 0 16px;display:none}
+@media (max-width:560px){
+ .contactos .linha{grid-template-columns:1fr 1fr}.contactos .n{display:none}
+ .nav{flex-wrap:wrap}.btn-primary{flex:1}
+ .guardado{width:100%;margin:6px 0 0;order:3}
+ .factos span{padding:4px 10px}
+ .upload-zone .zt{flex-direction:column;align-items:flex-start}
+}
+</style>
+</head>
+<body>
+<div class="vloom-bg"></div>
+<div class="topo" id="topo" hidden>
+  <div class="topo-in">
+    <img src="assets/logo-vloom-branco.png" alt="Vloom">
+    <div class="barra"><i id="barra"></i></div>
+    <div class="pct" id="pct">0%</div>
+  </div>
+</div>
+<main id="app"></main>
+<div class="encoraja" id="encoraja" role="status"></div>
+
+<script src="perguntas.js"></script>
+<script>
+(function () {
+  const { PASSOS } = window.ONB;
+  const FIM = PASSOS.length - 1;
+  const API = '/api/onboarding';
+  const CHAVE = 'vloom-onboarding-v1';
+  const CODE = new URLSearchParams(location.search).get('code') || '';
+  const esc = s => String(s == null ? '' : s).replace(/[<>&"]/g, c => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;', '"': '&quot;' }[c]));
+
+  let st = { passo: 0, dados: {}, id: null, k: null, ficheiros: [] };
+  try { const g = JSON.parse(localStorage.getItem(CHAVE) || 'null'); if (g && g.dados) st = Object.assign(st, g); } catch (_) {}
+  st.passo = Math.min(Math.max(0, st.passo | 0), FIM);
+  // ficheiros que ficaram "a enviar" numa visita anterior não terminaram
+  st.ficheiros.forEach(f => { if (f.estado === 'a enviar') f.estado = 'falhou'; });
+  // quem volta a meio vê a entrada com "continuar"; quem já concluiu vê o fim
+  let retomar = st.passo > 0 && st.passo < FIM ? st.passo : 0;
+  if (retomar) st.passo = 0;
+  let direcao = 1, tGuardado = null, tEnc = null;
+
+  const guardar = (aviso = true) => {
+    try { localStorage.setItem(CHAVE, JSON.stringify(st)); } catch (_) {}
+    const g = document.getElementById('guardado');
+    if (g && aviso) { g.textContent = 'Guardado ✓'; clearTimeout(tGuardado); tGuardado = setTimeout(() => { g.textContent = ''; }, 1600); }
+  };
+  const $app = document.getElementById('app');
+
+  const linhaContacto = (k, l, i) => `<div class="linha"><span class="n">${i + 1}</span><input class="vloom-input" data-ct="${k}" data-i="${i}" data-p="nome" placeholder="Nome" value="${esc(l.nome)}"><input class="vloom-input" data-ct="${k}" data-i="${i}" data-p="tel" type="tel" placeholder="Telemóvel" value="${esc(l.tel)}"></div>`;
+
+  function campoHTML(c) {
+    const v = st.dados[c.k];
+    const rot = `${esc(c.l)}${c.req ? ' <span class="req">*</span>' : ''}`;
+    const dica = c.h ? `<span class="dica">${esc(c.h)}</span>` : '';
+    const erro = '<div class="msg-erro">Precisamos desta resposta para continuar.</div>';
+    if (c.tipo === 'pills') {
+      return `<div class="campo" data-k="${c.k}"><span class="rot">${rot}</span>${dica}<div class="pills">${c.ops.map(o => `<button type="button" class="pill${v === o ? ' on' : ''}" data-pill="${c.k}" data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div>${erro}</div>`;
+    }
+    if (c.tipo === 'multi') {
+      const sel = Array.isArray(v) ? v : [];
+      return `<div class="campo" data-k="${c.k}"><span class="rot">${rot}</span>${dica}<div class="pills">${c.ops.map(o => `<button type="button" class="pill${sel.includes(o) ? ' on' : ''}" data-multi="${c.k}" data-max="${c.max}" data-v="${esc(o)}">${esc(o)}</button>`).join('')}</div><div class="contador" id="cont-${c.k}">${sel.length} de ${c.max}</div></div>`;
+    }
+    if (c.tipo === 'cartoes') {
+      const sel = Array.isArray(v) ? v : [];
+      const cheio = sel.length >= c.max;
+      return `<div class="campo" data-k="${c.k}"><div class="cartoes">${c.ops.map((o, i) => `<button type="button" class="option-card${sel.includes(o.v) ? ' on' : (cheio ? ' off' : '')}" data-cartao="${c.k}" data-max="${c.max}" data-v="${o.v}"><b>${i + 1}. ${esc(o.t)}</b><span>${esc(o.d)}</span><em>Ex.: ${esc(o.ex)}</em></button>`).join('')}</div><div class="contador" id="cont-${c.k}">${sel.length} de ${c.max} escolhidas</div></div>`;
+    }
+    if (c.tipo === 'contactos') {
+      const linhas = Array.isArray(v) ? v : [];
+      while (linhas.length < (c.min || 10)) linhas.push({ nome: '', tel: '' });
+      st.dados[c.k] = linhas;
+      return `<div class="campo contactos" data-k="${c.k}"><span class="rot">${rot}</span>${dica}<div id="linhas-${c.k}">${linhas.map((l, i) => linhaContacto(c.k, l, i)).join('')}</div><button type="button" class="mais" data-mais="${c.k}">+ Adicionar outro cliente</button></div>`;
+    }
+    const auto = { respEmail: 'email', respPhone: 'tel', respName: 'name', companyName: 'organization' }[c.k] || 'off';
+    if (c.curto) return `<div class="campo" data-k="${c.k}"><label for="f-${c.k}">${rot}</label>${dica}<input class="vloom-input" id="f-${c.k}" data-campo="${c.k}" type="${c.tipoInput || 'text'}" value="${esc(v)}" placeholder="${esc(c.ph || '')}" autocomplete="${auto}">${erro}</div>`;
+    return `<div class="campo" data-k="${c.k}"><label for="f-${c.k}">${rot}</label>${dica}<textarea class="vloom-input" id="f-${c.k}" data-campo="${c.k}" rows="3" placeholder="${esc(c.ph || '')}">${esc(v)}</textarea>${erro}</div>`;
+  }
+
+  const navHTML = rotulo => `<div class="aviso-erro" id="aviso-erro"></div><div class="nav">${st.passo > 1 ? '<button type="button" class="btn-back" data-acao="voltar">← Anterior</button>' : ''}<button type="button" class="btn-primary" data-acao="seguir">${rotulo}</button><span class="guardado" id="guardado"></span></div>`;
+  const rotuloSeguir = () => PASSOS[st.passo].zonas ? 'Concluir ✓' : (PASSOS[st.passo + 1] && PASSOS[st.passo + 1].zonas ? 'Submeter e continuar →' : 'Continuar →');
+
+  function render() {
+    const p = PASSOS[st.passo];
+    const pct = Math.round((st.passo / FIM) * 100);
+    const ecraCheio = p.tipo === 'inicio' || p.tipo === 'fim';
+    document.getElementById('topo').hidden = ecraCheio;
+    document.getElementById('barra').style.width = pct + '%';
+    document.getElementById('pct').textContent = pct + '%';
+    $app.className = ecraCheio ? 'cheio' : '';
+    const anima = direcao < 0 ? ' voltar' : '';
+    let h;
+    if (p.tipo === 'inicio') {
+      h = `<div class="passo inicio">
+        <img src="assets/logo-vloom-branco.png" alt="Vloom">
+        <h1>Bem-vindo/a ao programa de aquisição de clientes da Vloom.</h1>
+        <p class="sub">Aqui fica tudo o que precisamos para começar a construir o seu sistema. Pode parar quando quiser: o que escrever fica guardado neste dispositivo.</p>
+        <div class="factos"><span>Passos curtos</span><span>Cerca de 30 minutos</span><span>Guardado automaticamente</span></div>
+        <button type="button" class="btn-primary" data-acao="seguir">${retomar ? 'Continuar de onde fiquei →' : 'Começar →'}</button>
+        ${retomar ? '<div class="retoma">Prefere começar do zero? <button type="button" data-acao="recomecar">Apagar e recomeçar</button></div>' : '<div class="retoma">Algumas respostas pedem números ou ficheiros que nem sempre estão à mão. Veja o que é preciso e volte mais tarde para terminar.</div>'}
+      </div>`;
+    } else if (p.tipo === 'fim') {
+      const nome = String(st.dados.respName || '').trim().split(/\s+/)[0];
+      h = `<div class="passo inicio">
+        <img src="assets/logo-vloom-branco.png" alt="Vloom">
+        <h1>Obrigado${nome ? ', ' + esc(nome) : ''}! 🚀</h1>
+        <p class="sub">Recebemos tudo. A partir daqui a bola está do nosso lado.</p>
+        <div class="passos-fim">
+          <div><b>1</b><p>Analisamos as respostas e contactamos os clientes para as entrevistas.</p></div>
+          <div><b>2</b><p>Construímos o sistema: anúncios, páginas e automatismos.</p></div>
+          <div><b>3</b><p>Lançamos um sistema que multiplica dinheiro.</p></div>
+        </div>
+        <p class="sub" style="font-size:14px">Alguma dúvida? Estamos à distância de um telefonema: 914 310 656 · tiagoseverino@vloom.pt</p>
+        <div class="retoma"><button type="button" data-acao="rever">Rever ou acrescentar respostas</button></div>
+      </div>`;
+    } else if (p.zonas) {
+      h = `<div class="passo${anima}"><p class="sec">${esc(p.sec)}</p><h1>${esc(p.titulo)}</h1><p class="sub">${esc(p.sub)}</p>
+        ${p.zonas.map(z => `<div class="campo"><div class="upload-zone" data-zona="${z.k}"><div class="zt"><div><b>${esc(z.l)}</b>${z.h ? `<span class="dica" style="margin:4px 0 0">${esc(z.h)}</span>` : ''}</div><span>+ Escolher ou arrastar</span></div><input type="file" multiple hidden data-input="${z.k}"><ul class="lista-f" id="lista-${z.k}"></ul></div></div>`).join('')}
+        ${navHTML(rotuloSeguir())}</div>`;
+    } else {
+      h = `<div class="passo${anima}"><p class="sec">${esc(p.sec)}</p><h1>${esc(p.titulo)}</h1><p class="sub">${esc(p.sub)}</p>
+        ${p.info ? `<div class="vloom-info-card">${p.info.map(x => `<p>${x}</p>`).join('')}</div>` : ''}
+        ${p.campos.map(campoHTML).join('')}
+        ${navHTML(rotuloSeguir())}</div>`;
+    }
+    $app.innerHTML = h;
+    if (p.zonas) desenhaFicheiros();
+    window.scrollTo(0, 0);
+    if (p.enc && direcao > 0) encorajar(p.enc);
+  }
+
+  function encorajar(txt) {
+    const e = document.getElementById('encoraja');
+    e.textContent = txt; e.classList.add('on');
+    clearTimeout(tEnc); tEnc = setTimeout(() => e.classList.remove('on'), 6000);
+  }
+
+  function valida(p) {
+    let primeiro = null;
+    (p.campos || []).forEach(c => {
+      if (!c.req) return;
+      const v = String(st.dados[c.k] || '').trim();
+      let bom = v.length > 0;
+      if (bom && c.tipoInput === 'email') bom = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+      if (bom && c.tipoInput === 'tel') bom = v.replace(/\D/g, '').length >= 9;
+      const el = $app.querySelector(`.campo[data-k="${c.k}"]`);
+      if (el) el.classList.toggle('mal', !bom);
+      if (!bom && !primeiro) primeiro = el;
+    });
+    if (primeiro) primeiro.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return !primeiro;
+  }
+
+  const mostraErro = t => { const e = document.getElementById('aviso-erro'); if (e) { e.textContent = t; e.style.display = t ? 'block' : 'none'; } };
+
+  async function post(corpo) {
+    const r = await fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(corpo) });
+    const j = await r.json().catch(() => ({}));
+    if (!r.ok || !j.ok) throw new Error(j.erro || ('erro ' + r.status));
+    return j;
+  }
+  async function submeter() {
+    const j = await post({ acao: 'submeter', id: st.id, k: st.k, code: CODE, dados: st.dados });
+    st.id = j.id; st.k = j.k; guardar(false);
+  }
+
+  function avancar(para) { direcao = para >= st.passo ? 1 : -1; st.passo = para; guardar(false); render(); }
+
+  async function seguir(btn) {
+    const p = PASSOS[st.passo];
+    if (p.tipo === 'inicio') { const r = retomar; retomar = 0; return avancar(r || 1); }
+    if (p.campos && !valida(p)) return;
+    const proximo = PASSOS[st.passo + 1];
+    try {
+      if (proximo && proximo.zonas) {
+        btn.disabled = true; btn.textContent = 'A guardar…'; mostraErro('');
+        await submeter();
+      }
+      if (p.zonas) {
+        if (st.ficheiros.some(f => f.estado === 'a enviar')) { mostraErro('Ainda há ficheiros a enviar. Aguarde um momento.'); return; }
+        btn.disabled = true; btn.textContent = 'A concluir…'; mostraErro('');
+        await submeter();
+        await post({ acao: 'concluir', id: st.id, k: st.k });
+      }
+    } catch (e) {
+      btn.disabled = false; btn.textContent = rotuloSeguir();
+      mostraErro('Não conseguimos guardar agora. Verifique a ligação à internet e tente de novo. As respostas continuam guardadas neste dispositivo.');
+      return;
+    }
+    avancar(st.passo + 1);
+  }
+
+  // ---------- ficheiros: vão direto do browser para o armazenamento da Vloom ----------
+  const tam = b => b > 1e6 ? (b / 1e6).toFixed(1) + ' MB' : Math.max(1, Math.round(b / 1e3)) + ' KB';
+  function desenhaFicheiros() {
+    const p = PASSOS[st.passo]; if (!p.zonas) return;
+    p.zonas.forEach(z => {
+      const ul = document.getElementById('lista-' + z.k); if (!ul) return;
+      ul.innerHTML = st.ficheiros.filter(f => f.tipo === z.k).map(f => `<li><span class="nm">${esc(f.nome)}</span>${f.estado === 'a enviar'
+        ? `<progress max="100" value="${f.pct || 0}"></progress>`
+        : `<span class="st ${f.estado === 'enviado' ? 'ok' : 'erro'}">${f.estado === 'enviado' ? '✓ ' + tam(f.tamanho) : 'falhou, volte a escolher'}</span>`}</li>`).join('');
+    });
+  }
+  function enviarFicheiro(tipo, file) {
+    const f = { tipo, nome: file.name, tamanho: file.size, estado: 'a enviar', pct: 0 };
+    st.ficheiros.push(f); desenhaFicheiros();
+    (async () => {
+      try {
+        if (!st.id) await submeter();
+        const t = await post({ acao: 'token', id: st.id, k: st.k, tipo, nome: file.name });
+        await new Promise((ok, falha) => {
+          const x = new XMLHttpRequest();
+          x.open('PUT', 'https://vercel.com/api/blob/?pathname=' + encodeURIComponent(t.pathname));
+          x.setRequestHeader('authorization', 'Bearer ' + t.token);
+          x.setRequestHeader('x-api-version', '11');
+          x.setRequestHeader('x-content-type', file.type || 'application/octet-stream');
+          x.setRequestHeader('x-add-random-suffix', '0');
+          x.setRequestHeader('x-allow-overwrite', '1');
+          let ultimo = 0;
+          x.upload.onprogress = e => { if (e.lengthComputable) { f.pct = Math.round(e.loaded / e.total * 100); if (Date.now() - ultimo > 250) { ultimo = Date.now(); desenhaFicheiros(); } } };
+          x.onload = () => (x.status >= 200 && x.status < 300) ? ok() : falha(new Error(x.status + ' ' + String(x.responseText).slice(0, 160)));
+          x.onerror = () => falha(new Error('rede'));
+          x.send(file);
+        });
+        f.estado = 'enviado';
+      } catch (e) { f.estado = 'falhou'; console.warn('envio falhou', e); }
+      guardar(false); desenhaFicheiros();
+    })();
+  }
+
+  // ---------- eventos ----------
+  $app.addEventListener('input', e => {
+    const t = e.target;
+    if (t.dataset.campo) { st.dados[t.dataset.campo] = t.value; const c = t.closest('.campo'); c && c.classList.remove('mal'); guardar(); }
+    else if (t.dataset.ct) { st.dados[t.dataset.ct][+t.dataset.i][t.dataset.p] = t.value; guardar(); }
+  });
+  $app.addEventListener('click', e => {
+    const b = e.target.closest('button,[data-zona]'); if (!b) return;
+    const d = b.dataset;
+    if (d.acao === 'seguir') return seguir(b);
+    if (d.acao === 'voltar') return avancar(Math.max(1, st.passo - 1));
+    if (d.acao === 'rever') return avancar(1);
+    if (d.acao === 'recomecar') {
+      if (confirm('Apagar as respostas guardadas neste dispositivo e recomeçar?')) { try { localStorage.removeItem(CHAVE); } catch (_) {} location.reload(); }
+      return;
+    }
+    if (d.pill) {
+      st.dados[d.pill] = st.dados[d.pill] === d.v ? '' : d.v; guardar();
+      b.parentNode.querySelectorAll('.pill').forEach(x => x.classList.toggle('on', x.dataset.v === st.dados[d.pill]));
+      b.closest('.campo').classList.remove('mal');
+      return;
+    }
+    if (d.multi || d.cartao) {
+      const k = d.multi || d.cartao, max = +d.max;
+      let sel = Array.isArray(st.dados[k]) ? st.dados[k].slice() : [];
+      if (sel.includes(d.v)) sel = sel.filter(x => x !== d.v);
+      else if (sel.length < max) sel.push(d.v);
+      else { encorajar(`Escolha no máximo ${max}. Desmarque uma para trocar.`); return; }
+      st.dados[k] = sel; guardar();
+      b.closest('.campo').querySelectorAll('[data-v]').forEach(x => { const on = sel.includes(x.dataset.v); x.classList.toggle('on', on); if (d.cartao) x.classList.toggle('off', !on && sel.length >= max); });
+      const ct = document.getElementById('cont-' + k); if (ct) ct.textContent = d.cartao ? `${sel.length} de ${max} escolhidas` : `${sel.length} de ${max}`;
+      return;
+    }
+    if (d.mais) {
+      const arr = st.dados[d.mais]; arr.push({ nome: '', tel: '' }); guardar();
+      const box = document.getElementById('linhas-' + d.mais);
+      box.insertAdjacentHTML('beforeend', linhaContacto(d.mais, arr[arr.length - 1], arr.length - 1));
+      box.lastElementChild.querySelector('input').focus();
+      return;
+    }
+    if (d.zona && !e.target.closest('.lista-f')) b.querySelector('input[type=file]').click();
+  });
+  $app.addEventListener('change', e => { const t = e.target; if (t.dataset.input) { [...t.files].forEach(f => enviarFicheiro(t.dataset.input, f)); t.value = ''; } });
+  ['dragenter', 'dragover'].forEach(ev => $app.addEventListener(ev, e => { const z = e.target.closest('[data-zona]'); if (z) { e.preventDefault(); z.classList.add('arrasta'); } }));
+  ['dragleave', 'drop'].forEach(ev => $app.addEventListener(ev, e => { const z = e.target.closest('[data-zona]'); if (z) { e.preventDefault(); z.classList.remove('arrasta'); if (ev === 'drop') [...e.dataTransfer.files].forEach(f => enviarFicheiro(z.dataset.zona, f)); } }));
+  $app.addEventListener('keydown', e => { if (e.key === 'Enter' && e.target.tagName === 'INPUT' && e.target.dataset.campo) { e.preventDefault(); const b = $app.querySelector('[data-acao=seguir]'); b && seguir(b); } });
+  window.addEventListener('beforeunload', e => { if (st.ficheiros.some(f => f.estado === 'a enviar')) { e.preventDefault(); e.returnValue = ''; } });
+
+  render();
+})();
+</script>
+</body>
+</html>
