@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex, nofollow">
+<title>Aprovar · Simulador com 3 caminhos</title>
+<link rel="stylesheet" href="../_wp/montserrat-3adacc.css">
+<style>
+:root{--azul:#132968;--roxo:#7D57A4;--botao:#8d489b;--tinta:#1F2140;--cinza:#5B5F77}
+*{box-sizing:border-box}body{margin:0;font-family:Montserrat,sans-serif;color:var(--tinta);background:#F4F3F8;-webkit-font-smoothing:antialiased}
+header{background:linear-gradient(208deg,var(--azul) 23%,var(--roxo) 65%);color:#fff;padding:40px 24px 54px}
+.in{max-width:1180px;margin:0 auto}
+header img{width:110px;margin-bottom:26px}header h1{margin:0 0 10px;font-size:clamp(26px,3.4vw,40px);font-weight:800}
+header p{margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.85);max-width:760px}
+section{max-width:1180px;margin:34px auto;padding:0 24px}
+h2{font-size:22px;font-weight:800;color:var(--azul);margin:0 0 6px}
+.nota{color:var(--cinza);font-size:15px;line-height:1.6;margin:0 0 18px}
+.cartao{background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(19,41,104,.08);padding:26px 28px}
+.botoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:6px}
+.b{display:inline-block;background:var(--botao);color:#fff;text-decoration:none;font-weight:700;font-size:14px;padding:13px 20px;border-radius:9px}
+.b.sec{background:#fff;color:var(--botao);border:2px solid var(--botao)}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #ECEAF3;vertical-align:top}
+th{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+.pill{display:inline-block;padding:4px 10px;border-radius:99px;font-size:13px;font-weight:700}
+.p1{background:#E6ECFA;color:var(--azul)}.p2{background:#F1E6F5;color:var(--botao)}.p3{background:#EEF0F2;color:#555}
+.emails{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
+.email{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 10px 30px rgba(19,41,104,.08)}
+.email .meta{padding:14px 16px;font-size:13px;line-height:1.55;border-bottom:1px solid #ECEAF3}.email .meta span{color:var(--cinza)}
+.email iframe{width:100%;height:560px;border:0;display:block}
+ol{margin:0;padding-left:20px;line-height:1.7;font-size:15px}ol li{margin-bottom:12px}
+ul.f{margin:0;padding-left:20px;line-height:1.75;font-size:15px}
+@media(max-width:700px){.cartao{padding:20px 16px}td,th{padding:10px 6px;font-size:14px}}
+</style></head><body>
+<header><div class="in"><img src="../_wp/logo-big-white-300x118-fd4f14.webp" alt="Vloom">
+<h1>Simulador com 3 caminhos · para aprovar</h1>
+<p>Tudo montado na Vercel e no GHL em rascunho. Nada está ligado aos anúncios, nada envia emails e não há pixels. Quando aprovares, ligo as automações e apontamos os anúncios para cá.</p></div></header>
+
+<section><h2>1. O simulador</h2>
+<p class="nota">É o do marketing.vloom.pt, igual ao pixel, com um passo novo entre as 3 perguntas e o nome/email: orçamento para anúncios e quando quer começar. Abre em <b>modo ensaio</b>: no fim mostra o caminho e não cria contacto nem envia nada.</p>
+<div class="cartao"><div class="botoes"><a class="b" href="../?ensaio=1" target="_blank">Experimentar o simulador (ensaio)</a></div></div></section>
+
+<section><h2>2. Para onde vai cada pessoa</h2>
+<p class="nota">A regra vive num só sítio (a função na Vercel). Clientes e derivados de clientes nunca vão para o Chave na Mão.</p>
+<div class="cartao"><table>
+<tr><th>Caminho</th><th>Quem</th><th>Para onde</th></tr>
+<tr><td><span class="pill p1">Sistema Vloom</span></td><td>Fatura +500 mil €, tem pelo menos 1.000 €/mês para anúncios e quer começar este mês ou nos próximos 3 meses</td><td>Calendário de sempre dos +500k (marketing.vloom.pt) e a nutrição +500K de sempre</td></tr>
+<tr><td><span class="pill p2">Chave na Mão</span></td><td>Fatura 100–500 mil € com pelo menos 500 €/mês para anúncios, ou +500 mil € com 500–1.000 €/mês, e quer começar em breve</td><td>Página do Chave na Mão com o calendário da call de onboarding + 4 emails se não marcar</td></tr>
+<tr><td><span class="pill p3">Sem reunião</span></td><td>Fatura menos de 100 mil €, ou «ainda não sei»/menos de 500 €/mês, ou começa daqui a mais de 3 meses / só a pesquisar</td><td>Abaixo de 100 mil €: a página de obrigado de sempre (websites 297 €). Os outros: mensagem «resultado a caminho»</td></tr>
+</table>
+<p class="nota" style="margin:16px 0 0">Todos continuam a receber o email com a estimativa, como hoje. O WordPress continua a fazer esse envio e as tags +500k/−500k de sempre. Por cima, cada contacto leva 3 tags novas: caminho, orçamento e prazo.</p></div></section>
+
+<section><h2>3. A página do Chave na Mão</h2>
+<p class="nota">O texto é o do email de amanhã, palavra por palavra. A única mudança é a 1.ª linha, que no email tinha o nome do contacto. O calendário é o mesmo do link do email.</p>
+<div class="cartao"><div class="botoes"><a class="b" href="../chave-na-mao/" target="_blank">Abrir a página</a></div></div></section>
+
+<section><h2>4. Os 4 emails de quem não marca</h2>
+<p class="nota">Saem só a quem foi para o Chave na Mão e ainda não marcou. Quem marca deixa de os receber. Os +500k que caem aqui saem da nutrição +500K, para não receberem as duas ofertas.</p>
+<div class="emails">
+<div class="email"><div class="meta"><b>Email 1</b> · 2 horas depois<br><span>Assunto:</span> a sua estimativa e uma alternativa, {{contact.name}}<br><span>Pré-header:</span> Sem avença: o sistema fica na sua conta.</div><iframe loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/location%2Fq5RdiM6QfGioAIRTlZ3Q%2Femails%2F6af5af9f46e0b2b381cfca11%2Findex.html?alt=media&amp;token=2e380e1a-285b-4804-bd20-b883fee4e2e5"></iframe></div>
+<div class="email"><div class="meta"><b>Email 2</b> · 1 dia depois<br><span>Assunto:</span> o que fica na sua conta<br><span>Pré-header:</span> Anúncios, emails, páginas e CRM: tudo seu.</div><iframe loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/location%2Fq5RdiM6QfGioAIRTlZ3Q%2Femails%2F6af5afa393133f74013f5ce9%2Findex.html?alt=media&amp;token=a38b4557-1002-4f9a-a674-e07a15534426"></iframe></div>
+<div class="email"><div class="meta"><b>Email 3</b> · 2 dias depois<br><span>Assunto:</span> 100 leads no primeiro mês<br><span>Pré-header:</span> O mesmo sistema, com as chaves do seu lado.</div><iframe loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/location%2Fq5RdiM6QfGioAIRTlZ3Q%2Femails%2F6af5afa546e0b2b381cfca9e%2Findex.html?alt=media&amp;token=f4113cb0-f66f-40a5-8607-91f99cfc1147"></iframe></div>
+<div class="email"><div class="meta"><b>Email 4</b> · 2 dias depois<br><span>Assunto:</span> as condições não mudam<br><span>Pré-header:</span> Só 10 empresas, nestas condições.</div><iframe loading="lazy" src="https://firebasestorage.googleapis.com/v0/b/highlevel-backend.appspot.com/o/location%2Fq5RdiM6QfGioAIRTlZ3Q%2Femails%2F6af5afa746e0b2b381cfcb06%2Findex.html?alt=media&amp;token=5015c632-ed1f-494d-96f3-2090d0c9e56e"></iframe></div>
+</div></section>
+
+<section><h2>5. Guião da call de onboarding (15–20 min)</h2>
+<div class="cartao"><ol>
+<li><b>Abertura (1 min).</b> «Obrigado por marcar. Como disse no email, as condições são estas e não mudam. Esta call serve para confirmar se faz sentido para a sua empresa e, se fizer, marcarmos já o arranque.»</li>
+<li><b>Confirmar o encaixe (5 min).</b> O que vende e a quem; quem gere hoje os anúncios; se tem conta de anúncios na Meta/Google; quanto pode investir por mês em anúncios; <b>quem na equipa responde às leads e em quanto tempo</b>.</li>
+<li><b>Se não encaixa, dizê-lo com franqueza.</b> Ninguém para responder às leads, ou orçamento abaixo do mínimo, ou quer só «experimentar com 200 €»: não avançar.</li>
+<li><b>Repetir os termos (2 min).</b> 3.000 € + IVA a pronto, ou 2 × 2.000 € + IVA; dois meses de gestão incluídos; anúncios pagos à parte; ao fim dos dois meses o sistema é seu; a avença é opcional, depois.</li>
+<li><b>Pergunta de clareza.</b> «De 1 a 10, quão confortável está em avançar?» e, a seguir, «O que falta para subir um ponto?»</li>
+<li><b>Fecho (3 min).</b> Se sim: fatura enviada e reunião de arranque marcada antes de desligar. Se há dúvida: «o que precisa de ver para decidir?» e o próximo passo fica marcado na agenda.</li>
+<li><b>Não fazer.</b> Não negociar preço nem termos (são fixos). Não vender a avença mensal nesta call, só se a pessoa perguntar.</li>
+</ol></div></section>
+
+<section><h2>6. O que falta depois de aprovares</h2>
+<div class="cartao"><ul class="f">
+<li>Publicar as 2 automações do GHL («🔑 Chave na Mão · Nutrição» e «· Sai ao marcar»): estão em rascunho.</li>
+<li>Um teste real de ponta a ponta com um email meu, que apago a seguir.</li>
+<li>Apontar os anúncios do simulador para oferta.vloom.pt/simulador/ e tirar o «noindex».</li>
+<li>Medição e pixels: ficam para depois, como pediste.</li>
+</ul></div></section>
+<p style="text-align:center;color:#999;font-size:12px;margin:40px 0">oferta.vloom.pt/simulador/aprovar · 12/11/2026</p>
+</body></html>
