@@ -423,6 +423,21 @@ html body{overflow-x:clip!important;overflow-y:visible!important}
 .ck-logos>.e-con{padding:0 4px!important}
 @media(max-width:900px){.ck-logos>.e-con{flex:0 0 33.33%!important}}
 .ck-logos{margin-bottom:34px!important}
+
+/* fim da carta: assinatura simples (foto pequena + nome), 13/11 */
+.v1 .assina{margin-bottom:14px!important}
+.v1 .assina-eu{display:flex;align-items:center;gap:14px;padding-top:16px;border-top:1px solid #ECE8F3;max-width:360px}
+.v1 .assina-eu img{width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:top;background:#EEE8F6}
+.v1 .assina-eu b{display:block;font-size:17px;color:var(--tinta)}
+.v1 .assina-eu span{display:block;font-size:13.5px;color:var(--cinza);margin-top:2px}
+
+/* 13/11 «botões têm que mexer e estar vivos»: o mesmo «abana» da carta do webinar (casa) + brilho a passar */
+@keyframes abana{0%,30%,100%{transform:translate(0,0) rotate(0)}3%{transform:translate(-4px,0) rotate(-1.5deg)}6%{transform:translate(4px,0) rotate(1.5deg)}9%{transform:translate(-4px,0) rotate(-1.2deg)}12%{transform:translate(4px,0) rotate(1.2deg)}15%{transform:translate(-3px,0) rotate(-.8deg)}18%{transform:translate(3px,0) rotate(.8deg)}21%{transform:translate(-2px,0)}24%{transform:translate(2px,0)}27%{transform:translate(-1px,0)}}
+@keyframes brilho{0%,60%{left:-60%}100%{left:130%}}
+a[href="#marcar"]{animation:abana 3s cubic-bezier(.36,.07,.19,.97) infinite;position:relative;overflow:hidden}
+a[href="#marcar"]::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:brilho 3s ease-in-out infinite;pointer-events:none}
+a[href="#marcar"]:hover,a[href="#marcar"]:focus{animation-play-state:paused}
+@media(prefers-reduced-motion:reduce){a[href="#marcar"],a[href="#marcar"]::after{animation:none}}
 </style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-7836 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-7836">
 <!-- Google Tag Manager (noscript) -->
@@ -477,7 +492,7 @@ html body{overflow-x:clip!important;overflow-y:visible!important}
 <li>Para quem ainda não é cliente Vloom!</li>
 </ul>
 <p class="assina">Vou voltar ao trabalho,</p>
-<img alt="Tiago Severino · Head of Marketing · Vloom" class="assina-img" loading="lazy" src="_wp/assinatura-tiago.png"/>
+<div class="assina-eu"><img alt="Tiago Severino" src="_wp/mc-tiago.webp"/><div><b>Tiago Severino</b><span>Head of Marketing · Vloom</span></div></div>
 <div class="carta-cta"><a class="botao" href="#marcar">QUERO RECLAMAR ESTA OFERTA
         <svg fill="none" height="18" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24" width="18"><path d="M12 5v14M5 12l7 7 7-7"></path></svg></a></div>
 </article>
