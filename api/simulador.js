@@ -24,7 +24,7 @@ const DESTINO = {
   sistema: 'https://marketing.vloom.pt/simulador-calendario-reuniao/',
   'chave-na-mao': 'https://oferta.vloom.pt/simulador/chave-na-mao/',
   // abaixo de 100k vão para onde sempre foram (página dos websites 297 €)
-  'nutricao-100k': 'https://marketing.vloom.pt/simulador-thankyou-conheca-a-vloom/',
+  'nutricao-100k': 'https://oferta.vloom.pt/website/resultado/',   // 13/11: cópia da página dos websites com o topo «resultado a caminho»
 };
 
 function caminho(fat, orc, prz) {
