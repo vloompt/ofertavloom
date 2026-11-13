@@ -96,7 +96,14 @@
     .then(function (data) {
       if (!data.ok) throw new Error(data.erro || 'erro');
       if (ensaio) { mostraEnsaio(data); return; }
-      if (data.redirect) window.location.href = data.redirect;
+      try {  // Meta: Lead (pixel + CAPI, mesmo eventID para deduplicar)
+        if (window.fbq && window.vloomFb) {
+          var eid = window.vloomFb.id();
+          window.fbq('track', 'Lead', { content_name: 'Simulador Vloom', caminho: data.caminho || '' }, { eventID: eid });
+          window.vloomFb.capi({ eventName: 'Lead', eventId: eid, email: email, firstName: nome, contentName: 'Simulador Vloom' });
+        }
+      } catch (e) {}
+      if (data.redirect) { setTimeout(function () { window.location.href = data.redirect; }, 400); return; }
       else showSuccess(nome);
     })
     .catch(function () {

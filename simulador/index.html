@@ -149,7 +149,24 @@ border: 1px solid #ffffff20;
 	https://yellowpencil.waspthemes.com/
 */
 .elementor-widget-form .elementor-form .elementor-message-success{font-size:14px;color:#fb1c1c;text-align:center;line-height:1.4em;padding-left:10px;padding-right:10px;margin-top:25px;font-weight:500;}#frm_field_130_container .frm_primary_label ."menor"{font-weight:400;font-size:13px;line-height:1em;}
-</style>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /></head>
+</style>	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" /><!-- Meta Pixel (o mesmo das páginas Vloom da Vercel, 441661273501928) -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
+</head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-1825 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-1825">
 	<!-- Google Tag Manager (noscript) -->
 
@@ -615,7 +632,7 @@ var e="script#wp-emoji-settings",t=document.querySelector(e);if(!(t instanceof H
                     document.head.appendChild(link);
                 })();
             </script>
-            	<script src="simulador.js?v=1"></script>
+            	<script src="simulador.js?v=2"></script>
 </body>
 </html>
 

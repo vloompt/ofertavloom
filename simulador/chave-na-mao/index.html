@@ -449,7 +449,24 @@ a[href="#marcar"]:hover,a[href="#marcar"]:focus{animation-play-state:paused}
  .ck-logos img{width:100%!important;max-width:84px!important;height:38px!important;object-fit:contain}
 }
 @media(max-width:767px){.ck-logos{grid-template-columns:repeat(3,1fr)!important;gap:16px 14px!important;padding:0 18px!important}.ck-logos img{max-width:96px!important;height:40px!important}}
-</style></head>
+</style><!-- Meta Pixel (o mesmo das páginas Vloom da Vercel, 441661273501928) -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
+</head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-7836 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-7836">
 <!-- Google Tag Manager (noscript) -->
 <!-- End Google Tag Manager (noscript) -->
