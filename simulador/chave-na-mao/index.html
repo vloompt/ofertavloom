@@ -375,6 +375,24 @@ border: 1px solid #ffffff20;
 @media(max-width:600px){.v1 .mc-tiles{grid-template-columns:1fr}.v1 .mc-tile{flex-direction:row;align-items:center}.v1 .mc-depo figcaption{flex-wrap:wrap}}
 .ck-logos>.e-con>.elementor-widget{width:100%!important;text-align:center}
 .ck-logos img{display:inline-block!important}
+
+/* ===== 13/11 · «Por que razão…»: cartões que se EMPILHAM ao fazer scroll (sticky stack) ===== */
+@media(min-width:901px){
+.ck-sec .elementor-element-a651d6b{display:block!important;max-width:980px!important;margin:30px auto 0!important;width:100%!important}
+.ck-sec .ck-card{position:sticky!important;top:110px;display:grid!important;grid-template-columns:170px 1fr;grid-template-rows:auto auto 1fr;column-gap:44px;
+  min-height:340px;padding:52px 56px!important;margin:0 0 60px!important;width:100%!important;transform-origin:50% 0;will-change:transform}
+.ck-sec .ck-card[data-ck-num="02"]{top:134px}.ck-sec .ck-card[data-ck-num="03"]{top:158px;margin-bottom:0!important}
+.ck-sec .ck-card>.elementor-widget-divider{grid-column:2;grid-row:1;width:100%!important;max-width:none!important}
+.ck-sec .ck-ico{grid-column:1;grid-row:1/4;width:170px!important;height:170px!important;border-radius:40px!important;margin:0!important;align-self:center}
+.ck-sec .ck-ico img{width:120px!important;height:120px!important}
+.ck-sec .ck-card>.elementor-widget-icon-box{grid-column:2;grid-row:2/4;align-self:start;margin-top:14px!important}
+.ck-sec .ck-card .elementor-icon-box-title,.ck-sec .ck-card .elementor-icon-box-title span{font-size:34px!important;letter-spacing:-.02em}
+.ck-sec .ck-card .elementor-icon-box-description{font-size:18px!important;max-width:560px}
+.ck-sec .ck-card::after{font-size:260px!important;bottom:-70px!important;right:10px!important}
+.ck-sec .ck-card:hover{transform:none}
+}
+html body{overflow-x:clip!important;overflow-y:visible!important}
+@media(min-width:901px){.ck-sec .ck-card{column-gap:44px!important;gap:0 44px!important}}
 </style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-7836 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-7836">
 <!-- Google Tag Manager (noscript) -->
@@ -612,7 +630,10 @@ border: 1px solid #ffffff20;
 </span>
 </a>
 </div>
-</div>
+<script>(function(){if(innerWidth<901)return;
+var cs=[].slice.call(document.querySelectorAll('.ck-card'));function f(){cs.forEach(function(c,i){var n=cs[i+1];if(!n){c.style.transform='';return}
+var d=n.getBoundingClientRect().top-c.getBoundingClientRect().top,h=c.offsetHeight,k=Math.max(0,Math.min(1,1-d/h));
+c.style.transform='scale('+(1-k*.06)+')';c.style.filter='brightness('+(1-k*.25)+')'})}addEventListener('scroll',f,{passive:true});f()})();</script></div>
 </div>
 </div>
 
@@ -622,7 +643,7 @@ border: 1px solid #ffffff20;
 <h2 class="elementor-heading-title elementor-size-default">O que fazemos diferente de outras agências?
 
 </h2> </div>
-<div class="rz" id="rz"><div class="rz-palco"><img alt="" class="rz-img on" loading="eager" src="_wp/cn-1-anuncios.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-2-crm.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-3-formacao.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-4-suporte.webp"/><span class="rz-sombra"></span><div class="rz-cima on"><div class="rz-w rz-leads"><span class="rz-rot">Leads · campanha ativa</span><b class="rz-cont" data-ate="247">0</b><span class="rz-sobe">▲ a subir</span>
+<div class="rz" id="rz"><div class="rz-palco"><video autoplay="" class="rz-img on" loop="" muted="" playsinline="" poster="_wp/cn-1-anuncios.webp" preload="auto" src="_wp/cn-1-anuncios.mp4"></video><img alt="" class="rz-img" loading="lazy" src="_wp/cn-2-crm.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-3-formacao.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-4-suporte.webp"/><span class="rz-sombra"></span><div class="rz-cima on"><div class="rz-w rz-leads"><span class="rz-rot">Leads · campanha ativa</span><b class="rz-cont" data-ate="247">0</b><span class="rz-sobe">▲ a subir</span>
 <svg class="rz-linha" viewbox="0 0 120 34"><path d="M2 32 C30 30 45 24 62 18 S96 6 118 2"></path></svg></div></div><div class="rz-cima"><div class="rz-w rz-crm"><span class="rz-ok">✓</span><div><b>Reunião marcada</b><small>Lead passou para «Reunião marcada»</small></div></div></div><div class="rz-cima"><div class="rz-w rz-script"><span class="rz-rot">Script de chamada</span><ol><li>Abertura</li><li>Criar empatia</li><li class="on">Identificar a necessidade</li><li>Apresentar a solução</li><li>Objeções e fecho</li></ol></div></div><div class="rz-cima"><div class="rz-w rz-zap"><div class="rz-msg">Olá Tiago, tenho uma dúvida na campanha…</div><div class="rz-msg eu">Já vejo isso consigo 👍<i>✓✓</i></div><span class="rz-tag">Resposta em 5 minutos · 7 dias por semana</span></div></div>
 <span class="rz-num" id="rzNum">01 / 04</span></div><div class="rz-lista"><button class="rz-item on" type="button"><span class="rz-n">01</span><p>Focamo-nos em gerar reuniões com decisores (não em atrair leads aleatórios que não são qualificadas e/ou faltam a reuniões)</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">02</span><p>Incluímos CRM já configurado, para que tenha acesso a todos os leads que captou e possa consultar o histórico de cada um</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">03</span><p>Fornecemos scripts e formamos a sua equipa comercial, para que saiba o que dizer quando liga a um lead – ou o que fazer quando ele não atende</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">04</span><p>Mantemos uma linha de suporte aberta 7 dias por semana, via email e WhatsApp, com resposta em 5 minutos</p><span class="rz-barra"><i></i></span></button></div></div>
 <script>(function(){
@@ -631,7 +652,7 @@ var imgs=z.querySelectorAll('.rz-img'),cima=z.querySelectorAll('.rz-cima'),itens
 var cur=0,t=null,N=itens.length,TEMPO=6500;
 function conta(el){var ate=+el.dataset.ate,t0=null;function p(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/2400);el.textContent=Math.round(ate*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(p)}el.textContent='0';requestAnimationFrame(p)}
 function mostra(i){cur=i;[imgs,cima,itens].forEach(function(l){l.forEach(function(e,n){e.classList.toggle('on',n===i)})});
- num.textContent='0'+(i+1)+' / 0'+N;var c=cima[i].querySelector('.rz-cont');if(c)conta(c);
+ num.textContent='0'+(i+1)+' / 0'+N;imgs.forEach(function(e,n){if(e.tagName==='VIDEO'){if(n===i){e.currentTime=0;e.play().catch(function(){})}else e.pause()}});var c=cima[i].querySelector('.rz-cont');if(c)conta(c);
  itens.forEach(function(e){var b=e.querySelector('.rz-barra i');b.style.animation='none';void b.offsetWidth;b.style.animation=''})}
 function agenda(){clearTimeout(t);t=setTimeout(function(){mostra((cur+1)%N);agenda()},TEMPO)}
 itens.forEach(function(e,i){e.addEventListener('click',function(){mostra(i);agenda()})});
