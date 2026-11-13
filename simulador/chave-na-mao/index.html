@@ -232,6 +232,108 @@ border: 1px solid #ffffff20;
 .ck-sec .ck-card .elementor-icon-box-description{color:rgba(255,255,255,.82)!important;font-size:16.5px!important;line-height:1.6!important;position:relative;z-index:1}
 @media(max-width:767px){.ck-sec .ck-card{padding:28px 24px 34px!important}.ck-sec .ck-ico{width:84px;height:84px;margin:18px 0 22px}
   .ck-sec .ck-ico img{width:62px;height:62px}.ck-sec .ck-card::after{font-size:140px}}
+
+/* ===== 13/11 · fundos alternados ===== */
+.ck-lilas{background:linear-gradient(180deg,#F3EEFA 0%,#F7F4FC 100%)!important}
+.ck-escuro{background:radial-gradient(ellipse at 15% 0%,rgba(141,72,155,.45),transparent 55%),radial-gradient(ellipse at 100% 100%,rgba(60,200,200,.12),transparent 50%),linear-gradient(160deg,#132968 0%,#1F2140 100%)!important;padding-top:90px!important;padding-bottom:90px!important}
+.ck-escuro .elementor-heading-title,.ck-escuro h2,.ck-escuro h3{color:#fff!important}
+.ck-escuro .vidro{background:rgba(255,255,255,.07)!important;border:1px solid rgba(255,255,255,.14)!important}
+.ck-escuro .vidro p,.ck-escuro .vidro em,.ck-escuro .vidro span,.ck-escuro .vidro strong{color:#fff!important}
+
+/* ===== 13/11 · zona rotativa «O que fazemos diferente» ===== */
+.rz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:center;width:100%;max-width:1180px;margin:40px auto 50px}
+.rz-palco{position:relative;aspect-ratio:4/5;border-radius:26px;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.12);background:#1F2140}
+.rz-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.04);transition:opacity 1s ease}
+.rz-img.on{opacity:1;animation:rzKen 9s linear forwards}
+@keyframes rzKen{from{transform:scale(1.04)}to{transform:scale(1.13)}}
+.rz-sombra{position:absolute;inset:auto 0 0 0;height:45%;background:linear-gradient(180deg,transparent,rgba(19,41,104,.75));pointer-events:none}
+.rz-num{position:absolute;top:18px;left:18px;background:rgba(19,41,104,.75);backdrop-filter:blur(6px);color:#fff;font:800 12px/1 Montserrat,sans-serif;letter-spacing:.18em;padding:9px 13px;border-radius:999px}
+.rz-cima{position:absolute;left:22px;right:22px;bottom:22px;opacity:0;transform:translateY(18px);transition:opacity .5s ease .45s,transform .6s cubic-bezier(.2,.8,.2,1) .45s;pointer-events:none}
+.rz-cima.on{opacity:1;transform:none}
+.rz-w{background:rgba(255,255,255,.96);border-radius:18px;padding:16px 18px;box-shadow:0 20px 40px -12px rgba(0,0,0,.45);font-family:Montserrat,sans-serif;color:#1F2140;max-width:330px}
+.rz-rot{display:block;font-size:10.5px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:#7D57A4}
+.rz-leads{display:grid;grid-template-columns:1fr auto;align-items:end;gap:2px 14px}
+.rz-leads .rz-rot{grid-column:1/-1}
+.rz-cont{font-size:44px;font-weight:800;letter-spacing:-.04em;line-height:1;color:#132968}
+.rz-sobe{font-size:12px;font-weight:800;color:#16a34a;align-self:center}
+.rz-linha{grid-column:1/-1;width:100%;height:34px}
+.rz-linha path{fill:none;stroke:#3CC8C8;stroke-width:3;stroke-linecap:round;stroke-dasharray:160;stroke-dashoffset:160}
+.rz-cima.on .rz-linha path{animation:rzRisca 2.4s ease forwards .6s}
+@keyframes rzRisca{to{stroke-dashoffset:0}}
+.rz-crm{display:flex;gap:14px;align-items:center}
+.rz-crm b{display:block;font-size:16px}.rz-crm small{display:block;font-size:12.5px;color:#5B5F77;margin-top:3px}
+.rz-ok{flex:none;width:42px;height:42px;border-radius:12px;background:#16a34a;color:#fff;display:grid;place-items:center;font-size:22px;font-weight:800}
+.rz-cima.on .rz-ok{animation:rzPop .5s cubic-bezier(.2,1.6,.4,1) .7s both}
+@keyframes rzPop{from{transform:scale(0)}to{transform:scale(1)}}
+.rz-script ol{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:6px;counter-reset:p}
+.rz-script li{counter-increment:p;font-size:13.5px;font-weight:600;color:#5B5F77;display:flex;gap:9px;align-items:center}
+.rz-script li::before{content:counter(p);width:20px;height:20px;border-radius:50%;background:#EEE8F6;color:#7D57A4;font-size:11px;font-weight:800;display:grid;place-items:center;flex:none}
+.rz-script li.on{color:#132968;font-weight:800}
+.rz-script li.on::before{background:#7D57A4;color:#fff;box-shadow:0 0 0 4px rgba(125,87,164,.2)}
+.rz-zap{background:#ECE5DD;display:grid;gap:8px}
+.rz-msg{background:#fff;border-radius:12px 12px 12px 3px;padding:9px 12px;font-size:13.5px;line-height:1.4;max-width:88%;box-shadow:0 1px 1px rgba(0,0,0,.08)}
+.rz-msg.eu{background:#DCF8C6;justify-self:end;border-radius:12px 12px 3px 12px}
+.rz-msg i{font-style:normal;color:#34B7F1;font-size:11px;margin-left:6px}
+.rz-cima.on .rz-msg.eu{animation:rzPop .45s ease 1.4s both}
+.rz-tag{font-size:11px;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#075E54}
+.rz-lista{display:grid;gap:12px}
+.rz-item{all:unset;box-sizing:border-box;cursor:pointer;position:relative;display:grid;grid-template-columns:54px 1fr;gap:18px;align-items:start;padding:22px 24px 26px;border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);transition:background .35s,border-color .35s,transform .35s}
+.rz-item:hover{background:rgba(255,255,255,.08)}
+.rz-n{font:800 30px/1 Montserrat,sans-serif;letter-spacing:-.04em;color:rgba(255,255,255,.28);transition:color .35s}
+.rz-item p{margin:0;font:500 16.5px/1.55 Montserrat,sans-serif;color:rgba(255,255,255,.62);transition:color .35s}
+.rz-item.on{background:linear-gradient(120deg,rgba(141,72,155,.55),rgba(19,41,104,.35));border-color:rgba(255,255,255,.22);transform:translateX(8px)}
+.rz-item.on .rz-n{color:#fff}.rz-item.on p{color:#fff}
+.rz-barra{position:absolute;left:24px;right:24px;bottom:12px;height:3px;border-radius:3px;background:rgba(255,255,255,.12);overflow:hidden;opacity:0}
+.rz-item.on .rz-barra{opacity:1}
+.rz-barra i{display:block;height:100%;width:0;background:linear-gradient(90deg,#3CC8C8,#fff)}
+.rz.vivo .rz-item.on .rz-barra i{animation:rzBarra 6.5s linear forwards}
+@keyframes rzBarra{to{width:100%}}
+@media(max-width:900px){.rz{grid-template-columns:1fr;gap:26px;margin-top:24px}.rz-palco{aspect-ratio:4/4.4}
+ .rz-item{padding:16px 18px 22px;grid-template-columns:40px 1fr;gap:12px}.rz-item.on{transform:none}.rz-n{font-size:22px}.rz-item p{font-size:15px}
+ .rz-w{max-width:none}.rz-cont{font-size:36px}}
+@media(prefers-reduced-motion:reduce){.rz-img.on{animation:none}}
+
+/* ===== 13/11 · logotipos aos lados ===== */
+.ck-logos{width:100%!important;max-width:1320px!important;margin-left:auto!important;margin-right:auto!important;flex-wrap:nowrap!important}
+.ck-logos>.e-con{flex:1 1 0!important;min-width:0!important;width:auto!important}
+.ck-logos img{width:100%!important;max-width:170px!important;height:auto!important}
+@media(max-width:900px){.ck-logos{flex-wrap:wrap!important}.ck-logos>.e-con{flex:0 0 25%!important}}
+
+/* ===== 13/11 · testemunho Bwizer ===== */
+.ck-bw{padding:70px 20px 80px;background:#fff}
+.ck-bw-in{max-width:1140px;margin:0 auto}
+.ck-bw-video{width:100%;aspect-ratio:16/9;display:block;border-radius:12px;background:#000;object-fit:cover}
+
+/* ===== 13/11 · zona do calendário ===== */
+.v1 .marcar{position:relative;max-width:none!important;margin:0!important;padding:100px 24px 110px!important;text-align:left!important;overflow:hidden;
+  background:linear-gradient(135deg,#7D57A4 0%,#3b3f9e 45%,#132968 100%)}
+.v1 .mc-fundo{position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 12% 18%,rgba(255,255,255,.16),transparent 35%),repeating-linear-gradient(115deg,rgba(255,255,255,.05) 0 1px,transparent 1px 60px)}
+.v1 .mc-grelha{position:relative;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.25fr);gap:56px;align-items:start}
+.v1 .mc-esq{position:sticky;top:40px;color:#fff}
+.v1 .mc-kicker{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:9px 14px;border-radius:999px}
+.v1 .marcar h2{color:#fff!important;font-size:clamp(28px,3.4vw,42px)!important;line-height:1.15!important;letter-spacing:-.02em;margin:22px 0 26px!important;text-align:left}
+.v1 .mc-inclui{list-style:none;margin:0 0 28px;padding:0;display:grid;gap:12px}
+.v1 .mc-inclui li{display:flex;gap:12px;align-items:center;font-size:17px;font-weight:600;color:#fff}
+.v1 .mc-inclui i{flex:none;width:26px;height:26px;border-radius:8px;background:#fff;position:relative}
+.v1 .mc-inclui i::after{content:"";position:absolute;left:50%;top:50%;width:42%;height:22%;transform:translate(-50%,-62%) rotate(-45deg);border-left:3px solid #7D57A4;border-bottom:3px solid #7D57A4}
+.v1 .marcar .aviso{max-width:none;margin:0 0 30px;text-align:left;color:rgba(255,255,255,.85);background:rgba(19,41,104,.45);border-left:4px solid #3CC8C8;border-radius:0 14px 14px 0;padding:16px 18px;font-size:15.5px}
+.v1 .marcar .aviso strong{color:#fff}
+.v1 .mc-eu{display:flex;gap:14px;align-items:center}
+.v1 .mc-eu img{width:64px;height:64px;border-radius:50%;object-fit:cover;object-position:top;background:rgba(255,255,255,.2);border:3px solid rgba(255,255,255,.6)}
+.v1 .mc-eu b{display:block;font-size:17px;color:#fff}.v1 .mc-eu span{display:block;font-size:13px;color:rgba(255,255,255,.75)}
+.v1 .calendario{border-radius:22px!important;box-shadow:0 40px 90px -30px rgba(0,0,0,.6),0 0 0 6px rgba(255,255,255,.12)!important;background:#fff}
+.v1 .cal-topo{display:flex;align-items:center;gap:14px;padding:16px 22px;background:#F5F2FA;border-bottom:1px solid #E7E1F1}
+.v1 .cal-topo b{font-size:15px;color:#132968;flex:1}
+.v1 .cal-pontos{display:flex;gap:6px}.v1 .cal-pontos i{width:11px;height:11px;border-radius:50%;background:#D9D2E6}
+.v1 .cal-pontos i:first-child{background:#8d489b}
+.v1 .cal-dur{font-size:12px;font-weight:800;color:#fff;background:#7D57A4;padding:6px 11px;border-radius:999px}
+@media(max-width:900px){.v1 .marcar{padding:64px 14px 70px!important}.v1 .mc-grelha{grid-template-columns:1fr;gap:30px}.v1 .mc-esq{position:static}}
+@media(max-width:600px){.rz-cima{left:12px;right:auto;bottom:12px}.rz-w{padding:11px 13px;border-radius:14px;max-width:250px}
+ .rz-script ol{gap:3px;margin-top:6px}.rz-script li{font-size:11.5px}.rz-script li::before{width:16px;height:16px;font-size:9.5px}
+ .rz-script li:not(.on):nth-child(n+5){display:none}.rz-cont{font-size:30px}.rz-linha{height:24px}
+ .rz-crm b{font-size:14px}.rz-crm small{font-size:11px}.rz-ok{width:34px;height:34px;font-size:18px}
+ .rz-msg{font-size:12px;padding:7px 10px}.rz-tag{font-size:9.5px}.rz-num{top:12px;left:12px}}
 </style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-7836 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-7836">
 <!-- Google Tag Manager (noscript) -->
@@ -290,7 +392,7 @@ border: 1px solid #ffffff20;
 </main></div>
 
 
-<div class="elementor-element elementor-element-04c16cf e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container" data-id="04c16cf" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-04c16cf e-flex e-con-boxed e-con e-parent ck-lilas" data-e-type="container" data-element_type="container" data-id="04c16cf" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="e-con-inner">
 <div class="elementor-element elementor-element-50a31b5 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="50a31b5" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-e6c7714 ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="e6c7714" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
@@ -474,59 +576,27 @@ border: 1px solid #ffffff20;
 </div>
 </div>
 
-<div class="elementor-element elementor-element-cf20280 e-flex e-con-boxed e-con e-parent" data-e-type="container" data-element_type="container" data-id="cf20280" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-cf20280 e-flex e-con-boxed e-con e-parent ck-escuro" data-e-type="container" data-element_type="container" data-id="cf20280" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="e-con-inner">
 <div class="elementor-element elementor-element-3134374 ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="3134374" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
 <h2 class="elementor-heading-title elementor-size-default">O que fazemos diferente de outras agências?
 
 </h2> </div>
-<div class="elementor-element elementor-element-3f12516 e-con-full vidro e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="3f12516" data-settings='{"background_background":"gradient","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
-
-<div class="elementor-element elementor-element-de57643 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="de57643" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
-<div class="elementor-element elementor-element-66d9ad7 elementor-widget__width-initial animated-slow elementor-widget-divider--view-line_text elementor-widget-divider--element-align-left elementor-widget-mobile__width-inherit elementor-invisible ob-has-background-overlay elementor-widget elementor-widget-divider" data-e-type="widget" data-element_type="widget" data-id="66d9ad7" data-settings='{"_animation":"fadeIn","_animation_delay":"200","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="divider.default">
-<div class="elementor-divider">
-<span class="elementor-divider-separator">
-<span class="elementor-divider__text elementor-divider__element">
-				01				</span>
-</span>
-</div>
-</div>
-<div class="elementor-element elementor-element-6ee8733 elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="6ee8733" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default">
-									Focamo-nos em gerar reuniões com decisores (não em atrair leads aleatórios que não são qualificadas e/ou faltam a reuniões)
-								</div>
-<div class="elementor-element elementor-element-9ec6ca0 elementor-widget__width-initial animated-slow elementor-widget-divider--view-line_text elementor-widget-divider--element-align-left elementor-widget-mobile__width-inherit elementor-invisible ob-has-background-overlay elementor-widget elementor-widget-divider" data-e-type="widget" data-element_type="widget" data-id="9ec6ca0" data-settings='{"_animation":"fadeIn","_animation_delay":"200","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="divider.default">
-<div class="elementor-divider">
-<span class="elementor-divider-separator">
-<span class="elementor-divider__text elementor-divider__element">
-				02				</span>
-</span>
-</div>
-</div>
-<div class="elementor-element elementor-element-20dcd32 elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="20dcd32" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default">
-<p>Incluímos CRM já configurado, para que tenha acesso a todos os leads que captou e possa consultar o histórico de cada um</p> </div>
-<div class="elementor-element elementor-element-2c817db elementor-widget__width-initial animated-slow elementor-widget-divider--view-line_text elementor-widget-divider--element-align-left elementor-widget-mobile__width-inherit elementor-invisible ob-has-background-overlay elementor-widget elementor-widget-divider" data-e-type="widget" data-element_type="widget" data-id="2c817db" data-settings='{"_animation":"fadeIn","_animation_delay":"200","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="divider.default">
-<div class="elementor-divider">
-<span class="elementor-divider-separator">
-<span class="elementor-divider__text elementor-divider__element">
-				03				</span>
-</span>
-</div>
-</div>
-<div class="elementor-element elementor-element-211f950 elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="211f950" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default">
-									Fornecemos scripts e formamos a sua equipa comercial, para que saiba o que dizer quando liga a um lead – ou o que fazer quando ele não atende								</div>
-
-
-<div class="elementor-element elementor-element-6798e63 elementor-widget__width-initial animated-slow elementor-widget-divider--view-line_text elementor-widget-divider--element-align-left elementor-widget-mobile__width-inherit elementor-invisible ob-has-background-overlay elementor-widget elementor-widget-divider" data-e-type="widget" data-element_type="widget" data-id="6798e63" data-settings='{"_animation":"fadeIn","_animation_delay":"200","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="divider.default">
-<div class="elementor-divider">
-<span class="elementor-divider-separator">
-<span class="elementor-divider__text elementor-divider__element">04</span>
-</span>
-</div>
-</div>
-<div class="elementor-element elementor-element-1815009 elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="1815009" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default">
-									Mantemos uma linha de suporte aberta 7 dias por semana, via email e WhatsApp, com resposta em 5 minutos 								</div>
-</div>
-</div>
+<div class="rz" id="rz"><div class="rz-palco"><img alt="" class="rz-img on" loading="eager" src="_wp/cn-1-anuncios.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-2-crm.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-3-formacao.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-4-suporte.webp"/><span class="rz-sombra"></span><div class="rz-cima on"><div class="rz-w rz-leads"><span class="rz-rot">Leads · campanha ativa</span><b class="rz-cont" data-ate="247">0</b><span class="rz-sobe">▲ a subir</span>
+<svg class="rz-linha" viewbox="0 0 120 34"><path d="M2 32 C30 30 45 24 62 18 S96 6 118 2"></path></svg></div></div><div class="rz-cima"><div class="rz-w rz-crm"><span class="rz-ok">✓</span><div><b>Reunião marcada</b><small>Lead passou para «Reunião marcada»</small></div></div></div><div class="rz-cima"><div class="rz-w rz-script"><span class="rz-rot">Script de chamada</span><ol><li>Abertura</li><li>Criar empatia</li><li class="on">Identificar a necessidade</li><li>Apresentar a solução</li><li>Objeções e fecho</li></ol></div></div><div class="rz-cima"><div class="rz-w rz-zap"><div class="rz-msg">Olá Tiago, tenho uma dúvida na campanha…</div><div class="rz-msg eu">Já vejo isso consigo 👍<i>✓✓</i></div><span class="rz-tag">Resposta em 5 minutos · 7 dias por semana</span></div></div>
+<span class="rz-num" id="rzNum">01 / 04</span></div><div class="rz-lista"><button class="rz-item on" type="button"><span class="rz-n">01</span><p>Focamo-nos em gerar reuniões com decisores (não em atrair leads aleatórios que não são qualificadas e/ou faltam a reuniões)</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">02</span><p>Incluímos CRM já configurado, para que tenha acesso a todos os leads que captou e possa consultar o histórico de cada um</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">03</span><p>Fornecemos scripts e formamos a sua equipa comercial, para que saiba o que dizer quando liga a um lead – ou o que fazer quando ele não atende</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">04</span><p>Mantemos uma linha de suporte aberta 7 dias por semana, via email e WhatsApp, com resposta em 5 minutos</p><span class="rz-barra"><i></i></span></button></div></div>
+<script>(function(){
+var z=document.getElementById('rz');if(!z)return;
+var imgs=z.querySelectorAll('.rz-img'),cima=z.querySelectorAll('.rz-cima'),itens=z.querySelectorAll('.rz-item'),num=document.getElementById('rzNum');
+var cur=0,t=null,N=itens.length,TEMPO=6500;
+function conta(el){var ate=+el.dataset.ate,t0=null;function p(ts){if(!t0)t0=ts;var k=Math.min(1,(ts-t0)/2400);el.textContent=Math.round(ate*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(p)}el.textContent='0';requestAnimationFrame(p)}
+function mostra(i){cur=i;[imgs,cima,itens].forEach(function(l){l.forEach(function(e,n){e.classList.toggle('on',n===i)})});
+ num.textContent='0'+(i+1)+' / 0'+N;var c=cima[i].querySelector('.rz-cont');if(c)conta(c);
+ itens.forEach(function(e){var b=e.querySelector('.rz-barra i');b.style.animation='none';void b.offsetWidth;b.style.animation=''})}
+function agenda(){clearTimeout(t);t=setTimeout(function(){mostra((cur+1)%N);agenda()},TEMPO)}
+itens.forEach(function(e,i){e.addEventListener('click',function(){mostra(i);agenda()})});
+new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){z.classList.add('vivo');mostra(cur);agenda()}else{clearTimeout(t);z.classList.remove('vivo')}})},{threshold:.3}).observe(z);
+})();</script>
 <div class="elementor-element elementor-element-9e2e48d e-con-full vidro e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="9e2e48d" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-8dc76d0 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="8dc76d0" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-6a53f4f e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="6a53f4f" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
@@ -562,7 +632,13 @@ border: 1px solid #ffffff20;
 
 <div class="elementor-element elementor-element-441cdf5 ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="441cdf5" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
 <h2 class="elementor-heading-title elementor-size-default">Confiam em nós:</h2> </div>
-<div class="elementor-element elementor-element-ba6594c e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="ba6594c" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-ba6594c e-con-full e-flex e-con e-child ck-logos" data-e-type="container" data-element_type="container" data-id="ba6594c" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'><div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/allianz1.png" width="225"/> </div>
+</div><div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/euro1.png" width="225"/> </div>
+</div>
 <div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
 <img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/sheraton1-05307f.png" width="225"/> </div>
@@ -579,8 +655,20 @@ border: 1px solid #ffffff20;
 <div class="elementor-element elementor-element-46ab49b ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="46ab49b" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
 <img alt="" class="attachment-full size-full wp-image-4811" decoding="async" height="110" loading="lazy" src="_wp/ca1-225e8b.png" width="225"/> </div>
 </div>
+<div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/calve.png" width="225"/> </div>
+</div><div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/mor1.png" width="225"/> </div>
+</div></div>
+<div class="elementor-element elementor-element-9528167 e-con-full e-flex e-con e-child ck-logos" data-e-type="container" data-element_type="container" data-id="9528167" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'><div class="elementor-element elementor-element-45959b2 e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="45959b2" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-e545c66 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="e545c66" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-7957" decoding="async" height="110" loading="lazy" src="_wp/hvl1.png" width="225"/> </div>
+</div><div class="elementor-element elementor-element-45959b2 e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="45959b2" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-e545c66 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="e545c66" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-7957" decoding="async" height="110" loading="lazy" src="_wp/exs1.png" width="225"/> </div>
 </div>
-<div class="elementor-element elementor-element-9528167 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="9528167" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-45959b2 e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="45959b2" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-e545c66 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="e545c66" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
 <img alt="" class="attachment-full size-full wp-image-7957" decoding="async" height="110" loading="lazy" src="_wp/hellmans-62dcbc.png" width="225"/> </div>
@@ -597,7 +685,13 @@ border: 1px solid #ffffff20;
 <div class="elementor-element elementor-element-a62c5dd ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="a62c5dd" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
 <img alt="" class="attachment-full size-full wp-image-10205" decoding="async" height="110" loading="lazy" src="_wp/nortecar-756464.webp" width="225"/> </div>
 </div>
-</div>
+<div class="elementor-element elementor-element-45959b2 e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="45959b2" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-e545c66 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="e545c66" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-7957" decoding="async" height="110" loading="lazy" src="_wp/smil1.png" width="225"/> </div>
+</div><div class="elementor-element elementor-element-45959b2 e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="45959b2" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-e545c66 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="e545c66" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
+<img alt="" class="attachment-full size-full wp-image-7957" decoding="async" height="110" loading="lazy" src="_wp/try1.png" width="225"/> </div>
+</div></div>
 <div class="elementor-element elementor-element-a064879 elementor-align-center ob-has-background-overlay elementor-widget elementor-widget-button" data-e-type="widget" data-element_type="widget" data-id="a064879" data-settings='{"_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="button.default">
 <a class="elementor-button elementor-button-link elementor-size-sm elementor-animation-grow" href="#marcar">
 <span class="elementor-button-content-wrapper">
@@ -610,7 +704,7 @@ border: 1px solid #ffffff20;
 
 
 
-<section class="elementor-section elementor-top-section elementor-element elementor-element-9b1b0b8 elementor-section-boxed elementor-section-height-default elementor-section-height-default" data-e-type="section" data-element_type="section" data-id="9b1b0b8" data-settings='{"background_background":"classic","_ob_glider_is_slider":"no"}'>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-9b1b0b8 elementor-section-boxed elementor-section-height-default elementor-section-height-default ck-lilas" data-e-type="section" data-element_type="section" data-id="9b1b0b8" data-settings='{"background_background":"classic","_ob_glider_is_slider":"no"}'>
 <div class="elementor-container elementor-column-gap-default">
 <div class="elementor-column elementor-col-100 elementor-top-column elementor-element elementor-element-1c6f96c" data-e-type="column" data-element_type="column" data-id="1c6f96c" data-settings='{"_ob_column_hoveranimator":"no"}'>
 <div class="elementor-widget-wrap elementor-element-populated">
@@ -1083,15 +1177,46 @@ border: 1px solid #ffffff20;
 </div>
 </section>
 
-<div class="v1"><main><section class="marcar" id="marcar">
+<div class="ck-bw"><div class="ck-bw-in"><div class="elementor-element elementor-element-9e2e48d e-con-full vidro e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="9e2e48d" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-8dc76d0 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="8dc76d0" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-6a53f4f e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="6a53f4f" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-8633e4c elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="8633e4c" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
+<h2 class="elementor-heading-title elementor-size-default">Testemunho
+</h2> </div>
+<div class="elementor-element elementor-element-8a28c4c elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="8a28c4c" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default"><p><em>“Com o Tiago Severino encontrei alguém que percebi que tinha conhecimento, tinha experiência e parecia ter <strong>uma genuína vontade e disponibilidade para nos ajudar a fazer crescer o nosso negócio</strong>.”</em></p></div>
+<div class="elementor-element elementor-element-e6520c0 ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="e6520c0" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
+<span class="elementor-heading-title elementor-size-default">Hugo Belchior, CEO da Bwizer,<br/>Formação para Profissionais de Saúde</span> </div>
+</div>
+<div class="elementor-element elementor-element-ac890ed e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="ac890ed" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-d71f706 elementor-widget__width-initial ob-has-background-overlay elementor-widget elementor-widget-video" data-e-type="widget" data-element_type="widget" data-id="d71f706" data-settings='{"video_type":"vimeo","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="video.default">
+<div class="elementor-wrapper elementor-open-inline"><video class="ck-bw-video" controls="" playsinline="" poster="_wp/bwizer-caso-capa.jpg" preload="none" src="_wp/bwizer-caso.mp4"></video></div>
+</div>
+</div>
+</div>
+</div></div></div><div class="v1"><main><section class="marcar" id="marcar">
+<div class="mc-fundo"></div>
+<div class="mc-grelha">
+<div class="mc-esq">
+<span class="mc-kicker">Call de onboarding · 30 min</span>
 <h2>Se quer avançar, marque aqui a sua call de onboarding:</h2>
+<ul class="mc-inclui">
+<li><i></i>Anúncios, emails, páginas e CRM montados na sua conta</li>
+<li><i></i>Dois meses de gestão incluídos</li>
+<li><i></i>Depois é tudo seu</li>
+</ul>
 <p class="aviso">Peço só uma coisa: marque <strong>apenas se estiver mesmo interessado nestas condições</strong>. São estas e não vão mudar.</p>
+<div class="mc-eu"><img alt="Tiago Severino" loading="lazy" src="_wp/mc-tiago.webp"/><div><b>Tiago Severino</b><span>Fundador da Vloom</span></div></div>
+</div>
+<div class="mc-dir">
 <div class="calendario">
+<div class="cal-topo"><span class="cal-pontos"><i></i><i></i><i></i></span><b>Escolha o dia e a hora</b><span class="cal-dur">30 min</span></div>
 <!-- Mesmo calendário do link do email (marketing.vloom.pt/marcar-reuniao/) -->
 <iframe id="cal-chave-na-mao" scrolling="no" src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85" title="Marcar a call de onboarding"></iframe>
 </div>
-</section>
-</main></div><script src="https://link.msgsndr.com/js/form_embed.js"></script><section class="elementor-section elementor-top-section elementor-element elementor-element-6916a22 elementor-section-height-min-height elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-e-type="section" data-element_type="section" data-id="6916a22" data-settings='{"background_background":"classic","_ob_glider_is_slider":"no"}'>
+</div>
+</div>
+</section></main></div><script src="https://link.msgsndr.com/js/form_embed.js"></script>
+<section class="elementor-section elementor-top-section elementor-element elementor-element-6916a22 elementor-section-height-min-height elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-e-type="section" data-element_type="section" data-id="6916a22" data-settings='{"background_background":"classic","_ob_glider_is_slider":"no"}'>
 <div class="elementor-background-overlay"></div>
 <div class="elementor-container elementor-column-gap-default">
 <div class="elementor-column elementor-col-25 elementor-top-column elementor-element elementor-element-a7de240" data-e-type="column" data-element_type="column" data-id="a7de240" data-settings='{"_ob_column_hoveranimator":"no"}'>
