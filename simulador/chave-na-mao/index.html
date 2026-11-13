@@ -438,6 +438,17 @@ a[href="#marcar"]{animation:abana 3s cubic-bezier(.36,.07,.19,.97) infinite;posi
 a[href="#marcar"]::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:brilho 3s ease-in-out infinite;pointer-events:none}
 a[href="#marcar"]:hover,a[href="#marcar"]:focus{animation-play-state:paused}
 @media(prefers-reduced-motion:reduce){a[href="#marcar"],a[href="#marcar"]::after{animation:none}}
+
+/* 13/11 mobile: espaço entre a zona rotativa e o testemunho; logotipos em grelha compacta */
+@media(max-width:767px){
+ .rz{margin-bottom:20px!important}
+ .ck-escuro .vidro{margin-top:0!important}
+ .ck-logos{display:grid!important;grid-template-columns:repeat(4,1fr);gap:18px 10px;margin-bottom:18px!important;padding:0 6px}
+ .ck-logos>.e-con{flex:none!important;width:auto!important;padding:0!important;min-height:0!important}
+ .ck-logos .elementor-widget{margin:0!important}
+ .ck-logos img{width:100%!important;max-width:84px!important;height:38px!important;object-fit:contain}
+}
+@media(max-width:767px){.ck-logos{grid-template-columns:repeat(3,1fr)!important;gap:16px 14px!important;padding:0 18px!important}.ck-logos img{max-width:96px!important;height:40px!important}}
 </style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-7836 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-7836">
 <!-- Google Tag Manager (noscript) -->
@@ -781,7 +792,7 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
 <img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/tedx-cinza.png" width="225"/> </div>
 </div><div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
-<img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="https://marketing.vloom.pt/wp-content/uploads/2026/01/Prancheta-1.avif" width="225"/> </div>
+<img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/nosolo-logo.avif" width="225"/> </div>
 </div><div class="elementor-element elementor-element-1e9843d e-con-full e-flex elementor-invisible e-con e-child" data-e-type="container" data-element_type="container" data-id="1e9843d" data-settings='{"animation":"fadeIn","animation_delay":100,"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-30b6b12 ob-has-background-overlay elementor-widget elementor-widget-image" data-e-type="widget" data-element_type="widget" data-id="30b6b12" data-settings='{"_ob_photomorph_use":"no","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="image.default">
 <img alt="" class="attachment-full size-full wp-image-4808" decoding="async" height="110" loading="lazy" src="_wp/ca1-225e8b.png" width="225"/> </div>
