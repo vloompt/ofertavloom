@@ -394,6 +394,14 @@ border: 1px solid #ffffff20;
 html body{overflow-x:clip!important;overflow-y:visible!important}
 @media(min-width:901px){.ck-sec .ck-card{column-gap:44px!important;gap:0 44px!important}}
 .v1 .mc-ico{flex:none!important}
+
+/* 13/11 «bué vibe coded»: calendário limpo — título e aviso ao centro, calendário grande, sem blocos nem moldura de janela */
+.v1 .marcar{text-align:center!important}
+.v1 .mc-cab{position:relative;max-width:820px;margin:0 auto 44px}
+.v1 .mc-cab h2{text-align:center!important;margin:0 0 18px!important}
+.v1 .marcar .aviso{text-align:center!important;margin:0 auto!important;max-width:640px;font-size:17px!important}
+.v1 .calendario{position:relative;max-width:980px;margin:0 auto;border-radius:20px!important;overflow:hidden;box-shadow:0 40px 90px -30px rgba(0,0,0,.55)!important}
+.ck-bw-2{margin-top:40px}
 </style></head>
 <body class="wp-singular page-template page-template-elementor_canvas page page-id-7836 wp-custom-logo wp-embed-responsive wp-theme-hello-elementor theme-hello-elementor non-logged-in woocommerce-no-js hello-elementor-default elementor-default elementor-template-canvas elementor-kit-5 elementor-page elementor-page-7836">
 <!-- Google Tag Manager (noscript) -->
@@ -644,7 +652,7 @@ c.style.transform='scale('+(1-k*.06)+')';c.style.filter='brightness('+(1-k*.25)+
 <h2 class="elementor-heading-title elementor-size-default">O que fazemos diferente de outras agências?
 
 </h2> </div>
-<div class="rz" id="rz"><div class="rz-palco"><video autoplay="" class="rz-img on" loop="" muted="" playsinline="" poster="_wp/cn-1-anuncios.webp" preload="auto" src="_wp/cn-1-anuncios.mp4"></video><img alt="" class="rz-img" loading="lazy" src="_wp/cn-2-crm.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-3-formacao.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-4-suporte.webp"/><span class="rz-sombra"></span><div class="rz-cima on"><div class="rz-w rz-leads"><span class="rz-rot">Leads · campanha ativa</span><b class="rz-cont" data-ate="247">0</b><span class="rz-sobe">▲ a subir</span>
+<div class="rz" id="rz"><div class="rz-palco"><video autoplay="" class="rz-img on" loop="" muted="" playsinline="" poster="_wp/cn-1-anuncios.webp" preload="auto" src="_wp/cn-1-anuncios.mp4"></video><img alt="" class="rz-img" loading="lazy" src="_wp/cn-2-crm-v2.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-3-formacao-v2.webp"/><img alt="" class="rz-img" loading="lazy" src="_wp/cn-4-suporte.webp"/><span class="rz-sombra"></span><div class="rz-cima on"><div class="rz-w rz-leads"><span class="rz-rot">Leads · campanha ativa</span><b class="rz-cont" data-ate="247">0</b><span class="rz-sobe">▲ a subir</span>
 <svg class="rz-linha" viewbox="0 0 120 34"><path d="M2 32 C30 30 45 24 62 18 S96 6 118 2"></path></svg></div></div><div class="rz-cima"><div class="rz-w rz-crm"><span class="rz-ok">✓</span><div><b>Reunião marcada</b><small>Lead passou para «Reunião marcada»</small></div></div></div><div class="rz-cima"><div class="rz-w rz-script"><span class="rz-rot">Script de chamada</span><ol><li>Abertura</li><li>Criar empatia</li><li class="on">Identificar a necessidade</li><li>Apresentar a solução</li><li>Objeções e fecho</li></ol></div></div><div class="rz-cima"><div class="rz-w rz-zap"><div class="rz-msg">Olá Tiago, tenho uma dúvida na campanha…</div><div class="rz-msg eu">Já vejo isso consigo 👍<i>✓✓</i></div><span class="rz-tag">Resposta em 5 minutos · 7 dias por semana</span></div></div>
 <span class="rz-num" id="rzNum">01 / 04</span></div><div class="rz-lista"><button class="rz-item on" type="button"><span class="rz-n">01</span><p>Focamo-nos em gerar reuniões com decisores (não em atrair leads aleatórios que não são qualificadas e/ou faltam a reuniões)</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">02</span><p>Incluímos CRM já configurado, para que tenha acesso a todos os leads que captou e possa consultar o histórico de cada um</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">03</span><p>Fornecemos scripts e formamos a sua equipa comercial, para que saiba o que dizer quando liga a um lead – ou o que fazer quando ele não atende</p><span class="rz-barra"><i></i></span></button><button class="rz-item" type="button"><span class="rz-n">04</span><p>Mantemos uma linha de suporte aberta 7 dias por semana, via email e WhatsApp, com resposta em 5 minutos</p><span class="rz-barra"><i></i></span></button></div></div>
 <script>(function(){
@@ -1239,36 +1247,35 @@ new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting
 </div>
 <div class="elementor-element elementor-element-ac890ed e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="ac890ed" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
 <div class="elementor-element elementor-element-d71f706 elementor-widget__width-initial ob-has-background-overlay elementor-widget elementor-widget-video" data-e-type="widget" data-element_type="widget" data-id="d71f706" data-settings='{"video_type":"vimeo","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="video.default">
-<div class="elementor-wrapper elementor-open-inline"><video class="ck-bw-video" controls="" playsinline="" poster="_wp/bwizer-capa-34mil.jpg" preload="none" src="_wp/bwizer-caso.mp4"></video></div>
+<div class="elementor-wrapper elementor-open-inline"><video class="ck-bw-video" controls="" playsinline="" poster="_wp/bwizer-capa-hugo.jpg" preload="none" src="_wp/bwizer-caso.mp4"></video></div>
+</div>
+</div>
+</div>
+</div><div class="elementor-element elementor-element-9e2e48d e-con-full vidro e-flex e-con e-child ck-bw-2" data-e-type="container" data-element_type="container" data-id="9e2e48d" data-settings='{"background_background":"classic","_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-8dc76d0 e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="8dc76d0" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-6a53f4f e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="6a53f4f" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-8633e4c elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="8633e4c" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
+<h2 class="elementor-heading-title elementor-size-default">Testemunho
+</h2> </div>
+<div class="elementor-element elementor-element-8a28c4c elementor-widget__width-initial ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-text-editor" data-e-type="widget" data-element_type="widget" data-id="8a28c4c" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="text-editor.default"><p><em>“Logo a partir do primeiro mês tivemos mais de 100 leads, o que fez com que a gente conseguisse <strong>fechar logo dois ou três, que foi o suficiente para colmatar o investimento inicial</strong>.”</em></p></div>
+<div class="elementor-element elementor-element-e6520c0 ob-harakiri-inherit ob-has-background-overlay elementor-widget elementor-widget-heading" data-e-type="widget" data-element_type="widget" data-id="e6520c0" data-settings='{"_ob_use_harakiri":"yes","_ob_harakiri_writing_mode":"inherit","_ob_harakiri_text_clip":"none","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="heading.default">
+<span class="elementor-heading-title elementor-size-default">Dr. Bernardo Caria,<br/>Clínica Avenida Barcelos</span> </div>
+</div>
+<div class="elementor-element elementor-element-ac890ed e-con-full e-flex e-con e-child" data-e-type="container" data-element_type="container" data-id="ac890ed" data-settings='{"_ob_column_hoveranimator":"no","_ob_glider_is_slider":"no"}'>
+<div class="elementor-element elementor-element-d71f706 elementor-widget__width-initial ob-has-background-overlay elementor-widget elementor-widget-video" data-e-type="widget" data-element_type="widget" data-id="d71f706" data-settings='{"video_type":"vimeo","_ob_poopart_use":"yes","_ob_shadough_use":"no","_ob_allow_hoveranimator":"no"}' data-widget_type="video.default">
+<div class="elementor-wrapper elementor-open-inline">
+<iframe allow="clipboard-write" allowfullscreen="" class="elementor-video-iframe" src="https://player.vimeo.com/video/1155016610?color&amp;autopause=0&amp;loop=0&amp;muted=0&amp;title=0&amp;portrait=0&amp;byline=0" title="Reprodutor de vídeo de vimeo"></iframe> </div>
 </div>
 </div>
 </div>
 </div></div></div><div class="v1"><main><section class="marcar" id="marcar">
-<div class="mc-fundo"></div>
-<div class="mc-grelha">
-<div class="mc-esq">
-<span class="mc-kicker">Call de onboarding · 30 min</span>
+<div class="mc-cab">
 <h2>Se quer avançar, marque aqui a sua call de onboarding:</h2>
-<div class="mc-tiles">
-<div class="mc-tile"><span class="mc-ico"><img alt="" src="_wp/crm-a8806c.gif"/></span><b>Anúncios, emails, páginas e CRM montados na sua conta</b></div>
-<div class="mc-tile"><span class="mc-ico"><img alt="" src="_wp/strategic-planning-22ccd6.gif"/></span><b>Dois meses de gestão incluídos</b></div>
-<div class="mc-tile"><span class="mc-ico"><img alt="" src="_wp/profits-a71aca.gif"/></span><b>Depois é tudo seu</b></div>
-</div>
 <p class="aviso">Peço só uma coisa: marque <strong>apenas se estiver mesmo interessado nestas condições</strong>. São estas e não vão mudar.</p>
-<figure class="mc-depo">
-<span class="mc-aspas">“</span>
-<blockquote>Logo a partir do primeiro mês tivemos mais de 100 leads, o que fez com que a gente conseguisse <strong>fechar logo dois ou três, que foi o suficiente para colmatar o investimento inicial</strong>.</blockquote>
-<figcaption><img alt="Dr. Bernardo Caria" src="_wp/bernardo-av.webp"/><span><b>Dr. Bernardo Caria</b>Clínica Avenida Barcelos · Medicina Dentária</span>
-<a href="https://vimeo.com/1155016610" rel="noopener" target="_blank">▶ Ver testemunho</a></figcaption>
-</figure>
 </div>
-<div class="mc-dir">
 <div class="calendario">
-<div class="cal-topo"><span class="cal-pontos"><i></i><i></i><i></i></span><b>Escolha o dia e a hora</b><span class="cal-dur">30 min</span></div>
 <!-- Mesmo calendário do link do email (marketing.vloom.pt/marcar-reuniao/) -->
 <iframe id="cal-chave-na-mao" scrolling="no" src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85" title="Marcar a call de onboarding"></iframe>
-</div>
-</div>
 </div>
 </section></main></div><script src="https://link.msgsndr.com/js/form_embed.js"></script>
 <section class="elementor-section elementor-top-section elementor-element elementor-element-6916a22 elementor-section-height-min-height elementor-section-content-middle elementor-section-boxed elementor-section-height-default elementor-section-items-middle" data-e-type="section" data-element_type="section" data-id="6916a22" data-settings='{"background_background":"classic","_ob_glider_is_slider":"no"}'>
