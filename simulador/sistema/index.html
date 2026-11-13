@@ -1,0 +1,582 @@
+<!DOCTYPE html><html lang="pt-PT"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow"><title>Sistema do Simulador · Vloom</title>
+<link rel="stylesheet" href="../_wp/montserrat-3adacc.css">
+<style>
+:root{--azul:#132968;--roxo:#7D57A4;--botao:#8d489b;--tinta:#1F2140;--cinza:#5B5F77;--linha:#E4E0EE}
+*{box-sizing:border-box}body{margin:0;font-family:Montserrat,sans-serif;color:var(--tinta);background:#F4F3F8;-webkit-font-smoothing:antialiased}
+header{background:linear-gradient(208deg,var(--azul) 23%,var(--roxo) 65%);color:#fff;padding:44px 24px 60px}
+.in{max-width:1080px;margin:0 auto}header img{width:110px;margin-bottom:26px}
+header h1{margin:0 0 10px;font-size:clamp(28px,3.6vw,44px);font-weight:800}header p{margin:0;font-size:17px;line-height:1.6;color:rgba(255,255,255,.85);max-width:760px}
+.fluxo{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}.fluxo span{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:8px 13px;border-radius:99px;font-size:13px;font-weight:700}
+.fluxo i{opacity:.6;font-style:normal;align-self:center}
+main{max-width:1080px;margin:-26px auto 60px;padding:0 24px;position:relative}
+.ctrl{display:flex;justify-content:flex-end;margin-bottom:14px}.ctrl button{font:700 13px Montserrat,sans-serif;background:#fff;color:var(--botao);border:2px solid var(--botao);border-radius:9px;padding:10px 16px;cursor:pointer}
+.passo{display:grid;grid-template-columns:64px 1fr;gap:18px;position:relative;padding-bottom:30px}
+.passo:before{content:"";position:absolute;left:31px;top:64px;bottom:0;width:2px;background:var(--linha)}
+.no{width:64px;height:64px;border-radius:18px;display:grid;place-items:center;font-weight:800;font-size:20px;color:#fff;box-shadow:0 10px 24px -10px rgba(19,41,104,.6)}
+.c-azul .no{background:var(--azul)}.c-roxo .no{background:var(--botao)}
+.cx h2{margin:10px 0 4px;font-size:24px;font-weight:800;color:var(--azul)}.sub{margin:0 0 16px;color:var(--cinza);font-size:15px;line-height:1.5}
+.cart{background:#fff;border-radius:14px;box-shadow:0 10px 30px rgba(19,41,104,.08);padding:22px 24px;margin-bottom:14px;font-size:15px;line-height:1.6}
+.cart p{margin:0 0 10px}.k{font-size:11.5px!important;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--roxo);margin:14px 0 4px!important}.k:first-child{margin-top:0!important}
+.cart ul{margin:0;padding-left:20px}.cart li{margin-bottom:6px}.nota{color:var(--cinza);font-size:14px}
+code{background:#F1EEF7;color:var(--azul);padding:2px 6px;border-radius:5px;font-size:.88em;word-break:break-all}
+.lk{display:inline-flex;align-items:center;gap:6px;background:var(--botao);color:#fff!important;text-decoration:none;font-weight:700;font-size:14px;padding:10px 15px;border-radius:9px;margin:2px 6px 8px 0;word-break:break-all}
+.lk span{opacity:.8}td .lk{font-size:13px;padding:8px 12px}
+table{width:100%;border-collapse:collapse;font-size:15px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #ECEAF3;vertical-align:top}
+th{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--cinza)}
+.pill{display:inline-block;padding:4px 10px;border-radius:99px;font-size:13px;font-weight:700;white-space:nowrap}.p1{background:#E6ECFA;color:var(--azul)}.p2{background:#F1E6F5;color:var(--botao)}.p3{background:#EEF0F2;color:#555}
+.seq{display:grid;gap:10px}
+.mail{background:#fff;border-radius:14px;box-shadow:0 8px 24px rgba(19,41,104,.07);overflow:hidden}
+.mail summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr;gap:2px 14px;padding:16px 20px;align-items:center}
+.mail summary::-webkit-details-marker{display:none}
+.mail .n{grid-row:span 3;width:40px;height:40px;border-radius:12px;background:#F1E6F5;color:var(--botao);display:grid;place-items:center;font-weight:800}
+.mail .q{font-size:12px;font-weight:700;color:var(--roxo);text-transform:uppercase;letter-spacing:.08em}
+.mail summary b{font-size:16px;color:var(--azul)}.mail summary small{color:var(--cinza);font-size:13px}
+.mail[open] summary{border-bottom:1px solid #ECEAF3;background:#FBFAFD}
+.mb{padding:18px 22px 22px}.de{margin:0 0 12px;font-size:13px;color:var(--cinza)}
+.txt{white-space:pre-wrap;font-size:15px;line-height:1.65}.txt a{color:var(--botao);font-weight:700}
+.sms{background:#fff;border-left:4px solid #3CC8C8;border-radius:10px;padding:12px 18px;box-shadow:0 8px 24px rgba(19,41,104,.06)}
+.sms .q{font-size:12px;font-weight:700;color:#178b8b;text-transform:uppercase;letter-spacing:.08em;margin-right:8px}.sms p{margin:6px 0 0;font-size:14.5px;line-height:1.55}
+@media(max-width:700px){.passo{grid-template-columns:44px 1fr;gap:12px}.no{width:44px;height:44px;font-size:15px;border-radius:13px}.passo:before{left:21px;top:44px}
+ .cart{padding:18px 16px}td,th{padding:9px 5px;font-size:13.5px}.cx h2{font-size:20px}}
+</style></head><body>
+<header><div class="in"><img src="../_wp/logo-big-white-300x118-fd4f14.webp" alt="Vloom">
+<h1>O sistema do simulador, do anúncio à call</h1>
+<p>Tudo por ordem: o anúncio, o simulador, a regra que decide o caminho e, em cada caminho, as páginas, os calendários e todos os emails e SMS com o texto completo, tal como estão hoje no GHL.</p>
+<div class="fluxo"><span>1 Anúncio</span><i>→</i><span>2 Simulador</span><i>→</i><span>3 Email da estimativa</span><i>→</i><span>4 Regra</span><i>→</i><span>A Sistema</span><span>B Chave na Mão</span><span>C Sem reunião</span></div></div></header>
+<main><div class="ctrl"><button type="button" onclick="var a=document.querySelectorAll('details.mail'),f=[].some.call(a,function(d){return !d.open});a.forEach(function(d){d.open=f});this.textContent=f?'Fechar todos os emails':'Abrir todos os emails'">Abrir todos os emails</button></div>
+<section class="passo c-azul"><div class="no">1</div><div class="cx"><h2>O anúncio</h2><p class="sub">Meta · campanha nova, <b>em pausa até aprovares</b></p>
+<div class="cart"><p class="k">Campanha</p><p><b>Vloom - Simulador 3 caminhos (oferta.vloom.pt) - Nov26</b> · 20 €/dia · 50 anúncios (cópia do conjunto «Winners Maio 26»)</p>
+<p class="k">Otimiza para</p><p>Lead no pixel <code>441661273501928</code> (o das páginas Vloom da Vercel)</p>
+<p class="k">Destino de cada anúncio</p><p><code>https://oferta.vloom.pt/simulador/?utm_source=meta&amp;utm_medium=cpc&amp;utm_campaign=simulador-3-caminhos&amp;utm_content=&lt;anúncio&gt;</code></p>
+<a class="lk" href="https://adsmanager.facebook.com/adsmanager/manage/campaigns?act=302617215693999&amp;selected_campaign_ids=120252148070930201" target="_blank" rel="noopener">Abrir a campanha no Gestor de Anúncios<span>↗</span></a></div>
+<details class="mail"><summary><span class="n">ex.</span><span class="q">anúncio «Simulador 10x - matematica A»</span><b>Marketing: quanto custa?</b><small>texto do anúncio, igual ao original</small></summary><div class="mb"><div class="txt">Quanto deve investir em marketing para ter novos clientes todos os meses?
+
+Empresários de PMEs portuguesas que faturam +1M€/ano:
+
+Não faz ideia de quanto deveria investir em marketing para ter um fluxo estável de novos clientes - sem andar a atirar dinheiro a freelancers e “agências de posts”?
+
+A Vloom utiliza um modelo simples para responder a três perguntas:
+
+1 - Quanto precisa de investir para bater as suas metas de leads e vendas?
+
+2 - Quanto é razoável pagar a uma agência que realmente traz clientes (e não &quot;likes&quot;)?
+
+3 - Em quanto tempo esse investimento se paga a si próprio?
+
+E agora colocámos esse modelo num simulador 100% grátis:
+
+- Demora 20 segundos a responder a 3 perguntas sobre a sua empresa;
+
+- Resultado enviado por email, explicado em português claro, direto ao assunto;
+
+- Sem telefonemas, sem compromisso, sem cartão de crédito!
+
+E quem somos nós para lhe dizer isto?
+
+Somos uma agência especializada em sistemas de aquisição de clientes com garantia de resultados para empresas que já faturam +1M€/ano.
+
+Foi com este tipo de sistemas que:
+
+- A Formação Ativa aumentou as vendas em 200–300% (dito por João Matos, o fundador);
+
+- Anita Santos Rubin (tripla campeã mundial de Salsa) transformou as aulas online na principal fonte de rendimento!
+
+Por isso:
+
+💡 Se está a pensar investir em marketing nos próximos 12 meses, utilize o Simulador de Investimento em Marketing da Vloom e descubra:
+
+1 - O orçamento recomendado para o seu caso;
+
+2 - O intervalo de preço justo para o seu futuro parceiro de marketing!
+
+Mas atenção: o simulador tem custos para nós e, por isso, só o vamos manter gratuito até ao final deste mês!
+
+Clique em SABER MAIS e descubra em menos de 1 minuto quanto deve investir para adquirir novos clientes de forma previsível.</div></div></details></div></section>
+<section class="passo c-roxo"><div class="no">2</div><div class="cx"><h2>O simulador</h2><p class="sub">3 perguntas + orçamento e prazo + nome e email</p>
+<div class="cart"><a class="lk" href="https://oferta.vloom.pt/simulador/" target="_blank" rel="noopener">oferta.vloom.pt/simulador/<span>↗</span></a> <a class="lk" href="https://oferta.vloom.pt/simulador/?ensaio=1" target="_blank" rel="noopener">oferta.vloom.pt/simulador/?ensaio=1 (ensaio)<span>↗</span></a>
+<p class="nota">O «ensaio» mostra o caminho no fim e não cria contacto nem envia nada.</p>
+<p class="k">Ao submeter</p><ul><li>O pixel regista a <b>Lead</b> (também pelo servidor, CAPI).</li>
+<li>Os dados vão para o WordPress, que manda o <b>email da estimativa</b> e dispara as automações de sempre (+500K / −500K).</li>
+<li>O contacto leva 3 etiquetas novas: <code>sim-caminho-…</code>, <code>sim-orcamento-…</code>, <code>sim-prazo-…</code>.</li></ul></div></div></section>
+<section class="passo c-azul"><div class="no">3</div><div class="cx"><h2>O que todos recebem</h2><p class="sub">Seja qual for o caminho</p>
+<details class="mail" open><summary><span class="n">✉</span><span class="q">logo a seguir · WordPress</span><b>Simulador de Investimento em Marketing — Vloom</b><small>a estimativa (exemplo real de 11/11, com os dados do lead trocados)</small></summary>
+<div class="mb"><p class="de">De: Vloom Marketing</p><div class="txt">Olá <code>{{nome}}</code>,
+
+Obrigado por utilizar o Simulador de Investimento em Marketing da Vloom!
+
+O meu nome é Tiago Severino e vou ajudá-lo a descobrir quanto deve investir em marketing para atingir os seus objetivos.
+
+O seu cálculo baseia-se em:
+
+Setor de Atividade: Hotelaria
+Faturação Anual: 100-500K
+Número de Leads por Mês: 50
+
+Para este objetivo, espere investir mensalmente entre:
+1.575€ — 2.325€
+
+Este valor representa um intervalo estimado com base em projetos semelhantes e pode variar conforme a complexidade do funil, canais utilizados, maturidade do mercado e objetivos específicos.
+
+Cumprimentos,
+Tiago Severino
+Vloom Marketing</div></div></details>
+<div class="cart"><p class="k">E no GHL</p><ul><li><b>+500 mil €</b> → automação «🤱 Nutrição +500K (v2)»: cria contacto, oportunidade, aviso ao Tiago e a sequência do passo 4A.</li>
+<li><b>−500 mil €</b> → «⚙️ SIMULADOR -500K»: cria contacto, etiqueta <code>(-) 500k simulador-lead</code> e aviso ao Tiago. Sem emails.</li></ul></div></div></section>
+<section class="passo c-roxo"><div class="no">4</div><div class="cx"><h2>A regra: para onde vai cada pessoa</h2><p class="sub">Decide-a a função na Vercel. Clientes e derivados nunca vão para a Chave na Mão.</p><div class="cart"><table><tr><th>Caminho</th><th>Quem</th><th>Vai para</th></tr>
+<tr><td><span class="pill p1">A · Sistema Vloom</span></td><td>Fatura +500 mil €, ≥ 1.000 €/mês para anúncios, começa este mês ou nos próximos 3</td><td><a class="lk" href="https://marketing.vloom.pt/simulador-calendario-reuniao/" target="_blank" rel="noopener">calendário dos +500k<span>↗</span></a></td></tr>
+<tr><td><span class="pill p2">B · Chave na Mão</span></td><td>100–500 mil € com ≥ 500 €/mês, ou +500 mil € com 500–1.000 €/mês, e começa em breve</td><td><a class="lk" href="https://oferta.vloom.pt/simulador/chave-na-mao/" target="_blank" rel="noopener">página Chave na Mão<span>↗</span></a></td></tr>
+<tr><td><span class="pill p3">C · Sem reunião</span></td><td>Fatura menos de 100 mil €, ou não sabe/menos de 500 €/mês, ou começa daqui a +3 meses</td><td>abaixo de 100 mil € → <a class="lk" href="https://marketing.vloom.pt/simulador-thankyou-conheca-a-vloom/" target="_blank" rel="noopener">página dos websites 297 €<span>↗</span></a><br>os outros → mensagem «Resultado a caminho!» na própria página</td></tr></table></div></div></section>
+<section class="passo c-azul"><div class="no">4A</div><div class="cx"><h2>Caminho A · Sistema Vloom</h2><p class="sub">Calendário dos +500k + nutrição +500K (10 emails e 3 SMS)</p>
+<div class="cart"><a class="lk" href="https://marketing.vloom.pt/simulador-calendario-reuniao/" target="_blank" rel="noopener">marketing.vloom.pt/simulador-calendario-reuniao/<span>↗</span></a><p class="k">Calendário</p><p>«+500k» <code>5nMkfIunMzcMEU9CoIDU</code> (o de sempre)</p></div>
+<div class="seq"><details class="mail"><summary><span class="n">1</span><span class="q">+ 1 hora</span><b>vi a sua simulação <code>{{contact.name}}</code></b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Olá <code>{{contact.name}}</code>,
+
+Daqui o Tiago Severino, fundador da Vloom.
+
+Acabei de ver que simulou o preço de captar leads, para o seu negócio - e confirmei que o simulador já lhe deu um número. Mas dessa resposta nasce um novo desafio:
+
+Um número, só por si, não resolve o seu problema.
+
+Porque a pergunta derradeira não é: 
+
+🗣 &quot;Quanto custa captar leads?&quot;
+
+A pergunta que importa é: 
+
+🗣 &quot;Este investimento devolve-me mais do que aquilo que custa?&quot;
+
+E é exatamente isso que lhe vou mostrar nos próximos dias — sem lhe vender nada (para já). Ou seja, nos meus próximos emails o objetivo é muito simples: 
+
+Dar-lhe clareza suficiente para decidir o que fazer (quanto à necessidade de angariar clientes para a sua empresa). Com a cabeça fria: você é cauteloso, eu também sou.
+
+Hoje fica só isto: 
+
+Se quiser saltar a teoria e ver, ao vivo, como funciona um sistema para lhe trazer o número de leads de que precisa por mês — com garantia de money-back — o caminho mais rápido é este:
+
+[QUERO VER COMO FUNCIONA — MARCAR REUNIÃO](<code>{{trigger_link.v7MBrLqkxOhoOqt3Pew8}}</code>)
+
+Se preferir ir mais devagar, acompanhe-me email a email e entenda, com calma e cuidado, como funciona este mundo ao detalhe. 
+
+Falamos em breve,
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<div class="sms"><span class="q">logo a seguir</span><b>SMS</b><p>Olá <code>{{contact.name}}</code>, daqui o Tiago Severino, fundador da Vloom 👋 Vi a sua simulação e enviei-lhe um email pessoal. Qualquer dúvida, responda por aqui — leio tudo.</p></div>
+<details class="mail"><summary><span class="n">2</span><span class="q">+ 1 dia</span><b>o número que viu não é um custo <code>{{contact.name}}</code></b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Olá <code>{{contact.name}}</code>,
+
+Vamos voltar ao número da sua simulação: 
+
+Achou caro?
+
+Eu olho para o preço que os leads me custam e penso: 
+
+🗣 &quot;Quanto é que este investimento me devolve?&quot;
+
+Repare:
+
+Se cada cliente novo lhe vale alguns milhares de euros ao longo da relação;
+
+E se o sistema lhe traz, vamos dizer, 100 novos leads por mês;
+
+Quantos desses leads precisa de fechar para o investimento se pagar?
+
+Quase sempre, pouquíssimos.
+
+Mas eu sei o que está a pensar:
+
+🗣 &quot;E se não resultar? E se não fechar nenhum&quot;
+
+Boa pergunta. E é por isso que a Vloom trabalha de uma forma rara neste setor:
+
+Com garantia de money-back.
+
+Ou seja: se não lhe entregarmos os resultados que prometemos, pode pedir o que investiu de volta em trabalho — incluindo a fase de construção do sistema — e sair do contrato.
+
+O risco fica do nosso lado - não do seu.
+
+Amanhã explico-lhe porque é que a maior parte das empresas recebe leads e mesmo assim não vende (e como é que isso se resolve).
+
+Falamos em breve,
+Tiago Severino, Vloom
+[Marcar Reunião](<code>{{trigger_link.v7MBrLqkxOhoOqt3Pew8}}</code>)
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">3</span><span class="q">+ 1 dia</span><b>quantos dos seus leads compram</b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Vou ser direto <code>{{contact.name}}</code>...
+
+Ter 500 leads por mês não vale absolutamente nada SE:
+
+Ninguém lhes ligar a tempo;
+
+Ninguém souber o que dizer quando levantam uma objeção;
+
+Ninguém as reconquistar quando não atendem à primeira!
+
+É este o jogo.
+
+E é aqui que quase toda a gente falha.
+
+A maior parte das agências entrega-lhe uma lista de contactos e lava as mãos. &quot;Tome lá as suas leads, o resto é consigo&quot;. O resultado disto?
+
+Você paga por leads, até recebe leads… Mas continua sem vender.
+
+Pior:
+
+Ainda fica com a sensação de que &quot;o marketing não funciona&quot;!
+
+Só que, nesse processo todo, o problema nunca foram as leads: foi o que aconteceu (ou não aconteceu) DEPOIS da lead entrar. O processo de tratamento da lead.
+
+E essa é a diferença entre ter leads e ter um pipeline.
+
+Um pipeline é o sistema todo: o anúncio, a landing page, o CRM, o follow-up automático por email/SMS/WhatsApp, os scripts de quem liga, o contorno de objeções. 
+
+Tudo encaixado: 
+
+Para que nenhuma oportunidade se perca.
+
+Leads, qualquer um entrega.
+
+Pipeline, é outra conversa.
+
+Amanhã mostro-lhe uma pipeline a funcionar, num caso real.
+
+Falamos em breve,
+Tiago Severino, Vloom
+[Marcar Reunião](<code>{{trigger_link.v7MBrLqkxOhoOqt3Pew8}}</code>)
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">4</span><span class="q">+ 1 dia</span><b>esteve quase a fechar as portas <code>{{contact.name}}</code></b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Prometi-lhe um caso real, <code>{{contact.name}}</code>. 
+
+Aqui estão dois — de propósito.
+
+Caso nº1: 
+
+Uma clínica em Barcelos sem pacientes. Foi comprada, a &quot;máquina de marketing&quot; foi embora com o dono anterior tinha e as primeiras consultas caíam a pique.
+
+Estava prestes a fechar.
+
+Montámos um sistema de aquisição para um serviço caro — implantes dentários. E, logo no primeiro mês, o sistema gerou mais de 100 leads.
+
+Ao fim de sete meses? 
+
+Receita de seis dígitos diretamente atribuível ao sistema.
+
+Agora um setor completamente diferente: 
+
+Formação profissional.
+
+Era uma escola com uma só pessoa a fazer tudo. Criámos o mesmo tipo de sistema e as vendas subiram mais de 300%. Passou de marca local a marca nacional.
+
+Repare:
+
+Setores diferentes
+
+Mesmo sistema
+
+Mesmos resultados
+
+Porque o que muda de um negócio para o outro é a mensagem e a oferta — não o processo em si. 
+
+Mas sabe o que é ainda melhor do que acreditar em mim?
+
+Ouvir esta história contada pelas próprias empresas:
+
+[VER O CASO DE ESTUDO](<code>{{trigger_link.GAHRDimIQzf9GkblsSIq}}</code>)
+
+Amanhã mostro-lhe como é que este tipo de motor é montado, peça a peça.
+
+Falamos em breve,
+Tiago Severino, Vloom
+[Marcar Reunião](<code>{{trigger_link.v7MBrLqkxOhoOqt3Pew8}}</code>)
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">5</span><span class="q">+ 1 dia</span><b>o motor, peça a peça</b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Ontem prometi mostrar-lhe como é que um sistema digital de aquisição de clientes é montado, <code>{{contact.name}}</code>
+
+Aqui vai, sem segredos.
+
+Chamamos-lhe Sistema Vloom 360 e tem três motores:
+
+1. Motor de tráfego — investigação, oferta, criativos (vídeo, foto, design), copy, landing pages e tracking. É o que capta atenção e transforma desconhecidos em leads;
+
+2. Motor de pipeline — CRM, automações de follow-up por email, WhatsApp e SMS, lead scoring e dashboards. É o que garante que nenhuma lead se perde;
+
+3. Motor comercial — os scripts e guias passo a passo: o que dizer quando liga a uma lead, quantas vezes insistir, como contornar objeções. É o que transforma leads em clientes.
+
+A maior parte das agências aposta no primeiro motor e... 
+
+Fica-se por aí.
+
+Nós fazemos os três — e é por isso que conseguimos dar garantia. Mas para ficar claro como a água: gravei um vídeo (um bocadinho chato) que mostra tudo isto a funcionar por dentro. 
+
+Pode vê-lo aqui:
+
+<a href="https://marketing.vloom.pt/marketing-de-resposta-direta/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">QUERO VER O SISTEMA A FUNCIONAR POR DENTRO</a>
+
+Ou se preferir que eu lhe mostre ao vivo, com respostas ajustadas à medida do seu negócio:
+
+<a href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">MARCAR REUNIÃO — É GRÁTIS</a>
+
+Falamos em breve,
+Tiago Severino, Vloom
+<a href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">Marcar Reunião</a>
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<div class="sms"><span class="q">logo a seguir</span><b>SMS</b><p><code>{{contact.name}}</code>, gravei um vídeo curto que mostra como funciona um sistema de aquisição de clientes por dentro — útil antes de qualquer decisão. Quer que lhe envie o link por aqui?</p></div>
+<details class="mail"><summary><span class="n">6</span><span class="q">+ 1 dia</span><b>nunca lhe perguntei isto <code>{{contact.name}}</code></b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Tenho-lhe falado muito sobre como funciona um sistema digital de aquisição de clientes, mas nunca lhe fiz a pergunta mais óbvia, <code>{{contact.name}}</code>:
+
+Quer que seja a Vloom a montar o seu?
+
+Se sim, o próximo passo é este:
+
+Marque uma reunião grátis, onde lhe mostro, de A a Z e ao vivo, o sistema que montaríamos para o seu negócio passar a gerar o número de leads por mês de que precisa:
+
+[MARCAR REUNIÃO GRÁTIS](<code>{{trigger_link.v7MBrLqkxOhoOqt3Pew8}}</code>)
+
+Sem custos. Sem obrigações.
+
+Mas... 
+
+Para nenhum de nós perder tempo, duas notas honestas antes de marcar:
+
+1 - A Vloom trabalha com garantia de money-back. Pode pedir o investimento de volta se não lhe entregarmos os resultados que prometemo. Por isso, você deve saber que resultados procura;
+
+2 - Cobramos a partir de 2 mil euros por mês, na soma do valor do trabalho mais investimento em anúncios. É um investimento sério, alto, para empresas comprometidas.
+
+Esta reunião não é para si se:
+
+Procura uma agência para &quot;publicar duas ou três vezes por semana e ver no que dá&quot;;
+
+Está a começar o seu negócio. Este serviço é ideal para empresas com alguma dimensão e a sua, com +500k de faturação anual, parece enquadrar-se neste critério.
+
+Alinhados? 
+
+Então o próximo passo é simples:
+
+[QUERO MARCAR A MINHA REUNIÃO](<code>{{trigger_link.v7MBrLqkxOhoOqt3Pew8}}</code>)
+
+Falamos em breve,
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<div class="sms"><span class="q">+ 1 dia</span><b>SMS</b><p><code>{{contact.first_name}}</code>, fala Tiago da Vloom. Ainda não marcou a reunião — é uma questão de timing ou tem dúvidas que eu possa ajudar a esclarecer? Diga que eu ajudo.</p></div>
+<details class="mail"><summary><span class="n">7</span><span class="q">+ 2 dias</span><b>as 3 desculpas (e a verdade sobre cada uma)</b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Quando alguém não marca utiliza o nosso simulador mas não marca reunião comigo, é quase sempre por uma de três razões, <code>{{contact.name}}</code>. 
+
+Deixe-me adivinhar — e seja honesto consigo sobre cada uma:
+
+🗣 1. &quot;É um valor alto para já.&quot;
+
+É um investimento sério, não vou fingir o contrário. Mas faça as contas: se cada cliente lhe vale alguns milhares de euros, quantos leads precisa de fechar para isto se pagar? 
+
+Quase sempre, dois ou três. 
+
+E o risco de não gerar absolutamente nada? 
+
+Está coberto pela garantia.
+
+🗣 2. &quot;E se eu receber leads e não conseguir vender?&quot;
+
+Este é o medo certo — e o nosso motor comercial existe para o resolver. Não lhe entregamos uma lista e desaparecemos. Entregamos: 
+
+Scripts sobre o que dizer quando liga a uma lead;
+
+Guia sobre como chegar à fala com uma lead não atende;
+
+Follow-up automático;
+
+Guia de contorno de objeções.
+
+Para que cada lead seja trabalhada como deve ser e tire o máximo partido do seu investimento neste sistema.
+
+🗣 3. &quot;Já fui queimado por agências que prometeram e não entregaram.&quot;
+
+Eu sei: este setor está cheio disso. A diferença é que nós pomos o nosso dinheiro ao nível das nossas promessas: com uma garantia de money-back, que fica em contrato. Se não entregarmos, devolvemos.
+
+Qual destas três é a sua reserva?
+
+Se não tem reservas, o próximo passo logica está aqui:
+
+<a href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">MARCAR REUNIÃO</a> 
+
+Falamos em breve,
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">8</span><span class="q">+ 2 dias</span><b>porque é que não somos a agência mais barata (é de propósito)</b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Vou poupar-lhe tempo <code>{{contact.name}}</code>: se procura a agência mais barata do país, com toda a honestidade do mundo, realmente não somos nós.
+
+Posso mostrar-lhe as diferenças?
+
+A agência de anúncios típica
+
+Faz-lhe campanhas, entrega-lhe leads e o resto é consigo. Quando as leads não convertem, a culpa é &quot;das leads&quot; ou é sua. A partir das 18h00 não atendem. Prejuízo ao final do mês.
+
+O &quot;faça-você-mesmo&quot;
+
+Gasta o seu tempo (que vale mais do que pensa) a aprender Meta Ads e gasta o seu orçamento com testes que lhe custam caro. Poupa no custo da agência, mas os resultados são &quot;meh&quot;. 
+
+A Vloom 
+
+Monta o sistema completo — tráfego + pipeline + comercial —, assume o risco com garantia money-back, dá formação comercial e responsabiliza-se pelo resultado.
+
+Não competimos com quem faz &quot;posts giros&quot;. 
+
+Vendemos PREVISIBILIDADE.
+
+E a prova não é a minha palavra:
+
+— <a href="https://vloom.pt/portfolio/formacao-ativa-caso-de-estudo/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">Uma escola de formação com +300% de vendas</a>
+— <a href="https://vloom.pt/portfolio/cab-clinica-avenida-barcelos-caso-de-estudo/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">Uma clínica com seis dígitos de retorno atribuído ao sistema</a>
+— <a href="https://vloom.pt/portfolio/anita-santos-rubin-caso-de-estudo/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">Uma figura pública com retorno de 7x</a>
+
+Setores diferentes. O mesmo sistema. 
+
+Se quer essa previsibilidade no seu negócio:
+
+<a href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">MARCAR REUNIÃO</a>
+
+Falamos em breve,
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">9</span><span class="q">+ 2 dias</span><b>a resposta que ainda não tenho <code>{{contact.name}}</code></b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Vou ser transparente consigo, porque acho que merece <code>{{contact.name}}</code>.
+
+Não me passa pela cabeça vou inventar um relógio em contagem decrescente, nem uma &quot;oferta que desaparece à meia-noite&quot;. Isso é para vendedores de segunda e aqui falamos na base da honestidade.
+
+Mas há uma verdade real: 
+
+Somos uma equipa relativamente pequena. 
+
+E para garantir o número de leads por mês que prometemos, com garantia de money-back, só conseguimos construir um número limitado de novos sistemas por mês.
+
+Está a ponderar avançar? 
+
+O melhor que pode fazer é marcar reunião comigo agora e garantir que o seu sistema começa a ser construído já nos próximos dias. Agende sem obrigação de fechar nada nessa conversa:
+
+<a href="https://marketing.vloom.pt/marcar-reuniao/?utm_source=email&amp;utm_medium=email&amp;utm_campaign=vloom" target="_blank" rel="noopener">MARCAR A MINHA REUNIÃO</a>
+
+Falamos em breve,
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">10</span><span class="q">+ 1 dia</span><b>assunto encerrado <code>{{contact.name}}</code></b><small></small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Não o quero andar a chatear, <code>{{contact.name}}</code>.
+
+Tenho-lhe escrito porque, quando utilizou o nosso simulador, as informações que inseriu sinalizavam uma empresa que procura crescer com previsibilidade.
+
+Mas pode não ser o momento certo.
+
+Ou, se me enganei, é justo que eu pare — e que liberte o seu email.
+
+Por isso faço-lhe só um pedido e encerro o assunto. Responda a este email com uma palavra:
+
+&quot;Agora&quot; → eu mando-lhe o link para reunião e marcamos;
+
+&quot;Depois&quot; → eu deixo-o em paz e fica a receber a nossa newsletter semanal, com recursos e conhecimento valioso todas as semanas;
+
+&quot;Sair&quot; → removo o seu email da base de dados, sem ressentimentos!
+
+Seja qual for a resposta... 
+
+Agradeço o tempo que me dedicou até aqui ❤️
+
+Um abraço
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details></div></div></section>
+<section class="passo c-roxo"><div class="no">4B</div><div class="cx"><h2>Caminho B · Chave na Mão</h2><p class="sub">Página com a carta e o calendário de onboarding + 4 emails a quem não marca</p>
+<div class="cart"><a class="lk" href="https://oferta.vloom.pt/simulador/chave-na-mao/" target="_blank" rel="noopener">oferta.vloom.pt/simulador/chave-na-mao/<span>↗</span></a>
+<p class="k">Calendário</p><p>«Call de Onboarding · Chave na Mão» <code>4xe0oNI47XoRET46rnPz</code> · 30 min · Zoom · sincroniza com o Google Calendar <b>tiagovloom@gmail.com</b></p>
+<p class="k">Automações</p><ul><li>«🔑 Chave na Mão · Nutrição»: arranca com a etiqueta <code>sim-caminho-chave-na-mao</code> e tira a pessoa da nutrição +500K (para não receber as duas ofertas).</li>
+<li>«🔑 Chave na Mão · Sai ao marcar»: quem marca (no calendário novo ou no do email de 13/11) deixa de receber os emails.</li></ul></div>
+<div class="seq"><details class="mail"><summary><span class="n">1</span><span class="q">+ 2 horas</span><b>a sua estimativa e uma alternativa, <code>{{contact.name}}</code></b><small>Sem avença: o sistema fica na sua conta.</small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Olá <code>{{contact.name}}</code>,
+
+Já deve ter recebido a estimativa do simulador.
+
+Pelas suas respostas, há uma opção que lhe pode fazer mais sentido do que uma avença mensal: o Sistema Vloom Chave na Mão.
+
+Funciona assim:
+
+3.000 € + IVA a pronto, ou 2 × 2.000 € + IVA em duas prestações;
+
+A Vloom instala um sistema de aquisição de clientes no seu gestor de anúncios: anúncios, emails, landing pages e CRM;
+
+Incluímos dois meses de gestão;
+
+Ao fim dos dois meses, o sistema é seu.
+
+Expliquei tudo nesta página:
+
+<a href="https://oferta.vloom.pt/simulador/chave-na-mao/#marcar" target="_blank" rel="noopener">QUERO RECLAMAR ESTA OFERTA</a>
+
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">2</span><span class="q">+ 1 dia</span><b>o que fica na sua conta</b><small>Anúncios, emails, páginas e CRM: tudo seu.</small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Olá <code>{{contact.name}}</code>,
+
+Há uma diferença em que quase ninguém repara quando contrata uma agência.
+
+Numa avença mensal, o dia em que deixa de pagar é o dia em que as campanhas param.
+
+No Chave na Mão, o dia em que deixa de pagar é o dia em que passa a gerir o que já é seu. O sistema continua lá.
+
+O que fica na sua conta:
+
+Os anúncios, criados e a correr no seu gestor de anúncios;
+
+Os emails que respondem às suas leads;
+
+As landing pages;
+
+O CRM, já configurado.
+
+Os anúncios paga-os à parte, diretamente à Meta ou à Google.
+
+<a href="https://oferta.vloom.pt/simulador/chave-na-mao/#marcar" target="_blank" rel="noopener">QUERO RECLAMAR ESTA OFERTA</a>
+
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">3</span><span class="q">+ 2 dias</span><b>100 leads no primeiro mês</b><small>O mesmo sistema, com as chaves do seu lado.</small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Olá <code>{{contact.name}}</code>,
+
+&quot;Com a Vloom, logo no primeiro mês, tivemos mais de 100 leads.&quot; Bernardo Caria, da Clínica Dentária CAB.
+
+O sistema que montámos na CAB tem as mesmas peças do Chave na Mão: anúncios, páginas, emails e um CRM que diz à equipa quem contactar e quando.
+
+A diferença é quem fica com as chaves. Na CAB gerimos nós, todos os meses. No Chave na Mão montamos, gerimos dois meses e depois o sistema fica seu.
+
+<a href="https://oferta.vloom.pt/simulador/chave-na-mao/#marcar" target="_blank" rel="noopener">QUERO RECLAMAR ESTA OFERTA</a>
+
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details>
+<details class="mail"><summary><span class="n">4</span><span class="q">+ 2 dias</span><b>as condições não mudam</b><small>Só 10 empresas, nestas condições.</small></summary>
+<div class="mb"><p class="de">De: Tiago Severino &lt;tiagoseverino@vloom.pt&gt;</p><div class="txt">Olá <code>{{contact.name}}</code>,
+
+Último email sobre isto.
+
+O Chave na Mão é um teste e está aberto às primeiras 10 empresas. Eu não quero ir à falência: quero só perceber se uma parte do mercado tem medo de avenças.
+
+Se é o seu caso, marque a sua call de onboarding. Peço só uma coisa: marque apenas se estiver mesmo interessado nestas condições. São estas e não vão mudar.
+
+<a href="https://oferta.vloom.pt/simulador/chave-na-mao/#marcar" target="_blank" rel="noopener">QUERO RECLAMAR ESTA OFERTA</a>
+
+Tiago Severino, Vloom
+
+ [Quero parar de receber emails](<code>{{email.unsubscribe_link}}</code>)</div></div></details></div></div></section>
+<section class="passo c-azul"><div class="no">4C</div><div class="cx"><h2>Caminho C · Sem reunião</h2><p class="sub">Não há calendário nem sequência própria</p>
+<div class="cart"><ul><li><b>Abaixo de 100 mil €:</b> <a class="lk" href="https://marketing.vloom.pt/simulador-thankyou-conheca-a-vloom/" target="_blank" rel="noopener">marketing.vloom.pt/simulador-thankyou-conheca-a-vloom/<span>↗</span></a> (a de sempre).</li>
+<li><b>Os outros:</b> ficam na página do simulador com a mensagem «Resultado a caminho! Obrigado, {{nome}}. Enviámos a sua estimativa de investimento para o seu email. Verifique também a pasta de spam.»</li>
+<li>Recebem o email da estimativa (passo 3) e, se forem +500 mil €, a nutrição +500K.</li></ul></div></div></section>
+<section class="passo c-roxo"><div class="no">5</div><div class="cx"><h2>Outra porta de entrada</h2><p class="sub">Email de 13/11 à base de dados (a oferta Chave na Mão)</p>
+<div class="cart"><p>O email leva a <a class="lk" href="https://marketing.vloom.pt/marcar-reuniao/" target="_blank" rel="noopener">marketing.vloom.pt/marcar-reuniao/<span>↗</span></a>, com o calendário «Reunião Marketing GRÁTIS» <code>YuJhp8YMHXDVu0eNVh85</code>. O texto do email é a carta que está no topo da página Chave na Mão.</p></div></div></section>
+</main></body></html>
