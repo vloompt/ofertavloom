@@ -287,10 +287,19 @@ body.fim .veu{opacity:.85}
   </div>
 </section>
 
-<section class="ecra" data-id="recusado-momento" data-fim>
+<section class="ecra" data-id="recusado-decisor" data-fim>
   <div class="caixa">
     <h2 class="com-sub">Obrigado, <span data-nome></span></h2>
-    <p class="sub">Pelas suas respostas, este ainda não é o momento certo. Guardámos a candidatura e falamos consigo quando abrirmos novas vagas.</p>
+    <p class="sub">As 2 semanas de gestão começam numa conversa em que combinamos com <b>quem decide o marketing</b> o que vamos publicar. Sem essa pessoa não conseguimos arrancar. Envie-lhe esta página para ser ela a candidatar a <span data-empresa></span>.</p>
+    <button class="bob" type="button" data-copiar>Copiar o link para enviar <span class="seta">→</span></button>
+  </div>
+</section>
+
+<section class="ecra" data-id="recusado-momento" data-fim>
+  <div class="caixa">
+    <h2 class="com-sub">Sem a conversa não conseguimos começar</h2>
+    <p class="sub">É nessa meia hora que conhecemos a <span data-empresa></span> e decidimos o que publicar nas 2 semanas. Sem ela, a equipa não tem como trabalhar as suas redes. Se conseguir arranjar 30 minutos, mesmo daqui a uns dias, escolha já o dia que lhe der jeito.</p>
+    <button class="bob" type="button" data-reconsiderar>Escolher um dia <span class="seta">→</span></button>
   </div>
 </section>
 
@@ -332,8 +341,8 @@ body.fim .veu{opacity:.85}
     try { navigator.sendBeacon('/api/redes-gratis', new Blob([JSON.stringify(d)], { type: 'application/json' })); } catch (e) {}
   }
   function preenche() {
-    document.querySelectorAll('[data-nome]').forEach(function (s) { s.textContent = (r.nome || '').split(' ')[0]; });
-    document.querySelectorAll('[data-empresa]').forEach(function (s) { s.textContent = r.empresa || 'sua empresa'; });
+    document.querySelectorAll('[data-nome]').forEach(function (s) { var n = (r.nome || '').trim().split(' ')[0]; s.textContent = n.charAt(0).toUpperCase() + n.slice(1); });
+    document.querySelectorAll('[data-empresa]').forEach(function (s) { s.textContent = r.empresa || 'empresa'; });
   }
   function progresso(el) {
     var i = perguntas.indexOf(el);
@@ -380,13 +389,16 @@ body.fim .veu{opacity:.85}
     if (el.dataset.tipo === 'escolha' && !r[id]) return;
     if (id === 'telemovel') enviar('registo');
     if (id === 'faturacao' && ok500.indexOf(r.faturacao) < 0) return fim('recusado-faturacao');
-    if (id === 'compromisso') return fim(r.decisor !== 'outra-pessoa' && r.compromisso === 'sim' ? 'aceite' : 'recusado-momento');
+    if (id === 'compromisso') return fim(r.decisor === 'outra-pessoa' ? 'recusado-decisor' : r.compromisso === 'sim' ? 'aceite' : 'recusado-momento');
     var i = perguntas.indexOf(el); if (perguntas[i + 1]) mostra(perguntas[i + 1]);
   }
   function anterior() { if (!historico.length || (atual && atual.hasAttribute('data-fim'))) return; mostra(historico.pop(), true); }
 
   document.addEventListener('click', function (ev) {
     if (ev.target.closest('[data-seguir]')) return seguinte();
+    var cp = ev.target.closest('[data-copiar]');
+    if (cp) { var u = location.origin + location.pathname; (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(function () { cp.firstChild.textContent = 'Link copiado '; }, function () { prompt('Copie este link:', u); }); return; }
+    if (ev.target.closest('[data-reconsiderar]')) { r.compromisso = 'sim-depois'; return fim('aceite'); }
     if (ev.target.closest('[data-saltar]')) { var i0 = atual.querySelector('input'); if (i0) i0.value = ''; return seguinte(); }
     var op = ev.target.closest('.op');
     if (op) {
