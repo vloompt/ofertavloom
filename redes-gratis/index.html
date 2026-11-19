@@ -79,6 +79,65 @@ input.campo:focus{border-color:var(--laranja)}
 .cal-caixa{width:100%;max-width:1040px;border-radius:16px;overflow:hidden}
 .cal-caixa iframe{display:block;width:100%;min-height:620px;border:0;overflow:hidden}
 
+
+/* MURAL: trabalhos reais de redes que a Vloom fez, a correr devagar por trás de tudo (nada de fundo liso) */
+.mural{position:fixed;inset:-20vh -10vw;display:flex;gap:22px;justify-content:center;transform:rotate(-8deg);z-index:0;pointer-events:none}
+.col{display:flex;flex-direction:column;gap:22px;width:clamp(150px,15vw,230px);flex:none;animation:sobe 70s linear infinite}
+.col:nth-child(even){animation-name:desce;animation-duration:85s}
+.col img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;border:3px solid var(--tinta)}
+@keyframes sobe{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes desce{from{transform:translateY(-50%)}to{transform:translateY(0)}}
+.veu{position:fixed;inset:0;background:var(--navy);opacity:.9;z-index:1;pointer-events:none;transition:opacity .6s ease}
+.veu-esq{position:fixed;inset:0;background:var(--navy);z-index:1;pointer-events:none;opacity:0;transition:opacity .6s ease;
+  -webkit-mask-image:linear-gradient(90deg,#000 42%,rgba(0,0,0,.55) 62%,rgba(0,0,0,.15) 100%);mask-image:linear-gradient(90deg,#000 42%,rgba(0,0,0,.55) 62%,rgba(0,0,0,.15) 100%)}
+body[data-ecra=inicio] .veu{opacity:0}
+body[data-ecra=inicio] .logo{left:max(6vw,calc(50% - 660px));transform:none}
+.logo{transition:left .5s ease,transform .5s ease,opacity .3s}
+body[data-ecra=inicio] .veu-esq{opacity:1}
+body.fim .veu{opacity:.94}
+.ecra,.logo,.barra{z-index:3}
+@media(prefers-reduced-motion:reduce){.col{animation:none}}
+
+/* ABERTURA: texto à esquerda, o Tiago à direita sobre o disco laranja */
+.ecra.abre{padding:0 6vw;justify-content:center}
+.abre .grelha{display:grid;grid-template-columns:1.08fr .92fr;align-items:end;gap:3vw;width:100%;max-width:1320px;min-height:100vh}
+.abre .grelha>*{min-width:0}
+.logo-abre{display:none}
+.abre .texto{align-self:center;padding:150px 0 90px;text-align:left;align-items:flex-start}
+.abre h1{font-size:clamp(40px,5vw,76px);margin-bottom:30px}
+.abre .sub{margin-bottom:46px}
+.abre .bob{max-width:520px}
+.clientes{margin-top:56px;width:100%;max-width:620px}
+.clientes p{font-size:15px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:18px}
+.fita{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.fita div{display:flex;gap:46px;align-items:center;width:max-content;animation:fita 40s linear infinite}
+.fita img{height:34px;width:auto;opacity:.85}
+@keyframes fita{to{transform:translateX(-50%)}}
+.figura{position:relative;align-self:end;height:min(88vh,860px);display:flex;justify-content:center;align-items:flex-end}
+.disco{position:absolute;bottom:14%;left:50%;width:min(36vw,560px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;
+  background:var(--laranja);border:3px solid var(--tinta);box-shadow:12px 12px 0 var(--tinta)}
+.figura .tiago{position:relative;height:100%;width:auto;z-index:1;filter:drop-shadow(0 18px 30px rgba(5,11,46,.55))}
+.post{position:absolute;z-index:2;width:clamp(120px,11vw,180px);border-radius:12px;border:3px solid var(--tinta);box-shadow:7px 7px 0 var(--tinta);animation:flutua 6s ease-in-out infinite}
+.post.p1{left:-4%;top:24%;transform:rotate(-7deg)}
+.post.p2{right:-2%;top:44%;transform:rotate(6deg);animation-delay:-3s}
+@keyframes flutua{0%,100%{translate:0 0}50%{translate:0 -14px}}
+
+@media (max-width:900px){
+  .ecra.abre{padding:0 20px}
+  .abre .grelha{grid-template-columns:1fr;min-height:0;gap:0}
+  .abre .texto{padding:110px 0 30px;text-align:center;align-items:center}
+  .abre .bob{max-width:560px}
+  .clientes{margin-top:40px}.clientes p{text-align:center}
+  .figura{height:440px;width:100%}
+  .disco{width:340px;bottom:8%}
+  .post{width:110px}.post.p1{left:2%}.post.p2{right:2%}
+  body[data-ecra=inicio] .veu{opacity:.82}body[data-ecra=inicio] .veu-esq{opacity:0}
+  .col{width:140px}
+  body[data-ecra=inicio] .logo{opacity:0}
+  .logo-abre{display:block;height:26px;margin:0 auto 34px}
+  .abre .texto{padding-top:28px}
+  .fita{width:100%}
+}
 @media (max-width:640px){
   .logo{top:24px;height:26px}
   .ecra{padding:124px 20px 60px}
@@ -92,14 +151,29 @@ input.campo:focus{border-color:var(--laranja)}
 </style>
 </head>
 <body>
+<div class="mural" aria-hidden="true"></div>
+<div class="veu"></div><div class="veu-esq"></div>
 <div class="barra"><i id="progresso"></i></div>
 <img class="logo" src="logo.webp" alt="Vloom">
 
-<section class="ecra" data-id="inicio">
-  <div class="caixa">
-    <h1>2 semanas de gestão de redes sociais <em>grátis</em></h1>
-    <p class="sub">Escolhemos <b>4 empresas por mês</b>. A nossa equipa gere o Instagram e o Facebook da sua empresa durante 2 semanas, sem custo. É só para empresas que faturam <b>mais de 500 mil euros por ano</b>.</p>
-    <button class="bob" data-seguir>Quero candidatar-me <span class="seta">→</span></button>
+<section class="ecra abre" data-id="inicio">
+  <div class="grelha">
+    <div class="caixa texto">
+      <img class="logo-abre" src="logo.webp" alt="Vloom">
+      <h1>2 semanas de gestão de redes sociais <em>grátis</em></h1>
+      <p class="sub">Escolhemos <b>4 empresas por mês</b>. A nossa equipa gere o Instagram e o Facebook da sua empresa durante 2 semanas, sem custo. É só para empresas que faturam <b>mais de 500 mil euros por ano</b>.</p>
+      <button class="bob" data-seguir>Quero candidatar-me <span class="seta">→</span></button>
+      <div class="clientes">
+        <p>Marcas que já confiam na Vloom</p>
+        <div class="fita"><div id="fita"></div></div>
+      </div>
+    </div>
+    <div class="figura" aria-hidden="true">
+      <div class="disco"></div>
+      <img class="tiago" src="assets/tiago.webp" alt="">
+      <img class="post p1" src="assets/mural/p2.webp" alt="">
+      <img class="post p2" src="assets/mural/q4.webp" alt="">
+    </div>
   </div>
 </section>
 
@@ -239,6 +313,19 @@ input.campo:focus{border-color:var(--laranja)}
     b.addEventListener('click', anterior); e.querySelector('.caixa').appendChild(b);
   });
 
+  // mural de trabalhos reais e fita de logos
+  (function () {
+    var fotos = ['p1','p2','p3','p4','p5','p6','p7','p8','q1','q2','q3','q4','q5'], m = document.querySelector('.mural');
+    for (var c = 0; c < 7; c++) {
+      var col = document.createElement('div'); col.className = 'col';
+      var lista = []; for (var k = 0; k < 6; k++) lista.push(fotos[(c * 5 + k * 3) % fotos.length]);
+      lista.concat(lista).forEach(function (f) { var i = new Image(); i.src = 'assets/mural/' + f + '.webp'; i.alt = ''; i.decoding = 'async'; col.appendChild(i); });
+      m.appendChild(col);
+    }
+    var logos = ['sheraton1','allianz1','sktechers1','hellmans','calve','weleda1','try1','nortecar','tedbx','meusuper','euro1','ca1'], f = document.getElementById('fita');
+    logos.concat(logos).forEach(function (l) { var i = new Image(); i.src = 'assets/logos/' + l + '.webp'; i.alt = ''; f.appendChild(i); });
+  })();
+
   function enviar(fase) {
     var d = Object.assign({ fase: fase, pagina: location.href, quando: new Date().toISOString() }, r);
     if (ENSAIO) { console.log('[candidatura · ensaio, nada enviado]', d); return; }
@@ -262,6 +349,7 @@ input.campo:focus{border-color:var(--laranja)}
     setTimeout(function () { if (antigo) antigo.classList.remove('saiu'); }, 460);
     if (atual && !recuar) historico.push(atual);
     atual = el; preenche(); progresso(el);
+    document.body.dataset.ecra = el.dataset.id; document.body.classList.toggle('fim', el.hasAttribute('data-fim'));
     el.querySelectorAll('.op').forEach(function (o) { o.classList.remove('escolhida'); });
     el.classList.add('ativo'); el.scrollTop = 0;
     var inp = el.querySelector('input');
