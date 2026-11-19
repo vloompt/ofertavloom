@@ -10,7 +10,7 @@
 <link rel="preload" href="fonts/gotham-black.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/gotham-bold.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Candidatura «2 Semanas de Redes Grátis» (19/11/2026) — linha Vloom: Gotham, marinho liso, BOB laranja a sério.
+/* Candidatura «2 Semanas de Redes Grátis» (19/11/2026): linha Vloom: Gotham, marinho liso, BOB laranja a sério.
    Regras dele: nada de gradientes, etiquetas pequenas, botõezinhos no canto ou coisas coladas. Tudo centrado e a respirar. */
 @font-face{font-family:Gotham;src:url(fonts/gotham-book.woff2) format("woff2");font-weight:400;font-display:swap}
 @font-face{font-family:Gotham;src:url(fonts/gotham-bold.woff2) format("woff2");font-weight:700;font-display:swap}
@@ -53,7 +53,7 @@ input.campo::placeholder{color:#9aa3c2;font-weight:400}
 input.campo:focus{border-color:var(--laranja)}
 .erro{font-size:16px;font-weight:700;color:#ffb36b;min-height:22px;margin:-28px 0 22px}
 
-/* BOB — botão laranja a sério, a mexer */
+/* BOB: botão laranja a sério, a mexer */
 .bob{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:560px;
   background:var(--laranja);color:var(--branco);text-decoration:none;cursor:pointer;
   font:800 clamp(18px,1.9vw,22px) Gotham,Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase;
@@ -297,7 +297,7 @@ body.fim .veu{opacity:.94}
 <script>
 /* ENSAIO: ainda não envia nada (falta o /api/redes-gratis → GHL, depois do OK do Tiago).
    Regra: aceite se fatura ≥ 500k E decide (eu / eu e sócio) E diz que consegue a conversa de 30 min.
-   Abaixo de 500k acaba logo na faturação. (Sem pergunta «quando quer começar»: quem reclama a oferta quer já — ordem dele, 19/11.)
+   Abaixo de 500k acaba logo na faturação. (Sem pergunta «quando quer começar»: quem reclama a oferta quer já: ordem dele, 19/11.)
    Armadilhas resolvidas: o ecrã que entra fica visível de imediato (senão o focus falha e o texto vai para a caixa anterior)
    e os ecrãs escondidos ficam inert. */
 (function () {
