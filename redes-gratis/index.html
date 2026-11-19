@@ -5,74 +5,89 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Candidatura · 2 Semanas de Redes Grátis · Vloom</title>
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#253B7C">
+<meta name="theme-color" content="#0f1d5a">
 <link rel="icon" href="/favicon-32.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preload" href="fonts/gotham-black.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="fonts/gotham-bold.woff2" as="font" type="font/woff2" crossorigin>
 <style>
-/* Candidatura «2 Semanas de Redes Grátis» — estilo Typeform, cores das LPs Vloom (19/11/2026) */
-:root{--azul:#253B7C;--roxo:#7D57A4;--laranja:#FF7B00;--branco:#fff;--suave:rgba(255,255,255,.72)}
+/* Candidatura «2 Semanas de Redes Grátis» (19/11/2026) — linha Vloom: Gotham, marinho liso, BOB laranja a sério.
+   Regras dele: nada de gradientes, etiquetas pequenas, botõezinhos no canto ou coisas coladas. Tudo centrado e a respirar. */
+@font-face{font-family:Gotham;src:url(fonts/gotham-book.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:Gotham;src:url(fonts/gotham-bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:Gotham;src:url(fonts/gotham-black.woff2) format("woff2");font-weight:800;font-display:swap}
+:root{--navy:#0f1d5a;--tinta:#050b2e;--laranja:#ff7b00;--branco:#fff;--suave:rgba(255,255,255,.78)}
 *{box-sizing:border-box;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:Montserrat,system-ui,sans-serif;color:var(--branco);
-  background:linear-gradient(208deg,var(--azul) 50%,var(--roxo) 100%) fixed;background-color:var(--azul);
-  overflow:hidden;-webkit-font-smoothing:antialiased}
-.barra{position:fixed;top:0;left:0;right:0;height:4px;background:rgba(255,255,255,.15);z-index:5}
+body{font-family:Gotham,"Helvetica Neue",Arial,sans-serif;background:var(--navy);color:var(--branco);overflow:hidden;-webkit-font-smoothing:antialiased}
+
+.barra{position:fixed;top:0;left:0;right:0;height:6px;background:rgba(255,255,255,.12);z-index:5}
 .barra i{display:block;height:100%;width:0;background:var(--laranja);transition:width .4s ease}
-.logo{position:fixed;top:22px;left:28px;height:30px;z-index:4}
-.ecra{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:90px 24px 100px;
-  opacity:0;visibility:hidden;transform:translateY(40px);transition:opacity .45s ease,transform .45s ease,visibility .45s}
+.logo{position:fixed;top:34px;left:50%;transform:translateX(-50%);height:34px;z-index:4}
+
+.ecra{position:fixed;inset:0;overflow-y:auto;display:flex;flex-direction:column;align-items:center;
+  padding:130px 24px 80px;opacity:0;visibility:hidden;transform:translateY(40px);
+  transition:opacity .45s ease,transform .45s ease,visibility .45s}
 .ecra.ativo{opacity:1;visibility:visible;transform:none;transition:opacity .45s ease,transform .45s ease,visibility 0s}
 .ecra.saiu{transform:translateY(-40px)}
-.caixa{width:100%;max-width:680px;max-height:100%;overflow-y:auto;padding:4px}
-.num{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;color:var(--laranja);margin-bottom:10px}
-h1{font-size:40px;line-height:1.15;font-weight:800;margin-bottom:18px}
-h2{font-size:28px;line-height:1.3;font-weight:700;margin-bottom:10px}
-.sub{font-size:19px;line-height:1.55;color:var(--suave);margin-bottom:28px}
-.sub b{color:var(--branco)}
-.selo{display:inline-block;font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
-  background:rgba(255,123,0,.16);color:var(--laranja);border:1px solid rgba(255,123,0,.5);border-radius:100px;padding:6px 14px;margin-bottom:20px}
-.lista{list-style:none;margin:0 0 30px}
-.lista li{font-size:18px;line-height:1.5;padding-left:30px;position:relative;margin-bottom:8px;color:var(--branco)}
-.lista li:before{content:"✓";position:absolute;left:0;color:var(--laranja);font-weight:800}
-input.txt{width:100%;background:transparent;border:0;border-bottom:2px solid rgba(255,255,255,.4);color:var(--branco);
-  font:500 26px/1.3 Montserrat,sans-serif;padding:8px 0 10px;outline:none;transition:border-color .2s;border-radius:0}
-input.txt::placeholder{color:rgba(255,255,255,.35)}
-input.txt:focus{border-bottom-color:var(--branco)}
-.ops{display:flex;flex-direction:column;gap:10px;max-width:460px;margin-top:6px}
-.op{display:flex;align-items:center;gap:14px;width:100%;text-align:left;cursor:pointer;
-  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.45);border-radius:8px;color:var(--branco);
-  font:500 19px/1.3 Montserrat,sans-serif;padding:12px 14px;transition:background .15s,border-color .15s}
-.op kbd{flex:none;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:4px;
-  border:1px solid rgba(255,255,255,.6);font:700 13px Montserrat,sans-serif;background:rgba(255,255,255,.08)}
-.op:hover{background:rgba(255,255,255,.2)}
-.op.escolhida{background:var(--laranja);border-color:var(--laranja)}
-.op.escolhida kbd{background:var(--branco);color:var(--laranja);border-color:var(--branco)}
-.op.escolhida{animation:pisca .35s ease}
-@keyframes pisca{25%{opacity:.55}50%{opacity:1}75%{opacity:.55}}
-.acoes{display:flex;align-items:center;gap:16px;margin-top:26px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--laranja);color:var(--branco);border:0;border-radius:100px;
-  font:700 19px Montserrat,sans-serif;padding:15px 30px;cursor:pointer;text-decoration:none;transition:transform .15s}
-.btn:hover{transform:scale(1.03)}
-.dica{font-size:14px;color:var(--suave)}
-.dica b{font-weight:700;color:var(--branco)}
-.erro{margin-top:14px;font-size:15px;font-weight:600;color:#ffd2a8;min-height:20px}
-.nav{position:fixed;right:24px;bottom:24px;display:flex;gap:2px;z-index:5}
-.nav button{width:40px;height:36px;border:0;background:var(--laranja);color:var(--branco);font-size:18px;cursor:pointer}
-.nav button:first-child{border-radius:6px 0 0 6px}.nav button:last-child{border-radius:0 6px 6px 0}
-.nav button:disabled{opacity:.4;cursor:default}
-.privacidade{font-size:13px;color:var(--suave);margin-top:16px}
-.privacidade a{color:var(--suave)}
-#cal{width:100%;height:640px;border:0;border-radius:10px;background:#fff;margin-top:8px}
-@media (pointer:coarse){.dica{display:none}.op kbd{display:none}}
+.caixa{width:100%;max-width:760px;margin:auto 0;text-align:center;display:flex;flex-direction:column;align-items:center}
+
+h1{font-size:clamp(36px,5.4vw,64px);line-height:1.06;font-weight:800;letter-spacing:-.02em;margin-bottom:32px}
+h1 em,h2 em{font-style:normal;color:var(--laranja)}
+h2{font-size:clamp(28px,3.8vw,46px);line-height:1.15;font-weight:800;letter-spacing:-.015em;margin-bottom:48px;max-width:720px}
+h2.com-sub{margin-bottom:20px}
+.sub{font-size:clamp(18px,1.9vw,21px);line-height:1.6;color:var(--suave);max-width:620px;margin-bottom:52px}
+.sub b{color:var(--branco);font-weight:700}
+
+/* opções: blocos grandes, borda de tinta e sombra dura */
+.ops{display:flex;flex-direction:column;gap:18px;width:100%;max-width:560px}
+.op{display:block;width:100%;cursor:pointer;text-align:center;background:var(--branco);color:var(--navy);
+  font:700 clamp(18px,1.8vw,21px)/1.3 Gotham,Arial,sans-serif;padding:24px 26px;border:3px solid var(--tinta);border-radius:14px;
+  box-shadow:6px 6px 0 var(--tinta);transition:transform .1s ease,box-shadow .1s ease,background .15s,color .15s}
+.op:hover{transform:translate(2px,2px);box-shadow:4px 4px 0 var(--tinta)}
+.op.escolhida{background:var(--laranja);color:var(--branco);transform:translate(6px,6px);box-shadow:0 0 0 var(--tinta)}
+
+input.campo{display:block;width:100%;max-width:560px;background:var(--branco);color:var(--navy);text-align:center;
+  font:700 clamp(19px,2vw,23px) Gotham,Arial,sans-serif;padding:24px 22px;border:3px solid var(--tinta);border-radius:14px;
+  box-shadow:6px 6px 0 var(--tinta);outline:none;margin-bottom:44px}
+input.campo::placeholder{color:#9aa3c2;font-weight:400}
+input.campo:focus{border-color:var(--laranja)}
+.erro{font-size:16px;font-weight:700;color:#ffb36b;min-height:22px;margin:-28px 0 22px}
+
+/* BOB — botão laranja a sério, a mexer */
+.bob{position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;gap:14px;width:100%;max-width:560px;
+  background:var(--laranja);color:var(--branco);text-decoration:none;cursor:pointer;
+  font:800 clamp(18px,1.9vw,22px) Gotham,Arial,sans-serif;letter-spacing:.03em;text-transform:uppercase;
+  padding:28px 40px;border:3px solid var(--tinta);border-radius:16px;box-shadow:7px 7px 0 var(--tinta);
+  transition:transform .1s ease,box-shadow .1s ease;animation:bobShake 5.2s ease-in-out infinite}
+.bob:hover{transform:translate(2px,2px);box-shadow:5px 5px 0 var(--tinta)}
+.bob:active{transform:translate(7px,7px);box-shadow:0 0 0 var(--tinta)}
+.bob::after{content:"";position:absolute;top:-40%;bottom:-40%;left:-70%;width:46%;
+  background:linear-gradient(105deg,transparent,rgba(255,255,255,.55),transparent);transform:skewX(-18deg);animation:bobShine 5.2s ease-in-out infinite}
+.bob .seta{display:inline-block;animation:bobSeta 5.2s ease-in-out infinite}
+@keyframes bobShake{0%,86%,100%{transform:rotate(0)}88%{transform:rotate(-1deg) scale(1.015)}90%{transform:rotate(1.2deg) scale(1.02)}92%{transform:rotate(-.8deg) scale(1.015)}94%{transform:rotate(0) scale(1)}}
+@keyframes bobShine{0%,78%{left:-70%}92%,100%{left:130%}}
+@keyframes bobSeta{0%,84%,100%{transform:translateX(0)}88%{transform:translateX(6px)}92%{transform:translateX(0)}}
+@media(prefers-reduced-motion:reduce){.bob,.bob::after,.bob .seta{animation:none}}
+
+.rgpd{font-size:13px;color:rgba(255,255,255,.6);margin-top:26px}
+.rgpd a{color:rgba(255,255,255,.6)}
+.saltar{all:unset;cursor:pointer;margin-top:30px;font-size:17px;font-weight:700;color:var(--branco);text-decoration:underline;text-underline-offset:5px}
+.voltar{all:unset;cursor:pointer;margin-top:40px;font-size:15px;font-weight:700;color:rgba(255,255,255,.6)}
+.voltar:hover{color:var(--branco)}
+
+.ecra.largo .caixa{max-width:1080px}
+.cal-caixa{width:100%;max-width:1040px;border-radius:16px;overflow:hidden}
+.cal-caixa iframe{display:block;width:100%;min-height:620px;border:0;overflow:hidden}
+
 @media (max-width:640px){
-  .logo{top:18px;left:20px;height:24px}
-  h1{font-size:30px}h2{font-size:22px}.sub,.lista li{font-size:17px}
-  input.txt{font-size:22px}.op{font-size:17px}
-  .ecra{align-items:flex-start;padding:104px 20px 90px}
-  .nav{right:16px;bottom:16px}
-  #cal{height:720px}
+  .logo{top:24px;height:26px}
+  .ecra{padding:124px 20px 60px}
+  .caixa{margin:0}
+  h2{margin-bottom:36px}.sub{margin-bottom:40px}
+  .ops{gap:14px}.op{padding:20px 18px}
+  input.campo{margin-bottom:36px}
+  .bob{padding:24px 22px}
+  .cal-caixa iframe{min-height:760px}
 }
 </style>
 </head>
@@ -80,178 +95,149 @@ input.txt:focus{border-bottom-color:var(--branco)}
 <div class="barra"><i id="progresso"></i></div>
 <img class="logo" src="logo.webp" alt="Vloom">
 
-<!-- 0 · abertura -->
 <section class="ecra" data-id="inicio">
   <div class="caixa">
-    <span class="selo">Candidatura · 4 vagas por mês</span>
-    <h1>2 semanas de gestão de redes sociais, grátis.</h1>
-    <p class="sub">Escolhemos <b>4 empresas por mês</b> para gerirmos o Instagram e o Facebook durante 2 semanas, sem custo. O programa é só para empresas que faturam <b>mais de 500 mil euros por ano</b>.</p>
-    <ul class="lista">
-      <li>Reunião de arranque de 30 minutos</li>
-      <li>2 semanas de publicações feitas pela nossa equipa</li>
-      <li>Reunião de resultados no fim</li>
-    </ul>
-    <div class="acoes">
-      <button class="btn" data-seguir>Começar candidatura</button>
-      <span class="dica">demora 2 minutos · carregue em <b>Enter ↵</b></span>
-    </div>
+    <h1>2 semanas de gestão de redes sociais <em>grátis</em></h1>
+    <p class="sub">Escolhemos <b>4 empresas por mês</b>. A nossa equipa gere o Instagram e o Facebook da sua empresa durante 2 semanas, sem custo. É só para empresas que faturam <b>mais de 500 mil euros por ano</b>.</p>
+    <button class="bob" data-seguir>Quero candidatar-me <span class="seta">→</span></button>
   </div>
 </section>
 
-<!-- registo -->
 <section class="ecra" data-id="nome" data-tipo="texto">
   <div class="caixa">
-    <span class="num">1 →</span>
     <h2>Como se chama?</h2>
-    <input class="txt" name="nome" autocomplete="given-name" placeholder="Escreva aqui o seu nome">
+    <input class="campo" name="nome" autocomplete="name" placeholder="O seu nome">
     <div class="erro"></div>
-    <div class="acoes"><button class="btn" data-seguir>OK ✓</button><span class="dica">carregue em <b>Enter ↵</b></span></div>
+    <button class="bob" data-seguir>Continuar <span class="seta">→</span></button>
   </div>
 </section>
 
 <section class="ecra" data-id="empresa" data-tipo="texto">
   <div class="caixa">
-    <span class="num">2 →</span>
-    <h2><span data-nome></span>, qual é o nome da sua empresa?</h2>
-    <input class="txt" name="empresa" autocomplete="organization" placeholder="Escreva aqui">
+    <h2><span data-nome></span>, como se chama a sua empresa?</h2>
+    <input class="campo" name="empresa" autocomplete="organization" placeholder="Nome da empresa">
     <div class="erro"></div>
-    <div class="acoes"><button class="btn" data-seguir>OK ✓</button><span class="dica">carregue em <b>Enter ↵</b></span></div>
+    <button class="bob" data-seguir>Continuar <span class="seta">→</span></button>
   </div>
 </section>
 
 <section class="ecra" data-id="email" data-tipo="email">
   <div class="caixa">
-    <span class="num">3 →</span>
     <h2>Qual é o seu email profissional?</h2>
-    <input class="txt" name="email" type="email" inputmode="email" autocomplete="email" placeholder="nome@empresa.pt">
+    <input class="campo" name="email" type="email" inputmode="email" autocomplete="email" placeholder="nome@empresa.pt">
     <div class="erro"></div>
-    <div class="acoes"><button class="btn" data-seguir>OK ✓</button><span class="dica">carregue em <b>Enter ↵</b></span></div>
+    <button class="bob" data-seguir>Continuar <span class="seta">→</span></button>
   </div>
 </section>
 
 <section class="ecra" data-id="telemovel" data-tipo="telemovel">
   <div class="caixa">
-    <span class="num">4 →</span>
     <h2>E o seu número de telemóvel?</h2>
-    <input class="txt" name="telemovel" type="tel" inputmode="tel" autocomplete="tel" placeholder="912 345 678">
+    <input class="campo" name="telemovel" type="tel" inputmode="tel" autocomplete="tel" placeholder="912 345 678">
     <div class="erro"></div>
-    <div class="acoes"><button class="btn" data-seguir>OK ✓</button><span class="dica">carregue em <b>Enter ↵</b></span></div>
-    <p class="privacidade">Ao continuar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">política de privacidade</a>.</p>
+    <button class="bob" data-seguir>Continuar <span class="seta">→</span></button>
+    <p class="rgpd">Ao continuar, aceita a nossa <a href="https://vloom.pt/politica-de-privacidade/" target="_blank" rel="noopener">Política de Privacidade</a>.</p>
   </div>
 </section>
 
-<!-- onboarding / filtro -->
 <section class="ecra" data-id="faturacao" data-tipo="escolha">
   <div class="caixa">
-    <span class="num">5 →</span>
     <h2>Quanto fatura a empresa por ano?</h2>
     <div class="ops">
-      <button class="op" data-v="ate-250k"><kbd>A</kbd>Menos de 250 mil €</button>
-      <button class="op" data-v="250-500k"><kbd>B</kbd>250 a 500 mil €</button>
-      <button class="op" data-v="500k-1m"><kbd>C</kbd>500 mil a 1 milhão €</button>
-      <button class="op" data-v="1-5m"><kbd>D</kbd>1 a 5 milhões €</button>
-      <button class="op" data-v="5m-mais"><kbd>E</kbd>Mais de 5 milhões €</button>
+      <button class="op" data-v="ate-250k">Menos de 250 mil €</button>
+      <button class="op" data-v="250-500k">250 a 500 mil €</button>
+      <button class="op" data-v="500k-1m">500 mil a 1 milhão €</button>
+      <button class="op" data-v="1-5m">1 a 5 milhões €</button>
+      <button class="op" data-v="5m-mais">Mais de 5 milhões €</button>
     </div>
   </div>
 </section>
 
 <section class="ecra" data-id="decisor" data-tipo="escolha">
   <div class="caixa">
-    <span class="num">6 →</span>
     <h2>Quem decide o marketing da empresa?</h2>
     <div class="ops">
-      <button class="op" data-v="eu"><kbd>A</kbd>Sou eu</button>
-      <button class="op" data-v="eu-e-socio"><kbd>B</kbd>Eu e um sócio</button>
-      <button class="op" data-v="outra-pessoa"><kbd>C</kbd>Outra pessoa</button>
+      <button class="op" data-v="eu">Sou eu</button>
+      <button class="op" data-v="eu-e-socio">Eu e um sócio</button>
+      <button class="op" data-v="outra-pessoa">Outra pessoa</button>
     </div>
   </div>
 </section>
 
 <section class="ecra" data-id="anuncios" data-tipo="escolha">
   <div class="caixa">
-    <span class="num">7 →</span>
     <h2>Quanto investe hoje em anúncios por mês?</h2>
     <div class="ops">
-      <button class="op" data-v="nada"><kbd>A</kbd>Ainda não invisto</button>
-      <button class="op" data-v="ate-500"><kbd>B</kbd>Até 500 €</button>
-      <button class="op" data-v="500-1500"><kbd>C</kbd>500 a 1.500 €</button>
-      <button class="op" data-v="1500-mais"><kbd>D</kbd>Mais de 1.500 €</button>
+      <button class="op" data-v="nada">Ainda não invisto</button>
+      <button class="op" data-v="ate-500">Até 500 €</button>
+      <button class="op" data-v="500-1500">500 a 1.500 €</button>
+      <button class="op" data-v="1500-mais">Mais de 1.500 €</button>
     </div>
   </div>
 </section>
 
-<section class="ecra" data-id="prazo" data-tipo="escolha">
+<section class="ecra" data-id="presenca" data-tipo="texto" data-opcional>
   <div class="caixa">
-    <span class="num">8 →</span>
-    <h2>Quando quer começar?</h2>
-    <div class="ops">
-      <button class="op" data-v="ja"><kbd>A</kbd>Já esta semana</button>
-      <button class="op" data-v="30-dias"><kbd>B</kbd>Nos próximos 30 dias</button>
-      <button class="op" data-v="mais-tarde"><kbd>C</kbd>Mais tarde</button>
-    </div>
-  </div>
-</section>
-
-<section class="ecra" data-id="presenca" data-tipo="texto">
-  <div class="caixa">
-    <span class="num">9 →</span>
     <h2>Qual é o Instagram ou o site da empresa?</h2>
-    <input class="txt" name="presenca" autocomplete="url" placeholder="@empresa ou www.empresa.pt">
+    <input class="campo" name="presenca" autocomplete="url" placeholder="@empresa ou www.empresa.pt">
     <div class="erro"></div>
-    <div class="acoes"><button class="btn" data-seguir>OK ✓</button><span class="dica">carregue em <b>Enter ↵</b></span></div>
+    <button class="bob" data-seguir>Continuar <span class="seta">→</span></button>
+    <button class="saltar" type="button" data-saltar>Ainda não temos</button>
   </div>
 </section>
 
 <section class="ecra" data-id="compromisso" data-tipo="escolha">
   <div class="caixa">
-    <span class="num">10 →</span>
-    <h2>As 2 semanas começam com uma reunião de arranque de 30 minutos. Sem ela não começamos.</h2>
-    <p class="sub">Compromete-se a estar presente?</p>
+    <h2 class="com-sub">Tudo começa com uma conversa de 30 minutos</h2>
+    <p class="sub">É aí que conhecemos a empresa e combinamos o que vamos publicar nas 2 semanas. Consegue reservar meia hora para isso?</p>
     <div class="ops">
-      <button class="op" data-v="sim"><kbd>A</kbd>Sim, comprometo-me</button>
-      <button class="op" data-v="nao"><kbd>B</kbd>Não posso</button>
+      <button class="op" data-v="sim">Sim, consigo</button>
+      <button class="op" data-v="nao">Agora não consigo</button>
     </div>
   </div>
 </section>
 
-<!-- resultados -->
-<section class="ecra" data-id="aceite" data-fim>
+<section class="ecra largo" data-id="aceite" data-fim>
   <div class="caixa">
-    <span class="selo">✓ Pré-aceite</span>
-    <h2><span data-nome></span>, a <span data-empresa></span> foi pré-aceite.</h2>
-    <p class="sub">Escolha já a hora da reunião de arranque. As 2 semanas de gestão grátis começam a contar a partir dela.</p>
-    <iframe id="cal" title="Marcar a reunião de arranque" data-src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85"></iframe>
+    <h2 class="com-sub"><span data-nome></span>, a <em data-empresa></em> foi pré-aceite</h2>
+    <p class="sub">Escolha o dia e a hora da conversa de 30 minutos. As 2 semanas de gestão grátis começam a partir daí.</p>
+    <div class="cal-caixa"><iframe id="YuJhp8YMHXDVu0eNVh85_redes" scrolling="no" title="Marcar a reunião de arranque" data-src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85"></iframe></div>
   </div>
 </section>
 
 <section class="ecra" data-id="recusado-faturacao" data-fim>
   <div class="caixa">
-    <h2>Obrigado, <span data-nome></span>.</h2>
-    <p class="sub">Este programa é só para empresas que faturam mais de 500 mil euros por ano, por isso não o conseguimos abrir à sua empresa neste momento.</p>
-    <p class="sub">Se procura um site que lhe traga contactos, veja a nossa oferta de websites.</p>
-    <a class="btn" href="https://oferta.vloom.pt/website/">Ver a oferta de websites</a>
+    <h2 class="com-sub">Obrigado, <span data-nome></span></h2>
+    <p class="sub">Este programa é só para empresas que faturam mais de 500 mil euros por ano, por isso não o conseguimos abrir à sua empresa neste momento. Se procura um site que lhe traga contactos, veja a nossa oferta de websites.</p>
+    <a class="bob" href="https://oferta.vloom.pt/website/">Ver a oferta de websites <span class="seta">→</span></a>
   </div>
 </section>
 
 <section class="ecra" data-id="recusado-momento" data-fim>
   <div class="caixa">
-    <h2>Obrigado, <span data-nome></span>.</h2>
-    <p class="sub">Pelas suas respostas, este ainda não é o momento certo para começar. Guardámos a candidatura e falamos consigo quando abrirmos novas vagas.</p>
+    <h2 class="com-sub">Obrigado, <span data-nome></span></h2>
+    <p class="sub">Pelas suas respostas, este ainda não é o momento certo. Guardámos a candidatura e falamos consigo quando abrirmos novas vagas.</p>
   </div>
 </section>
 
-<nav class="nav"><button id="voltar" aria-label="Pergunta anterior">↑</button><button id="avancar" aria-label="Pergunta seguinte">↓</button></nav>
-
 <script>
 /* ENSAIO: ainda não envia nada (falta o /api/redes-gratis → GHL, depois do OK do Tiago).
-   Regra: aceite se fatura ≥ 500k E decide (eu / eu e sócio) E começa ≤ 30 dias E se compromete com a reunião.
-   Abaixo de 500k a candidatura acaba logo na pergunta da faturação. */
+   Regra: aceite se fatura ≥ 500k E decide (eu / eu e sócio) E diz que consegue a conversa de 30 min.
+   Abaixo de 500k acaba logo na faturação. (Sem pergunta «quando quer começar»: quem reclama a oferta quer já — ordem dele, 19/11.)
+   Armadilhas resolvidas: o ecrã que entra fica visível de imediato (senão o focus falha e o texto vai para a caixa anterior)
+   e os ecrãs escondidos ficam inert. */
 (function () {
   var ENSAIO = true;
   var ecras = [].slice.call(document.querySelectorAll('.ecra'));
   var perguntas = ecras.filter(function (e) { return !e.hasAttribute('data-fim'); });
   var r = {}, atual = null, historico = [];
   var ok500 = ['500k-1m', '1-5m', '5m-mais'];
+
+  // «← Voltar» por baixo de cada pergunta (menos na abertura e na 1.ª)
+  perguntas.slice(2).forEach(function (e) {
+    var b = document.createElement('button'); b.className = 'voltar'; b.type = 'button'; b.textContent = '← Voltar';
+    b.addEventListener('click', anterior); e.querySelector('.caixa').appendChild(b);
+  });
 
   function enviar(fase) {
     var d = Object.assign({ fase: fase, pagina: location.href, quando: new Date().toISOString() }, r);
@@ -276,9 +262,8 @@ input.txt:focus{border-bottom-color:var(--branco)}
     setTimeout(function () { if (antigo) antigo.classList.remove('saiu'); }, 460);
     if (atual && !recuar) historico.push(atual);
     atual = el; preenche(); progresso(el);
-    el.classList.add('ativo');
-    var nav = document.querySelector('.nav'); nav.style.display = el.hasAttribute('data-fim') ? 'none' : 'flex';
-    document.getElementById('voltar').disabled = !historico.length;
+    el.querySelectorAll('.op').forEach(function (o) { o.classList.remove('escolhida'); });
+    el.classList.add('ativo'); el.scrollTop = 0;
     var inp = el.querySelector('input');
     if (inp) { var n = 0; (function foca() { if (atual !== el) return; inp.focus({ preventScroll: true });
       if (document.activeElement !== inp && n++ < 20) setTimeout(foca, 50); })(); }
@@ -289,46 +274,44 @@ input.txt:focus{border-bottom-color:var(--branco)}
     var v = inp.value.trim(), t = el.dataset.tipo;
     if (t === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v)) return erro(el, 'Escreva um email válido.'), false;
     if (t === 'telemovel' && v.replace(/\D/g, '').length < 9) return erro(el, 'Escreva um número com 9 dígitos.'), false;
+    if (v.length < 2 && el.hasAttribute('data-opcional')) { erro(el, ''); r[inp.name] = ''; return true; }
     if (v.length < 2) return erro(el, 'Preencha para continuar.'), false;
     erro(el, ''); r[inp.name] = v; return true;
   }
-  function fim(id) { r.resultado = id; enviar('candidatura'); var el = ecras.find(function (e) { return e.dataset.id === id; });
-    if (id === 'aceite') { var c = document.getElementById('cal');
-      c.src = c.dataset.src + '?' + new URLSearchParams({ first_name: r.nome || '', email: r.email || '', phone: r.telemovel || '' }); }
-    mostra(el); }
+  function fim(id) {
+    r.resultado = id; enviar('candidatura');
+    var el = ecras.find(function (e) { return e.dataset.id === id; });
+    if (id === 'aceite') { var c = document.getElementById('YuJhp8YMHXDVu0eNVh85_redes');
+      c.src = c.dataset.src + '?' + new URLSearchParams({ first_name: r.nome || '', email: r.email || '', phone: r.telemovel || '' });
+      var s = document.createElement('script'); s.src = 'https://link.msgsndr.com/js/form_embed.js'; document.body.appendChild(s); }
+    mostra(el);
+  }
   function seguinte() {
     var el = atual, id = el.dataset.id;
     if (el.dataset.tipo && el.dataset.tipo !== 'escolha' && !valida(el)) return;
     if (el.dataset.tipo === 'escolha' && !r[id]) return;
     if (id === 'telemovel') enviar('registo');
     if (id === 'faturacao' && ok500.indexOf(r.faturacao) < 0) return fim('recusado-faturacao');
-    if (id === 'compromisso') {
-      var ok = r.decisor !== 'outra-pessoa' && r.prazo !== 'mais-tarde' && r.compromisso === 'sim';
-      return fim(ok ? 'aceite' : 'recusado-momento');
-    }
+    if (id === 'compromisso') return fim(r.decisor !== 'outra-pessoa' && r.compromisso === 'sim' ? 'aceite' : 'recusado-momento');
     var i = perguntas.indexOf(el); if (perguntas[i + 1]) mostra(perguntas[i + 1]);
   }
   function anterior() { if (!historico.length || (atual && atual.hasAttribute('data-fim'))) return; mostra(historico.pop(), true); }
 
   document.addEventListener('click', function (ev) {
     if (ev.target.closest('[data-seguir]')) return seguinte();
+    if (ev.target.closest('[data-saltar]')) { var i0 = atual.querySelector('input'); if (i0) i0.value = ''; return seguinte(); }
     var op = ev.target.closest('.op');
     if (op) {
       var el = op.closest('.ecra'); el.querySelectorAll('.op').forEach(function (o) { o.classList.remove('escolhida'); });
       op.classList.add('escolhida'); r[el.dataset.id] = op.dataset.v;
-      setTimeout(seguinte, 420);
+      setTimeout(seguinte, 380);
     }
   });
-  document.getElementById('avancar').onclick = seguinte;
-  document.getElementById('voltar').onclick = anterior;
   document.addEventListener('keydown', function (ev) {
     if (!atual || atual.hasAttribute('data-fim')) return;
     var campo = atual.querySelector('input');
     if (campo && document.activeElement !== campo && ev.key.length === 1 && !ev.ctrlKey && !ev.metaKey && !ev.altKey) campo.focus({ preventScroll: true });
-    if (ev.key === 'Enter') { ev.preventDefault(); if (!ev.repeat) seguinte(); return; }
-    if (atual.dataset.tipo === 'escolha' && /^[a-eA-E]$/.test(ev.key)) {
-      var op = atual.querySelectorAll('.op')['abcde'.indexOf(ev.key.toLowerCase())]; if (op) op.click();
-    }
+    if (ev.key === 'Enter') { ev.preventDefault(); if (!ev.repeat) seguinte(); }
   });
   ecras.forEach(function (e) { e.inert = true; });
   mostra(ecras[0]);
