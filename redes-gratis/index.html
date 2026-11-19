@@ -336,10 +336,12 @@ body.fim .veu{opacity:.96}
 
   // mural de trabalhos reais e fita de logos
   (function () {
-    var fotos = ['p1','p2','p3','p4','p5','p6','p7','p8','q1','q2','q3','q4','q5'], m = document.querySelector('.mural');
+    // cada trabalho aparece UMA vez no mural (ordem dele, 19/11: "não repitas posts"); p2 e q4 ficam fora porque flutuam na abertura
+    var fotos = ['p1','a01','p3','a09','p4','a16','p5','a21','p6','a11','p7','a25','p8','a04','q1','a13','q2','a18','q3','a23','q5','a06'], m = document.querySelector('.mural');
+    for (var n = 1; n <= 28; n++) { var k = 'a' + (n < 10 ? '0' : '') + n; if (fotos.indexOf(k) < 0) fotos.push(k); }
     for (var c = 0; c < 7; c++) {
-      var col = document.createElement('div'); col.className = 'col';
-      var lista = []; for (var k = 0; k < 6; k++) lista.push(fotos[(c * 5 + k * 3) % fotos.length]);
+      var col = document.createElement('div'); col.className = 'col'; var lista = [];
+      for (var k2 = c; k2 < fotos.length; k2 += 7) lista.push(fotos[k2]);
       lista.concat(lista).forEach(function (f) { var i = new Image(); i.src = 'assets/mural/' + f + '.webp'; i.alt = ''; i.decoding = 'async'; col.appendChild(i); });
       m.appendChild(col);
     }
