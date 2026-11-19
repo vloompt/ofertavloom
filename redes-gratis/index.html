@@ -84,12 +84,12 @@ input.campo:focus{border-color:var(--laranja)}
 
 
 /* MURAL: trabalhos reais de redes que a Vloom fez, a correr devagar por trás de tudo (nada de fundo liso) */
-.mural{position:fixed;inset:-20vh -10vw;display:flex;gap:26px;justify-content:center;align-items:center;transform:rotate(-8deg);z-index:0;pointer-events:none}
-.col{display:flex;flex-direction:column;gap:26px;width:clamp(170px,26vw,390px);flex:none;animation:sobe 16s ease-in-out infinite alternate}
-.col:nth-child(even){animation-name:desce;animation-duration:19s}
+.mural{position:fixed;inset:-20vh -10vw;display:flex;gap:22px;justify-content:center;transform:rotate(-8deg);z-index:0;pointer-events:none}
+.col{display:flex;flex-direction:column;gap:22px;width:clamp(150px,15vw,230px);flex:none;animation:sobe 70s linear infinite}
+.col:nth-child(even){animation-name:desce;animation-duration:85s}
 .col img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;border:3px solid var(--tinta)}
-@keyframes sobe{from{transform:translateY(40px)}to{transform:translateY(-40px)}}
-@keyframes desce{from{transform:translateY(-40px)}to{transform:translateY(40px)}}
+@keyframes sobe{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+@keyframes desce{from{transform:translateY(-50%)}to{transform:translateY(0)}}
 .veu{position:fixed;inset:0;background:var(--navy);opacity:.94;z-index:1;pointer-events:none;transition:opacity .6s ease}
 .veu-esq{position:fixed;inset:0;background:var(--navy);z-index:1;pointer-events:none;opacity:0;transition:opacity .6s ease;
   -webkit-mask-image:linear-gradient(90deg,#000 40%,rgba(0,0,0,.75) 62%,rgba(0,0,0,.55) 100%);mask-image:linear-gradient(90deg,#000 40%,rgba(0,0,0,.75) 62%,rgba(0,0,0,.55) 100%)}
@@ -139,7 +139,7 @@ body.fim .veu{opacity:.96}
   .disco{width:340px;bottom:8%}
   .post{width:110px}.post.p1{left:2%}.post.p2{right:2%}
   body[data-ecra=inicio] .veu{opacity:.92}body[data-ecra=inicio] .veu-esq{opacity:0}
-  .col{width:44vw}
+  .col{width:140px}
   body[data-ecra=inicio] .logo{opacity:0}
   .logo-abre{display:block;height:26px;margin:0 auto 34px}
   .abre .texto{padding-top:28px}
@@ -336,13 +336,12 @@ body.fim .veu{opacity:.96}
 
   // mural de trabalhos reais e fita de logos
   (function () {
-    // os mesmos trabalhos de sempre, cada um UMA só vez (19/11: "queria igualzinho, só não queria repetidos").
-    // p2 e q4 ficam fora porque já flutuam na abertura. Sem ciclo infinito: as colunas só balançam devagar.
-    var fotos = ['p1','p3','p4','p5','p6','p7','p8','q1','q2','q3','q5'], m = document.querySelector('.mural');
-    for (var c = 0; c < 4; c++) {
+    // mural igual ao original (tamanho e movimento contínuo). Só há 13 posts orgânicos: cada coluna leva 6 seguidos, sem repetir dentro da coluna.
+    var fotos = ['p1','p2','p3','p4','p5','p6','p7','p8','q1','q2','q3','q4','q5'], m = document.querySelector('.mural');
+    for (var c = 0; c < 7; c++) {
       var col = document.createElement('div'); col.className = 'col'; var lista = [];
-      for (var k2 = c; k2 < fotos.length; k2 += 4) lista.push(fotos[k2]);
-      lista.forEach(function (f) { var i = new Image(); i.src = 'assets/mural/' + f + '.webp'; i.alt = ''; i.decoding = 'async'; col.appendChild(i); });
+      for (var k = 0; k < 6; k++) lista.push(fotos[(c * 6 + k) % fotos.length]);
+      lista.concat(lista).forEach(function (f) { var i = new Image(); i.src = 'assets/mural/' + f + '.webp'; i.alt = ''; i.decoding = 'async'; col.appendChild(i); });
       m.appendChild(col);
     }
     var logos = ['sheraton1','allianz1','sktechers1','hellmans','calve','weleda1','try1','nortecar','tedbx','meusuper','euro1','ca1'], f = document.getElementById('fita');
