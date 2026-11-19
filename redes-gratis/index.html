@@ -76,8 +76,11 @@ input.campo:focus{border-color:var(--laranja)}
 .voltar:hover{color:var(--branco)}
 
 .ecra.largo .caixa{max-width:1080px}
-.cal-caixa{width:100%;max-width:1040px;border-radius:16px;overflow:hidden}
-.cal-caixa iframe{display:block;width:100%;min-height:620px;border:0;overflow:hidden}
+.cal-caixa{width:100%;max-width:1080px;border-radius:18px;overflow:hidden;background:#fff;border:3px solid var(--tinta);box-shadow:12px 12px 0 var(--tinta)}
+.janela-barra{height:48px;background:#efedf5;display:flex;align-items:center;gap:9px;padding:0 20px;border-bottom:1px solid #dcd8e8}
+.janela-barra i{width:13px;height:13px;border-radius:50%;background:#ff5f57}.janela-barra i:nth-child(2){background:#febc2e}.janela-barra i:nth-child(3){background:#28c840}
+.janela-barra span{margin-left:22px;flex:0 1 420px;height:28px;border-radius:14px;background:#fff;display:flex;align-items:center;padding:0 16px;font-size:13px;color:#6b6890}
+.cal-caixa iframe{display:block;width:100%;min-height:620px;border:0;overflow:hidden;margin-top:-64px;margin-bottom:-24px}
 
 
 /* MURAL: trabalhos reais de redes que a Vloom fez, a correr devagar por trás de tudo (nada de fundo liso) */
@@ -103,10 +106,14 @@ body.fim .veu{opacity:.96}
 .abre .grelha{display:grid;grid-template-columns:1.08fr .92fr;align-items:end;gap:3vw;width:100%;max-width:1320px;min-height:100vh}
 .abre .grelha>*{min-width:0}
 .logo-abre{display:none}
-.abre .texto{align-self:center;padding:150px 0 90px;text-align:left;align-items:flex-start}
-.abre h1{font-size:clamp(40px,5vw,76px);margin-bottom:30px}
+.abre .texto{align-self:center;padding:120px 0 70px;text-align:left;align-items:flex-start}
+.abre h1{font-size:clamp(40px,4.4vw,68px);margin-bottom:28px}
 .abre .sub{margin-bottom:46px}
 .abre .bob{max-width:520px}
+.pontos{list-style:none;display:flex;flex-direction:column;gap:16px;margin:0 0 44px;max-width:620px;text-align:left}
+.pontos li{position:relative;padding-left:36px;font-size:clamp(16px,1.35vw,18px);line-height:1.5;color:var(--suave)}
+.pontos li b{color:var(--branco)}
+.pontos li::before{content:"✓";position:absolute;left:0;top:1px;width:24px;height:24px;border-radius:50%;background:var(--laranja);color:var(--branco);font-weight:800;font-size:14px;display:grid;place-items:center;border:2px solid var(--tinta)}
 .clientes{margin-top:56px;width:100%;max-width:620px}
 .clientes p{font-size:15px;font-weight:700;color:rgba(255,255,255,.7);margin-bottom:18px}
 .fita{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
@@ -147,6 +154,7 @@ body.fim .veu{opacity:.96}
   input.campo{margin-bottom:36px}
   .bob{padding:24px 22px}
   .cal-caixa iframe{min-height:760px}
+  .cal-caixa{box-shadow:7px 7px 0 var(--tinta)}.janela-barra{height:38px;padding:0 14px}.janela-barra span{font-size:11px;height:22px;margin-left:12px}
 }
 </style>
 </head>
@@ -161,7 +169,12 @@ body.fim .veu{opacity:.96}
     <div class="caixa texto">
       <img class="logo-abre" src="logo.webp" alt="Vloom">
       <h1>2 semanas de gestão de redes sociais <em>grátis</em></h1>
-      <p class="sub">A nossa equipa gere o <b>Instagram e o Facebook</b> da sua empresa durante 2 semanas, sem custo. As vagas são limitadas e <b>sujeitas a candidatura</b>.</p>
+      <ul class="pontos">
+        <li><b>O que recebe:</b> durante 2 semanas a nossa equipa faz e publica o conteúdo do Instagram e do Facebook da sua empresa (design, vídeo e textos).</li>
+        <li><b>Porque é grátis:</b> é a forma de nos ver a trabalhar com o seu negócio. Sem contrato, sem cartão e sem obrigação de continuar.</li>
+        <li><b>Porque é por candidatura:</b> a equipa só acompanha poucas empresas ao mesmo tempo, por isso escolhemos aquelas a quem as 2 semanas fazem mais diferença.</li>
+        <li><b>Como funciona:</b> responde a 9 perguntas rápidas (1 minuto) e, se for aceite, marca logo a conversa de arranque.</li>
+      </ul>
       <button class="bob" data-seguir>Quero candidatar-me <span class="seta">→</span></button>
       <div class="clientes">
         <p>Marcas que já confiam na Vloom</p>
@@ -275,7 +288,7 @@ body.fim .veu{opacity:.96}
   <div class="caixa">
     <h2 class="com-sub"><span data-nome></span>, a <em data-empresa></em> foi <span style="white-space:nowrap">pré-aceite</span></h2>
     <p class="sub">Escolha o dia e a hora da conversa de 30 minutos. As 2 semanas de gestão grátis começam a partir daí.</p>
-    <div class="cal-caixa"><iframe id="YuJhp8YMHXDVu0eNVh85_redes" scrolling="no" title="Marcar a reunião de arranque" data-src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85"></iframe></div>
+    <div class="cal-caixa"><div class="janela-barra"><i></i><i></i><i></i><span>vloom.pt/marcar-arranque</span></div><iframe id="YuJhp8YMHXDVu0eNVh85_redes" scrolling="no" title="Marcar a reunião de arranque" data-src="https://api.leadconnectorhq.com/widget/booking/YuJhp8YMHXDVu0eNVh85"></iframe></div>
   </div>
 </section>
 
