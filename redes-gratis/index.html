@@ -87,14 +87,14 @@ input.campo:focus{border-color:var(--laranja)}
 .col img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover;border-radius:14px;border:3px solid var(--tinta)}
 @keyframes sobe{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 @keyframes desce{from{transform:translateY(-50%)}to{transform:translateY(0)}}
-.veu{position:fixed;inset:0;background:var(--navy);opacity:.9;z-index:1;pointer-events:none;transition:opacity .6s ease}
+.veu{position:fixed;inset:0;background:var(--navy);opacity:.72;z-index:1;pointer-events:none;transition:opacity .6s ease}
 .veu-esq{position:fixed;inset:0;background:var(--navy);z-index:1;pointer-events:none;opacity:0;transition:opacity .6s ease;
-  -webkit-mask-image:linear-gradient(90deg,#000 42%,rgba(0,0,0,.55) 62%,rgba(0,0,0,.15) 100%);mask-image:linear-gradient(90deg,#000 42%,rgba(0,0,0,.55) 62%,rgba(0,0,0,.15) 100%)}
+  -webkit-mask-image:linear-gradient(90deg,#000 40%,rgba(0,0,0,.4) 60%,rgba(0,0,0,0) 100%);mask-image:linear-gradient(90deg,#000 40%,rgba(0,0,0,.4) 60%,rgba(0,0,0,0) 100%)}
 body[data-ecra=inicio] .veu{opacity:0}
 body[data-ecra=inicio] .logo{left:max(6vw,calc(50% - 660px));transform:none}
 .logo{transition:left .5s ease,transform .5s ease,opacity .3s}
 body[data-ecra=inicio] .veu-esq{opacity:1}
-body.fim .veu{opacity:.94}
+body.fim .veu{opacity:.85}
 .ecra,.logo,.barra{z-index:3}
 @media(prefers-reduced-motion:reduce){.col{animation:none}}
 
@@ -131,7 +131,7 @@ body.fim .veu{opacity:.94}
   .figura{height:440px;width:100%}
   .disco{width:340px;bottom:8%}
   .post{width:110px}.post.p1{left:2%}.post.p2{right:2%}
-  body[data-ecra=inicio] .veu{opacity:.82}body[data-ecra=inicio] .veu-esq{opacity:0}
+  body[data-ecra=inicio] .veu{opacity:.7}body[data-ecra=inicio] .veu-esq{opacity:0}
   .col{width:140px}
   body[data-ecra=inicio] .logo{opacity:0}
   .logo-abre{display:block;height:26px;margin:0 auto 34px}
@@ -161,7 +161,7 @@ body.fim .veu{opacity:.94}
     <div class="caixa texto">
       <img class="logo-abre" src="logo.webp" alt="Vloom">
       <h1>2 semanas de gestão de redes sociais <em>grátis</em></h1>
-      <p class="sub">Escolhemos <b>4 empresas por mês</b>. A nossa equipa gere o Instagram e o Facebook da sua empresa durante 2 semanas, sem custo. É só para empresas que faturam <b>mais de 500 mil euros por ano</b>.</p>
+      <p class="sub">A nossa equipa gere o <b>Instagram e o Facebook</b> da sua empresa durante 2 semanas, sem custo. As vagas são limitadas e <b>sujeitas a candidatura</b>.</p>
       <button class="bob" data-seguir>Quero candidatar-me <span class="seta">→</span></button>
       <div class="clientes">
         <p>Marcas que já confiam na Vloom</p>
