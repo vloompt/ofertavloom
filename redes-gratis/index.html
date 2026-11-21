@@ -376,7 +376,7 @@ body.fim .veu{opacity:.96}
   function enviar(fase) {
     var d = Object.assign({ fase: fase, pagina: location.href, quando: new Date().toISOString() }, r, utms());
     if (ENSAIO) { console.log('[candidatura · ensaio, nada enviado]', d); return; }
-    try { navigator.sendBeacon('/api/redes-gratis', new Blob([JSON.stringify(d)], { type: 'application/json' })); } catch (e) {}
+    try { navigator.sendBeacon('/api/redes-gratis/', new Blob([JSON.stringify(d)], { type: 'application/json' })); } catch (e) {}
     marca(fase === 'registo' ? 'Lead' : (d.resultado === 'aceite' ? 'CandidaturaAceite' : null), d);
   }
   function utms() {
