@@ -6,6 +6,24 @@
 <title>Candidatura · 2 Semanas de Redes Grátis · Vloom</title>
 <meta name="robots" content="noindex, nofollow">
 <meta name="theme-color" content="#0f1d5a">
+<!-- Meta Pixel (o mesmo das paginas Vloom da Vercel, 441661273501928) -->
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','441661273501928');fbq('track','PageView');
+window.vloomFb={
+  cookie:function(n){var m=document.cookie.match('(^|;)\\s*'+n+'=([^;]*)');return m?decodeURIComponent(m[2]):'';},
+  id:function(){return 'v'+Date.now()+'-'+Math.random().toString(36).slice(2,10);},
+  capi:function(d){try{d.fbp=this.cookie('_fbp');d.fbc=this.cookie('_fbc');d.sourceUrl=location.href;
+    return fetch('/api/capi/',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(d)});
+  }catch(e){return Promise.resolve();}}
+};
+</script>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=441661273501928&ev=PageView&noscript=1"></noscript>
+<!-- /Meta Pixel -->
+
 <link rel="icon" href="/favicon-32.png">
 <link rel="preload" href="fonts/gotham-black.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/gotham-bold.woff2" as="font" type="font/woff2" crossorigin>
@@ -317,13 +335,15 @@ body.fim .veu{opacity:.96}
 </section>
 
 <script>
-/* ENSAIO: ainda não envia nada (falta o /api/redes-gratis → GHL, depois do OK do Tiago).
+/* Envia para /api/redes-gratis (GHL da Vloom): fase "registo" no fim do telemóvel e fase
+   "candidatura" no ecrã final, com o resultado. Marca Lead no registo e CandidaturaAceite em quem é
+   pre-aceite, no pixel e na CAPI (o mesmo eventId dos dois lados, para a Meta nao contar a dobrar).
    Regra: aceite se fatura ≥ 500k E decide (eu / eu e sócio) E diz que consegue a conversa de 30 min.
    Abaixo de 500k acaba logo na faturação. (Sem pergunta «quando quer começar»: quem reclama a oferta quer já: ordem dele, 19/11.)
    Armadilhas resolvidas: o ecrã que entra fica visível de imediato (senão o focus falha e o texto vai para a caixa anterior)
    e os ecrãs escondidos ficam inert. */
 (function () {
-  var ENSAIO = true;
+  var ENSAIO = false;
   var ecras = [].slice.call(document.querySelectorAll('.ecra'));
   var perguntas = ecras.filter(function (e) { return !e.hasAttribute('data-fim'); });
   var r = {}, atual = null, historico = [];
@@ -354,9 +374,32 @@ body.fim .veu{opacity:.96}
   })();
 
   function enviar(fase) {
-    var d = Object.assign({ fase: fase, pagina: location.href, quando: new Date().toISOString() }, r);
+    var d = Object.assign({ fase: fase, pagina: location.href, quando: new Date().toISOString() }, r, utms());
     if (ENSAIO) { console.log('[candidatura · ensaio, nada enviado]', d); return; }
     try { navigator.sendBeacon('/api/redes-gratis', new Blob([JSON.stringify(d)], { type: 'application/json' })); } catch (e) {}
+    marca(fase === 'registo' ? 'Lead' : (d.resultado === 'aceite' ? 'CandidaturaAceite' : null), d);
+  }
+  function utms() {
+    var q = new URLSearchParams(location.search), o = {};
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid']
+      .forEach(function (k) { if (q.get(k)) o[k] = q.get(k); });
+    return o;
+  }
+  /* Evento de otimizacao da campanha: Lead (registo completo: nome, empresa, email, telemovel).
+     CandidaturaAceite fica como evento proprio desta oferta, para medir a qualidade sem mexer na otimizacao. */
+  function marca(evento, d) {
+    if (!evento) return;
+    var eid = (window.vloomFb && window.vloomFb.id()) || String(Date.now());
+    var dados = { content_name: '2 Semanas de Redes Gratis' };
+    /* Lead e evento padrao do pixel; CandidaturaAceite e proprio desta oferta e vai por trackCustom. */
+    var metodo = evento === 'Lead' ? 'track' : 'trackCustom';
+    try { if (window.fbq) fbq(metodo, evento, dados, { eventID: eid }); } catch (e) {}
+    try {
+      if (window.vloomFb) window.vloomFb.capi({
+        eventName: evento, eventId: eid, email: d.email, phone: d.telemovel,
+        firstName: d.nome, contentName: dados.content_name,
+      });
+    } catch (e) {}
   }
   function preenche() {
     document.querySelectorAll('[data-nome]').forEach(function (s) { var n = (r.nome || '').trim().split(' ')[0]; s.textContent = n.charAt(0).toUpperCase() + n.slice(1); });
